@@ -1305,4 +1305,90 @@ export enum apiEndPoints {
   psiWeekWiseData ='pmmpsi/psi-index-fta-Week',
   psiDayWiseData ='pmmpsi/psi-index-fta-Day',
 
+   /********************************Lims-im Module ***********************************************/
+
+  /***Instrument Category  Master***/
+  allinstrumentcatMasterTabledata = 'limsm-im/ic-master/get-all',
+  activeinstrumentcatMasterTabledata = 'limsm-im/ic-master/get-max-all',
+  instrumentcatMasterUserProfileFilterData = 'limsm-im/ic-master/search',
+  instrumentcatMasterCreateUpdate = 'limsm-im/ic-master/save-update',
+  instrumentcatMasterLoadUpdatePage = 'limsm-im/ic-master/get-by-max-code',
+  instrumentcatMasterAllAuditTrail = 'limsm-im/ic-master/get-by-code-all',
+
+  /***Calibration Frequency Category  ***/
+  allcalibrationfreqMasterTabledata = 'limsm-im/clf-master/get-all',
+  activecalibrationfreqMasterTabledata = 'limsm-im/clf-master/get-max-all',
+  calibrationfreqMasterUserProfileFilterData = 'limsm-im/clf-master/search',
+  calibrationfreqMasterCreateUpdate = 'limsm-im/clf-master/save-update',
+  calibrationfreqMasterLoadUpdatePage = 'limsm-im/clf-master/get-by-max-code',
+  calibrationfreqMasterAllAuditTrail = 'limsm-im/clf-master/get-by-code-all',
+
+
+  /***Calibration  Schedule  ***/
+  allcalibrationschMasterTabledata = 'limsm-im/cls-master/get-all',
+  activecalibrationschMasterTabledata = 'limsm-im/cls_master/get-max-all',
+  calibrationschMasterUserProfileFilterData = 'limsm-im/cls_Master/search',
+  calibrationschMasterCreateUpdate = 'limsm-im/cls-master/save-update',
+  calibrationschMasterLoadUpdatePage = 'limsm-im/cls-master/get-by-max-code',
+  calibrationschMasterAllAuditTrail = 'limsm-im/cls-master/get-by-code-all',
+
+  /***Calibration Record  Schedule  ***/
+  allcalibrationrecschMasterTabledata = 'limsm-im/crs_master/get-all',
+  activecalibrationrecschMasterTabledata = 'limsm-im/crs_master/get-max-all',
+  calibrationrecschMasterUserProfileFilterData = 'limsm-im/crs_master/search',
+  calibrationrecschMasterCreateUpdate = 'limsm-im/crs_master/save-update',
+  calibrationrecschMasterLoadUpdatePage = 'limsm-im/crs_master/get-by-max-code',
+  calibrationrecschMasterAllAuditTrail = 'limsm-im/crs_master/get-by-code-all',
+
+
+  /***Instrument Category  Master***/
+  allinstrumentMasterTabledata = 'limsm-im/im-master/get-all',
+  activeinstrumentMasterTabledata = 'limsm-im/im-master/get-max-all',
+  instrumentMasterUserProfileFilterData = 'limsm-im/im-master/search',
+  instrumentMasterCreateUpdate = 'limsm-im/im-master/save-update',
+  instrumentMasterLoadUpdatePage = 'limsm-im/im-master/get-by-max-code',
+  instrumentMasterAllAuditTrail = 'limsm-im/im-master/get-by-code-all',
+
+  /*********Method Maaster******/
+  allMethodTabledata = 'at/method-master/get-all',
+  activeMethodTabledata = 'at/method-master/get-max-all',
+  MethodUserProfileFilterData = 'at/method-master/search',
+  MethodCreateUpdate = 'at/method-master/save-update',
+  MethodLoadUpdatePage = 'at/method-master/get-by-max-code',
+  MethodAllAuditTrail = 'at/method-master/get-by-code-all',
+
+  /*********Sample Run Maaster******/
+  allSampleRunTabledata = 'at/samplerun-master/get-all',
+  activeSampleRunTabledata = 'at/samplerun-master/get-max-all',
+  SampleRunUserProfileFilterData = 'at/samplerun-master/search',
+  SampleRunCreateUpdate = 'at/samplerun-master/save-update',
+  SampleRunLoadUpdatePage = 'at/samplerun-master/get-by-max-code',
+  SampleRunAllAuditTrail = 'at/samplerun-master/get-by-code-all',
+
+  /*********Sample Set Maaster******/
+  allSampleSetTabledata = 'at/sampleset-master/get-all',
+  activeSampleSetTabledata = 'at/sampleset-master/get-max-all',
+  SampleSetUserProfileFilterData = 'at/sampleset-master/search',
+  SampleSetCreateUpdate = 'at/sampleset-master/save-update',
+  SampleSetLoadUpdatePage = 'at/sampleset-master/get-by-max-code',
+  SampleSetAllAuditTrail = 'at/sampleset-master/get-by-code-all',
+
+  /*********User Maaster******/
+  allUserTabledata = 'at/user-master/get-all',
+  activeUserTabledata = 'at/user-master/get-max-all',
+  UserUserProfileFilterData = 'at/user-master/search',
+  UserCreateUpdate = 'at/user-master/save-update',
+  UserLoadUpdatePage = 'at/user-master/get-by-max-code',
+  UserAllAuditTrail = 'at/user-master/get-by-code-all',
+
+  /*********Even Log Maaster******/
+  allEvenLogTabledata = 'at/evenlog-master/get-all',
+  activeEvenLogTabledata = 'at/evenlog-master/get-max-all',
+  EvenLogUserProfileFilterData = 'at/evenlog-master/search',
+  EvenLogCreateUpdate = 'at/evenlog-master/save-update',
+  EvenLogLoadUpdatePage = 'at/evenlog-master/get-by-max-code',
+  EvenLogAllAuditTrail = 'at/evenlog-master/get-by-code-all',
+
+  
+
 }
