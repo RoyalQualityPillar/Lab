@@ -14,7 +14,7 @@ module.exports = {
     library: { type: 'module' }, // ✅ required for ESM
 
   name: 'lab',
-    filename: 'ngxp-remoteEntry.js',
+    filename: 'lab-remoteEntry.js',
 
     exposes: {
       './AppModule': './src/app/app.module.ts',
