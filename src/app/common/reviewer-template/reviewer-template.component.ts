@@ -16,7 +16,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { GlobalConstants } from '../global-constants';
 import { Subscription, take } from 'rxjs';
-import { SdService } from 'src/app/rqp-sd-module/sd.service';
+import { SdService } from '../../rqp-sd-module/sd.service';
 import { LifeCycleDataService } from 'src/app/service/life-cycle-data.service';
 import { ToolbarService } from 'src/app/service/toolbar.service';
 import { ActivatedRoute, Router } from '@angular/router';

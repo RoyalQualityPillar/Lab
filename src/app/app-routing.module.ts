@@ -10,7 +10,11 @@ const routes: Routes = [
   // },
   
 
- 
+ {
+    path: 'lims',
+    loadChildren: () =>
+      import('./rqp-lims-module/lims/lims.module').then((m) => m.LimsModule),
+  }
 
 ];
 @NgModule({

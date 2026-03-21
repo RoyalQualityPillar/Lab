@@ -74,7 +74,6 @@ import { UserMasterCreateUpdateComponent } from '../masterdata/ims-masterdata/us
 import { EvenLogMasterCreateUpdateComponent } from '../masterdata/ims-masterdata/even-log-master/even-log-master-create-update/even-log-master-create-update.component';
 import { EvenLogMasterHomePageComponent } from '../masterdata/ims-masterdata/even-log-master/even-log-master-home-page/even-log-master-home-page.component';
 import { MatTableModule } from '@angular/material/table';
-import { CustomDatePipe } from 'src/app/pipe/custom-date.pipe';
 
 
 @NgModule({
@@ -156,9 +155,7 @@ import { CustomDatePipe } from 'src/app/pipe/custom-date.pipe';
     FormsModule,
     MatTableModule,
     ReactiveFormsModule,
-    SharedModule,
     AngularMaterialModule,
-    CustomDatePipe,
   ],
 })
 export class LimsModule { }
