@@ -87,7 +87,7 @@ export class CalibrationFreqCreateUpdateComponent
       this.onloadDropDown();
       this.onloadDFListDropDown();
       this.onLoadStatusDropDown();
-
+      
       if (this.userData.type == 'Modification') {
         this.isReadOnly = true;
         this.isUpdate = true;
