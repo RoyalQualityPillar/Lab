@@ -1,0 +1,15 @@
+mat-header-row {
+  background: #369 !important;
+  min-height: min-content;
+  border-bottom: 1;
+}
+.example-table-container {
+  min-width: 100%;
+  /* overflow-x: scroll; */
+}
+.example-input-container {
+  min-width: 49%;
+}
+.mat-column-removeRow {
+  flex: 0 0 10%;
+}

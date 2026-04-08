@@ -14,7 +14,13 @@ const routes: Routes = [
     path: 'lims',
     loadChildren: () =>
       import('./rqp-lims-module/lims/lims.module').then((m) => m.LimsModule),
+  },
+  {
+    path: 'cm',
+    loadChildren: () =>
+      import('./rqp-lims-module/cm/cm.module').then((m) => m.CmModule),
   }
+
 
 ];
 @NgModule({

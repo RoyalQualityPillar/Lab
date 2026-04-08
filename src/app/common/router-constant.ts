@@ -88,4 +88,9 @@ export const routesMap: { [key: string]: string } = {
   CS: '/lims/course-session-home',
   CRS: '/lims/course-home',
   GTP: '/lims/gtp-home',
+  CA: '/cm/ca-home',
+  CQ: '/cm/cq-home',
+  CU: '/cm/cu-home',
+  MA: '/cm/ma-home',
+
 };
