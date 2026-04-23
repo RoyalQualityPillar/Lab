@@ -45,5 +45,9 @@ export class ImsMasterDataHomePageComponent {
   onEvenLogMaster() {
     this.router.navigate(['./rqplabui/lims/even-log-master-home-page'])
   }
+  
+  onallStagesRecord(): void {
+    this.router.navigate(['./rqpquailtyui/dms/allstagesrecord']);
+  }
 }
 
