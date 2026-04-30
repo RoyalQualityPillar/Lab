@@ -8,9 +8,9 @@ const routes: Routes = [
   //   loadChildren: () =>
   //     import('../rqp-admin-module/admin/admin.module').then((m) => m.AdminModule),
   // },
-  
 
- {
+
+  {
     path: 'lims',
     loadChildren: () =>
       import('./rqp-lims-module/lims/lims.module').then((m) => m.LimsModule),
@@ -26,4 +26,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)], // ✅ correct for MFE remotes
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
