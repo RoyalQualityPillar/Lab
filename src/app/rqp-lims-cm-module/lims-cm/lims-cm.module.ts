@@ -12,8 +12,8 @@ import { ColumnMasterHomePageComponent } from '../lims-cm-master/column-master/c
 import { CommonModule } from '@angular/common';
 import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LimsCmRoutingModule } from './lims-cm-routing.module';
 import { SharedModule } from 'src/app/common/shared.module';
+import { LimsCmRoutingModule } from './lims-cm-routing.module';
 
 
 @NgModule({
