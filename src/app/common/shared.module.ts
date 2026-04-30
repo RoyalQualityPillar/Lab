@@ -23,12 +23,14 @@ import { CommonAllAuditTrailComponent } from './common-all-audit-trail/common-al
 import { CommonActiveAuditTrailComponent } from './common-active-audit-trail/common-active-audit-trail.component';
 import { CommonTableFilterComponent } from './common-table-filter/common-table-filter.component';
 import { LcWeekDataComponent } from './lc-week-data/lc-week-data.component';
+import { CommonESignatureComponent } from './common-e-signature/common-e-signature.component';
 //import { CustomDatePipe } from '../pipe/custom-date.pipe'; // ✅ Pipe must be declared, not imported
 
 @NgModule({
   declarations: [
     CommonHeaderComponent,
     CommonCommentsComponent,
+    CommonESignatureComponent,
     LccpComponent,
     CommonTitleComponent,
     ReviewerTemplateComponent,
@@ -45,6 +47,7 @@ import { LcWeekDataComponent } from './lc-week-data/lc-week-data.component';
   exports: [
     CommonHeaderComponent,
     CommonCommentsComponent,
+    CommonESignatureComponent,
     LccpComponent,
     CommonTitleComponent,
     CustomSnackBarComponent,

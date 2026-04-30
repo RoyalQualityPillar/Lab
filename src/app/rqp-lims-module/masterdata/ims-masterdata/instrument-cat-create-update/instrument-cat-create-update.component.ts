@@ -215,7 +215,7 @@ export class InstrumentCatCreateUpdateComponent implements
           timer(2000)
             .pipe(takeUntil(this.destroy$))
             .subscribe(() => {
-              this.route.navigateByUrl('/rqpquailtyui/lims/instrument-cat-home-page');
+              this.route.navigateByUrl('/rqplabui/lims/instrument-cat-home-page');
             });
         }
 

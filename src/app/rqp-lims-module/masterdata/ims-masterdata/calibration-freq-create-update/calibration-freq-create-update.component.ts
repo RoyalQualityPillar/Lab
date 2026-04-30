@@ -260,7 +260,7 @@ export class CalibrationFreqCreateUpdateComponent
                 timer(2000)
                   .pipe(takeUntil(this.destroy$))
                   .subscribe(() => {
-                    this.route.navigateByUrl('/rqpquailtyui/lims/calibration-freq-home-page');
+                    this.route.navigateByUrl('/rqplabui/lims/calibration-freq-home-page');
                   });
               }
       
