@@ -35,7 +35,7 @@
                   >*</span
                 >).</span
               >
-            </div>
+            </div><br>
             <!-- <div class="row no-gutters ms-1 me-1 dense-4 orgCode"><br />
               <mat-form-field appearance="outline" class="col-12 px-1">
                 <mat-label>Unit Code</mat-label>
@@ -56,8 +56,7 @@
                 </mat-form-field>
               </div>
             </div>
-            <div class="row no-gutters ms-1 me-1 dense-4">
-
+            <div class="row no-gutters ms-1 me-1 dense-4" *ngIf="isUpdate">
               <mat-form-field appearance="outline" class="col-6 px-1">
                   <mat-label>Instrument Category No </mat-label>
                   <input
@@ -69,6 +68,17 @@
                     placeholder="Instrument Category No"
                   />
                 </mat-form-field>
+            </div>
+            <div class="row no-gutters ms-1 me-1 dense-4">
+                <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Instrument Category Code</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="ff0003"
+                  placeholder="Instrument Category Code"
+                />
+              </mat-form-field>
               <mat-form-field appearance="outline" class="col-6 px-1">
                 <mat-label>Instrument Category Name</mat-label>
                 <input
@@ -79,7 +89,7 @@
                 />
               </mat-form-field>
 
-              <mat-form-field appearance="outline" class="col-6 px-1">
+              <!-- <mat-form-field appearance="outline" class="col-6 px-1">
                 <mat-label>Category</mat-label>
                 <input
                   type="text"
@@ -87,17 +97,16 @@
                   formControlName="ff0002"
                   placeholder="Category"
                 />
-              </mat-form-field>
-
+              </mat-form-field> -->
               <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Instrument Category Code</mat-label>
-                <input
-                  type="text"
-                  matInput
-                  formControlName="ff0003"
-                  placeholder="Instrument Category Code"
-                />
-              </mat-form-field>
+             <mat-label>Category</mat-label>
+  <mat-select formControlName="ff0002">
+    <mat-option value="instruments">Instruments</mat-option>
+    <mat-option value="equipment">Equipment</mat-option>
+  </mat-select>
+</mat-form-field>
+
+              
               <!-- <mat-form-field appearance="outline" class="col-6 px-1">
                 <mat-label>Product Category</mat-label>
                 <input

@@ -68,7 +68,7 @@ export class InstrumentCatCreateUpdateComponent implements
       ff0001: ['', Validators.required],
       ff0002: ['', Validators.required],
       ff0003: ['', Validators.required],
-      ff0004: ['', Validators.required],
+      ff0004: [''],
       createdby: [''],
       status: [''],
       comments: [''],
