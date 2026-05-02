@@ -6,11 +6,12 @@ import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BkTableModule } from 'bk-angular-table';
 //import { MatDialogModule } from '@angular/material/dialog';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { LovDialogComponent } from './common/lov-dialog/lov-dialog.component';
 import { MessageDialogComponent } from './common/message-dialog/message-dialog.component';
+import { SharedModule } from './common/shared.module';
+
 
 
 // import { SharedModule } from './common/shared.module';
@@ -24,9 +25,11 @@ import { MessageDialogComponent } from './common/message-dialog/message-dialog.c
     //CustomSnackBarComponent,
     LovDialogComponent,
     MessageDialogComponent,
-
-    
-    
+   
+   
+  
+   
+   
    
    
     
@@ -40,8 +43,7 @@ import { MessageDialogComponent } from './common/message-dialog/message-dialog.c
     CommonModule,
     AppRoutingModule,
     AngularMaterialModule,
-   BkTableModule,
-  //  SharedModule
+   SharedModule
    
     //MatDialogModule,
     

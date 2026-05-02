@@ -74,6 +74,15 @@ import { UserMasterCreateUpdateComponent } from '../masterdata/ims-masterdata/us
 import { EvenLogMasterCreateUpdateComponent } from '../masterdata/ims-masterdata/even-log-master/even-log-master-create-update/even-log-master-create-update.component';
 import { EvenLogMasterHomePageComponent } from '../masterdata/ims-masterdata/even-log-master/even-log-master-home-page/even-log-master-home-page.component';
 import { MatTableModule } from '@angular/material/table';
+import { SpmModuleAdminComponent } from '../spm/spm-module-admin/spm-module-admin.component';
+import { SpmInitiatorComponent } from '../spm/spm-initiator/spm-initiator.component';
+import { SpmUpdateComponent } from '../spm/spm-update/spm-update.component';
+import { SpmUpdateSaveComponent } from '../spm/spm-update-save/spm-update-save.component';
+import { SpmReviewerSaveComponent } from '../spm/spm-reviewer-save/spm-reviewer-save.component';
+import { SpmReviewerComponent } from '../spm/spm-reviewer/spm-reviewer.component';
+import { SpmCompletedComponent } from '../spm/spm-completed/spm-completed.component';
+import { SpmCompletedSaveComponent } from '../spm/spm-completed-save/spm-completed-save.component';
+import { PmsListComponent } from '../pms-list/pms-list.component';
 
 
 @NgModule({
@@ -136,16 +145,23 @@ import { MatTableModule } from '@angular/material/table';
     InstrumentMasterCreateUpdateComponent,
     SampleSetMasterCreateUpdateComponent,
     SampleSetMasterHomePageComponent,
-     SampleRunMasterCreateUpdateComponent,
+    SampleRunMasterCreateUpdateComponent,
     SampleRunMasterHomePageComponent,
-     MethodMasterCreateUpdateComponent,
+    MethodMasterCreateUpdateComponent,
     MethodMasterHomePageComponent,
     UserMasterCreateUpdateComponent,
     UserMasterHomePageComponent,
     EvenLogMasterCreateUpdateComponent,
     EvenLogMasterHomePageComponent,
-
-
+    SpmModuleAdminComponent,
+    SpmInitiatorComponent,
+    SpmUpdateComponent,
+    SpmUpdateSaveComponent,
+    SpmReviewerSaveComponent,
+    SpmReviewerComponent,
+    SpmCompletedComponent,
+    SpmCompletedSaveComponent,
+    PmsListComponent,
 
   ],
   imports: [
@@ -155,6 +171,7 @@ import { MatTableModule } from '@angular/material/table';
     FormsModule,
     MatTableModule,
     ReactiveFormsModule,
+    SharedModule,
     AngularMaterialModule,
   ],
 })

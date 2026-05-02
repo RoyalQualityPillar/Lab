@@ -18,6 +18,14 @@ import { MethodMasterHomePageComponent } from '../masterdata/ims-masterdata/meth
 import { UserMasterHomePageComponent } from '../masterdata/ims-masterdata/user-master/user-master-home-page/user-master-home-page.component';
 import { EvenLogMasterHomePageComponent } from '../masterdata/ims-masterdata/even-log-master/even-log-master-home-page/even-log-master-home-page.component';
 import { ImsMasterHomePageComponent } from '../masterdata/ims-master-home-page/ims-master-home-page.component';
+import { SpmInitiatorComponent } from '../spm/spm-initiator/spm-initiator.component';
+import { SpmUpdateComponent } from '../spm/spm-update/spm-update.component';
+import { SpmModuleAdminComponent } from '../spm/spm-module-admin/spm-module-admin.component';
+import { SpmUpdateSaveComponent } from '../spm/spm-update-save/spm-update-save.component';
+import { SpmReviewerSaveComponent } from '../spm/spm-reviewer-save/spm-reviewer-save.component';
+import { SpmReviewerComponent } from '../spm/spm-reviewer/spm-reviewer.component';
+import { SpmCompletedComponent } from '../spm/spm-completed/spm-completed.component';
+import { SpmCompletedSaveComponent } from '../spm/spm-completed-save/spm-completed-save.component';
 // import { LimsModuleHomePageComponent } from '../lims-module-home-page/lims-module-home-page.component';
 // import { LimsMasterHomePageComponent } from '../lims-master/lims-master-home-page/lims-master-home-page.component';
 // import { FieldActiveComponent } from '../lims-master/field-master/field-active/field-active.component';
@@ -334,6 +342,39 @@ const routes: Routes = [
     path: 'even-log-master-home-page',
     component: EvenLogMasterHomePageComponent,
   },
+  {
+    path: 'spm-module-admin',
+    component: SpmModuleAdminComponent,
+  },
+  {
+    path: 'spm-initiator',
+    component: SpmInitiatorComponent,
+  },
+   {
+    path: 'spm-update',
+    component: SpmUpdateComponent,
+  },
+  {
+    path: 'spm-update-save',
+    component: SpmUpdateSaveComponent,
+  },
+  {
+    path: 'spm-reviewer-save',
+    component: SpmReviewerSaveComponent,
+  },
+  {
+    path: 'spm-reviewer',
+    component: SpmReviewerComponent,
+  },
+  {
+    path: 'spm-completed',
+    component: SpmCompletedComponent,
+  },
+  {
+    path: 'spm-completed-save',
+    component: SpmCompletedSaveComponent,
+  },
+
 
 
 
