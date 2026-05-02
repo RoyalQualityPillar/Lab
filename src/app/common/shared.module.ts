@@ -57,9 +57,10 @@ import { CommonESignatureComponent } from './common-e-signature/common-e-signatu
     CustomDatePipe, // ✅ Exported to use in other modules
     CommonTableFilterComponent,
     NgApexchartsModule,
-       CommonActiveAuditTrailComponent,
+    CommonActiveAuditTrailComponent,
     CommonAllAuditTrailComponent,
-    LcWeekDataComponent
+    LcWeekDataComponent,
+    BkTableModule
 
 
   ],
@@ -73,4 +74,4 @@ import { CommonESignatureComponent } from './common-e-signature/common-e-signatu
   ],
   providers: [provideHttpClient(withInterceptorsFromDi())],
 })
-export class SharedModule {}
+export class SharedModule { }

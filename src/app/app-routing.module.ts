@@ -20,6 +20,36 @@ const routes: Routes = [
     loadChildren: () =>
       import('./rqp-lims-cm-module/lims-cm/lims-cm.module').then((m) => m.LimsCmModule),
   },
+  {
+    path: 'lims-aqm',
+    loadChildren: () =>
+      import('./rqp-lims-aqm-module/lims-aqm/lims-aqm.module').then((m) => m.LimsAqmModule),
+  },
+  {
+    path: 'lims-chm',
+    loadChildren: () =>
+      import('./rqp-lims-chm-module/lims-chm/lims-chm.module').then((m) => m.LimsChmModule),
+  },
+  {
+    path: 'lims-rsm',
+    loadChildren: () =>
+      import('./rqp-lims-rsm-module/lims-rsm/lims-rsm.module').then((m) => m.LimsRsmModule),
+  },
+  {
+    path: 'lims-std',
+    loadChildren: () =>
+      import('./rqp-lims-std-module/lims-std/lims-std.module').then((m) => m.LimsStdModule),
+  },
+  {
+    path: 'lims-stm',
+    loadChildren: () =>
+      import('./rqp-lims-stm-module/lims-stm/lims-stm.module').then((m) => m.LimsStmModule),
+  },
+  {
+    path: 'lims-vsm',
+    loadChildren: () =>
+      import('./rqp-lims-vsm-module/lims-vsm/lims-vsm.module').then((m) => m.LimsVsmModule),
+  },
 
 ];
 @NgModule({
