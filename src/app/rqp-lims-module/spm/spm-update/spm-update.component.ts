@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './spm-update.component.scss'
 })
 export class SpmUpdateComponent {
-
+public updateSaveUrl = './rqplabui/lims/spm-update-save';
 }

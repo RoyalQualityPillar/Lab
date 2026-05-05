@@ -6,6 +6,12 @@ import { CookieService } from 'ngx-cookie-service';
 import { MatDialog } from '@angular/material/dialog';
 import { LovDialogComponent } from 'src/app/common/lov-dialog/lov-dialog.component';
 import { PmsListComponent } from '../../pms-list/pms-list.component';
+import { ButtonLabelService } from 'src/app/service/button-label.service';
+import { RemoteComponentLoaderService } from 'src/app/service/remote-component-loader.service';
+import { Subject, takeUntil, timer } from 'rxjs';
+import { MessageDialogComponent } from 'src/app/common/message-dialog/message-dialog.component';
+import { NotificationService } from 'src/app/common/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-spm-initiator',
@@ -14,46 +20,69 @@ import { PmsListComponent } from '../../pms-list/pms-list.component';
   styleUrl: './spm-initiator.component.scss'
 })
 export class SpmInitiatorComponent implements OnInit {
-   public SPMRequirementForm: FormGroup;
+  public SPMRequirementForm: FormGroup;
   public ContainerRequirementForm: FormGroup;
- public headerData: any;
+  public SPMAttachmentRequirementForm: FormGroup;
+  public headerData: any;
   public pageData: any;
-   public nextStageListData: any;
+  public comments: string;
+  public nextStageListData: any;
   public headerRequestBody: any;
   public isLoading = false;
-   public isStatusSuccess = false;
-   public selectedDialogData: any;
-     public isSubjectCodeSuccess: boolean;
+  destroy$ = new Subject<void>();
+  public selectedFiles: any;
+  public uploadedDocfileName: any;
+  public selectedFileList: File[] = [];
+  public isStatusSuccess = false;
+  public selectedDialogData: any;
+  public isSubjectCodeSuccess: boolean;
   public displayedColumns: any;
-   public pmmMaterialList: any[] = [];
-   public psmList: any[] = [];
-    public saleProductList: any[] = [];
+  public body1: any;
+  public draftValue: boolean;
+  public tableData: any;
+  public pmmMaterialList: any[] = [];
+  public psmList: any[] = [];
+  public saleProductList: any[] = [];
+  public spAttachmentList: any[] = [];
 
   constructor(
-        private toolbarService: ToolbarService,
-        private spmService: SpmService,
-        public fb: FormBuilder,
-         private cookieService: CookieService,
-          public dialog: MatDialog,
-  ){
- this.SPMRequirementForm = fb.group({
+    private toolbarService: ToolbarService,
+    private spmService: SpmService,
+    public fb: FormBuilder,
+    private cookieService: CookieService,
+    public dialog: MatDialog,
+    private notificationService: NotificationService,
+    private route: Router,
+    public buttonLabelService: ButtonLabelService,
+    private remoteLoader: RemoteComponentLoaderService,
+  ) {
+    this.SPMRequirementForm = fb.group({
       products: fb.array([this.createProduct()])
     });
-     this.ContainerRequirementForm = this.fb.group({
+    this.ContainerRequirementForm = this.fb.group({
       containers: this.fb.array([this.createContainer()])
     });
+    this.SPMAttachmentRequirementForm = this.fb.group({
+      comments: [''],
+      stage2: [''],
+      attachmentName: [''],
+      documentName: [''],
+      categoryTypes: [''],
+      attachmenentCategoryTypes: [''],
+    });
   }
-  
+
   ngOnInit(): void {
-     this.pageData = {
+    this.pageData = {
       pageName: 'homePage',
       pageType: 'create',
       isRasiInit: 'spm-Initiator',
     };
-     this.onLoadNextStageData();
-     this.onloadDropDownList();
+    this.onloadDropDownList();
+
+    this.onLoadNextStageData();
   }
-   createProduct(): FormGroup {
+  createProduct(): FormGroup {
     return this.fb.group({
       productNo: [''],
       productName: [''],
@@ -72,13 +101,13 @@ export class SpmInitiatorComponent implements OnInit {
   get products(): FormArray {
     return this.SPMRequirementForm.get('products') as FormArray;
   }
-   addProduct() {
+  addProduct() {
     this.products.push(this.createProduct());
   }
-   removeProduct(index: number) {
+  removeProduct(index: number) {
     this.products.removeAt(index);
   }
-   createContainer(): FormGroup {
+  createContainer(): FormGroup {
     return this.fb.group({
       materialNo: [''],
       materialName: [''],
@@ -96,7 +125,11 @@ export class SpmInitiatorComponent implements OnInit {
   removeContainer(index: number) {
     this.containers.removeAt(index);
   }
-   onloadDropDownList() {
+  removeRow(index: number) {
+    // this.items.removeAt(index);
+    this.spAttachmentList.splice(index, 1);
+  }
+  onloadDropDownList() {
     this.isLoading = true;
     this.spmService.getDropDownList(this.cookieService.get('buCode')).subscribe((data: any) => {
       this.pmmMaterialList = data.data.pmmMaterialList;
@@ -104,7 +137,7 @@ export class SpmInitiatorComponent implements OnInit {
       this.isLoading = false;
     });
   }
- public onLoadNextStageData() {
+  public onLoadNextStageData() {
     let body: any;
     body = {
       lcNumber: this.headerRequestBody.lifeCycleCode,
@@ -116,12 +149,51 @@ export class SpmInitiatorComponent implements OnInit {
       this.nextStageListData = data.data.nstage;
     });
   }
-   getHeaderData(event: any) {
+  public handleCommentsForm(event: any) {
+    this.comments = event.comments;
+  }
+  getHeaderData(event: any) {
     this.headerData = event;
     let uc0001 = this.headerData.unitcode;
     this.spmService.bmrInput(uc0001).subscribe(({ data }) => {
       this.psmList = data.pmsList;
     });
+  }
+  handleFileInput(event: any) {
+    this.selectedFiles = event.target.files[0];
+    if (this.selectedFiles) {
+      this.uploadedDocfileName = this.selectedFiles.name;
+    }
+  }
+  filterEmptyObjects(objects: any[]): any[] {
+    return objects.filter((obj) => Object.keys(obj).length > 0);
+  }
+  onCreateSelectedDataList() {
+    this.selectedFileList.push(this.selectedFiles);
+    // Check if the document name is provided before proceeding
+    if (this.SPMAttachmentRequirementForm.controls['documentName'].value) {
+      // Add new action attachment object
+      this.spAttachmentList.push({
+        uc0001: null,
+        selectedFileList: this.selectedFiles,
+        ff0001: this.SPMAttachmentRequirementForm.controls['documentName'].value,
+        ff0005: 'AT',
+        ff0013: "string",
+        ff0015: "att",
+        lc0002: "string",
+        lc0003: "string",
+        lc0004: "string",
+        documentAction: 'CREATE',
+        documnetType: "CREATE"
+      });
+
+      let filteredObjects = this.filterEmptyObjects(this.spAttachmentList);
+      this.spAttachmentList = filteredObjects;
+      // this.tableData = new MatTableDataSource(item.spAttachmentList);
+      this.tableData = this.spAttachmentList;
+    } else {
+      console.log('Document name is empty, not adding spAttachmentList');
+    }
   }
   onChangeSubject(index: number) {
     const productNumber = this.products.at(index).get('productNo');
@@ -142,7 +214,157 @@ export class SpmInitiatorComponent implements OnInit {
       }
     }
   }
+  async onSaveConfirmation(btnStatus: any) {
+    const component = await this.remoteLoader.loadComponentByKey(
+      'CommonESignatureComponent'
+    );
+    const dialogRef = this.dialog.open(component, {
+      height: '300px',
+      width: '600px',
+      data: {},
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.selectedDialogData = result.data;
+        if (this.selectedDialogData) {
+          this.Submit('0');
+        }
+      }
+    });
+  }
+  async onSubmitConfirmation(btnStatus: any) {
+    const component = await this.remoteLoader.loadComponentByKey(
+      'CommonESignatureComponent'
+    );
+    const dialogRef = this.dialog.open(component, {
+      height: '300px',
+      width: '600px',
+      data: {},
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.selectedDialogData = result.data;
+        if (this.selectedDialogData) {
+          this.Submit('1');
+        }
+      }
+    });
+  }
+  formatRequestBody() {
+    const products = this.products.value;
+    const containers = this.containers.value;
+    this.body1 = {
+      lcRequest: {
+        unitCode: this.headerData.unitcode,
+        moduleCode: this.headerData.modulecode,
+        departmentCode: this.headerData.departmentcode,
+        lcNumber: this.headerData.lcnum,
+        lcStage: this.headerData.stage,
+        lcRole: this.headerData.role,
+        stage2: 0,
+        requestType: '',
+        createdBy: this.headerData.createdby,
+        comments: this.comments,
+        documentModule: 'string',
+        documentStatus: 'string',
+        gmuserDTOList: [],
+        draft: this.draftValue,
+      },
 
+      descriptionList: products.map((element: any) => ({
+        uc0001: null,
+        unitcode: this.headerData.unitcode,
+        ff0001: element.productNo,
+        ff0002: "2026-05-05T09:14:56.862Z",
+        ff0003: "2026-05-05T09:14:56.862Z",
+        ff0004: "2026-05-05T09:14:56.862Z",
+        ff0005: element.productName,
+        ff0006: element.market,
+        ff0007: element.productCode,
+        ff0008: element.uom,
+        ff0009: "2026-05-05T09:14:56.862Z",
+        ff0010: "2026-05-05T09:14:56.862Z",
+        ff0011: element.shelfLifeMonths,
+        ff0012: element.productType,
+        ff0013: element.dosageForm,
+        ff0014: element.inputCode,
+        ff0015: element.productTrackingCode,
+        lc0001: "string",
+        lc0002: "string",
+        lc0003: "string",
+        lc0004: 0,
+        lc0005: "string",
+        lc0006: "string",
+        createdby: this.headerData.createdby,
+        status: 0,
+        // version: 0,
+        comments: this.comments
+      })),
+      testList: containers.map((item: any) => ({
+        uc0001: null,
+        unitcode: this.headerData.unitcode,
+        ff0001: item.materialNo,
+        ff0002: item.materialName,
+        ff0003: item.materialCode,
+        ff0004: item.weight,
+        ff0005: item.weightUom,
+        ff0007: "string",
+        ff0008: "string",
+        ff0009: "string",
+        ff0010: "string",
+        lc0001: '',
+        lc0002: '',
+        lc0003: '',
+        lc0004: '',
+        lc0005: '',
+        lc0006: '',
+        createdby: this.headerData.createdby,
+        status: 0,
+        comments: this.comments,
+      })),
+      spAttachmentList: this.spAttachmentList,
+    };
+
+  }
+  Submit(btnStatus: any) {
+    if (btnStatus == 1) {
+      this.draftValue = false;
+    } else {
+      this.draftValue = true;
+    }
+    this.isLoading = true;
+    let bodyData = this.formatRequestBody();
+    let attachmentList: any[] = [];
+    this.body1.spAttachmentList.forEach((obj) => {
+      console.log(obj.selectedFileList);
+      if (obj.selectedFileList) {
+        attachmentList.push(obj.selectedFileList);
+      }
+    });
+    this.spmService
+      .onSPMSaveUpdate(attachmentList, this.body1)
+      .subscribe((data: any) => {
+        if (data.errorInfo != null) {
+          this.dialog.open(MessageDialogComponent, {
+            data: {
+              message: data.errorInfo.message,
+              heading: 'Error Information',
+            },
+          });
+        } else {
+          this.isLoading = false;
+          this.notificationService.showSuccess(data.status, () => {
+          });
+          timer(2000)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(() => {
+              this.route.navigateByUrl('/rqpquailtyui/qms/cc-home');
+            });
+        }
+      });
+  }
   openStatusLOV(index: number) {
     this.displayedColumns = [
       { field: 'productNO', title: 'Product No' },
@@ -188,7 +410,7 @@ export class SpmInitiatorComponent implements OnInit {
       }
     });
   }
-   openMaterialListLOV(index: number) {
+  openMaterialListLOV(index: number) {
     this.displayedColumns = [
       { field: 'materialnumber', title: 'Material Number' },
       { field: 'materialcode', title: 'Material Code' },
