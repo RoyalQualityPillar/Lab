@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './spm-reviewer.component.scss'
 })
 export class SpmReviewerComponent {
-
+public reviewerUrl: string = './rqplabui/lims/spm-reviewer-save';
 }

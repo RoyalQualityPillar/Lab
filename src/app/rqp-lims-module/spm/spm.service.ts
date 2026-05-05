@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
@@ -26,5 +26,34 @@ public bmrInput(unitCode: string): Observable<any> {
   }
    public productList(uc0001: string): Observable<any> {
     return this.http.get(this.API_URL + `dms/product-list?uc0001=${uc0001}`);
+  }
+    onSPMSaveUpdate(
+    spAttachments: any[],
+    body: any
+  ) {
+    console.log(spAttachments);
+    let token = this.cookieService.get('token');
+    let formData: FormData = new FormData();
+    
+     for (let file of spAttachments) {
+      formData.append('spAttachments', file);
+    }
+    // Append JSON data as a blob
+    const jsonBlob = new Blob([JSON.stringify(body)], {
+      type: 'application/json',
+    });
+    formData.append('spdto', jsonBlob, 'data.json');
+
+    console.log(formData); // Check the FormData structure in the browser's console
+
+    let createUserURL = this.API_URL + 'limsm/specification-request';
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + token,
+      }),
+    };
+
+    return this.http.post(createUserURL, formData, httpOptions);
   }
 }
