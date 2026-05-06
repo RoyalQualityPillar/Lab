@@ -360,7 +360,7 @@ export class SpmInitiatorComponent implements OnInit {
           timer(2000)
             .pipe(takeUntil(this.destroy$))
             .subscribe(() => {
-              this.route.navigateByUrl('/rqpquailtyui/qms/cc-home');
+              this.route.navigateByUrl('/rqplabui/lims/spm-module-admin');
             });
         }
       });

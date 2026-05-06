@@ -24,6 +24,7 @@ import { CommonActiveAuditTrailComponent } from './common-active-audit-trail/com
 import { CommonTableFilterComponent } from './common-table-filter/common-table-filter.component';
 import { LcWeekDataComponent } from './lc-week-data/lc-week-data.component';
 import { CommonESignatureComponent } from './common-e-signature/common-e-signature.component';
+import { AsCommonFooterComponent } from './as-common-footer/as-common-footer.component';
 //import { CustomDatePipe } from '../pipe/custom-date.pipe'; // ✅ Pipe must be declared, not imported
 
 @NgModule({
@@ -31,6 +32,7 @@ import { CommonESignatureComponent } from './common-e-signature/common-e-signatu
     CommonHeaderComponent,
     CommonCommentsComponent,
     CommonESignatureComponent,
+    AsCommonFooterComponent,
     LccpComponent,
     CommonTitleComponent,
     ReviewerTemplateComponent,
@@ -48,6 +50,7 @@ import { CommonESignatureComponent } from './common-e-signature/common-e-signatu
     CommonHeaderComponent,
     CommonCommentsComponent,
     CommonESignatureComponent,
+    AsCommonFooterComponent,
     LccpComponent,
     CommonTitleComponent,
     CustomSnackBarComponent,
