@@ -1389,6 +1389,23 @@ export enum apiEndPoints {
   EvenLogLoadUpdatePage = 'at/evenlog-master/get-by-max-code',
   EvenLogAllAuditTrail = 'at/evenlog-master/get-by-code-all',
 
-  
 
+             /****************Cleaningcategory*********************/
+
+
+              /******* Sample Text Plan*********/
+  allStpTabledata = 'limsws/stpws-record/get-all',
+  activeStpTabledata = 'limsws/stpws-record/get-max-all',
+  StpUserProfileFilterData = 'limsws/stpws-record/search',
+  StpCreateUpdate = 'limsws/stpws-record/save-update',
+  StpLoadUpdatePage = 'limsws/stpws-record/get-by-max-code',
+  StpAllAuditTrail = 'limsws/stpws-record/get-by-code-all',
+
+   /******* Sample Regestration*********/
+  allSamRegTabledata = 'limsws/srws-record/get-all',
+  activeSamRegTabledata = 'limsws/srws-record/get-max-all',
+  SamRegUserProfileFilterData = 'limsws/srws-record/search',
+  SamRegCreateUpdate = 'limsws/srws-record/save-update',
+  SamRegLoadUpdatePage = 'limsws/srws-record/get-by-max-code',
+  SamRegAllAuditTrail = 'limsws/srws-record/get-by-code-all',
 }
