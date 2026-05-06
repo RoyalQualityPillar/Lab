@@ -56,4 +56,29 @@ public bmrInput(unitCode: string): Observable<any> {
 
     return this.http.post(createUserURL, formData, httpOptions);
   }
+   getResquestNoIDForSPM(lc0002: any, lc0001:any) {
+    const queryParams = `?lc0002=${lc0002}&lc0001=${lc0001}`;
+    const reviewURL = this.API_URL + 'limsm/specification-module-request-no' + queryParams;
+    return this.http.get(reviewURL);
+  }
+  getSPMAttachments(lc0003:string, moduleCode:string){
+ const queryParams = `?lc0003=${lc0003}&moduleCode=${moduleCode}`;
+    const reviewURL = this.API_URL + 'gm/attachment-list' + queryParams;
+    return this.http.get(reviewURL);
+  }
+  onDownloadDocumet( uc0001: any) {
+    const queryParams = `?uc0001=${uc0001}`;
+    const reviewURL = this.API_URL + 'file/att-download' + queryParams;
+    return this.http.post(reviewURL, '');
+  }
+    getSPMDescriptionList(lc0003: any) {
+    const queryParams = `?lc0003=${lc0003}`;
+    const reviewURL = this.API_URL + 'limsm/spcDescription-list' + queryParams;
+    return this.http.get(reviewURL);
+  }
+   getSPMTestList(lc0003: any) {
+    const queryParams = `?lc0003=${lc0003}`;
+    const reviewURL = this.API_URL + 'limsm/spcTest-list' + queryParams;
+    return this.http.get(reviewURL);
+  }
 }
