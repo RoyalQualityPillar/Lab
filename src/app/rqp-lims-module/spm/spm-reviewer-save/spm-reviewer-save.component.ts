@@ -49,7 +49,6 @@ export class SpmReviewerSaveComponent implements OnInit {
     public fb: FormBuilder,
     private lifeCycleDataService: LifeCycleDataService,
     private shareHostDataService: ShareHostDataService,
-    private activatedRoute: ActivatedRoute,
   ) {
     this.SPMRequirementForm = fb.group({
       products: fb.array([this.createProduct()])
