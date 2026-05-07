@@ -1408,4 +1408,13 @@ export enum apiEndPoints {
   SamRegCreateUpdate = 'limsws/srws-record/save-update',
   SamRegLoadUpdatePage = 'limsws/srws-record/get-by-max-code',
   SamRegAllAuditTrail = 'limsws/srws-record/get-by-code-all',
+
+
+     /******* Chemical Master Regestration*********/
+  allCmrTabledata = 'limssm/ch-master/get-all',
+  activeCmrTabledata = 'limssm/ch-master/get-max-all',
+  CmrUserProfileFilterData = 'limssm/ch-master/search',
+  CmrCreateUpdate = 'limssm/ch-master/save-update',
+  CmrLoadUpdatePage = 'limssm/ch-master/get-by-max-code',
+  CmrAllAuditTrail = 'limssm/ch-master/get-by-code-all',
 }

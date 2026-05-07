@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chm-module-admin',
@@ -7,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrl: './chm-module-admin.component.scss'
 })
 export class ChmModuleAdminComponent {
+     constructor(private router: Router) { }
+
+  onChemicalMasterRegistration() {
+    this.router.navigate(['./rqplabui/lims-chm/cmr-home-page'])
+  }
 
 }
