@@ -81,4 +81,17 @@ public bmrInput(unitCode: string): Observable<any> {
     const reviewURL = this.API_URL + 'limsm/spcTest-list' + queryParams;
     return this.http.get(reviewURL);
   }
+
+   onGetCommentsData(
+    lcRequestnumber: string,
+    lcnum: string,
+    templateName: string,
+    stage: any,
+    userid: string,
+    moduleCode: string
+  ) {
+    const queryParams = `?lcRequestnumber=${lcRequestnumber}&lcnum=${lcnum}&templateName=${templateName}&stage=${stage}&userid=${userid}&moduleCode=${moduleCode}`;
+    const reviewURL = this.API_URL + 'gmapr/gmap-comment/get-all' + queryParams;
+    return this.http.post(reviewURL, '');
+  }
 }
