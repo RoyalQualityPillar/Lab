@@ -111,7 +111,7 @@ export class CreateUpdateSampleTextPlanComponent implements OnInit {
     const params = { UC0001 };
 
     this.apiService
-      .sendRequest(apiEndPoints.SamRegLoadUpdatePage, 'POST', params)
+      .sendRequest(apiEndPoints.StpLoadUpdatePage, 'POST', params)
       .subscribe((data: any) => {
         if (data.data == null) {
           this.isLoading = false;

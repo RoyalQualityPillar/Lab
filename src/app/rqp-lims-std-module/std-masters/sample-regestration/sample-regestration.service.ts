@@ -14,7 +14,7 @@ export class SampleRegestrationService {
     onCreate(body: any) {
         console.log(body);
         let token = this.cookieService.get('token');
-        let createUserURL = this.API_URL + 'limsws/stpws-record/save-update';
+        let createUserURL = this.API_URL + 'limsws/srws-record/save-update';
         const httpOptions = {
           headers: new HttpHeaders({
             'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ export class SampleRegestrationService {
       onAllRoleAuditTrail(uc0001: any) {
     let queryParams = `?UC0001=${uc0001}`;
     const ALLSALEPRODUCTURL =
-      this.API_URL + 'limsws/stpws-record/get-by-code-all' + queryParams;
+      this.API_URL + 'limsws/srws-record/get-by-code-all' + queryParams;
     return this.http.get(ALLSALEPRODUCTURL);
   }
 }
