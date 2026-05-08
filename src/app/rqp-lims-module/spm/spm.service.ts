@@ -94,4 +94,10 @@ public bmrInput(unitCode: string): Observable<any> {
     const reviewURL = this.API_URL + 'gmapr/gmap-comment/get-all' + queryParams;
     return this.http.post(reviewURL, '');
   }
+   onCommentsData(ff0001: any, lcnum: any, ff0005: number) {
+    const queryParams = `?FF0001=${ff0001}&FF0002=${lcnum}&FF0005=${ff0005}`;
+    const reviewURL =
+      this.API_URL + 'gm/gmap-record/review-comments' + queryParams;
+    return this.http.get(reviewURL);
+  }
 }
