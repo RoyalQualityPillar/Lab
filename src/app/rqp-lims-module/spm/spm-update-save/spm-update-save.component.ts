@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { SpmService } from '../spm.service';
 import { LifeCycleDataService } from 'src/app/service/life-cycle-data.service';
@@ -14,6 +14,7 @@ import { getFileExtension } from 'src/app/common/removeEmptyStrings';
 import { LovDialogComponent } from 'src/app/common/lov-dialog/lov-dialog.component';
 import { CookieService } from 'ngx-cookie-service';
 import { PmsListComponent } from '../../pms-list/pms-list.component';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-spm-update-save',
@@ -22,6 +23,7 @@ import { PmsListComponent } from '../../pms-list/pms-list.component';
   styleUrl: './spm-update-save.component.scss'
 })
 export class SpmUpdateSaveComponent implements OnInit {
+  @ViewChild(MatSort) sort: MatSort;
   public SPMRequirementForm: FormGroup;
   public ContainerRequirementForm: FormGroup;
   public SPMAttachmentRequirementForm: FormGroup;
@@ -34,6 +36,7 @@ export class SpmUpdateSaveComponent implements OnInit {
   public ff0002: any;
   dataSource: any;
   private comments: string;
+  public reviewCommentsData: any;
   public tableData: any;
   public selectedDialogData: any;
   public nextStageListData: any;
@@ -117,6 +120,7 @@ export class SpmUpdateSaveComponent implements OnInit {
       this.ff0001 = params.uc0001;
       this.lc0001 = params.ff0001;
       this.ff0005 = params.ff0007;
+      this.ff0002 = params.ff0005;
     }
     this.onloadDropDownList();
     if (this.ff0001) {
@@ -197,6 +201,16 @@ export class SpmUpdateSaveComponent implements OnInit {
     this.spmService.bmrInput(uc0001).subscribe(({ data }) => {
       this.psmList = data.pmsList;
     });
+    this.onReviewData();
+  }
+  onReviewData() {
+    this.spmService
+      .onCommentsData(this.ff0001, this.headerData.lcnum, this.ff0005)
+      .subscribe((data: any) => {
+        this.reviewCommentsData = data.data;
+        this.dataSource = new MatTableDataSource(this.reviewCommentsData);
+        this.dataSource.sort = this.sort;
+      });
   }
   public handleCommentsForm(event: any) {
     this.comments = event.comments;
@@ -249,6 +263,19 @@ export class SpmUpdateSaveComponent implements OnInit {
   }
   getSPMAttachments(lc0003: any) {
     this.spmService.getSPMAttachments(lc0003, this.ff0002).subscribe((data: any) => {
+      if (data.data) {
+        data.data.forEach((element: any) => {
+          if (
+            element.documentAction == null ||
+            element.documentAction == '' ||
+            element.documentAction == undefined
+          ) {
+            element.documentAction = 'IGNORE';
+          } else {
+            element.documentAction = element.documentAction;
+          }
+        });
+      }
       this.spAttachmentListData = data.data;
       this.spAttachmentListTableData = new MatTableDataSource(data.data);
     });
@@ -343,6 +370,7 @@ export class SpmUpdateSaveComponent implements OnInit {
         lcNumber: this.headerData.lcnum,
         lcStage: this.headerData.stage,
         lcRole: this.headerData.role,
+        lcrqNumber: this.pageData?.requestNo,
         stage2: 0,
         requestType: '',
         createdBy: this.headerData.createdby,
@@ -353,58 +381,59 @@ export class SpmUpdateSaveComponent implements OnInit {
         draft: this.draftValue,
       },
 
-      descriptionList: products.map((element: any) => ({
-        uc0001: null,
+      descriptionList: this.spmDescriptionValue.map((element: any) => ({
+        uc0001: element.uc0001,
         unitcode: this.headerData.unitcode,
-        ff0001: element.productNo,
-        ff0002: "2026-05-05T09:14:56.862Z",
+        ff0001: element.ff0001,
+         ff0002: "2026-05-05T09:14:56.862Z",
         ff0003: "2026-05-05T09:14:56.862Z",
         ff0004: "2026-05-05T09:14:56.862Z",
-        ff0005: element.productName,
-        ff0006: element.market,
-        ff0007: element.productCode,
-        ff0008: element.uom,
-        ff0009: "2026-05-05T09:14:56.862Z",
+        ff0005: element.ff0005,
+        ff0006: element.ff0006,
+        ff0007: element.ff0007,
+        ff0008: element.ff0008,
+       ff0009: "2026-05-05T09:14:56.862Z",
         ff0010: "2026-05-05T09:14:56.862Z",
-        ff0011: element.shelfLifeMonths,
-        ff0012: element.productType,
-        ff0013: element.dosageForm,
-        ff0014: element.inputCode,
-        ff0015: element.productTrackingCode,
-        lc0001: "string",
-        lc0002: "string",
-        lc0003: "string",
+        ff0011: element.ff0011,
+        ff0012: element.ff0012,
+        ff0013: element.ff0013,
+        ff0014: element.ff0014,
+        ff0015: element.ff0015,
+        lc0001: element.lc0001,
+        lc0002: element.lc0002,
+        lc0003: element.lc0003,
         lc0004: 0,
-        lc0005: "string",
-        lc0006: "string",
-        createdby: this.headerData.createdby,
-        status: 0,
+        lc0005: element.lc0005,
+        lc0006: element.lc0006,
+        createdby: element.createdby,
+        status: element.status,
         // version: 0,
         comments: this.comments
       })),
-      testList: containers.map((item: any) => ({
-        uc0001: null,
+      testList: this.spmTestValue.map((item: any) => ({
+        uc0001: item.uc0001,
         unitcode: this.headerData.unitcode,
-        ff0001: item.materialNo,
-        ff0002: item.materialName,
-        ff0003: item.materialCode,
-        ff0004: item.weight,
-        ff0005: item.weightUom,
-        ff0007: "string",
-        ff0008: "string",
-        ff0009: "string",
-        ff0010: "string",
-        lc0001: '',
-        lc0002: '',
-        lc0003: '',
-        lc0004: '',
-        lc0005: '',
-        lc0006: '',
-        createdby: this.headerData.createdby,
-        status: 0,
+        ff0001: item.ff0001,
+        ff0002: item.ff0002,
+        ff0003: item.ff0003,
+        ff0004: item.ff0004,
+        ff0005: item.ff0005,
+        ff0006: "string",
+        ff0007: item.ff0007,
+        ff0008: item.ff0008,
+        ff0009: item.ff0009,
+        ff0010: item.ff0010,
+        lc0001: item.lc0001,
+        lc0002: item.lc0002,
+        lc0003: item.lc0003,
+        lc0004: item.lc0004,
+        lc0005: item.lc0005,
+        lc0006: item.lc0006,
+        createdby: item.createdby,
+        status: item.status,
         comments: this.comments,
       })),
-      spAttachmentList: this.spAttachmentList,
+      attachmentList: this.spAttachmentListData
     };
 
   }
@@ -417,7 +446,7 @@ export class SpmUpdateSaveComponent implements OnInit {
     this.isLoading = true;
     let bodyData = this.formatRequestBody();
     let attachmentList: any[] = [];
-    this.body1.spAttachmentList.forEach((obj) => {
+    this.body1.attachmentList.forEach((obj) => {
       console.log(obj.selectedFileList);
       if (obj.selectedFileList) {
         attachmentList.push(obj.selectedFileList);
