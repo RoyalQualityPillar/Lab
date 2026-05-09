@@ -1408,4 +1408,37 @@ export enum apiEndPoints {
   SamRegCreateUpdate = 'limsws/srws-record/save-update',
   SamRegLoadUpdatePage = 'limsws/srws-record/get-by-max-code',
   SamRegAllAuditTrail = 'limsws/srws-record/get-by-code-all',
+
+     /******* WS Lot Record*********/
+  allWlrTabledata = 'limsws/wstr-record/get-all',
+  activeWlrTabledata = 'limsws/wstr-record/get-max-all',
+  WlrUserProfileFilterData = 'limsws/wstr-record/search',
+  WlrCreateUpdate = 'limsws/wstr-record/save-update',
+  WlrLoadUpdatePage = 'limsws/wstr-record/get-by-max-code',
+  WlrAllAuditTrail = 'limsws/wstr-record/get-by-code-all',
+
+       /******* WS Lot Purities Record*********/
+  allWlprTabledata = 'limsws/wslpr-record/get-all',
+  activeWlprTabledata = 'limsws/wslpr-record/get-max-all',
+  WlprUserProfileFilterData = 'limsws/wslpr-record/search',
+  WlprCreateUpdate = 'limsws/wslpr-record/save-update',
+  WlprLoadUpdatePage = 'limsws/wslpr-record/get-by-max-code',
+  WlprAllAuditTrail = 'limsws/wslpr-record/get-by-code-all',
+
+      /******* WS Lot Containers Record *********/
+  allWlcrTabledata = '/limsws/wslcr-record/get-all',
+  activeWlcrTabledata = '/limsws/wslcr-record/get-max-all',
+  WlcrUserProfileFilterData = '/limsws/wslcr-record/search',
+  WlcrCreateUpdate = 'limsws/wslcr-record/save-update',
+  WlcrLoadUpdatePage = '/limsws/wslcr-record/get-by-max-code',
+  WlcrAllAuditTrail = '/limsws/wslcr-record/get-by-code-all',
+
+      /******* WS Lot Containers Usage *********/
+  allWlcuTabledata = 'limsws/wslcur-record/get-all',
+  activeWlcuTabledata = 'limsws/wslcur-record/get-max-all',
+  WlcuUserProfileFilterData = 'limsws/wslcur-record/search',
+  WlcuCreateUpdate = 'limsws/wslcur-record/save-update',
+  WlcuLoadUpdatePage = '/limsws/wslcur-record/get-by-max-code',
+  WlcuAllAuditTrail = 'limsws/wslcur-record/get-by-code-all',
+
 }
