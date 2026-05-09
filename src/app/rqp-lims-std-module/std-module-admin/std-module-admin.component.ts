@@ -14,7 +14,19 @@ export class StdModuleAdminComponent {
   onSampleRegestration() {
     this.router.navigate(['./rqplabui/lims-std/home-page-sample-regestration'])
   }
-  onsampleTestPlan() {
+  onSampleTestPlan() {
+    this.router.navigate(['./rqplabui/lims-std/home-page-sample-text-plan'])
+  }
+  onWSLotRecord() {
+    this.router.navigate(['./rqplabui/lims-std/home-page-sample-text-plan'])
+  }
+  onWSLotPuritiesRecord() {
+    this.router.navigate(['./rqplabui/lims-std/home-page-sample-text-plan'])
+  }
+  onWSLotContainersRecord() {
+    this.router.navigate(['./rqplabui/lims-std/home-page-sample-text-plan'])
+  }
+  onWSLotContainersUsage() {
     this.router.navigate(['./rqplabui/lims-std/home-page-sample-text-plan'])
   }
 }
