@@ -1440,5 +1440,63 @@ export enum apiEndPoints {
   WlcuCreateUpdate = 'limsws/wslcur-record/save-update',
   WlcuLoadUpdatePage = '/limsws/wslcur-record/get-by-max-code',
   WlcuAllAuditTrail = 'limsws/wslcur-record/get-by-code-all',
+  
+ 
+   /******* volumetric solution usage *********/
+  allvolsolTabledata = 'limscs/visr_record/get-all',
+  activevolsolTabledata = 'limscs/visr_record/get-max-all',
+ volsolUserProfileFilterData = 'limscs/visr_record/search',
+ volsolCreateUpdate = 'limscs/visr_record/save-update',
+ volsolLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+ volsolAllAuditTrail = 'limscs/visr_record/get-by-code-all',
+
+
+
+   /*******Solution Name Master  *********/
+  allSolNaTabledata = 'limscs/visr_record/get-all',
+  activeSolNaTabledata = 'limscs/visr_record/get-max-all',
+ SolNaUserProfileFilterData = 'limscs/visr_record/search',
+ SolNaCreateUpdate = 'limscs/visr_record/save-update',
+ SolNaLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+ SolNaAllAuditTrail = 'limscs/visr_record/get-by-code-all',
+  
+
+   /*******Solution Templet Master  *********/
+  allSolTeTabledata = 'limscs/visr_record/get-all',
+  activeSolTeTabledata = 'limscs/visr_record/get-max-all',
+ SolTeUserProfileFilterData = 'limscs/visr_record/search',
+ SolTeCreateUpdate = 'limscs/visr_record/save-update',
+ SolTeLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+ SolTeAllAuditTrail = 'limscs/visr_record/get-by-code-all',
+
+
+ 
+   /*******Solution Preparation  Master  *********/
+  allSolPreTabledata = 'limscs/visr_record/get-all',
+  activeSolPreTabledata = 'limscs/visr_record/get-max-all',
+ SolPreUserProfileFilterData = 'limscs/visr_record/search',
+ SolPreCreateUpdate = 'limscs/visr_record/save-update',
+ SolPreLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+ SolPreAllAuditTrail = 'limscs/visr_record/get-by-code-all',
+
+
+ /*******Sample Regestration Vs Master  *********/
+  allSamRegVsTabledata = 'limscs/visr_record/get-all',
+  activeSamRegVsTabledata = 'limscs/visr_record/get-max-all',
+ SamRegVsUserProfileFilterData = 'limscs/visr_record/search',
+SamRegVsCreateUpdate = 'limscs/visr_record/save-update',
+ SamRegVsLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+ SamRegVsAllAuditTrail = 'limscs/visr_record/get-by-code-all',
+
+
+ /*******Sample Test Plan Vs Master  *********/
+  allSamTpVsTabledata = 'limscs/visr_record/get-all',
+  activeSamTpVsTabledata = 'limscs/visr_record/get-max-all',
+ SamTpVsUserProfileFilterData = 'limscs/visr_record/search',
+SamTpVsCreateUpdate = 'limscs/visr_record/save-update',
+ SamTpVsLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+ SamTpVsAllAuditTrail = 'limscs/visr_record/get-by-code-all',
+
 
 }
+
