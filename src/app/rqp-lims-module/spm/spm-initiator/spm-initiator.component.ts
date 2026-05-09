@@ -310,6 +310,7 @@ export class SpmInitiatorComponent implements OnInit {
         ff0003: item.materialCode,
         ff0004: item.weight,
         ff0005: item.weightUom,
+         ff0006: "string",
         ff0007: "string",
         ff0008: "string",
         ff0009: "string",
@@ -324,7 +325,7 @@ export class SpmInitiatorComponent implements OnInit {
         status: 0,
         comments: this.comments,
       })),
-      spAttachmentList: this.spAttachmentList,
+      attachmentList: this.spAttachmentList,
     };
 
   }
@@ -337,7 +338,7 @@ export class SpmInitiatorComponent implements OnInit {
     this.isLoading = true;
     let bodyData = this.formatRequestBody();
     let attachmentList: any[] = [];
-    this.body1.spAttachmentList.forEach((obj) => {
+    this.body1.attachmentList.forEach((obj) => {
       console.log(obj.selectedFileList);
       if (obj.selectedFileList) {
         attachmentList.push(obj.selectedFileList);

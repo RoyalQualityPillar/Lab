@@ -188,8 +188,8 @@
           },
           "defaultConfiguration": "development",
           "options": {
-            "port": 4251,
-            "publicHost": "http://localhost:4251",
+            "port": 9005,
+            "publicHost": "http://localhost:9005",
             "extraWebpackConfig": "webpack.config.js"
           }
         },

@@ -112,7 +112,7 @@ export class CmrHomePageComponent implements OnInit, AfterViewInit {
       compRef.setInput('columnConfig', this.columnConfig);
       compRef.setInput('filterOptions', this.filterOptions);
       compRef.setInput('apiUrl', this.activeCmrTableDataUrl);
-      compRef.setInput('tableTitle', 'Active Sample Regestration');
+      compRef.setInput('tableTitle', 'Active Chemical Master Registration');
       compRef.setInput('dynamicButtons', this.activeButtonConfig);
       compRef.setInput('columnClass', 'rqp-life-cycle-table-columns');
       compRef.setInput('filterApiUrl', this.filterApiUrl);

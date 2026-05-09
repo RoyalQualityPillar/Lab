@@ -15,6 +15,6 @@ export class StdModuleAdminComponent {
     this.router.navigate(['./rqplabui/lims-std/home-page-sample-regestration'])
   }
   onsampleTestPlan() {
-    this.router.navigate(['./rqplabui/lims-std/home-page-sample-regestration'])
+    this.router.navigate(['./rqplabui/lims-std/home-page-sample-text-plan'])
   }
 }
