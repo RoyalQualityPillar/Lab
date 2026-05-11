@@ -10,6 +10,12 @@ import { CreateUpdateSampleRegestrationComponent } from '../std-masters/sample-r
 import { HomePageSampleRegestrationComponent } from '../std-masters/sample-regestration/home-page-sample-regestration/home-page-sample-regestration.component';
 import { CreateUpdateSampleTextPlanComponent } from '../std-masters/sample-test-plan/create-update-sample-text-plan/create-update-sample-text-plan.component';
 import { HomePageSampleTextPlanComponent } from '../std-masters/sample-test-plan/home-page-sample-text-plan/home-page-sample-text-plan.component';
+import { CreateUpdateWsLotPuritiesRecordComponent } from '../std-masters/ws-lot-purities-record/create-update-ws-lot-purities-record/create-update-ws-lot-purities-record.component';
+import { HomePageWsLotPuritiesRecordComponent } from '../std-masters/ws-lot-purities-record/home-page-ws-lot-purities-record/home-page-ws-lot-purities-record.component';
+import { CreateUpdateWsLotContainersRecordComponent } from '../std-masters/ws-lot-containers-record/create-update-ws-lot-containers-record/create-update-ws-lot-containers-record.component';
+import { HomePageWsLotContainersRecordComponent } from '../std-masters/ws-lot-containers-record/home-page-ws-lot-containers-record/home-page-ws-lot-containers-record.component';
+import { CreateUpdateWsLotContainersUsageComponent } from '../std-masters/ws-lot-containers-usage/create-update-ws-lot-containers-usage/create-update-ws-lot-containers-usage.component';
+import { HomePageWsLotContainersUsageComponent } from '../std-masters/ws-lot-containers-usage/home-page-ws-lot-containers-usage/home-page-ws-lot-containers-usage.component';
 
 
 @NgModule({
@@ -19,6 +25,13 @@ import { HomePageSampleTextPlanComponent } from '../std-masters/sample-test-plan
     HomePageSampleRegestrationComponent,
     HomePageSampleTextPlanComponent,
     CreateUpdateSampleTextPlanComponent,
+    CreateUpdateWsLotPuritiesRecordComponent,
+    HomePageWsLotPuritiesRecordComponent,
+    CreateUpdateWsLotContainersRecordComponent,
+    HomePageWsLotContainersRecordComponent,
+    CreateUpdateWsLotContainersUsageComponent,
+    HomePageWsLotContainersUsageComponent,
+  
 
 
 

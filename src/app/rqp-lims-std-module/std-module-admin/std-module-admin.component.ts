@@ -21,12 +21,12 @@ export class StdModuleAdminComponent {
     this.router.navigate(['./rqplabui/lims-std/home-page-sample-text-plan'])
   }
   onWSLotPuritiesRecord() {
-    this.router.navigate(['./rqplabui/lims-std/home-page-sample-text-plan'])
+    this.router.navigate(['./rqplabui/lims-std/home-page-ws-lot-purities-record'])
   }
   onWSLotContainersRecord() {
-    this.router.navigate(['./rqplabui/lims-std/home-page-sample-text-plan'])
+    this.router.navigate(['./rqplabui/lims-std/home-page-ws-lot-containers-record'])
   }
   onWSLotContainersUsage() {
-    this.router.navigate(['./rqplabui/lims-std/home-page-sample-text-plan'])
+    this.router.navigate(['./rqplabui/lims-std/home-page-ws-lot-containers-usage'])
   }
 }
