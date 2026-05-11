@@ -6,6 +6,7 @@ import { ClrHomePageComponent } from '../chm-masters/chm-lot-registration/clr-ho
 import { CluHomePageComponent } from '../chm-masters/chm-lot-usage/clu-home-page/clu-home-page.component';
 import { TsmHomePageComponent } from '../chm-masters/test-solution-master/tsm-home-page/tsm-home-page.component';
 import { TspicmHomePageComponent } from '../chm-masters/test-solution-preparation-input-chemical-master/tspicm-home-page/tspicm-home-page.component';
+import { TspicHomePageComponent } from '../chm-masters/test-solution-preparation-input-chemicals/tspic-home-page/tspic-home-page.component';
 import { TestSolutionHomePageComponent } from '../chm-masters/test-solution/test-solution-home-page/test-solution-home-page.component';
 
 const routes: Routes = [
@@ -15,13 +16,13 @@ const routes: Routes = [
   {path:'clu-home-page', component: CluHomePageComponent},
   {path:'tsm-home-page', component:TsmHomePageComponent},
   {path:'tspicm-home-page', component:TspicmHomePageComponent},
-  {path:'test-Solution-Home-Page', component:TestSolutionHomePageComponent}
+  {path:'test-solution-home-page', component:TestSolutionHomePageComponent},
 
 
-
+  {path:'tspic-home-page', component:TspicHomePageComponent}
 
   
-  
+
 
 
 

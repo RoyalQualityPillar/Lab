@@ -31,7 +31,11 @@ export class ChmModuleAdminComponent {
   }
 
    onTestSolutionRecord() {
-   this.router.navigate(['./rqplabui/lims-chm/test-Solution-Home-Page'])
+   this.router.navigate(['./rqplabui/lims-chm/test-solution-home-page'])
+  }
+
+     onTestSolutionPreparationInputChemicalsRecord() {
+   this.router.navigate(['./rqplabui/lims-chm/tspic-home-page'])
   }
 
 

@@ -84,14 +84,14 @@ export class TestSolutionHomePageComponent implements OnInit, AfterViewInit {
       compRef.setInput('columnConfig', this.columnConfig);
       compRef.setInput('filterOptions', this.filterOptions);
       compRef.setInput('apiUrl', this.allTsrTableDataUrl);
-      compRef.setInput('tableTitle', 'All Test Solution Record');
+      compRef.setInput('tableTitle', 'All Test Solution ');
       compRef.setInput('dynamicButtons', this.allButtonConfig);
       compRef.setInput('columnClass', 'rqp-life-cycle-table-columns');
       compRef.setInput('filterApiUrl', this.filterApiUrl);
       compRef.setInput('HttpMethod', this.HttpMethod);
       compRef.setInput('params', this.params);
       compRef.setInput('getLatestData', this.getLatestData);
-      compRef.setInput('downloadFileName', 'Test Solution Record');
+      compRef.setInput('downloadFileName', 'Test Solution ');
 
       // Subscribe to output
       (compRef.instance as any).buttonClick.subscribe((event: any) => {
@@ -112,21 +112,21 @@ export class TestSolutionHomePageComponent implements OnInit, AfterViewInit {
       compRef.setInput('columnConfig', this.columnConfig);
       compRef.setInput('filterOptions', this.filterOptions);
       compRef.setInput('apiUrl', this.activeTsrTableDataUrl);
-      compRef.setInput('tableTitle', 'Active Test Solution Record');
+      compRef.setInput('tableTitle', 'Active Test Solution ');
       compRef.setInput('dynamicButtons', this.activeButtonConfig);
       compRef.setInput('columnClass', 'rqp-life-cycle-table-columns');
       compRef.setInput('filterApiUrl', this.filterApiUrl);
       compRef.setInput('HttpMethod', this.HttpMethod);
       compRef.setInput('params', this.params);
       compRef.setInput('getLatestData', this.getLatestData);
-      compRef.setInput('downloadFileName', 'Test Solution Record');
+      compRef.setInput('downloadFileName', 'Test Solution ');
 
       // 🔧 Safely subscribe to output
       (compRef.instance as any).buttonClick.subscribe((event: any) => {
         this.activeHandleButtonAction(event);
       });
     } catch (error) {
-      console.error('Error loading Active  Test Solution Record table filter:', error);
+      console.error('Error loading Active  Test Solution table filter:', error);
     }
   }
 
@@ -222,7 +222,7 @@ export class TestSolutionHomePageComponent implements OnInit, AfterViewInit {
 
       const dialogRef = this.dialog.open(component, {
         minWidth: '80%',
-        data: { tableData: tableData, pageTitle: 'Chemical Master Registration' },
+        data: { tableData: tableData, pageTitle: 'Test solution ' },
       });
       dialogRef.afterClosed().subscribe((result) => { });
     }
@@ -282,7 +282,7 @@ export class TestSolutionHomePageComponent implements OnInit, AfterViewInit {
     );
     const dialogRef = this.dialog.open(component, {
       minWidth: '80%',
-      data: { tableData: rows, pageTitle: 'Test Solution Record' },
+      data: { tableData: rows, pageTitle: 'Test Solution ' },
     });
     dialogRef.afterClosed().subscribe((result) => { });
   }
@@ -304,7 +304,7 @@ export class TestSolutionHomePageComponent implements OnInit, AfterViewInit {
   };
 
   filterOptions: string[] = Object.keys(this.columnConfig);
-  tableTitle: string = 'All Test Solution Record';
+  tableTitle: string = 'All Test Solution ';
   allButtonConfig = [
     { label: ' Audit Trail', action: 'Audit_Trail', color: 'primary' },
     // { label: 'Save', action: 'save', color: 'accent' }

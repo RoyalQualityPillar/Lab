@@ -16,6 +16,8 @@ import { TsmCreateUpdateComponent } from '../chm-masters/test-solution-master/ts
 import { TsmHomePageComponent } from '../chm-masters/test-solution-master/tsm-home-page/tsm-home-page.component';
 import { TspicmCreateUpdateComponent } from '../chm-masters/test-solution-preparation-input-chemical-master/tspicm-create-update/tspicm-create-update.component';
 import { TspicmHomePageComponent } from '../chm-masters/test-solution-preparation-input-chemical-master/tspicm-home-page/tspicm-home-page.component';
+import { TspicCreateUpdateComponent } from '../chm-masters/test-solution-preparation-input-chemicals/tspic-create-update/tspic-create-update.component';
+import { TspicHomePageComponent } from '../chm-masters/test-solution-preparation-input-chemicals/tspic-home-page/tspic-home-page.component';
 import { TestSolutionHomePageComponent } from '../chm-masters/test-solution/test-solution-home-page/test-solution-home-page.component';
 import { TestSolutionCreateUpdateComponent } from '../chm-masters/test-solution/test-solution-create-update/test-solution-create-update.component';
 
@@ -35,8 +37,10 @@ import { TestSolutionCreateUpdateComponent } from '../chm-masters/test-solution/
     TspicmHomePageComponent,
     TestSolutionCreateUpdateComponent,
     TestSolutionHomePageComponent,
+    TspicCreateUpdateComponent,
+    TspicHomePageComponent
     
-        
+    
     
 
 

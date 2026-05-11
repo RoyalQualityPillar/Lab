@@ -11,8 +11,6 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
 import { LovDialogComponent } from './common/lov-dialog/lov-dialog.component';
 import { MessageDialogComponent } from './common/message-dialog/message-dialog.component';
 import { SharedModule } from './common/shared.module';
-import { TspicCreateUpdateComponent } from './rqp-lims-chm-module/chm-masters/test-solution-preparation-input-chemicals/tspic-create-update/tspic-create-update.component';
-import { TspicHomePageComponent } from './rqp-lims-chm-module/chm-masters/test-solution-preparation-input-chemicals/tspic-home-page/tspic-home-page.component';
 
 
 // import { SharedModule } from './common/shared.module';
@@ -26,8 +24,10 @@ import { TspicHomePageComponent } from './rqp-lims-chm-module/chm-masters/test-s
     //CustomSnackBarComponent,
     LovDialogComponent,
     MessageDialogComponent,
-    TspicCreateUpdateComponent,
-    TspicHomePageComponent,
+        
+        
+
+    
     
     
    

@@ -1466,4 +1466,14 @@ export enum apiEndPoints {
   TsrLoadUpdatePage = 'limschm/chts_record/get-all',
   TsrAllAuditTrail = 'limschm/chts_record/get-by-code-all',
 
+
+             /******* Test Solution Preparation Input Chemical Record*********/
+  allTspicTabledata = 'limschm/chtsir_record/get-all',
+  activeTspicTabledata = 'limschm/chtsir_record/get-max-all',
+  TspicUserProfileFilterData = 'limschm/chtsir_record/search',
+  TspicCreateUpdate = 'limschm/chtsir_record/save-update',
+  TspicLoadUpdatePage = 'limschm/chtsir_record/get-all',
+  TspicAllAuditTrail = 'limschm/chtsir_record/get-by-code-all',
+  
+
 }
