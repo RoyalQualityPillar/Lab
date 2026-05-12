@@ -12,7 +12,10 @@ import { LovDialogComponent } from './common/lov-dialog/lov-dialog.component';
 import { MessageDialogComponent } from './common/message-dialog/message-dialog.component';
 import { SharedModule } from './common/shared.module';
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> f43fadeeb645314712060bad2f25104b12040f62
 // import { SharedModule } from './common/shared.module';
 
 
@@ -24,10 +27,17 @@ import { SharedModule } from './common/shared.module';
     //CustomSnackBarComponent,
     LovDialogComponent,
     MessageDialogComponent,
+<<<<<<< HEAD
         
         
 
     
+=======
+  
+   
+ 
+   
+>>>>>>> f43fadeeb645314712060bad2f25104b12040f62
     
     
    

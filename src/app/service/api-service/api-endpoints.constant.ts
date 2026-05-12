@@ -1409,6 +1409,7 @@ export enum apiEndPoints {
   SamRegLoadUpdatePage = 'limsws/srws-record/get-by-max-code',
   SamRegAllAuditTrail = 'limsws/srws-record/get-by-code-all',
 
+<<<<<<< HEAD
 
      /******* Chemical Master Regestration*********/
   allCmrTabledata = 'limssm/ch-master/get-all',
@@ -1476,4 +1477,96 @@ export enum apiEndPoints {
   TspicAllAuditTrail = 'limschm/chtsir_record/get-by-code-all',
   
 
+=======
+     /******* WS Lot Record*********/
+  allWlrTabledata = 'limsws/wstr-record/get-all',
+  activeWlrTabledata = 'limsws/wstr-record/get-max-all',
+  WlrUserProfileFilterData = 'limsws/wstr-record/search',
+  WlrCreateUpdate = 'limsws/wstr-record/save-update',
+  WlrLoadUpdatePage = 'limsws/wstr-record/get-by-max-code',
+  WlrAllAuditTrail = 'limsws/wstr-record/get-by-code-all',
+
+       /******* WS Lot Purities Record*********/
+  allWlprTabledata = 'limsws/wslpr-record/get-all',
+  activeWlprTabledata = 'limsws/wslpr-record/get-max-all',
+  WlprUserProfileFilterData = 'limsws/wslpr-record/search',
+  WlprCreateUpdate = 'limsws/wslpr-record/save-update',
+  WlprLoadUpdatePage = 'limsws/wslpr-record/get-by-max-code',
+  WlprAllAuditTrail = 'limsws/wslpr-record/get-by-code-all',
+
+      /******* WS Lot Containers Record *********/
+  allWlcrTabledata = '/limsws/wslcr-record/get-all',
+  activeWlcrTabledata = '/limsws/wslcr-record/get-max-all',
+  WlcrUserProfileFilterData = '/limsws/wslcr-record/search',
+  WlcrCreateUpdate = 'limsws/wslcr-record/save-update',
+  WlcrLoadUpdatePage = '/limsws/wslcr-record/get-by-max-code',
+  WlcrAllAuditTrail = '/limsws/wslcr-record/get-by-code-all',
+
+      /******* WS Lot Containers Usage *********/
+  allWlcuTabledata = 'limsws/wslcur-record/get-all',
+  activeWlcuTabledata = 'limsws/wslcur-record/get-max-all',
+  WlcuUserProfileFilterData = 'limsws/wslcur-record/search',
+  WlcuCreateUpdate = 'limsws/wslcur-record/save-update',
+  WlcuLoadUpdatePage = '/limsws/wslcur-record/get-by-max-code',
+  WlcuAllAuditTrail = 'limsws/wslcur-record/get-by-code-all',
+  
+ 
+   /******* volumetric solution usage *********/
+  allvolsolTabledata = 'limscs/visr_record/get-all',
+  activevolsolTabledata = 'limscs/visr_record/get-max-all',
+ volsolUserProfileFilterData = 'limscs/visr_record/search',
+ volsolCreateUpdate = 'limscs/visr_record/save-update',
+ volsolLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+ volsolAllAuditTrail = 'limscs/visr_record/get-by-code-all',
+
+
+
+   /*******Solution Name Master  *********/
+  allSolNaTabledata = 'limscs/visr_record/get-all',
+  activeSolNaTabledata = 'limscs/visr_record/get-max-all',
+ SolNaUserProfileFilterData = 'limscs/visr_record/search',
+ SolNaCreateUpdate = 'limscs/visr_record/save-update',
+ SolNaLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+ SolNaAllAuditTrail = 'limscs/visr_record/get-by-code-all',
+  
+
+   /*******Solution Templet Master  *********/
+  allSolTeTabledata = 'limscs/visr_record/get-all',
+  activeSolTeTabledata = 'limscs/visr_record/get-max-all',
+ SolTeUserProfileFilterData = 'limscs/visr_record/search',
+ SolTeCreateUpdate = 'limscs/visr_record/save-update',
+ SolTeLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+ SolTeAllAuditTrail = 'limscs/visr_record/get-by-code-all',
+
+
+ 
+   /*******Solution Preparation  Master  *********/
+  allSolPreTabledata = 'limscs/visr_record/get-all',
+  activeSolPreTabledata = 'limscs/visr_record/get-max-all',
+ SolPreUserProfileFilterData = 'limscs/visr_record/search',
+ SolPreCreateUpdate = 'limscs/visr_record/save-update',
+ SolPreLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+ SolPreAllAuditTrail = 'limscs/visr_record/get-by-code-all',
+
+
+ /*******Sample Regestration Vs Master  *********/
+  allSamRegVsTabledata = 'limscs/visr_record/get-all',
+  activeSamRegVsTabledata = 'limscs/visr_record/get-max-all',
+ SamRegVsUserProfileFilterData = 'limscs/visr_record/search',
+SamRegVsCreateUpdate = 'limscs/visr_record/save-update',
+ SamRegVsLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+ SamRegVsAllAuditTrail = 'limscs/visr_record/get-by-code-all',
+
+
+ /*******Sample Test Plan Vs Master  *********/
+  allSamTpVsTabledata = 'limscs/visr_record/get-all',
+  activeSamTpVsTabledata = 'limscs/visr_record/get-max-all',
+ SamTpVsUserProfileFilterData = 'limscs/visr_record/search',
+SamTpVsCreateUpdate = 'limscs/visr_record/save-update',
+ SamTpVsLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+ SamTpVsAllAuditTrail = 'limscs/visr_record/get-by-code-all',
+
+
+>>>>>>> f43fadeeb645314712060bad2f25104b12040f62
 }
+
