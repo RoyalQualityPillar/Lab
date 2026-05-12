@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chm-module-admin',
@@ -7,5 +8,36 @@ import { Component } from '@angular/core';
   styleUrl: './chm-module-admin.component.scss'
 })
 export class ChmModuleAdminComponent {
+     constructor(private router: Router) { }
+
+  onChemicalMasterRegistration() {
+    this.router.navigate(['./rqplabui/lims-chm/cmr-home-page'])
+  }
+
+  onCHMLotRegistration() {
+    this.router.navigate(['./rqplabui/lims-chm/clr-home-page'])
+  }
+
+    onCHMLotUsage() {
+    this.router.navigate(['./rqplabui/lims-chm/clu-home-page'])
+  }
+
+      onTestSolutionMaster() {
+    this.router.navigate(['./rqplabui/lims-chm/tsm-home-page'])
+  }
+
+  onTestSolutionPreparationInputChemicalMaster() {
+    this.router.navigate(['./rqplabui/lims-chm/tspicm-home-page'])
+  }
+
+   onTestSolutionRecord() {
+   this.router.navigate(['./rqplabui/lims-chm/test-solution-home-page'])
+  }
+
+     onTestSolutionPreparationInputChemicalsRecord() {
+   this.router.navigate(['./rqplabui/lims-chm/tspic-home-page'])
+  }
+
+
 
 }

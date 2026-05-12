@@ -1409,6 +1409,73 @@ export enum apiEndPoints {
   SamRegLoadUpdatePage = 'limsws/srws-record/get-by-max-code',
   SamRegAllAuditTrail = 'limsws/srws-record/get-by-code-all',
 
+
+     /******* Chemical Master Regestration*********/
+  allCmrTabledata = 'limssm/ch-master/get-all',
+  activeCmrTabledata = 'limssm/ch-master/get-max-all',
+  CmrUserProfileFilterData = 'limssm/ch-master/search',
+  CmrCreateUpdate = 'limssm/ch-master/save-update',
+  CmrLoadUpdatePage = 'limssm/ch-master/get-by-max-code',
+  CmrAllAuditTrail = 'limssm/ch-master/get-by-code-all',
+
+
+
+       /******* CHM Lot  Regestration*********/
+  allClrTabledata = 'limschm/chlr_record/get-all',
+  activeClrTabledata = 'limschm/chlr_record/get-max-all',
+  ClrUserProfileFilterData = 'limschm/chlr_record/search',
+  ClrCreateUpdate = 'limschm/chlr_record/save-update',
+  ClrLoadUpdatePage = 'limschm/chlr_record/get-by-max-code',
+  ClrAllAuditTrail = 'limschm/chlr_record/get-by-code-all',
+
+
+         /******* CHM Lot  Usage*********/
+  allCluTabledata = 'limschm/chlur_record/get-all',
+  activeCluTabledata = 'limschm/chlur_record/get-max-all',
+  CluUserProfileFilterData = 'limschm/chlur_record/search',
+  CluCreateUpdate = '/limschm/chlur_record/save-update',
+  CluLoadUpdatePage = 'limschm/chlur_record/get-by-max-code',
+  CluAllAuditTrail = 'limschm/chlur_record/get-by-code-all',
+
+
+           /******* Test Solution Master*********/
+  allTsmTabledata = 'limschm/chts_master/get-all',
+  activeTsmTabledata = 'limschm/chts_master/get-max-all',
+  TsmUserProfileFilterData = 'limschm/chts_master/search',
+  TsmCreateUpdate = 'limschm/chts_master/save-update',
+  TsmLoadUpdatePage = 'limschm/chts_master/get-by-max-code',
+  TsmAllAuditTrail = 'limschm/chts_master/get-by-code-all',
+
+
+
+   /******* Test Solution Preaparation Input Chemical Master*********/
+   allTspicmTabledata = 'limschm/chtsim_master/get-all',
+  activeTspicmTabledata = 'limschm/chtsim_master/get-max-all',
+  TspicmUserProfileFilterData = '/limschm/chtsim_master/search',
+  TspicmCreateUpdate = 'limschm/chtsim_master/save-update',
+  TspicmLoadUpdatePage = 'limschm/chtsim_master/get-by-max-code',
+  TspicmllAuditTrail = 'limschm/chtsim_master/get-by-code-all',
+
+
+      
+           /******* Test Solution Record*********/
+  allTsrTabledata = 'limschm/chts_record/get-all',
+  activeTsrTabledata = 'limschm/chts_record/get-max-all',
+  TsrUserProfileFilterData = 'limschm/chts_record/search',
+  TsrCreateUpdate = 'limschm/chts_record/save-update',
+  TsrLoadUpdatePage = 'limschm/chts_record/get-all',
+  TsrAllAuditTrail = 'limschm/chts_record/get-by-code-all',
+
+
+             /******* Test Solution Preparation Input Chemical Record*********/
+  allTspicTabledata = 'limschm/chtsir_record/get-all',
+  activeTspicTabledata = 'limschm/chtsir_record/get-max-all',
+  TspicUserProfileFilterData = 'limschm/chtsir_record/search',
+  TspicCreateUpdate = 'limschm/chtsir_record/save-update',
+  TspicLoadUpdatePage = 'limschm/chtsir_record/get-all',
+  TspicAllAuditTrail = 'limschm/chtsir_record/get-by-code-all',
+  
+
      /******* WS Lot Record*********/
   allWlrTabledata = 'limsws/wstr-record/get-all',
   activeWlrTabledata = 'limsws/wstr-record/get-max-all',
