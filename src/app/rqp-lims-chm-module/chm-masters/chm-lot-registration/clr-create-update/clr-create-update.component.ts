@@ -64,7 +64,7 @@ export class ClrCreateUpdateComponent implements OnInit {
   ) {
     this.DepartmentMaster = this.fb.group({
       uc0001: [''],
-      ff0001: ['', Validators.required],
+      ff0001: [0, Validators.required],
       ff0002: ['', Validators.required],
       ff0003: ['', Validators.required],
       ff0004: ['', Validators.required],

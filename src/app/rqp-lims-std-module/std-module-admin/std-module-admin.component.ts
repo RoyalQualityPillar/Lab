@@ -18,7 +18,7 @@ export class StdModuleAdminComponent {
     this.router.navigate(['./rqplabui/lims-std/home-page-sample-text-plan'])
   }
   onWSLotRecord() {
-    this.router.navigate(['./rqplabui/lims-std/home-page-sample-text-plan'])
+    this.router.navigate(['./rqplabui/lims-std/home-page-ws-lot-record'])
   }
   onWSLotPuritiesRecord() {
     this.router.navigate(['./rqplabui/lims-std/home-page-ws-lot-purities-record'])

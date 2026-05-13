@@ -16,6 +16,8 @@ import { CreateUpdateWsLotContainersRecordComponent } from '../std-masters/ws-lo
 import { HomePageWsLotContainersRecordComponent } from '../std-masters/ws-lot-containers-record/home-page-ws-lot-containers-record/home-page-ws-lot-containers-record.component';
 import { CreateUpdateWsLotContainersUsageComponent } from '../std-masters/ws-lot-containers-usage/create-update-ws-lot-containers-usage/create-update-ws-lot-containers-usage.component';
 import { HomePageWsLotContainersUsageComponent } from '../std-masters/ws-lot-containers-usage/home-page-ws-lot-containers-usage/home-page-ws-lot-containers-usage.component';
+import { CreateUpdateWsLotRecordComponent } from '../std-masters/ws-lot-record/create-update-ws-lot-record/create-update-ws-lot-record.component';
+import { HomePageWsLotRecordComponent } from '../std-masters/ws-lot-record/home-page-ws-lot-record/home-page-ws-lot-record.component';
 
 
 @NgModule({
@@ -31,6 +33,8 @@ import { HomePageWsLotContainersUsageComponent } from '../std-masters/ws-lot-con
     HomePageWsLotContainersRecordComponent,
     CreateUpdateWsLotContainersUsageComponent,
     HomePageWsLotContainersUsageComponent,
+    CreateUpdateWsLotRecordComponent,
+    HomePageWsLotRecordComponent,
   
 
 

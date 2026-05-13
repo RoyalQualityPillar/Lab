@@ -14,7 +14,7 @@
     </button>
   </div>
 </div>
-<div class="screenOverFlowY" class="margin-top_7">
+<div class="screenOverFlowY">
   <form [formGroup]="DepartmentMaster" class="margin-top_7">
     <mat-card>
       <div class="p-2">
@@ -76,19 +76,30 @@
                 <input
                   type="text"
                   matInput
+                  [matDatepicker]="picker"
                   formControlName="ff0003"
                   placeholder="Manufacture Name"
                 />
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>                <mat-form-field appearance="outline" class="col-6 px-1">
                 <mat-label>Manufacture Date</mat-label>
                 <input
                   type="text"
                   matInput
+                  [matDatepicker]="picker1"
                   formControlName="ff0004"
                   placeholder="Manufacture Date"
                 />
-              </mat-form-field>
+               <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="picker1"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>  
               <mat-form-field appearance="outline" class="col-6 px-1">
                 <mat-label>Expiry Date/User Before Date</mat-label>
                 <input

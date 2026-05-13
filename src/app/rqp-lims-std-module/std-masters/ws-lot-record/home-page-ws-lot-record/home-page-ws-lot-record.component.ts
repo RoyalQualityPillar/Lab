@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from 'express';
 import { CookieService } from 'ngx-cookie-service';
 import { GlobalConstants } from 'src/app/common/global-constants';
 import { MessageDialogComponent } from 'src/app/common/message-dialog/message-dialog.component';
@@ -13,6 +12,7 @@ import { ApiService } from 'src/app/service/api-service/api.service';
 import { RemoteComponentLoaderService } from 'src/app/service/remote-component-loader.service';
 import { CreateUpdateWsLotRecordComponent } from '../create-update-ws-lot-record/create-update-ws-lot-record.component';
 import { WsLotRecordService } from '../ws-lot-record.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page-ws-lot-record',
