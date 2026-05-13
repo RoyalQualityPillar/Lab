@@ -26,6 +26,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { BkTableModule } from 'bk-angular-table';
+
 
 @NgModule({
   declarations: [],
@@ -51,13 +55,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatMenuModule,
     MatGridListModule,
     DragDropModule,
+    MatProgressBarModule,
     MatDatepickerModule,
     MatNativeDateModule,
+     MatFormFieldModule,   
     MatSnackBarModule,
     MatTabsModule,
     MatIconModule,
     MatTooltipModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule ,
+    BkTableModule
   ],
 })
 export class AngularMaterialModule {}

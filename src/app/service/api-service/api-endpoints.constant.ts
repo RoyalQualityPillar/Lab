@@ -1409,7 +1409,6 @@ export enum apiEndPoints {
   SamRegLoadUpdatePage = 'limsws/srws-record/get-by-max-code',
   SamRegAllAuditTrail = 'limsws/srws-record/get-by-code-all',
 
-
      /******* Chemical Master Regestration*********/
   allCmrTabledata = 'limssm/ch-master/get-all',
   activeCmrTabledata = 'limssm/ch-master/get-max-all',
@@ -1564,6 +1563,9 @@ SamTpVsCreateUpdate = 'limscs/visr_record/save-update',
  SamTpVsLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
  SamTpVsAllAuditTrail = 'limscs/visr_record/get-by-code-all',
 
+
+  /*******WSR*********/
+attachmentPDF = 'gm/attachment-pdf'
 
 }
 
