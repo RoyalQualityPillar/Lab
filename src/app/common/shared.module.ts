@@ -25,7 +25,8 @@ import { CommonTableFilterComponent } from './common-table-filter/common-table-f
 import { LcWeekDataComponent } from './lc-week-data/lc-week-data.component';
 import { CommonESignatureComponent } from './common-e-signature/common-e-signature.component';
 import { AsCommonFooterComponent } from './as-common-footer/as-common-footer.component';
-//import { CustomDatePipe } from '../pipe/custom-date.pipe'; // ✅ Pipe must be declared, not imported
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+
 
 @NgModule({
   declarations: [
@@ -63,7 +64,6 @@ import { AsCommonFooterComponent } from './as-common-footer/as-common-footer.com
     CommonActiveAuditTrailComponent,
     CommonAllAuditTrailComponent,
     LcWeekDataComponent,
-    BkTableModule
 
 
   ],
@@ -74,6 +74,8 @@ import { AsCommonFooterComponent } from './as-common-footer/as-common-footer.com
     FormsModule,
     ReactiveFormsModule,
     BkTableModule,
+    // CustomDatePipe,
+    NgxExtendedPdfViewerModule
   ],
   providers: [provideHttpClient(withInterceptorsFromDi())],
 })

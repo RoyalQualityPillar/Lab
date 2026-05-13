@@ -6,6 +6,7 @@ import { VsmModuleAdminComponent } from '../vsm-module-admin/vsm-module-admin.co
 import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/common/shared.module';
+import { CustomDatePipe } from 'src/app/pipe/custom-date.pipe';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { SharedModule } from 'src/app/common/shared.module';
     ReactiveFormsModule,
     FormsModule,
     SharedModule,
-    LimsVsmRoutingModule
+    LimsVsmRoutingModule,
   ]
 })
 export class LimsVsmModule { }

@@ -1408,4 +1408,8 @@ export enum apiEndPoints {
   SamRegCreateUpdate = 'limsws/srws-record/save-update',
   SamRegLoadUpdatePage = 'limsws/srws-record/get-by-max-code',
   SamRegAllAuditTrail = 'limsws/srws-record/get-by-code-all',
+
+
+  /*******WSR*********/
+attachmentPDF = 'gm/attachment-pdf'
 }
