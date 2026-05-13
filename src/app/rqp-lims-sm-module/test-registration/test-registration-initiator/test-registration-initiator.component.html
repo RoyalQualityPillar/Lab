@@ -1,0 +1,663 @@
+
+<mat-spinner
+  *ngIf="isLoading"
+  class="global-loading-spinner"
+  color="primary"
+  mode="indeterminate"
+></mat-spinner>
+<mat-tab-group
+  animationDuration="500ms"
+  class="m-1"
+  #tabGroup
+  [(selectedIndex)]="selectedTabIndex"
+  (selectedTabChange)="tabChanged($event)"
+>
+  <!-- First Tab: Header Information -->
+  <mat-tab aria-label="Tab7">
+    <ng-template mat-tab-label>
+      <div>
+        <div class="section_header_title">Headers</div>
+      </div>
+    </ng-template>
+    <div>
+      <app-common-header
+        [pageData]="this.pageData"
+        (headerData)="getHeaderData($event)"
+      ></app-common-header>
+    </div>
+  </mat-tab>
+
+  <!-- Second Tab: Product Information -->
+  <mat-tab aria-label="Tab6">
+    <!-- <ng-template mat-tab-label>
+    
+        <app-common-title [title]="'Product Information'"></app-common-title>
+ 
+    </ng-template> -->
+    <ng-template mat-tab-label>
+      <div>
+        <div class="section_header_title">Product Information</div>
+      </div>
+    </ng-template>
+    <div class="mat-tab-section">
+        <form [formGroup]="productInformation">
+            <div class="row no-gutters ms-1 me-1 dense-4">
+              <mat-form-field appearance="outline" class="col-3 px-1">
+                <mat-label>Test Code</mat-label>
+                <input type="text" matInput placeholder="Please enter test code" formControlName="ff0002"/>
+              </mat-form-field>
+          
+              <mat-form-field appearance="outline" class="col-3 px-1">
+                <mat-label>Test Name</mat-label>
+                <input type="text" matInput placeholder="Please enter test name" formControlName="ff0003" />
+              </mat-form-field>
+          
+              <mat-form-field appearance="outline" class="col-3 px-1">
+                <mat-label>Product Code</mat-label>
+                <input type="text" matInput placeholder="Please enter product code" formControlName="ff0004" />
+              </mat-form-field>
+          
+              <mat-form-field appearance="outline" class="col-3 px-1">
+                <mat-label>Product Name</mat-label>
+                <input type="text" matInput placeholder="Please enter product name" formControlName="ff0005" />
+              </mat-form-field>
+            </div>
+          
+            <div class="row no-gutters ms-1 me-1 dense-4">
+              <mat-form-field appearance="outline" class="col-3 px-1">
+                <mat-label>Specification</mat-label>
+                <input type="number" matInput placeholder="Please enter specification" formControlName="ff0006" />
+              </mat-form-field>
+          
+              <mat-form-field appearance="outline" class="col-3 px-1">
+                <mat-label>stp No</mat-label>
+                <input type="number" matInput placeholder="Please enter stp no" formControlName="ff0007" />
+              </mat-form-field>
+          
+              <mat-form-field appearance="outline" class="col-3 px-1">
+                <mat-label>Prepration No</mat-label>
+                <input type="text" matInput placeholder="Please enter preparation no"formControlName="ff0008" />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="col-3 px-1">
+                <mat-label>Test Type</mat-label>
+                <mat-select formControlName="ff0001" (selectionChange)="onChangeTestType($event)">
+                  <mat-option value="QV">Quantitative</mat-option>
+                  <mat-option value="Q2V">Quantitative-2</mat-option>
+                  <mat-option value="statistical_1">Statistical-1</mat-option>
+                  <mat-option value="statistical_2">Statistical-2</mat-option>
+                  <mat-option value="multi_quantitiave">Multi Quantitative</mat-option>
+                  <mat-option value="multi_quantitiave_formulae">Multi Quantitative Formulae</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <!-- <div class="row no-gutters ms-1 me-1 dense-4">
+             
+            </div> -->
+        </form>
+ 
+    </div>
+  </mat-tab>
+
+  <!-- Conditionally Rendered Third Tab: Based on testType -->
+  <mat-tab *ngIf="selectedTestType" aria-label="Tab5">
+    <ng-template mat-tab-label>
+      <div>
+        <div class="section_header_title">{{ selectedTypeTitle }}</div>
+      </div>
+    </ng-template>
+    <div>
+      <!-- Content for third tab based on testType -->
+      <div *ngIf="selectedTestType === 'QV'">
+        <!-- Quantitative related content -->
+        <p>Content for Quantitative Test Type</p>
+        <div class="variable-table-box">
+           <div class="row no-gutters ms-1 me-1 dense-4 mb-1">
+          <mat-form-field appearance="outline" class="col-2 px-1">
+            <mat-label>No of Variable</mat-label>
+            <input type="number" matInput placeholder="Please enter Variable" [(ngModel)]="noOfVariable" (ngModelChange)="updateVariableDataArray()" />
+          </mat-form-field>
+        </div>
+        <ng-container *ngFor="let variableData of variableDataArray; let i = index">
+          <div>
+            <div class="row no-gutters ms-1 me-1 dense-4 variable-content">
+              <mat-form-field appearance="outline" class="col-1 px-1">
+                <mat-label>Serial No</mat-label>
+                <input type="text" matInput [value]="(i + 1)" readonly />
+              </mat-form-field>
+        
+              <mat-form-field appearance="outline" class="col-8 px-1">
+                <mat-label>Variable</mat-label>
+                <input type="text" matInput placeholder="Please enter Variable {{i + 1}}" [(ngModel)]="variableData.variable" />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="col-1 px-1">
+                <mat-label>Observation</mat-label>
+                <input type="text" matInput placeholder="Please enter Observation {{i + 1}}" [(ngModel)]="variableData.observation" (ngModelChange)="validateFormula()"/>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="col-1 px-1">
+                <mat-label>Symbol</mat-label>
+                <input type="text" matInput [value]="'V' + (i + 1)" readonly />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="col-1 px-1">
+                <mat-label>UOM</mat-label>
+                <mat-select  [(ngModel)]="variableData.uom">
+                  <mat-option value="">Select</mat-option>
+                  <mat-option value="gm">gm</mat-option>
+                  <mat-option value="mg">mg</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </ng-container>
+         
+        </div>
+        <div class="variable-table-box">
+          <div class="row no-gutters ms-1 me-1 dense-4 mb-1">
+            <mat-form-field appearance="outline" class="col-3 px-1">
+              <mat-label>Formula</mat-label>
+              <input 
+                type="text" 
+                matInput 
+                placeholder="Please enter Formula" 
+                [(ngModel)]="resultSection.formula" 
+                (ngModelChange)="validateFormula()" 
+                #formulaField="ngModel"
+                [ngClass]="{'invalid-field': formulaError}" 
+              />
+              <mat-error *ngIf="formulaError">
+                {{ formulaError }}
+              </mat-error>
+              <mat-hint class="global-field-error" *ngIf="formulaError">
+                {{ formulaError }}
+              </mat-hint>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline" class="col-3 px-1">
+              <mat-label>Result</mat-label>
+              <input type="text" matInput [(ngModel)]="resultSection.result" readonly />
+            </mat-form-field>
+            
+            <!-- <mat-form-field appearance="outline" class="col-3 px-1">
+              <mat-label>UOM</mat-label>
+              <input type="text" matInput  [(ngModel)]="resultSection.uom" readonly />
+            </mat-form-field> -->
+            <mat-form-field appearance="outline" class="col-1 px-1">
+              <mat-label>UOM</mat-label>
+              <mat-select  [(ngModel)]="resultSection.uom">
+                <mat-option value="">Select</mat-option>
+                <mat-option value="gm">gm</mat-option>
+                <mat-option value="mg">mg</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-3 px-1">
+              <mat-label>No. of decimal</mat-label>
+              <input type="text" matInput  [(ngModel)]="resultSection.noOfDecimal" />
+            </mat-form-field>
+          </div>
+          <div class="parent-section">
+            <div class="sectionBox p-2 pt-3 my-2">
+              <div class="section-name">Pass Limits(s)</div>
+              <div class="row no-gutters ms-1 me-1 dense-4">
+                <mat-form-field appearance="outline" class="col-3 px-1">
+                  <mat-label>Operator</mat-label>
+                  <mat-select [(ngModel)]="resultSection.lowerOperator">
+                    <mat-option value="<">&lt;</mat-option>
+                    <mat-option value=">">&gt;</mat-option>
+                    <mat-option value="=">=</mat-option>
+                    <mat-option value="<=">&lt;=</mat-option>
+                    <mat-option value=">=">&gt;=</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="col-3 px-1">
+                  <mat-label>Lower Value</mat-label>
+                  <input type="text" matInput [(ngModel)]="resultSection.lowerValue" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="col-3 px-1">
+                  <mat-label>Operator</mat-label>
+                  <mat-select [(ngModel)]="resultSection.higherOperator">
+                    <mat-option value="<">&lt;</mat-option>
+                    <mat-option value=">">&gt;</mat-option>
+                    <mat-option value="=">=</mat-option>
+                    <mat-option value="<=">&lt;=</mat-option>
+                    <mat-option value=">=">&gt;=</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="col-3 px-1">
+                  <mat-label>Higher Value</mat-label>
+                  <input type="text" matInput [(ngModel)]="resultSection.higher" />
+                </mat-form-field>
+              </div>
+            </div>
+          
+            <!-- Second Section Box for the remaining 50% width -->
+            <div class="sectionBox p-2 pt-3 my-2">
+              <div class="section-name">Description</div>
+              <div class="row no-gutters ms-1 me-1 dense-4">
+                <mat-form-field appearance="outline" style="width: 100%">
+                  <mat-label>Comments</mat-label>
+                  <textarea
+                    type="text"
+                    matInput [(ngModel)]="resultSection.comments"
+                    placeholder="Comments"
+                  >
+                  </textarea>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <div *ngIf="selectedTestType === 'Q2V'">
+        <!-- Statistical-1 related content -->
+        <p>Content for Statistical-1 Test Type</p>
+        <div class="variable-table-box">
+          <div class="row no-gutters ms-1 me-1 dense-4 mb-1">
+         <mat-form-field appearance="outline" class="col-2 px-1">
+           <mat-label>No of Variable</mat-label>
+           <input type="number" matInput placeholder="Please enter Variable" [(ngModel)]="noOfVariableQuantitiave" (ngModelChange)="q1UpdateVariableDataArray()" />
+         </mat-form-field>
+       </div>
+       <ng-container *ngFor="let variableData of q1variableDataArray; let i = index">
+         <div>
+           <div class="row no-gutters ms-1 me-1 dense-4 variable-content">
+             <mat-form-field appearance="outline" class="col-1 px-1">
+               <mat-label>Serial No</mat-label>
+               <input type="text" matInput [value]="(i + 1)" readonly />
+             </mat-form-field>
+       
+             <mat-form-field appearance="outline" class="col-8 px-1">
+               <mat-label>Variable</mat-label>
+               <input type="text" matInput placeholder="Please enter Variable {{i + 1}}" [(ngModel)]="variableData.variable" />
+             </mat-form-field>
+             <mat-form-field appearance="outline" class="col-1 px-1">
+               <mat-label>Observation</mat-label>
+               <input type="text" matInput placeholder="Please enter Observation {{i + 1}}" [(ngModel)]="variableData.observation" />
+             </mat-form-field>
+             <mat-form-field appearance="outline" class="col-1 px-1">
+               <mat-label>Symbol</mat-label>
+               <input type="text" matInput [value]="'V' + (i + 1)" readonly >
+             </mat-form-field>
+             <mat-form-field appearance="outline" class="col-1 px-1">
+               <mat-label>UOM</mat-label>
+               <mat-select  [(ngModel)]="variableData.uom">
+                 <mat-option value="">Select</mat-option>
+                 <mat-option value="gm">gm</mat-option>
+                 <mat-option value="mg">mg</mat-option>
+               </mat-select>
+             </mat-form-field>
+           </div>
+         </div>
+       </ng-container>
+        
+       </div>
+       <div class="row no-gutters ms-1 me-1 dense-4 mb-1">
+        <mat-form-field appearance="outline" class="col-2 px-1">
+          <mat-label>No of Special Variable</mat-label>
+          <input type="number" matInput placeholder="Please enter special Variable" [(ngModel)]="noOfSpecialVariable" (ngModelChange)="updateSpecialVariableDataArray()" />
+        </mat-form-field>
+      </div>
+      <!--Special variable start-->
+      <ng-container *ngFor="let variableData of specialVariableDataArray; let i = index">
+        <div>
+          <div class="row no-gutters ms-1 me-1 dense-4 variable-content">
+            <mat-form-field appearance="outline" class="col-1 px-1">
+              <mat-label>Serial No</mat-label>
+              <input type="text" matInput [value]="(i + 1)" readonly />
+            </mat-form-field>
+      
+            <mat-form-field appearance="outline" class="col-2 px-1">
+              <mat-label>Variable</mat-label>
+              <input type="text" matInput placeholder="Please enter Variable {{i + 1}}" [(ngModel)]="variableData.variable" />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-1 px-1">
+              <mat-label>Symbol</mat-label>
+              <input type="text" matInput [value]="'X' + (i + 1)" readonly />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-1 px-1">
+              <mat-label>UOM</mat-label>
+              <mat-select  [(ngModel)]="variableData.uom">
+                <mat-option value="">Select</mat-option>
+                <mat-option value="gm">gm</mat-option>
+                <mat-option value="mg">mg</mat-option>
+              </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline" class="col-1 px-1">
+              <mat-label>Function Type</mat-label>
+              <mat-select [(ngModel)]="variableData.functionType" (ngModelChange)="q1calculateRowResult(variableData, i)">
+                <mat-option value="min">Min</mat-option>
+                <mat-option value="max">Max</mat-option>
+                <mat-option value="avg">Average</mat-option>
+              </mat-select>
+            </mat-form-field>
+      
+            <!-- Input Expression -->
+            <mat-form-field appearance="outline" class="col-2 px-1">
+              <mat-label>Input Expression</mat-label>
+              <input 
+                type="text" 
+                matInput 
+                placeholder="Please enter Formula" 
+                [(ngModel)]="variableData.expression" 
+                (ngModelChange)="q1calculateRowResult(variableData, i)" 
+                #formulaField="ngModel"
+              />
+            </mat-form-field>
+      
+            <!-- Result -->
+            <mat-form-field appearance="outline" class="col-1 px-1">
+              <mat-label>Result</mat-label>
+              <input type="text" matInput [(ngModel)]="variableData.result" readonly />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-1 px-1">
+              <mat-label>No of decimals</mat-label>
+              <input type="text" matInput [(ngModel)]="variableData.noOfDecimal"  />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-1 px-1">
+              <mat-label>Lower limit</mat-label>
+              <input type="text" matInput [(ngModel)]="variableData.lowerlimit"  />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-1 px-1">
+              <mat-label>Upper limit</mat-label>
+              <input type="text" matInput [(ngModel)]="variableData.upperlimit"  />
+            </mat-form-field>
+
+
+          </div>
+        </div>
+      </ng-container>
+      <!--speical variable end-->
+      <!-- detail section start -->
+      <div class="variable-table-box">
+        <div class="row no-gutters ms-1 me-1 dense-4 mb-1">
+          <mat-form-field appearance="outline" class="col-3 px-1">
+            <mat-label>Formula</mat-label>
+            <input 
+              type="text" 
+              matInput 
+              placeholder="Please enter Formula" 
+              [(ngModel)]="specialResultSection.specialformula" 
+              (ngModelChange)="q1validateFormula()" 
+              #formulaField="ngModel"
+              [ngClass]="{'invalid-field': specialformulaError}" 
+            />
+            <mat-error *ngIf="specialformulaError">
+              {{ specialformulaError }}
+            </mat-error>
+            <mat-hint class="global-field-error" *ngIf="specialformulaError" 
+            > {{ specialformulaError }}</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-3 px-1">
+            <mat-label>Result</mat-label>
+            <input type="text" matInput  [(ngModel)]="specialResultSection.result" readonly />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-1 px-1">
+            <mat-label>UOM</mat-label>
+            <mat-select  [(ngModel)]="specialResultSection.uom">
+              <mat-option value="">Select</mat-option>
+              <mat-option value="gm">gm</mat-option>
+              <mat-option value="mg">mg</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-3 px-1">
+            <mat-label>No. of decimal</mat-label>
+            <input type="text" matInput  [(ngModel)]="specialResultSection.noOfDecimal" />
+          </mat-form-field>
+        </div>
+        <div class="parent-section">
+          <div class="sectionBox p-2 pt-3 my-2">
+            <div class="section-name">Pass Limits(s)</div>
+            <div class="row no-gutters ms-1 me-1 dense-4">
+              <mat-form-field appearance="outline" class="col-3 px-1">
+                <mat-label>Operator</mat-label>
+                <mat-select [(ngModel)]="specialResultSection.lowerOperator">
+                  <mat-option value="<">&lt;</mat-option>
+                  <mat-option value=">">&gt;</mat-option>
+                  <mat-option value="=">=</mat-option>
+                  <mat-option value="<=">&lt;=</mat-option>
+                  <mat-option value=">=">&gt;=</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="col-3 px-1">
+                <mat-label>Lower Value</mat-label>
+                <input type="number" matInput [(ngModel)]="specialResultSection.lowerValue" />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="col-3 px-1">
+                <mat-label>Operator</mat-label>
+                <mat-select [(ngModel)]="specialResultSection.higherOperator">
+                  <mat-option value="<">&lt;</mat-option>
+                  <mat-option value=">">&gt;</mat-option>
+                  <mat-option value="=">=</mat-option>
+                  <mat-option value="<=">&lt;=</mat-option>
+                  <mat-option value=">=">&gt;=</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="col-3 px-1">
+                <mat-label>Higher Value</mat-label>
+                <input type="number" matInput [(ngModel)]="specialResultSection.higher" />
+              </mat-form-field>
+            </div>
+          </div>
+        
+          <!-- Second Section Box for the remaining 50% width -->
+          <div class="sectionBox p-2 pt-3 my-2">
+            <div class="section-name">Pass Limit Description</div>
+            <div class="row no-gutters ms-1 me-1 dense-4">
+              <mat-form-field appearance="outline" style="width: 100%">
+                <mat-label>Pass Limit Description</mat-label>
+                <textarea
+                  type="text"
+                  matInput [(ngModel)]="specialResultSection.comments"
+                  placeholder="Pass Limit Description"
+                >
+                </textarea>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="detail-sectionBox p-2 pt-3 my-2">
+          <div class="section-name">Detail</div>
+          <mat-form-field appearance="outline" class="col-3 px-1">
+            <mat-label>Limit of dedection(LOD)</mat-label>
+            <input type="text" matInput  [(ngModel)]="specialResultSection.noOfLOD" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-3 px-1">
+            <mat-label>Text of COA</mat-label>
+            <input type="text" matInput  [(ngModel)]="specialResultSection.noOfCOA" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-3 px-1">
+            <mat-label>Limit of Quantification(LOQ)</mat-label>
+            <input type="text" matInput  [(ngModel)]="specialResultSection.noOfLOQ" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-3 px-1">
+            <mat-label>Text of COA</mat-label>
+            <input type="text" matInput  [(ngModel)]="specialResultSection.noOfTQCOA" />
+          </mat-form-field>
+          </div>
+      </div>
+      <!-- detail section end-->
+      </div>
+      <!-- Add more conditions for different test types if needed -->
+      <div *ngIf="selectedTestType === 'statistical_1'">
+
+        <div class="variable-table-box">
+          <div class="row no-gutters ms-1 me-1 dense-4 mb-1">
+         <mat-form-field appearance="outline" class="col-2 px-1">
+           <mat-label>No of Reading</mat-label>
+           <input type="number" matInput placeholder="Please enter Reading" [(ngModel)]="noOfReading" (ngModelChange)="updateReadingDataArray()" />
+         </mat-form-field>
+       </div>
+       <ng-container *ngFor="let variableData of readingDataArray; let i = index">
+         <div>
+           <div class="row no-gutters ms-1 me-1 dense-4 variable-content">
+             <mat-form-field appearance="outline" class="col-1 px-1">
+               <mat-label>Serial No</mat-label>
+               <input type="text" matInput [value]="(i + 1)" readonly />
+             </mat-form-field>
+       
+             <mat-form-field appearance="outline" class="col-9 px-1">
+               <mat-label>Variable</mat-label>
+               <input type="text" matInput placeholder="Please enter Variable {{i + 1}}" [(ngModel)]="variableData.variable" />
+             </mat-form-field>
+             <mat-form-field appearance="outline" class="col-1 px-1">
+               <mat-label>Observation</mat-label>
+               <input type="text" matInput placeholder="Please enter Observation {{i + 1}}" [(ngModel)]="variableData.observation" (ngModelChange)="validateStatistical()"/>
+             </mat-form-field>
+             <!-- <mat-form-field appearance="outline" class="col-1 px-1">
+               <mat-label>Symbol</mat-label>
+               <input type="text" matInput [value]="'V' + (i + 1)" readonly />
+             </mat-form-field> -->
+             <mat-form-field appearance="outline" class="col-1 px-1">
+               <mat-label>UOM</mat-label>
+               <mat-select  [(ngModel)]="variableData.uom">
+                 <mat-option value="">Select</mat-option>
+                 <mat-option value="gm">gm</mat-option>
+                 <mat-option value="mg">mg</mat-option>
+               </mat-select>
+             </mat-form-field>
+           </div>
+         </div>
+       </ng-container>
+      
+
+       <div>
+      <!-- display table start-->
+      <table>
+        <thead style="background: #800080  !important">
+          <tr class="table-row">
+            <th style="color: white; width:62px">S. No.</th>
+            <th style="color: white">Calculations</th>
+            <th style="color: white">Display</th>
+            <th style="color: white">Limit</th>
+            <th style="color: white">Value</th>
+            <th style="color: white">Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-row">
+            <td style="padding-left: 5px;">1</td>
+            <td> Minimum </td>
+            <td> <input type="checkbox" style="width: 70px; margin-top: 5px" /> </td>
+            <td> <input type="text" style="width: 70px; margin-top: 5px; margin-bottom: 5px;" [(ngModel)]="minValue" readonly/> </td>
+            <td> <input type="text" style="width: 70px; margin-top: 5px; margin-bottom: 5px;" [(ngModel)]="givenMinValue" (ngModelChange)="minValueCalculationLimit()"/> </td>
+            <td style="padding-right: 5px;"> <input type="text" style="width: 70px; margin-top: 5px; margin-bottom: 5px;" [(ngModel)]="minValueResult" readonly/> </td>
+          </tr>
+          <tr class="table-row">
+            <td style="padding-left: 5px;">2</td>
+            <td>Maximum </td>
+            <td> <input type="checkbox" style="width: 70px; margin-top: 5px" /> </td>
+            <td> <input type="text" style="width: 70px; margin-top: 5px; margin-bottom: 5px;" [(ngModel)]="maxValue" readonly/> </td>
+            <td> <input type="text" style="width: 70px; margin-top: 5px; margin-bottom: 5px;" [(ngModel)]="givenMaxValue" (ngModelChange)="maxValueCalculationLimit()"/> </td>
+            <td> <input type="text" style="width: 70px; margin-top: 5px; margin-bottom: 5px;" [(ngModel)]="maxValueResult" readonly/> </td>
+          </tr>
+          <tr class="table-row">
+            <td style="padding-left: 5px;">3</td>
+            <td> Average </td>
+            <td> <input type="checkbox" style="width: 70px; margin-top: 5px" /> </td>
+            <td> <input type="text" style="width: 70px; margin-top: 5px" [(ngModel)]="averageValue" readonly/> </td>
+            <span style="display: inline-block; width: 65px;margin-left: 4px;">Lower:</span>
+            <input type="text" style="width: 70px; margin-top: 5px; margin-bottom: 5px;"[(ngModel)]="lowerAverageValue" (ngModelChange)="averageCalculationLimit()"/>
+            <span style="display: inline-block; width: 65px;margin-left: 4px;">Higher:</span>
+            <input type="text" style="width: 70px; margin-top: 6px; margin-bottom: 5px;margin-right: 2px;"[(ngModel)]="higherAverageValue" (ngModelChange)="averageCalculationLimit()"/>
+            <td> <input type="text" style="width: 70px; margin-top: 5px; margin-bottom: 5px;" [(ngModel)]="aveValueResult" readonly/> </td>
+          </tr>
+          <tr class="table-row">
+            <td style="padding-left: 5px;">4</td>
+            <td> Standard Dev </td>
+            <td> <input type="checkbox" style="width: 70px; margin-top: 5px" /> </td>
+            <td> <input type="text" style="width: 70px; margin-top: 5px; margin-bottom: 5px;" [(ngModel)]="standardDeviation" readonly/> </td>
+            <td>        
+              <span style="display: inline-block; width: 65px;margin-left: 4px;">Higher:</span>
+              <input type="text" style="width: 70px; margin-top: 5px; margin-bottom: 5px;"[(ngModel)]="higherDevValue" (ngModelChange)="devCalculationLimit()"/> 
+            </td>
+            <td> <input type="text" style="width: 70px; margin-top: 5px; margin-bottom: 5px;" [(ngModel)]="devValueResult" readonly/> </td>
+          </tr>
+          <tr class="table-row">
+            <td style="padding-left: 5px;">5</td>
+            <td> Relative Std Dev. </td>
+            <td> <input type="checkbox" style="width: 70px; margin-top: 5px" /> </td>
+            <td> <input type="text" style="width: 70px; margin-top: 5px; margin-bottom: 5px;" [(ngModel)]="relativeStandardDeviation" readonly/> </td>
+            <td>  <span style="display: inline-block; width: 65px;margin-left: 4px;">Higher:</span>
+              <input type="text" style="width: 70px; margin-top: 5px; margin-bottom: 5px;"[(ngModel)]="higherRelDevValue" (ngModelChange)="reldevCalculationLimit()"/> </td>
+            <td> <input type="text" style="width: 70px; margin-top: 5px; margin-bottom: 5px;" [(ngModel)]="reldevValueResult" readonly/> </td>
+          </tr>
+          <tr class="table-row" >
+            <td style="padding-left: 5px;">6</td>
+            <td colspan="5">
+            <div class="result-text">Not more than <input type="text" [(ngModel)]="standardLimitValue" style="width: 50px; margin-top: 5px"/> Reading(s) should have ±<input type="text" style="width: 50px; margin-top: 5px" [(ngModel)]="standardDevLimitValue" (change)="onChangeStandardLimit()"/>% deviation from average  </div>
+          </td></tr>
+          <tr class="table-row">
+            <td style="padding-left: 5px;"></td>
+            <td> Value </td>
+            <td> <input type="checkbox" style="width: 70px; margin-top: 5px" /> </td>
+            <td> <input type="text" style="width: 70px; margin-top: 5px" [(ngModel)]="standardLimitValue" readonly/> </td>
+            <span style="display: inline-block; width: 65px;margin-left: 4px;">Lower:</span>
+            <input type="text" style="width: 70px; margin-top: 5px; margin-bottom: 5px;"[(ngModel)]="_7thlowerValue" readonly/>
+            <span style="display: inline-block; width: 65px;margin-left: 4px;">Higher:</span>
+            <input type="text" style="width: 70px; margin-top: 6px; margin-bottom: 5px;margin-right: 2px;"[(ngModel)]="_7thHigherValue" readonly/>
+            <td> <input type="text" style="width: 70px; margin-top: 5px; margin-bottom: 5px;" [(ngModel)]="readingResult" readonly/> </td>
+          </tr>
+
+          <!--7th row-->
+          <tr class="table-row" >
+            <td style="padding-left: 5px;">7</td>
+            <td colspan="5">
+            <div class="result-text">No Reading(s) should have ±<input type="text" style="width: 50px; margin-top: 5px" [(ngModel)]="_7thstandardDevLimitValue" (ngModelChange)="onChangethStandardLimit()"/>% deviation from average  </div>
+          </td></tr>
+          <tr class="table-row">
+            <td style="padding-left: 5px;"></td>
+            <td> Value </td>
+            <td> <input type="checkbox" style="width: 70px; margin-top: 5px" /> </td>
+            <td> <input type="text" style="width: 70px; margin-top: 5px" [(ngModel)]="_7thstandardLimitValue" readonly/> </td>
+            <span style="display: inline-block; width: 65px;margin-left: 4px;">Lower:</span>
+            <input type="text" style="width: 70px; margin-top: 5px; margin-bottom: 5px;"[(ngModel)]="_8thlowerValue" readonly/>
+            <span style="display: inline-block; width: 65px;margin-left: 4px;">Higher:</span>
+            <input type="text" style="width: 70px; margin-top: 6px; margin-bottom: 5px;margin-right: 2px;"[(ngModel)]="_8thHigherValue" readonly/>
+            <td> <input type="text" style="width: 70px; margin-top: 5px; margin-bottom: 5px;" [(ngModel)]="_7threadingResult" readonly/> </td>
+          </tr>
+        </tbody>
+      </table>
+       <!-- display table end -->
+         
+       <!-- result part start-->
+       <div class="parent-section">
+        <div class="sectionBox p-2 my-2">
+          <!-- <div class="section-name">Pass Limits(s)</div> -->
+        <!-- <div class="result-text">Not more than <input type="text" style="width: 50px; margin-top: 5px" [value]="2" readonly/> Reading(s) should have ±<input type="text" style="width: 50px; margin-top: 5px" [value]="20" readonly/>% deviation from average  </div> -->
+        <!-- <div class="result-text">No Reading should have ±<input type="text" style="width: 50px; margin-top: 5px" [value]="25" readonly/>% deviation from average </div> -->
+        <div class="result-text">Label claim <input type="text" style="width: 50px; margin-top: 5px" [value]="10" readonly/> </div>
+        <div class="result-text">Minimum value not less than <input type="text" style="width: 50px; margin-top: 5px" [value]="5" readonly/>% of lable claim </div>
+        <div class="result-text">Maximum value not more than <input type="text" style="width: 50px; margin-top: 5px" [value]="10" readonly/>% of lable claim </div>
+        </div>
+        </div>
+        <!-- result part end -->
+       </div>
+       </div>
+        </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+<div class="containerBTN">
+  <div class="d-flex justify-content-center">
+    <!-- <button
+      mat-raised-button
+      class="submitButton"
+      (click)="onSaveConfirmation('0')"
+    >
+    {{ buttonLabelService.getLabel('save') }}
+    </button> -->
+    <button
+      mat-raised-button
+      color="primary"
+      class="submitButton"
+      (click)="onSubmit('1')"
+    >
+    {{ buttonLabelService.getLabel('submit') }}
+    </button>
+    <button mat-raised-button color="primary" class="submitButton">
+      {{ buttonLabelService.getLabel('clear') }}
+    </button>
+  </div>
+</div>
+<div style="height: 25px;"></div>
