@@ -1409,7 +1409,6 @@ export enum apiEndPoints {
   SamRegLoadUpdatePage = 'limsws/srws-record/get-by-max-code',
   SamRegAllAuditTrail = 'limsws/srws-record/get-by-code-all',
 
-
      /******* Chemical Master Regestration*********/
   allCmrTabledata = 'limssm/ch-master/get-all',
   activeCmrTabledata = 'limssm/ch-master/get-max-all',
@@ -1448,16 +1447,7 @@ export enum apiEndPoints {
 
 
 
-   /******* Test Solution Preaparation Input Chemical Master*********/
-   allTspicmTabledata = 'limschm/chtsim_master/get-all',
-  activeTspicmTabledata = 'limschm/chtsim_master/get-max-all',
-  TspicmUserProfileFilterData = '/limschm/chtsim_master/search',
-  TspicmCreateUpdate = 'limschm/chtsim_master/save-update',
-  TspicmLoadUpdatePage = 'limschm/chtsim_master/get-by-max-code',
-  TspicmllAuditTrail = 'limschm/chtsim_master/get-by-code-all',
-
-
-      
+     
            /******* Test Solution Record*********/
   allTsrTabledata = 'limschm/chts_record/get-all',
   activeTsrTabledata = 'limschm/chts_record/get-max-all',
@@ -1564,6 +1554,9 @@ SamTpVsCreateUpdate = 'limscs/visr_record/save-update',
  SamTpVsLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
  SamTpVsAllAuditTrail = 'limscs/visr_record/get-by-code-all',
 
+
+  /*******WSR*********/
+attachmentPDF = 'gm/attachment-pdf'
 
 }
 

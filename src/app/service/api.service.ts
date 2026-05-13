@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -141,7 +141,10 @@ export class ApiService {
     };
     return this.http.post(`${this.API_URL}imp/bgimp-master/save-update`, data);
   }
-   public saveAndUpdate(data): Observable<any> {
+  public getInput(uc0001: string): Observable<any> {
+    return this.http.get(this.API_URL + `limspc/input?unitCode=${uc0001}`);
+  }
+  public saveAndUpdate(data): Observable<any> {
     return this.http.post(this.API_URL + 'limspc/ws/save-update', data);
   }
   public getModuleRequestNo(lc0002: string, lc0001: string): Observable<any> {

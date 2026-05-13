@@ -1,0 +1,296 @@
+<div class="adjust">
+  <div class="example-table-container">
+    <app-common-header [pageData]="this.pageData" (headerData)="getHeaderData($event)"></app-common-header>
+  </div>
+</div>
+
+<app-common-title [title]="'Product Information'"></app-common-title>
+
+<!-- <div class="row no-gutters ms-1 me-1 dense-4">
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>Product Name</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Please enter product name"
+        formControlName="productName"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>Protocol No</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Please enter protocol no"
+        formControlName="protocolNo"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>Sample Description</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Please enter sample description"
+        formControlName="sampleDes"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>Test Parameter</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Please enter text parameter"
+        formControlName="testParameter"
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="row no-gutters ms-1 me-1 dense-4">
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>Analyst Name</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Please enter analyst name"
+        formControlName="analystName"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>Batch No</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Please enter batch no"
+        formControlName="batchNo"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>AR No</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Please enter ar no"
+        formControlName="arNo"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>Stp</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Please enter ar no"
+        formControlName="stp"
+      />
+    </mat-form-field>
+  </div> -->
+<div class="row no-gutters ms-1 me-1 dense-4" [formGroup]="pmsList">
+  <mat-form-field appearance="outline" class="col-3 px-1">
+    <mat-label>Product Number</mat-label>
+    <input type="text" matInput placeholder="Please enter text parameter" formControlName="productNo"
+      (change)="onChangeSubject()" />
+    <img alt="lov img" src="../../../../../../assets/searchfind.svg" class="icon-size lovSearchButton" color="primary"
+      (click)="openStatusLOV()" />
+  </mat-form-field>
+</div>
+<form [formGroup]="HeaderForm">
+  <div class="row no-gutters ms-1 me-1 dense-4">
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>Product Name</mat-label>
+      <input type="text" matInput formControlName="productName" placeholder="Product Name" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>Market</mat-label>
+      <input type="text" matInput formControlName="market" placeholder="Market" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>Product Code</mat-label>
+      <input type="text" matInput formControlName="productCode" placeholder="Product Code" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>UOM</mat-label>
+      <input type="text" matInput formControlName="uom" placeholder="UOM" />
+    </mat-form-field>
+  </div>
+  <div class="row no-gutters ms-1 me-1 dense-4">
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>Shelf Life in Months</mat-label>
+      <input type="text" matInput formControlName="shelfLifeMonths" placeholder="Shelf Life in Months" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>Product Type</mat-label>
+      <input type="text" matInput formControlName="productType" placeholder="Product Type" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>Dosage Form</mat-label>
+      <input type="text" matInput formControlName="dosageForm" placeholder="Dosage Form" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>Input Code</mat-label>
+      <input type="text" matInput formControlName="inputCode" placeholder="Input Code" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>Product Tracking Code</mat-label>
+      <input type="text" matInput formControlName="productTrackingCode" placeholder="Product Tracking Code" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>Select your record</mat-label>
+      <input type="text" formControlName="record" matInput placeholder=" Organization Code"
+        (change)="onChangeOrgCode()" />
+      <img alt="lov img" src="../../../../../../assets/searchfind.svg" class="icon-size lovSearchButton" color="primary"
+        (click)="openBusinessOrgCodeLOV()" />
+    </mat-form-field>
+  </div>
+</form>
+
+
+
+<div class="table-box word-editor-container">
+  <div class="section_header">
+    <p class="section_header_title">Word Editor</p>
+    <button type="button" class="insert-textbox-btn" (click)="saveRange(); showTableDialog = true">&#9776; Insert Table</button>
+  </div>
+
+  <!-- Table insert dialog -->
+  <div *ngIf="showTableDialog" class="word-config-overlay">
+    <div class="word-config-popup">
+      <div class="word-config-header">
+        <h4>Insert Table</h4>
+        <button type="button" class="word-popup-close" (click)="showTableDialog = false">x</button>
+      </div>
+      <div class="word-config-grid">
+        <label class="word-config-label">Rows</label>
+        <input #tableRows type="number" min="1" value="3" class="word-config-input">
+        <label class="word-config-label">Columns</label>
+        <input #tableCols type="number" min="1" value="3" class="word-config-input">
+      </div>
+      <div class="word-config-actions">
+        <button mat-raised-button color="primary" type="button"
+          (click)="insertTable(+tableRows.value, +tableCols.value); showTableDialog = false">
+          Insert
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div #wordEditor
+    class="word-editor-textarea"
+    contenteditable="true"
+    (input)="onEditorInput($event)"
+    (click)="onWordEditorClick($event)"
+    (dblclick)="onWordEditorDoubleClick($event)">
+  </div>
+
+  <div class="word-editor-actions">
+    <button mat-raised-button class="submitButton" type="button" (click)="saveWordTemplate()">
+      Save Template
+    </button>
+    <button mat-stroked-button class="word-preview-button" type="button" (click)="previewWordTemplate()">
+      Preview Template
+    </button>
+  </div>
+
+</div>
+
+<!-- Config Popup -->
+<div *ngIf="showWordConfigPopup"
+     class="word-config-overlay">
+  <div class="word-config-popup">
+    <div class="word-config-header">
+      <h4>{{currentWordField}}</h4>
+      <button type="button" class="word-popup-close" (click)="showWordConfigPopup = false">x</button>
+    </div>
+
+    <div class="word-config-grid">
+      <label class="word-config-label" for="wordFieldMin">Min Value</label>
+      <input #min id="wordFieldMin" type="number" class="word-config-input">
+
+      <label class="word-config-label" for="wordFieldMax">Max Value</label>
+      <input #max id="wordFieldMax" type="number" class="word-config-input">
+    </div>
+
+    <div class="word-config-actions">
+      <button mat-raised-button color="primary" type="button" (click)="saveWordFieldConfig(min.value, max.value)">
+        Save
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showWordPreview" class="table-box word-preview-container">
+  <div class="section_header">
+    <p class="section_header_title">Template Preview</p>
+  </div>
+  <form [formGroup]="wordPreviewForm" class="word-preview-form">
+    <div class="word-preview-content" [innerHTML]="previewHtml"></div>
+  </form>
+</div>
+<!-- <ng-container [formGroup]="form"> -->
+<form [formGroup]="form">
+  <!-- <ckeditor [editor]="Editor" formControlName="html"></ckeditor> -->
+  <!-- <div
+    #summernote
+    [ngxSummernote]="config"
+    [ngxSummernoteDisabled]="editorDisabled"
+    formControlName="html"
+    (summernoteChange)="onContentChange($event)"
+    (blur)="onBlur()"
+    (mediaDelete)="onDelete($event)"
+    (summernoteInit)="summernoteInit($event)"
+  ></div> -->
+  <!-- </ng-container> -->
+
+  <!-- <app-common-title [title]="'Comments'"></app-common-title> -->
+  <app-common-comments [nextStageListData]="nextStageListData"
+    (commentsData)="handleCommentsForm($event)"></app-common-comments>
+  <!-- <div class="row">
+  <div class="col-12">
+    <form [formGroup]="commentForm">
+      <div class="row no-gutters ms-1 me-1">
+        <mat-form-field appearance="outline" class="col-12">
+          <mat-label>Comments</mat-label>
+          <textarea
+            type="text"
+            matInput
+            placeholder="Comments"
+            formControlName="comments"
+          >
+          </textarea>
+        </mat-form-field>
+      </div>
+      <div class="row no-gutters margin-left_12_px dense-4">
+        <mat-form-field appearance="outline" class="col-4 px-1">
+          <mat-label>Next stage</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Next Stage"
+            formControlName="nextStage"
+          />
+          <img
+            alt="lov img"
+            src="../../../../../../assets/searchfind.svg"
+            class="icon-size lovSearchButton"
+            color="primary"
+          />
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+</div> -->
+
+  <div class="display-flex mt-2">
+    <button mat-raised-button class="submitButton" (click)="onSubmit(true)">
+      Save
+    </button>
+    <button mat-raised-button class="submitButton" (click)="onSubmit(false)">
+      Submit
+    </button>
+    <button mat-raised-button class="submitButton">Cancel</button>
+  </div>
+  <div class="height_50"></div>

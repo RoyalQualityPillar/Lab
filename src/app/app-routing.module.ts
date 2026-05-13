@@ -35,6 +35,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./rqp-lims-rsm-module/lims-rsm/lims-rsm.module').then((m) => m.LimsRsmModule),
   },
+   {
+    path: 'lims-sm',
+    loadChildren: () =>
+      import('./rqp-lims-sm-module/lims-sm/lims-sm.module').then((m) => m.LimsSmModule),
+  },
   {
     path: 'lims-std',
     loadChildren: () =>

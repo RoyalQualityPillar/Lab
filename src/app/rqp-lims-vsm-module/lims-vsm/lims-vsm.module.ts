@@ -6,6 +6,7 @@ import { VsmModuleAdminComponent } from '../vsm-module-admin/vsm-module-admin.co
 import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/common/shared.module';
+import { CustomDatePipe } from 'src/app/pipe/custom-date.pipe';
 import { VsuCreateUpdateComponent } from '../vsm-master/volumetric solution usage/vsu-create-update/vsu-create-update.component';
 import { VsuHomePageComponent } from '../vsm-master/volumetric solution usage/vsu-home-page/vsu-home-page.component';
 import { SnmCreateUpdateComponent } from '../vsm-master/solution-name-master/snm-create-update/snm-create-update.component';
@@ -52,7 +53,7 @@ import { SampleTestPlanVsHomePageComponent } from '../vsm-master/sample-test-pla
     ReactiveFormsModule,
     FormsModule,
     SharedModule,
-    LimsVsmRoutingModule
+    LimsVsmRoutingModule,
   ]
 })
 export class LimsVsmModule { }
