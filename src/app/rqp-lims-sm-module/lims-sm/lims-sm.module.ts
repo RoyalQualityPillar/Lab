@@ -26,7 +26,7 @@ import { WsrReviewerComponent } from '../wsr/wsr-reviewer/wsr-reviewer.component
 import { WsrReviewerSaveComponent } from '../wsr/wsr-reviewer-save/wsr-reviewer-save.component';
 import { WsrUpdateComponent } from '../wsr/wsr-update/wsr-update.component';
 import { WsrUpdateSaveComponent } from '../wsr/wsr-update-save/wsr-update-save.component';
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+// import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   declarations: [
@@ -59,7 +59,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     ReactiveFormsModule,
     SharedModule,
     AngularMaterialModule,
-     CKEditorModule,
+    //  CKEditorModule,
     // CustomDatePipe,
   ]
 })
