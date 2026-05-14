@@ -1447,7 +1447,16 @@ export enum apiEndPoints {
 
 
 
-     
+   /******* Test Solution Preaparation Input Chemical Master*********/
+   allTspicmTabledata = 'limschm/chtsim_master/get-all',
+  activeTspicmTabledata = 'limschm/chtsim_master/get-max-all',
+  TspicmUserProfileFilterData = '/limschm/chtsim_master/search',
+  TspicmCreateUpdate = 'limschm/chtsim_master/save-update',
+  TspicmLoadUpdatePage = 'limschm/chtsim_master/get-by-max-code',
+  TspicmllAuditTrail = 'limschm/chtsim_master/get-by-code-all',
+
+
+      
            /******* Test Solution Record*********/
   allTsrTabledata = 'limschm/chts_record/get-all',
   activeTsrTabledata = 'limschm/chts_record/get-max-all',
