@@ -26,6 +26,7 @@ import { WsrReviewerComponent } from '../wsr/wsr-reviewer/wsr-reviewer.component
 import { WsrReviewerSaveComponent } from '../wsr/wsr-reviewer-save/wsr-reviewer-save.component';
 import { WsrUpdateComponent } from '../wsr/wsr-update/wsr-update.component';
 import { WsrUpdateSaveComponent } from '../wsr/wsr-update-save/wsr-update-save.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 // import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
@@ -59,6 +60,7 @@ import { WsrUpdateSaveComponent } from '../wsr/wsr-update-save/wsr-update-save.c
     ReactiveFormsModule,
     SharedModule,
     AngularMaterialModule,
+    NgxExtendedPdfViewerModule,
     //  CKEditorModule,
     // CustomDatePipe,
   ]

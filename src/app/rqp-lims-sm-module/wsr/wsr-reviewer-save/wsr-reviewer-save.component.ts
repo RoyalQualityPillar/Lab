@@ -263,11 +263,24 @@ export class WsrReviewerSaveComponent {
       );
     }
   }
+    public pdfSrc: string = '';
+  public showPdfPreview: boolean = false;
+  public htmlPreviewContent: string = '';
   public attachmentPDF(value:any){
     let lc0002 = value.uc0001;
     let param = {lc0002}
     this.apiService.sendRequest(apiEndPoints.attachmentPDF,'POST', param).subscribe((data:any) => {
       console.log(data)
+       if (data?.data) {
+        this.showPdfPreview = false;
+        // Decode base64 HTML string
+        try {
+          const decodedHtml = atob(data.data);
+          this.htmlPreviewContent = decodedHtml;
+        } catch (e) {
+          this.htmlPreviewContent = '<div style="color:red">Failed to decode HTML content.</div>';
+        }
+      }
     });
   }
 }
