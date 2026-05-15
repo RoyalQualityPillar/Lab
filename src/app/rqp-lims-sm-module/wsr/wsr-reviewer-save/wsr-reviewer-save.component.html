@@ -13,7 +13,28 @@
     </div>
   </div>
 </div> -->
-<app-common-title [title]="'Word Editor'"> </app-common-title>
+<!-- <app-common-title [title]="'Word Editor'"> </app-common-title> -->
+<div *ngIf="showPdfPreview" class="pdf-preview-container">
+  <div class="pdf-preview-header">
+    <p class="pdf-preview-title">Document Preview</p>
+  </div>
+  <ngx-extended-pdf-viewer
+    [base64Src]="pdfSrc"
+    [height]="'600px'"
+    [showToolbar]="true"
+    [showSidebarButton]="false"
+    [showFindButton]="true"
+    [showPagingButtons]="true"
+    [showZoomButtons]="true"
+    [showPresentationModeButton]="false"
+    [showOpenFileButton]="false"
+    [showPrintButton]="true"
+    [showDownloadButton]="true"
+    [showSecondaryToolbarButton]="false"
+  ></ngx-extended-pdf-viewer>
+</div>
+<!-- HTML Preview Container -->
+<div *ngIf="!showPdfPreview" id="htmlPreviewContainer" class="html-preview-container" style="min-height:400px; border:1px solid #ccc; padding:16px; margin-bottom:16px;" [innerHTML]="htmlPreviewContent"></div>
 <ng-container [formGroup]="form">
   <!-- <ckeditor [editor]="Editor" formControlName="html"></ckeditor> -->
   <!-- <div
