@@ -1565,7 +1565,18 @@ SamTpVsCreateUpdate = 'limscs/visr_record/save-update',
 
 
   /*******WSR*********/
-attachmentPDF = 'gm/attachment-pdf'
+attachmentPDF = 'gm/attachment-pdf',
+
+
+ /*******Usage Type Master  *********/
+  allUtmTabledata = 'limsws/utm-master/get-all',
+  activeUtmTabledata = 'limsws/utm-master/get-max-all',
+ UtmUserProfileFilterData = 'limsws/utm-master/search',
+ UtmCreateUpdate = 'limsws/utm-master/save-update',
+ UtmLoadUpdatePage = 'limsws/utm-master/get-by-max-code',
+ UtmAllAuditTrail = 'limsws/utm-master/get-by-code-all',
+
+
 
 }
 
