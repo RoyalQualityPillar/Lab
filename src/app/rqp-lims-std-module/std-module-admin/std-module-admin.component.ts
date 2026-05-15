@@ -32,4 +32,8 @@ export class StdModuleAdminComponent {
   onUsageTypeMaster() {
     this.router.navigate(['./rqplabui/lims-std/utm-home-page'])
   }
+   onPurityTypeMaster() {
+    this.router.navigate(['./rqplabui/lims-std/purity-type-master-home-page'])
+  }
 }
+   

@@ -18,6 +18,8 @@ import { CreateUpdateWsLotContainersUsageComponent } from '../std-masters/ws-lot
 import { HomePageWsLotContainersUsageComponent } from '../std-masters/ws-lot-containers-usage/home-page-ws-lot-containers-usage/home-page-ws-lot-containers-usage.component';
 import { UtmCreateUpdateComponent } from '../std-masters/usage-type-master/utm-create-update/utm-create-update.component';
 import { UtmHomePageComponent } from '../std-masters/usage-type-master/utm-home-page/utm-home-page.component';
+import { PurityTypeMasterCreateUpdateComponent } from '../std-masters/purity-type-master/purity-type-master-create-update/purity-type-master-create-update.component';
+import { PurityTypeMasterHomePageComponent } from '../std-masters/purity-type-master/purity-type-master-home-page/purity-type-master-home-page.component';
 
 
 @NgModule({
@@ -35,9 +37,10 @@ import { UtmHomePageComponent } from '../std-masters/usage-type-master/utm-home-
     HomePageWsLotContainersUsageComponent,
     UtmCreateUpdateComponent,
     UtmHomePageComponent,
-    
-    
-  
+    PurityTypeMasterCreateUpdateComponent,
+    PurityTypeMasterHomePageComponent,
+
+
 
 
 

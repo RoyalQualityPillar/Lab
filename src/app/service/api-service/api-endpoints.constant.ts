@@ -1577,6 +1577,16 @@ attachmentPDF = 'gm/attachment-pdf',
  UtmAllAuditTrail = 'limsws/utm-master/get-by-code-all',
 
 
+   /******* Purity type Master  *********/
+  allPurTyTabledata = 'limsws/ptm-master/get-all',
+  activePurTyTabledata = 'limsws/ptm-master/get-max-all',
+ purTyUserProfileFilterData = 'limsws/ptm-master/search',
+ PurTyCreateUpdate = 'limsws/ptm-master/save-update',
+ PurTyLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
+ PurTyAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+
+
+
 
 }
 
