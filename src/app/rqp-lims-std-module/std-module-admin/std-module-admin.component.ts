@@ -29,4 +29,8 @@ export class StdModuleAdminComponent {
   onWSLotContainersUsage() {
     this.router.navigate(['./rqplabui/lims-std/home-page-ws-lot-containers-usage'])
   }
+   onPurityTypeMaster() {
+    this.router.navigate(['./rqplabui/lims-std/purity-type-master-home-page'])
+  }
 }
+   
