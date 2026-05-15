@@ -6,6 +6,7 @@ import { HomePageSampleTextPlanComponent } from '../std-masters/sample-test-plan
 import { HomePageWsLotPuritiesRecordComponent } from '../std-masters/ws-lot-purities-record/home-page-ws-lot-purities-record/home-page-ws-lot-purities-record.component';
 import { HomePageWsLotContainersRecordComponent } from '../std-masters/ws-lot-containers-record/home-page-ws-lot-containers-record/home-page-ws-lot-containers-record.component';
 import { HomePageWsLotContainersUsageComponent } from '../std-masters/ws-lot-containers-usage/home-page-ws-lot-containers-usage/home-page-ws-lot-containers-usage.component';
+import { UtmHomePageComponent } from '../std-masters/usage-type-master/utm-home-page/utm-home-page.component';
 import { PurityTypeMasterHomePageComponent } from '../std-masters/purity-type-master/purity-type-master-home-page/purity-type-master-home-page.component';
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path:'home-page-ws-lot-purities-record', component:HomePageWsLotPuritiesRecordComponent},
   {path:'home-page-ws-lot-containers-record', component:HomePageWsLotContainersRecordComponent},
   {path:'home-page-ws-lot-containers-usage', component:HomePageWsLotContainersUsageComponent},
+  {path:'utm-home-page', component:UtmHomePageComponent},
   {path:'purity-type-master-home-page', component:PurityTypeMasterHomePageComponent},
   
   
