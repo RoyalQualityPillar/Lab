@@ -1565,7 +1565,28 @@ SamTpVsCreateUpdate = 'limscs/visr_record/save-update',
 
 
   /*******WSR*********/
-attachmentPDF = 'gm/attachment-pdf'
+attachmentPDF = 'gm/attachment-pdf',
+
+
+ /*******Usage Type Master  *********/
+  allUtmTabledata = 'limsws/utm-master/get-all',
+  activeUtmTabledata = 'limsws/utm-master/get-max-all',
+ UtmUserProfileFilterData = 'limsws/utm-master/search',
+ UtmCreateUpdate = 'limsws/utm-master/save-update',
+ UtmLoadUpdatePage = 'limsws/utm-master/get-by-max-code',
+ UtmAllAuditTrail = 'limsws/utm-master/get-by-code-all',
+
+
+   /******* Purity type Master  *********/
+  allPurTyTabledata = 'limsws/ptm-master/get-all',
+  activePurTyTabledata = 'limsws/ptm-master/get-max-all',
+ purTyUserProfileFilterData = 'limsws/ptm-master/search',
+ PurTyCreateUpdate = 'limsws/ptm-master/save-update',
+ PurTyLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
+ PurTyAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+
+
+
 
 }
 
