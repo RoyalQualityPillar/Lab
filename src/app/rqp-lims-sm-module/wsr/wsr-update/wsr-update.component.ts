@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
     standalone: false
 })
 export class WsrUpdateComponent {
-  public updateSaveUrl = '/lims/wsr-update-save';
+  public updateSaveUrl = '/rqplabui/lims-sm/wsr-update-save';
 }
