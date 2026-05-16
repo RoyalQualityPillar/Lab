@@ -271,7 +271,7 @@ export class WsrReviewerSaveComponent {
   public attachmentPDF(value:any){
     let lc0002 = value.uc0001;
     let param = {lc0002}
-    this.apiService.sendRequest(apiEndPoints.attachmentPDF,'POST', param).subscribe((data:any) => {
+    this.apiService.sendRequest(apiEndPoints.attachmentHTML,'POST', param).subscribe((data:any) => {
       console.log(data)
        if (data?.data) {
         this.showPdfPreview = false;
