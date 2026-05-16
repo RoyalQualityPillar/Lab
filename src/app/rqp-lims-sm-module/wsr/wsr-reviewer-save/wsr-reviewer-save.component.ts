@@ -19,7 +19,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   standalone: false
 })
 export class WsrReviewerSaveComponent {
-  public redirectUrl: string = '/rqpquailtyui/lims/wsr-module-home-page';
+  public redirectUrl: string = '/rqplabui/lims-sm/wsr-module-home-page';
   public editorDisabled = false;
   public pageData: any;
   public comments: string;
