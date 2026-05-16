@@ -9,6 +9,7 @@ import { ApiService } from 'src/app/service/api-service/api.service';
 // import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { apiEndPoints } from 'src/app/service/api-service/api-endpoints.constant';
 import { WsrService } from 'src/app/service/wsr.service';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 
 @Component({
@@ -39,7 +40,8 @@ export class WsrReviewerSaveComponent {
     private apiService: ApiService,
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private sanitizer: DomSanitizer
   ) { 
      this.form= this.wsrService.form;
     this.commentForm = this.wsrService.commentForm;
@@ -265,7 +267,7 @@ export class WsrReviewerSaveComponent {
   }
     public pdfSrc: string = '';
   public showPdfPreview: boolean = false;
-  public htmlPreviewContent: string = '';
+  public htmlPreviewContent: SafeHtml = '';
   public attachmentPDF(value:any){
     let lc0002 = value.uc0001;
     let param = {lc0002}
@@ -276,7 +278,7 @@ export class WsrReviewerSaveComponent {
         // Decode base64 HTML string
         try {
           const decodedHtml = atob(data.data);
-          this.htmlPreviewContent = decodedHtml;
+          this.htmlPreviewContent = this.sanitizer.bypassSecurityTrustHtml(decodedHtml);
         } catch (e) {
           this.htmlPreviewContent = '<div style="color:red">Failed to decode HTML content.</div>';
         }
