@@ -27,6 +27,12 @@ import { WsrReviewerSaveComponent } from '../wsr/wsr-reviewer-save/wsr-reviewer-
 import { WsrUpdateComponent } from '../wsr/wsr-update/wsr-update.component';
 import { WsrUpdateSaveComponent } from '../wsr/wsr-update-save/wsr-update-save.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { DmproductCreateUpdateComponent } from '../spm-masters/dmproduct-master/dmproduct-create-update/dmproduct-create-update.component';
+import { DmproductHomePageComponent } from '../spm-masters/dmproduct-master/dmproduct-home-page/dmproduct-home-page.component';
+import { CreateUpdateMaterialMasterComponent } from '../spm-masters/material-master-product/create-update-material-master/create-update-material-master.component';
+import { MaterialMasterHomePageComponent } from '../spm-masters/material-master-product/material-master-home-page/material-master-home-page.component';
+import { AddNewRecordComponent } from '../spm-masters/add-new-record/add-new-record.component';
+import { PmsListComponent } from '../spm-masters/pms-list/pms-list.component';
 // import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
@@ -51,6 +57,13 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     WsrReviewerSaveComponent,
     WsrUpdateComponent,
     WsrUpdateSaveComponent,
+    DmproductCreateUpdateComponent,
+    DmproductHomePageComponent,
+    CreateUpdateMaterialMasterComponent,
+    MaterialMasterHomePageComponent,
+    AddNewRecordComponent,
+    PmsListComponent
+
   ],
   imports: [
     CommonModule,

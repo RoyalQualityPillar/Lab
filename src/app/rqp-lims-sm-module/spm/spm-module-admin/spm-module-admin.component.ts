@@ -12,4 +12,10 @@ constructor(private router: Router) { }
   spmCompletedRecords(): void {
     this.router.navigate(['./rqplabui/lims/spm-completed']);
   }
+  onDmProductMaster() {
+    this.router.navigate(['./rqplabui/lims-sm/dmproduct-home-page']);
+  }
+  onMaterialMaster() {
+    this.router.navigate(['./rqplabui/lims-sm/material-master-home-page']);
+  }
 }

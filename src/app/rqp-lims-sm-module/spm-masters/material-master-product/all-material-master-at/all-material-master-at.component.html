@@ -1,0 +1,129 @@
+<div class="row no-gutters">
+  <div class="col-8 d-flex justify-content-start">
+    <h1 class="customeHeading padding-left_10">Material Master</h1>
+  </div>
+  <div class="col-4 d-flex justify-content-end">
+    <button mat-icon-button (click)="onDownloadPDF()">
+      <mat-icon class="close-icon" color="primary">download</mat-icon>
+    </button>
+    <button mat-icon-button [mat-dialog-close]="true">
+      <mat-icon class="close-icon" color="warn">close</mat-icon>
+    </button>
+  </div>
+  <!-- <div class="col-2 d-flex justify-content-end">
+        
+    </div> -->
+</div>
+<mat-spinner
+  *ngIf="isLoading"
+  class="global-loading-spinner"
+  color="primary"
+  mode="indeterminate"
+></mat-spinner>
+<div
+  class="table-box"
+  id="htmlData"
+  *ngIf="this.data"
+  class="tabOverFlowY paddding_25 bg_edf0f8"
+>
+  <div class="margin-top_10">
+    <div class="sup-head1 margin-top_10" id="header">
+      <div class="logo2">
+        <span class="float-left font-size_18 font-family_auto">
+          <h2 class="font-weight_800 color_blue">Material Master</h2>
+        </span>
+        <span class="float-right">
+          <img src="../../../assets/logo1.png" />
+        </span>
+      </div>
+    </div>
+    <!-- <div class="headers">Business Unit Information</div> -->
+    <div *ngFor="let data of this.data" [attr.id]="'Location' + data.version">
+      <div>
+        <div class="headers margin_4">
+          <p class="color_aliceblue font-size_12 margin-top_2">
+            Material Master - {{ data.version }}
+          </p>
+        </div>
+        <div class="supplier-content">
+          <div class="sup-head">
+            <div class="sup-fields">Version</div>
+            <div class="sup-values">{{ data.version }}</div>
+          </div>
+          <div class="sup-head">
+            <div class="sup-fields">Status</div>
+            <div class="sup-values">{{ onChangeStatus(data.status) }}</div>
+          </div>
+          <div class="sup-head bg-color_bcceea">
+            <div class="sup-fields">Product No</div>
+            <div class="sup-values">{{ data.uc0001 }}</div>
+          </div>
+          <div class="sup-head bg-color_bcceea">
+            <div class="sup-fields">Product Code</div>
+            <div class="sup-values">{{ this.data.ff0001 }}</div>
+          </div>
+          <div class="sup-head">
+            <div class="sup-fields">Product Name</div>
+            <div class="sup-values">{{ data.ff0002 }}</div>
+          </div>
+          <div class="sup-head">
+            <div class="sup-fields">Brand Name</div>
+            <div class="sup-values">{{ data.ff0003 }}</div>
+          </div>
+
+          <div class="sup-head bg-color_bcceea">
+            <div class="sup-fields">Plant Code</div>
+            <div class="sup-values">{{ data.ff0004 }}</div>
+          </div>
+
+          <div class="sup-head bg-color_bcceea">
+            <div class="sup-fields">Product Category</div>
+            <div class="sup-values">{{ data.ff0005 }}</div>
+          </div>
+
+          <div class="sup-head">
+            <div class="sup-fields">Dosage Form</div>
+            <div class="sup-values">{{ data.ff0006 }}</div>
+          </div>
+          <div class="sup-head">
+            <div class="sup-fields">UOM</div>
+            <div class="sup-values">{{ data.ff0007 }}</div>
+          </div>
+          <div class="sup-head bg-color_bcceea">
+            <div class="sup-fields">Createdon</div>
+            <div class="sup-values">{{ data.createdon }}</div>
+          </div>
+          <div class="sup-head bg-color_bcceea">
+            <div class="sup-fields">Createdby</div>
+            <div class="sup-values">{{ data.createdby }}</div>
+          </div>
+        </div>
+        <div class="supplier-content-comments">
+          <div class="sup-head-comments bg-color_bcceea">
+            <div class="sup-fields-comments">Comments :-</div>
+            <div class="sup-values-comments">{{ data.comments }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="sup-head">
+  <div class="sup-fields">Initiated On</div>
+  <div class="sup-values">{{this.data.joinedDate}}</div>
+</div> -->
+    <!-- <div class="sup-head">
+  <div class="sup-fields">Comments</div>
+  <div class="sup-values">{{this.data.urpcomments}}</div>
+</div> -->
+    <!-- <div class="sup-head"style="background-color: #bcceea"> -->
+    <!-- <div class="sup-fields">Category</div>
+ <div class="sup-values">434343</div> -->
+    <!-- </div>
+<div class="sup-head" style="background-color: #bcceea"> -->
+    <!-- <div class="sup-fields">State code</div>
+ <div class="sup-values">45455</div> -->
+    <!-- </div> -->
+  </div>
+</div>
+
+<!-- <button class="btn btn-success btn-block" (click)="openPDF()">Download Report</button> -->
+<!-- <div style="height: 100px;"></div> -->

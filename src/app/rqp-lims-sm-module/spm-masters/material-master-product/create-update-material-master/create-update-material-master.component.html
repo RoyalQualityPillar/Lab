@@ -7,8 +7,7 @@
 <div class="row gx-0 create-update-dialog-header-section">
   <div class="col-10 d-flex justify-content-start">
     <h1 class="daialog-title-name p-2">
-      Calibration Frequency  {{ this.userData.type }}
-      <!-- <span>{{ this.userData.type }}{{ this.userData.type }}</span> -->
+      Material Master {{ this.userData.type }}
     </h1>
   </div>
   <div class="col-2 d-flex justify-content-end">
@@ -17,19 +16,19 @@
     </button>
   </div>
 </div>
-<div class="screenOverFlowY">
+<div class="screenOverFlowY" class="margin-top_7">
   <form [formGroup]="DepartmentMaster" class="margin-top_7">
     <mat-card>
       <div class="p-2">
         <div class="section_header">
-          <p class="section_header_title">Calibration Frequency information</p>
+          <p class="section_header_title">Material Master information</p>
         </div>
       </div>
       <div class="row">
         <div class="col-12">
           <div class="p-2">
             <div class="row no-gutters pb-2 ms-1 me-1">
-              <span clss="form-validation-msg"
+              <span class="form-validation-msg"
                 >Required Fields are denoted by an asterisk(<span
                   class="color_red"
                   >*</span
@@ -42,73 +41,21 @@
                 <input type="text" matInput readonly formControlName="unitcode" (change)="onChangePlantCode2()" />
               </mat-form-field>
             </div>
-            <div class="row no-gutters ms-1 me-1 dense-4">
-              <div class="orgCode">
-                <mat-form-field appearance="outline" class="col-12 px-1">
-                  <mat-label>Organization Unit Code</mat-label>
-                  <input
-                    type="text"
-                    matInput
-                    readonly
-                    formControlName="ff0004"
-                    (change)="onChangePlantCode()"
-                  />
-                </mat-form-field>
-              </div>
-
-            </div>
-            <div class="row no-gutters ms-1 me-1 dense-4">
-              <mat-form-field appearance="outline" class="col-6 px-1" *ngIf="isUpdate">
-                  <mat-label>Frequency No</mat-label>
+            <div class="row no-gutters ms-1 me-1 dense-4" *ngIf="isUpdate">
+              <div class="orgCode">              
+                <mat-form-field appearance="outline" class="col-12">
+                  <mat-label>Material No</mat-label>
                   <input
                     type="text"
                     matInput
                     formControlName="uc0001"
                     [readonly]="isUpdate"
                     [class.isReadonlyField]="isUpdate"
-                    placeholder="Frequency No"
+                    placeholder="Material No"
                   />
                 </mat-form-field>
-              <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Frequency Code</mat-label>
-                <input
-                  type="text"
-                  matInput
-                  formControlName="ff0001"
-                  placeholder="Frequency Code"
-                />
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Frequency</mat-label>
-                <input
-                  type="text"
-                  matInput
-                  formControlName="ff0002"
-                  placeholder="Frequency"
-                />
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Frequency Type</mat-label>
-                <input
-                  type="text"
-                  matInput
-                  formControlName="ff0003"
-                  placeholder="Frequency Type"
-                />
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Tolerance Period</mat-label>
-                <input
-                  type="text"
-                  matInput
-                  formControlName="ff0004"
-                  placeholder="Frequency Type"
-                />
-              </mat-form-field>
-               </div>
-              <div *ngIf="isUpdate" class="col-6 px-1">
+              </div>
+              <div class="col-6 px-1">
                 <mat-form-field appearance="outline" class="col-12">
                   <mat-label>Status</mat-label>
                   <input
@@ -126,7 +73,90 @@
                   />
                 </mat-form-field>
               </div>
-           
+            </div>
+
+            <div class="row no-gutters ms-1 me-1 dense-4">
+              <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Material Code</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="ff0001"
+                  placeholder="Material code"
+                />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Mateiral Name</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="ff0002"
+                  placeholder="Material Name"
+                />
+              </mat-form-field>
+            </div>
+            <div class="row no-gutters ms-1 me-1 dense-4">
+              <!-- <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Brand Name</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="ff0003"
+                  placeholder="Brand Name"
+                />
+              </mat-form-field> -->
+
+              <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Material Category</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="ff0005"
+                  placeholder="Material Categoty"
+                  (change)="onChangeProductCategory()"
+                />
+                <img
+                  alt="lov img"
+                  src="../../../../../../assets/searchfind.svg"
+                  class="icon-size lovSearchButton"
+                  color="primary"
+                  (click)="openProductCategoryLOV()"
+                />
+              </mat-form-field>
+            </div>
+            <div class="row no-gutters ms-1 me-1 dense-4">
+              <div class="orgCode">
+                <mat-form-field appearance="outline" class="col-12 px-1">
+                  <mat-label>Plant Code</mat-label>
+                  <input
+                    type="text"
+                    matInput
+                    readonly
+                    formControlName="ff0004"
+                    (change)="onChangePlantCode()"
+                  />
+                </mat-form-field>
+              </div>
+
+              <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>UOM</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="ff0007"
+                  placeholder="UOM"
+                  (change)="onChangeUOM()"
+                />
+                <img
+                  alt="lov img"
+                  src="../../../../../../assets/searchfind.svg"
+                  class="icon-size lovSearchButton"
+                  color="primary"
+                  (click)="openUOMLOV()"
+                />
+              </mat-form-field>
+            </div>
           </div>
         </div>
       </div>
@@ -164,14 +194,10 @@
     <button
       mat-raised-button
       class="submitButton"
-      (click)="isUpdate ? onUpdate() : onSaveConfirmation()"
+      (click)="isUpdate ? onUpdate() : onCreate()"
       [class.isDisabledBtn]="DepartmentMaster.invalid"
     >
-      {{
-        isUpdate
-          ? buttonLabelService.getLabel("submit")
-          : buttonLabelService.getLabel("submit")
-      }}
+    {{ isUpdate ? buttonLabelService.getLabel('submit') : buttonLabelService.getLabel('submit') }}
     </button>
     <button
       mat-raised-button
@@ -183,5 +209,3 @@
     </button>
   </div>
 </div>
-
-
