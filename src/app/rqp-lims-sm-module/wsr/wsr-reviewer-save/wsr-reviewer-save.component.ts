@@ -19,7 +19,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   standalone: false
 })
 export class WsrReviewerSaveComponent {
-  public redirectUrl: string = '/rqpquailtyui/lims/wsr-module-home-page';
+  public redirectUrl: string = '/rqplabui/lims-sm/wsr-module-home-page';
   public editorDisabled = false;
   public pageData: any;
   public comments: string;
@@ -271,7 +271,7 @@ export class WsrReviewerSaveComponent {
   public attachmentPDF(value:any){
     let lc0002 = value.uc0001;
     let param = {lc0002}
-    this.apiService.sendRequest(apiEndPoints.attachmentPDF,'POST', param).subscribe((data:any) => {
+    this.apiService.sendRequest(apiEndPoints.attachmentHTML,'POST', param).subscribe((data:any) => {
       console.log(data)
        if (data?.data) {
         this.showPdfPreview = false;

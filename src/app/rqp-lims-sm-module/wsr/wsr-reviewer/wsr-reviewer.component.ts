@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
     standalone: false
 })
 export class WsrReviewerComponent {
-  public updateSaveUrl = '/rqpquailtyui/lims/wsr-reviewer-save';
+  public updateSaveUrl = '/rqplabui/lims-sm/wsr-reviewer-save';
 }

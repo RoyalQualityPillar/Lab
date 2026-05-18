@@ -1566,6 +1566,7 @@ SamTpVsCreateUpdate = 'limscs/visr_record/save-update',
 
   /*******WSR*********/
 attachmentPDF = 'gm/attachment-pdf',
+attachmentHTML ='gm/attachment-html',
 
 
  /*******Usage Type Master  *********/
