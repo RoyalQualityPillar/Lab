@@ -6,7 +6,7 @@
 ></mat-spinner>
 <div class="row gx-0 create-update-dialog-header-section">
   <div class="col-10 d-flex justify-content-start">
-    <h1 class="daialog-title-name p-2">CHM Lot Registration {{ this.userData.type }}</h1>
+    <h1 class="daialog-title-name p-2">Product Master {{ this.userData.type }}</h1>
   </div>
   <div class="col-2 d-flex justify-content-end">
     <button mat-icon-button class="close-button" [mat-dialog-close]="true">
@@ -14,12 +14,12 @@
     </button>
   </div>
 </div>
-<div class="screenOverFlowY">
+<div class="dmProductMasterY">
   <form [formGroup]="DepartmentMaster" class="margin-top_7">
     <mat-card>
       <div class="p-2">
         <div class="section_header">
-          <p class="section_header_title">CHM Lot Registration Informantion</p>
+          <p class="section_header_title">Product Master Information</p>
         </div>
       </div>
       <div class="row">
@@ -27,7 +27,7 @@
           <div class="p-2">
             <div class="row no-gutters pb-2 ms-1 me-1">
               <span class="form-validation-msg"
-                >Required Fields aredenoted by an asterisk(<span
+                >Required Fields are denoted by an asterisk(<span
                   class="color_red"
                   >*</span
                 >).</span
@@ -36,144 +36,145 @@
             <div class="row no-gutters ms-1 me-1 dense-4 orgCode"><br/>
               <mat-form-field appearance="outline" class="col-12 px-1">
                 <mat-label>Unit Code</mat-label>
-                <input type="text" matInput readonly formControlName="unitcode" (change)="onChangePlantCode2()" />
+                <input
+                  type="text"
+                  matInput
+                  readonly
+                  formControlName="unitcode"
+                  (change)="onChangePlantCode()"
+                />
               </mat-form-field>
-            </div>
-            <div class="row no-gutters ms-1 me-1 dense-4" *ngIf="isUpdate">
-              <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Chemical Lot No</mat-label>
+            </div>         
+            <div class="row no-gutters ms-1 me-1 dense-4">
+              <mat-form-field appearance="outline" class="col-6 px-1" *ngIf="isUpdate">
+                <mat-label>Product No</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="uc0001"
                   [readonly]="isUpdate"
                   [class.isReadonlyField]="isUpdate"
-                  placeholder="Chemical Lot No"
+                  placeholder="Product No"
                 />
               </mat-form-field>
-            </div>
-            <div class="row no-gutters ms-1 me-1 dense-4">
               <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Lot Quantity Received</mat-label>
+                <mat-label>Product Name</mat-label>
                 <input
-                  type="number"
+                  type="text"
                   matInput
                   formControlName="ff0001"
-                  placeholder="Lot Quantity Received"
+                  placeholder="Product Name"
                 />
               </mat-form-field>
               <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Supler Name</mat-label>
+                <mat-label>Product Code</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="ff0002"
-                  placeholder="Supler Name"
+                  placeholder="Product Code"
                 />
               </mat-form-field>
               <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Manufacture Name</mat-label>
+                <mat-label>Market</mat-label>
                 <input
                   type="text"
                   matInput
-                  [matDatepicker]="picker"
                   formControlName="ff0003"
-                  placeholder="Manufacture Name"
+                  placeholder="Market"
                 />
-                <mat-datepicker-toggle
-                  matIconSuffix
-                  [for]="picker"
-                ></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>                <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Manufacture Date</mat-label>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Shelf Life</mat-label>
                 <input
                   type="text"
                   matInput
-                  [matDatepicker]="picker1"
                   formControlName="ff0004"
-                  placeholder="Manufacture Date"
+                  placeholder="Shelf Life"
                 />
-               <mat-datepicker-toggle
-                  matIconSuffix
-                  [for]="picker1"
-                ></mat-datepicker-toggle>
-                <mat-datepicker #picker1></mat-datepicker>
-              </mat-form-field>  
+              </mat-form-field>
               <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Expiry Date/User Before Date</mat-label>
+                <mat-label>Shelf Life in Months</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="ff0005"
-                  placeholder="Expiry Date/User Before Date"
+                  placeholder="Shelf Life in Months"
                 />
               </mat-form-field>
-             <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Storage Location</mat-label>
+              <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Batch Size</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="ff0006"
-                  placeholder="Storage Location"
+                  placeholder="Batch Size"
                 />
               </mat-form-field>
               <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Manufacture Ref No</mat-label>
+                <mat-label>UOM</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="ff0007"
-                  placeholder="Manufacture Ref No"
+                  placeholder="UOM"
                 />
               </mat-form-field>
               <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Chemical Code</mat-label>
+                <mat-label>Product Type</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="ff0008"
-                  placeholder="Chemical Code"
+                  placeholder="Product Type"
                 />
               </mat-form-field>
-            <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Potancy</mat-label>
+              <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Dosage Form</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="ff0009"
-                  placeholder="Potancy"
+                  placeholder="Dosage Form"
                 />
               </mat-form-field>
               <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Water Content</mat-label>
+                <mat-label>Input Code</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="ff0010"
-                  placeholder="Water Content"
+                  placeholder="Input Code"
                 />
               </mat-form-field>
-         </div>
-            <div class="row no-gutters ms-1 me-1 dense-4"><br/>
-              <div *ngIf="isUpdate" class="col-6 px-1">
-                <mat-form-field appearance="outline" class="col-12">
-                  <mat-label>Status</mat-label>
-                  <input
-                    type="text"
-                    matInput
-                    formControlName="status"
-                    (change)="onChangeStatus()"
-                  />
-                  <img
-                    alt="lov img"
-                    src="../../../../../../assets/searchfind.svg"
-                    class="icon-size lovSearchButton"
-                    color="primary"
-                    (click)="openStatusLOV()"
-                  />
-                </mat-form-field>
-              </div>
+              <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Product Tracking Code</mat-label>
+                <input
+                type="text" 
+                matInput
+                formControlName="ff0011"
+                placeholder="Product Tracking Code"
+                />
+              </mat-form-field>
+            </div>
+            <div class="row no-gutters ms-1 me-1 dense-4" *ngIf="isUpdate">
+              <mat-form-field appearance="outline" class="col-12 px-1">
+                <mat-label>Status</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="status"
+                  placeholder="Status"
+                  (change)="onChangeStatus()"
+                />
+                <img
+                  alt="lov img"
+                  src="../../../../../../assets/searchfind.svg"
+                  class="icon-size lovSearchButton"
+                  color="primary"
+                  (click)="openStatusLOV()"
+                />
+              </mat-form-field>
             </div>
           </div>
         </div>
@@ -231,5 +232,3 @@
     </button>
   </div>
 </div>
-
-

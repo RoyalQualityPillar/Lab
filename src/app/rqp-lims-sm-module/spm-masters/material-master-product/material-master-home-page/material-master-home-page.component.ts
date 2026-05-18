@@ -1,36 +1,43 @@
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, ViewContainerRef } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+  ViewContainerRef,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 import { GlobalConstants } from 'src/app/common/global-constants';
 import { MessageDialogComponent } from 'src/app/common/message-dialog/message-dialog.component';
+import { CreateUpdateMaterialMasterComponent } from '../../material-master-product/create-update-material-master/create-update-material-master.component';
 import { changeStatusByCode } from 'src/app/common/removeEmptyStrings';
-import { apiEndPoints } from 'src/app/service/api-service/api-endpoints.constant';
 import { ApiService } from 'src/app/service/api-service/api.service';
+import { CookieService } from 'ngx-cookie-service';
+import { apiEndPoints } from 'src/app/service/api-service/api-endpoints.constant';
 import { RemoteComponentLoaderService } from 'src/app/service/remote-component-loader.service';
-import { CreateUpdateWsLotRecordComponent } from '../create-update-ws-lot-record/create-update-ws-lot-record.component';
-import { WsLotRecordService } from '../ws-lot-record.service';
-import { Router } from '@angular/router';
+import { MaterialMasterService } from '../material-master.service';
 
 @Component({
-  selector: 'app-home-page-ws-lot-record',
+  selector: 'app-material-master-home-page',
+  templateUrl: './material-master-home-page.component.html',
+  styleUrls: ['./material-master-home-page.component.scss'],
   standalone: false,
-  templateUrl: './home-page-ws-lot-record.component.html',
-  styleUrl: './home-page-ws-lot-record.component.scss'
 })
-export class HomePageWsLotRecordComponent implements OnInit, AfterViewInit {
+export class MaterialMasterHomePageComponent implements OnInit, AfterViewInit {
+  @ViewChild('tableWrapper', { static: true }) tableWrapper: ElementRef;
   @ViewChild('commonTableContainer', { read: ViewContainerRef, static: true })
   commonTableContainer!: ViewContainerRef;
   @ViewChild('activeRoleMasterContainer', { read: ViewContainerRef })
   activeRoleMasterContainer!: ViewContainerRef;
-  @ViewChild('tableWrapper', { static: true }) tableWrapper: ElementRef;
   @ViewChild('filter', { static: true }) filter: ElementRef;
   @ViewChildren(MatPaginator) paginator = new QueryList<MatPaginator>();
   @ViewChildren(MatSort) sort = new QueryList<MatSort>();
-
-  
   isLoading = false;
   pageIndex: number;
   size: number;
@@ -39,9 +46,9 @@ export class HomePageWsLotRecordComponent implements OnInit, AfterViewInit {
   activeUserFilterFieldError = false;
   activeUserFilterValueError = false;
   tableData: MatTableDataSource<any>;
-  isFilterExpanded = false;
-  allWlrTableDataUrl: any;
-  activeWlrTableDataUrl: any;
+  isFilterExpanded = true;
+  allMaterialMasterTableDataUrl: any;
+  activeMaterialMasterTableDataUrl: any;
   filterApiUrl: any;
   params: any;
   HttpMethod = 'POST';
@@ -49,7 +56,7 @@ export class HomePageWsLotRecordComponent implements OnInit, AfterViewInit {
 
   constructor(
     private router: Router,
-    private wsLotRecordService: WsLotRecordService,
+    private materialService: MaterialMasterService,
     public dialog: MatDialog,
     public cookieService: CookieService,
     private apiService: ApiService,
@@ -58,19 +65,22 @@ export class HomePageWsLotRecordComponent implements OnInit, AfterViewInit {
   filterObject: any;
   activeUserFilterObject: any;
   ngOnInit(): void {
-    this.allWlrTableDataUrl = apiEndPoints.allWlrTabledata;
+    this.allMaterialMasterTableDataUrl =
+      apiEndPoints.allMaterialMasterTabledata;
     this.pageIndex = 0;
     let size = GlobalConstants.size;
     let pageIndex = this.pageIndex;
     let unitCode = this.cookieService.get('buCode');
     this.params = { pageIndex, size, unitCode };
-    this.filterApiUrl = apiEndPoints.WlrUserProfileFilterData;
-    this.activeWlrTableDataUrl = apiEndPoints.activeWlrTabledata;
+    this.filterApiUrl = apiEndPoints.MaterialMasterUserProfileFilterData;
+    this.activeMaterialMasterTableDataUrl =
+      apiEndPoints.activeMaterialMasterTabledata;
     this.params = { pageIndex, size, unitCode };
-    this.loadRoleMasterTableFilter();
+    console.log('Bharat');
+     this.loadRoleMasterTableFilter();
     this.loadActiveRoleMasterTableFilter();
-  }
-   async loadRoleMasterTableFilter() {
+     }
+  async loadRoleMasterTableFilter() {
     try {
       const component = await this.remoteLoader.loadComponentByKey(
         'CommonTableFilterComponent'
@@ -81,15 +91,15 @@ export class HomePageWsLotRecordComponent implements OnInit, AfterViewInit {
       // Set all required inputs
       compRef.setInput('columnConfig', this.columnConfig);
       compRef.setInput('filterOptions', this.filterOptions);
-      compRef.setInput('apiUrl', this. allWlrTableDataUrl);
-      compRef.setInput('tableTitle', 'Active WS Lot Record');
+      compRef.setInput('apiUrl', this.allMaterialMasterTableDataUrl);
+      compRef.setInput('tableTitle', 'All Material Master');
       compRef.setInput('dynamicButtons', this.allButtonConfig);
       compRef.setInput('columnClass', 'rqp-life-cycle-table-columns');
       compRef.setInput('filterApiUrl', this.filterApiUrl);
       compRef.setInput('HttpMethod', this.HttpMethod);
       compRef.setInput('params', this.params);
       compRef.setInput('getLatestData', this.getLatestData);
-      compRef.setInput('downloadFileName', ' WS Lot Record');
+      compRef.setInput('downloadFileName', 'Material Master');
 
       // Subscribe to output
       (compRef.instance as any).buttonClick.subscribe((event: any) => {
@@ -109,26 +119,27 @@ export class HomePageWsLotRecordComponent implements OnInit, AfterViewInit {
 
       compRef.setInput('columnConfig', this.columnConfig);
       compRef.setInput('filterOptions', this.filterOptions);
-      compRef.setInput('apiUrl', this.activeWlrTableDataUrl);
-      compRef.setInput('tableTitle', 'Active WS Lot Record');
+      compRef.setInput('apiUrl', this.activeMaterialMasterTableDataUrl);
+      compRef.setInput('tableTitle', 'Active Material Master');
       compRef.setInput('dynamicButtons', this.activeButtonConfig);
       compRef.setInput('columnClass', 'rqp-life-cycle-table-columns');
       compRef.setInput('filterApiUrl', this.filterApiUrl);
       compRef.setInput('HttpMethod', this.HttpMethod);
       compRef.setInput('params', this.params);
       compRef.setInput('getLatestData', this.getLatestData);
-      compRef.setInput('downloadFileName', 'WS Lot Record');
+      compRef.setInput('downloadFileName', 'Material Master');
 
       // 🔧 Safely subscribe to output
       (compRef.instance as any).buttonClick.subscribe((event: any) => {
         this.activeHandleButtonAction(event);
       });
     } catch (error) {
-      console.error('Error loading Active WS Lot Record table filter:', error);
+      console.error('Error loading Active Role Master table filter:', error);
     }
   }
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void { }
   selectedTab = 0;
+
   toggleFilter() {
     this.isFilterExpanded = !this.isFilterExpanded;
   }
@@ -137,18 +148,18 @@ export class HomePageWsLotRecordComponent implements OnInit, AfterViewInit {
 
   selectedRow: any;
   onOpenRolePOPUP() {
-    const dialogRef = this.dialog.open(CreateUpdateWsLotRecordComponent, {
+    const dialogRef = this.dialog.open(CreateUpdateMaterialMasterComponent, {
       minWidth: '80%',
       data: { tableData: this.selectedRow, type: 'Registration' },
     });
     dialogRef.afterClosed().subscribe((result) => {
       this.getLatestData = true;
-    this.refreshData();
-
+      this.refreshData();
     });
     this.getLatestData = false;
   }
   setSelectedID(row: any) {
+    console.log(row);
     this.setSelectedID = row;
   }
   selectedAllId: any;
@@ -164,23 +175,25 @@ export class HomePageWsLotRecordComponent implements OnInit, AfterViewInit {
         },
       });
     } else {
-      const dialogRef = this.dialog.open(CreateUpdateWsLotRecordComponent, {
+      const dialogRef = this.dialog.open(CreateUpdateMaterialMasterComponent, {
         minWidth: '80%',
         data: { tableData: this.selectedRow, type: 'Modification' },
       });
       dialogRef.afterClosed().subscribe((result) => {
       this.getLatestData = true;
-    this.refreshData();
-
-      });
+      this.refreshData();
+    });
       this.getLatestData = false;
+
     }
   }
-    refreshData(){
+   refreshData(){
     this.loadRoleMasterTableFilter();
     this.loadActiveRoleMasterTableFilter();
       this.commonTableContainer.clear()
       this.activeRoleMasterContainer.clear()
+
+
   }
   onChangeStatus(data: any) {
     return changeStatusByCode(data);
@@ -192,29 +205,13 @@ export class HomePageWsLotRecordComponent implements OnInit, AfterViewInit {
         labelName: 'Status',
         value: this.onChangeStatus(this.selectedRow.status),
       },
-      { labelName: 'WS.Lot No', value: this.selectedRow.uc0001 },
-      { labelName: 'Product Code', value: this.selectedRow.ff0001 },
-      { labelName: 'Lot type', value: this.selectedRow.ff0002 },
-      { labelName: 'Sample Ref.No', value: this.selectedRow.ff0003 },
-      { labelName: 'Conatainer Type', value: this.selectedRow.ff0004 },
-      { labelName: 'Storage Conditon', value: this.selectedRow.ff0005 },
-      { labelName: 'Lot Quantity', value: this.selectedRow.ff0006 },
-      { labelName: 'Lot Quantity UOM', value: this.selectedRow.ff0007 },
-      { labelName: 'Manfacture Date', value: this.selectedRow.ff0008 },
-      { labelName: 'Expiry date', value: this.selectedRow.ff0009 },
-      { labelName: 'Batch No', value: this.selectedRow.ff0010 },
-      { labelName: 'Source Batch No', value: this.selectedRow.ff0011 },
-      { labelName: 'WS. Vailidity ON', value: this.selectedRow.ff0012 },
-      { labelName: 'Lot Validity Up to', value: this.selectedRow.ff0013 },
-      { labelName: 'Usage Type', value: this.selectedRow.ff0014 },
-      { labelName: 'No of Purities', value: this.selectedRow.ff0015 },
-      { labelName: 'No of Purities  UOM', value: this.selectedRow.ff0016 },
-      { labelName: 'Conatainer Validity Days', value: this.selectedRow.ff0017 },
-      { labelName: 'ConatainerContainer Satrting No', value: this.selectedRow.ff0018 },
-      { labelName: 'No Of Container', value: this.selectedRow.ff0019 },
-      { labelName: 'Alert Coantainer No', value: this.selectedRow.ff0020 },
-      { labelName: 'Total Coantainer QTY', value: this.selectedRow.ff0021 },
-      { labelName: 'Total Coantainer UOM', value: this.selectedRow.ff0022 },
+      { labelName: 'Material No', value: this.selectedRow.uc0001 },
+      { labelName: 'Material Code ', value: this.selectedRow.ff0001 },
+      { labelName: 'Material Name', value: this.selectedRow.ff0002 },
+      // { labelName: 'Brand Name', value: this.selectedRow.ff0003 },
+      { labelName: 'Plant Code', value: this.selectedRow.ff0004 },
+      { labelName: 'Product Category', value: this.selectedRow.ff0005 },
+      { labelName: 'UOM', value: this.selectedRow.ff0007 },
       { labelName: 'Createdon', value: this.selectedRow.createdon },
       { labelName: 'Createdby', value: this.selectedRow.createdby },
       { labelName: 'Comments', value: this.selectedRow.comments },
@@ -226,96 +223,27 @@ export class HomePageWsLotRecordComponent implements OnInit, AfterViewInit {
           heading: 'Error Information',
         },
       });
-    }  else {
+    } else {
       const component = await this.remoteLoader.loadComponentByKey(
-      'CommonActiveAuditTrailComponent'
-    );
-      
+        'CommonActiveAuditTrailComponent'
+      );
       const dialogRef = this.dialog.open(component, {
         minWidth: '80%',
-        data: { tableData: tableData, pageTitle: 'WS Lot Record' },
+        data: { tableData: tableData, pageTitle: 'Material Master' },
       });
       dialogRef.afterClosed().subscribe((result) => {});
     }
   }
   UC0001: any;
   UC0002: any;
-  async onSearchAllAuditTrail() {
-    this.selectedRow = this.selectedRow;
-    if (this.selectedRow.length == 0) {
-      this.dialog.open(MessageDialogComponent, {
-        data: {
-          message: 'Please select any row',
-          heading: 'Error Information',
-        },
-      });
-    } else {
-      this.isLoading = true;
-
-      this.wsLotRecordService
-        .onAllRoleAuditTrail(this.selectedRow.uc0001)
-        .subscribe((data: any) => {
-          let newFormatData = this.structureResponse(data.data);
-          this.isLoading = false;
-        });
-    }
-  }
-  formatedData: any;
- async  structureResponse(apiResponse: any) {
-    const rows = apiResponse.map((item) => {
-      return {
-        fields: [
-          { labelName: 'Version', value: item.version },
-          {
-            labelName: 'Status',
-            value: this.onChangeStatus(item.status),
-          },
-          { labelName: 'WS.Lot No', value: item.uc0001 },
-          { labelName: 'Product Code', value: item.ff0001 },
-          { labelName: 'Lot type', value: item.ff0002 },
-          { labelName: 'Sample Ref.No', value: item.ff0003 },
-          { labelName: 'Conatainer Type', value: item.ff0004 },
-          { labelName: 'Storage Conditon', value: item.ff0005 },
-          { labelName: 'Lot Quantity', value: item.ff0006 },
-          { labelName: 'Lot Quantity UOM', value: item.ff0007 },          
-          { labelName: 'Manfacture Date', value: item.ff0008 },          
-          { labelName: 'Expiry date', value: item.ff0009 },          
-          { labelName: 'Batch No', value: item.ff0010 },          
-          { labelName: 'Source Batch No', value: item.ff0011 },          
-          { labelName: 'WS. Vailidity ON', value: item.ff0012 },          
-          { labelName: 'Lot Validity Up to', value: item.ff0013 },          
-          { labelName: 'Usage Type', value: item.ff0014 },          
-          { labelName: 'No of Purities', value: item.ff0015 },          
-          { labelName: 'No of Purities  UOM', value: item.ff0016 },          
-          { labelName: 'Conatainer Validity Days', value: item.ff0017 },          
-          { labelName: 'Container Satrting No', value: item.ff0018 },          
-          { labelName: 'No Of Container', value: item.ff0019 },          
-          { labelName: 'Alert Coantainer No', value: item.ff0020 },          
-          { labelName: 'Total Coantainer QTY', value: item.ff0021 },          
-          { labelName: 'Total Coantainer UOM', value: item.ff0022 },          
-          { labelName: 'Createdon', value: item.createdon },
-          { labelName: 'Createdby', value: item.createdby },
-          { labelName: 'Comments', value: item.comments },
-        ],
-      };
-    });
-    const component = await this.remoteLoader.loadComponentByKey(
-      'CommonAllAuditTrailComponent'
-    );
-    const dialogRef = this.dialog.open(component, {
-      minWidth: '80%',
-      data: { tableData: rows, pageTitle: 'WS Lot Record' },
-    });
-    dialogRef.afterClosed().subscribe((result) => {});
-  }
   columnConfig = {
     action: 'Action',
-    uc0001: 'WS.Lot No',
-    ff0001: 'Product Code',
-    ff0002: 'Lot type ',
-    ff0003: 'Sample Ref.No',
-    ff0004: 'Conatainer Type',
-    ff0005: 'Storage Conditon',
+    uc0001: 'Material No',
+    ff0002: 'Material Name',
+    ff0001: 'Material Code',
+    // ff0003: 'Brand Name',
+    ff0004: 'Plant Code',
+    ff0005: 'Product Categoty',
     status: 'Status',
     version: 'Version',
     createdon: 'CreatedOn',
@@ -323,7 +251,7 @@ export class HomePageWsLotRecordComponent implements OnInit, AfterViewInit {
   };
 
   filterOptions: string[] = Object.keys(this.columnConfig);
-  tableTitle: string = 'All WS Lot Record';
+  tableTitle: string = 'All Material Master';
   allButtonConfig = [
     { label: ' Audit Trail', action: 'Audit_Trail', color: 'primary' },
     // { label: 'Save', action: 'save', color: 'accent' }
@@ -339,9 +267,10 @@ export class HomePageWsLotRecordComponent implements OnInit, AfterViewInit {
   handleButtonAction(event: { action: string; row: any }) {
     const { action, row } = event;
     this.selectedRow = row; // Set the selected row
+    console.log(action);
     switch (action) {
       case 'Audit_Trail':
-        this.onSearchAllAuditTrail();
+        this.onActiveSelectAuditRow();
         break;
       // case 'save':
       //   this.handleSave(row);
@@ -351,20 +280,19 @@ export class HomePageWsLotRecordComponent implements OnInit, AfterViewInit {
   activeHandleButtonAction(event: { action: string; row: any }) {
     const { action, row } = event;
     this.selectedRow = row; // Set the selected row
+    console.log(action);
     switch (action) {
       case 'Audit_Trail':
         this.onActiveSelectAuditRow();
         break;
       case 'Update':
-        this.onActiveSelectRow();
+        this. onActiveSelectRow();
         break;
     }
   }
 
   handleSubmit(row: any) {
+    console.log(row);
     console.log('submitBtn');
   }
 }
-
-
-

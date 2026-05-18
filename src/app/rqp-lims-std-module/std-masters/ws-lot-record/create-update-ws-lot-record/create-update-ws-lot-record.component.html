@@ -125,18 +125,29 @@
                 <input
                   type="text"
                   matInput
+                  [matDatepicker]="picker"
                   formControlName="ff0008"
                   placeholder="Manfacture Date"
                 />
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="col-6 px-1">
+                 <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>              <mat-form-field appearance="outline" class="col-6 px-1">
                 <mat-label>Expiry date</mat-label>
                 <input
                   type="text"
                   matInput
+                  [matDatepicker]="picker1"
                   formControlName="ff0009"
                   placeholder="Expiry date"
                 />
+              <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="picker1"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
               </mat-form-field>
               <mat-form-field appearance="outline" class="col-6 px-1">
                 <mat-label>Batch No</mat-label>
@@ -161,18 +172,30 @@
                 <input
                   type="text"
                   matInput
+                  [matDatepicker]="picker2"
                   formControlName="ff0012"
                   placeholder="WS. Vailidity ON"
                 />
+             <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="picker2"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
               </mat-form-field>
               <mat-form-field appearance="outline" class="col-6 px-1">
                 <mat-label>Lot Validity Up to</mat-label>
                 <input
                   type="text"
                   matInput
+                  [matDatepicker]="picker3"
                   formControlName="ff0013"
                   placeholder="Lot Validity Up to"
                 />
+              <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="picker3"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker3></mat-datepicker>
               </mat-form-field>
               <mat-form-field appearance="outline" class="col-6 px-1">
                 <mat-label>Usage Type</mat-label>

@@ -1,31 +1,62 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import {
+  DateAdapter,
+  MAT_DATE_LOCALE,
+  MAT_DATE_FORMATS,
+} from '@angular/material/core';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { CookieService } from 'ngx-cookie-service';
-import { Subject } from 'rxjs';
+import { CommonESignatureComponent } from 'src/app/common/common-e-signature/common-e-signature.component';
 import { LovDialogComponent } from 'src/app/common/lov-dialog/lov-dialog.component';
 import { MessageDialogComponent } from 'src/app/common/message-dialog/message-dialog.component';
-import { NotificationService } from 'src/app/common/notification.service';
 import { apiEndPoints } from 'src/app/service/api-service/api-endpoints.constant';
 import { ApiService } from 'src/app/service/api-service/api.service';
 import { ButtonLabelService } from 'src/app/service/button-label.service';
 import { MessageService } from 'src/app/service/message.service';
+import { DmproductService } from '../dmproduct.service';
+import { Subject, takeUntil, timer } from 'rxjs';
+import { NotificationService } from 'src/app/common/notification.service';
+import { Router } from '@angular/router';
 import { RemoteComponentLoaderService } from 'src/app/service/remote-component-loader.service';
-import { WsLotRecordService } from '../ws-lot-record.service';
 
 export interface userData {
   userData: any;
   type: any;
   tableData: any;
 }
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'L',
+  },
+  display: {
+    dateInput: 'DD-MM-YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 @Component({
-  selector: 'app-create-update-ws-lot-record',
+  selector: 'app-dmproduct-create-update',
+  // imports: [],
+  templateUrl: './dmproduct-create-update.component.html',
+  styleUrl: './dmproduct-create-update.component.scss',
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE],
+    },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+  ],
   standalone: false,
-  templateUrl: './create-update-ws-lot-record.component.html',
-  styleUrl: './create-update-ws-lot-record.component.scss'
 })
-export class CreateUpdateWsLotRecordComponent implements OnInit, OnDestroy {
+export class DmproductCreateUpdateComponent implements OnInit, OnDestroy {
   isReadOnly = true;
   isUpdate = false;
   DepartmentMaster: FormGroup;
@@ -46,13 +77,13 @@ export class CreateUpdateWsLotRecordComponent implements OnInit, OnDestroy {
     public buttonLabelService: ButtonLabelService,
     public dialog: MatDialog,
     private messageService: MessageService,
-    private wsLotRecordService: WsLotRecordService,
+    private dmproductService: DmproductService,
     private remoteLoader: RemoteComponentLoaderService,
     private cookieService: CookieService,
     private apiService: ApiService,
     private route: Router,
     private notificationService: NotificationService,
-    public dialogRef: MatDialogRef<CreateUpdateWsLotRecordComponent>,
+    public dialogRef: MatDialogRef<DmproductCreateUpdateComponent>,
     @Inject(MAT_DIALOG_DATA) public userData: userData
   ) {
     this.DepartmentMaster = this.fb.group({
@@ -63,35 +94,25 @@ export class CreateUpdateWsLotRecordComponent implements OnInit, OnDestroy {
       ff0003: ['', Validators.required],
       ff0004: ['', Validators.required],
       ff0005: ['', Validators.required],
-      ff0006: [0, Validators.required],
+      ff0006: ['', Validators.required],
       ff0007: ['', Validators.required],
       ff0008: ['', Validators.required],
       ff0009: ['', Validators.required],
       ff0010: ['', Validators.required],
       ff0011: ['', Validators.required],
-      ff0012: ['', Validators.required],
-      ff0013: ['', Validators.required],
-      ff0014: ['', Validators.required],
-      ff0015: [0, Validators.required],
-      ff0016: ['', Validators.required],
-      ff0017: [0, Validators.required],
-      ff0018: [0, Validators.required],
-      ff0019: [0, Validators.required],
-      ff0020: [0, Validators.required],
-      ff0021: [0, Validators.required],
-      ff0022: [0, Validators.required],
       createdby: [''],
       status: [''],
-      comments: ['', Validators.required],
+      comments: [''],
     });
   }
 
- ngOnInit(): void {
+  ngOnInit(): void {
     this.DepartmentMaster.controls['unitcode'].patchValue(
       this.cookieService.get('buCode')
     );
     this.onloadDropDown();
     this.onLoadStatusDropDown();
+    console.log(this.userData.type);
     if (this.userData.type == 'Modification') {
       this.isReadOnly = true;
       this.isUpdate = true;
@@ -106,7 +127,7 @@ export class CreateUpdateWsLotRecordComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     let unitCode = this.cookieService.get('buCode');
     let params = { unitCode };
-   
+    //this.businessUnitService.getDropDownList().subscribe((data: any) => {
     this.apiService
       .sendRequest(apiEndPoints.dropDownInputList, 'GET', params)
       .subscribe((data: any) => {
@@ -118,17 +139,21 @@ export class CreateUpdateWsLotRecordComponent implements OnInit, OnDestroy {
   }
   onLoadStatusDropDown() {
     this.isLoading = true;
-    this.wsLotRecordService.getDropDownList().subscribe((data: any) => {
+    this.dmproductService.getDropDownList().subscribe((data: any) => {
       this.statusList = data.data.statusInfo;
       this.isLoading = false;
     });
   }
   onLoadFormValue() {
+    console.log(this.userData);
     this.isLoading = true;
+    // this.organizationService
+    //   .onLoadUpdatePage(this.userData.tableData.uc0001)
+    //   .subscribe((data: any) => {
     let UC0001 = this.userData.tableData.uc0001;
     const params = { UC0001 };
     this.apiService
-      .sendRequest(apiEndPoints.WlrLoadUpdatePage, 'POST', params)
+      .sendRequest(apiEndPoints.dmproductLoadUpdatePage, 'POST', params)
       .subscribe((data: any) => {
         this.formData = data.data;
         this.isLoading = false;
@@ -149,17 +174,6 @@ export class CreateUpdateWsLotRecordComponent implements OnInit, OnDestroy {
     this.DepartmentMaster.controls['ff0009'].setValue(this.formData.ff0009);
     this.DepartmentMaster.controls['ff0010'].setValue(this.formData.ff0010);
     this.DepartmentMaster.controls['ff0011'].setValue(this.formData.ff0011);
-    this.DepartmentMaster.controls['ff0012'].setValue(this.formData.ff0012);
-    this.DepartmentMaster.controls['ff0013'].setValue(this.formData.ff0013);
-    this.DepartmentMaster.controls['ff0014'].setValue(this.formData.ff0014);
-    this.DepartmentMaster.controls['ff0015'].setValue(this.formData.ff0015);
-    this.DepartmentMaster.controls['ff0016'].setValue(this.formData.ff0016);
-    this.DepartmentMaster.controls['ff0017'].setValue(this.formData.ff0017);
-    this.DepartmentMaster.controls['ff0018'].setValue(this.formData.ff0018);
-    this.DepartmentMaster.controls['ff0019'].setValue(this.formData.ff0019);
-    this.DepartmentMaster.controls['ff0020'].setValue(this.formData.ff0020);
-    this.DepartmentMaster.controls['ff0021'].setValue(this.formData.ff0021);
-    this.DepartmentMaster.controls['ff0022'].setValue(this.formData.ff0022);
     this.DepartmentMaster.controls['status'].setValue(this.formData.status);
     this.DepartmentMaster.controls['comments'].setValue(this.formData.comments);
   }
@@ -169,7 +183,7 @@ export class CreateUpdateWsLotRecordComponent implements OnInit, OnDestroy {
       this.cookieService.get('userId')
     );
     let params = {};
-    this.wsLotRecordService
+    this.dmproductService
       .onCreate(this.DepartmentMaster.value)
       .subscribe((data: any) => {
         if (data.errorInfo != null) {
@@ -209,12 +223,13 @@ export class CreateUpdateWsLotRecordComponent implements OnInit, OnDestroy {
       }
     });
   }
-   onCreate() {
+  onCreate() {
     this.isLoading = true;
     this.DepartmentMaster.controls['createdby'].setValue(
       this.cookieService.get('userId')
     );
-    this.wsLotRecordService
+    let params = {};
+    this.dmproductService
       .onCreate(this.DepartmentMaster.value)
       .subscribe((data: any) => {
         if (data.errorInfo != null) {
@@ -227,12 +242,18 @@ export class CreateUpdateWsLotRecordComponent implements OnInit, OnDestroy {
           });
         } else {
           this.isLoading = false;
-          this.notificationService.showSuccess(data.status, () => {
-            console.log('Success Snackbar Closed');
-          });
-          this.dialogRef.close();
+          this.notificationService.showSuccess(data.status, () => { });
+          timer(2000)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(() => {
+              this.route.navigateByUrl('/rqpquailtyui/dms/sop-module-home-page');
+            });
         }
+
+
+
       });
+    this.dialogRef.close();
   }
   onClear() {
     this.DepartmentMaster.reset();
@@ -332,5 +353,3 @@ export class CreateUpdateWsLotRecordComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 }
-
-

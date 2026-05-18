@@ -1,19 +1,23 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { CookieService } from 'ngx-cookie-service';
-import { AdminService } from 'src/app/admin.service';
-import { LovDialogComponent } from 'src/app/common/lov-dialog/lov-dialog.component';
-import { MessageDialogComponent } from 'src/app/common/message-dialog/message-dialog.component';
-import { NotificationService } from 'src/app/common/notification.service';
-import { changeStatusByCode, changeStatusByDescription } from 'src/app/common/removeEmptyStrings';
-import { ApiService } from 'src/app/service/api-service/api.service';
-import { ButtonLabelService } from 'src/app/service/button-label.service';
 import { MessageService } from 'src/app/service/message.service';
-import { ClrServiceService } from '../clr-service.service';
-import { RemoteComponentLoaderService } from 'src/app/service/remote-component-loader.service';
+import { MessageDialogComponent } from 'src/app/common/message-dialog/message-dialog.component';
+import {
+  changeStatusByCode,
+  changeStatusByDescription,
+} from 'src/app/common/removeEmptyStrings';
+import { LovDialogComponent } from 'src/app/common/lov-dialog/lov-dialog.component';
+import { ApiService } from 'src/app/service/api-service/api.service';
 import { apiEndPoints } from 'src/app/service/api-service/api-endpoints.constant';
-
+import { ButtonLabelService } from 'src/app/service/button-label.service';
+import { NotificationService } from 'src/app/common/notification.service';
+import { MaterialMasterService } from '../material-master.service';
 export interface userData {
   userData: any;
   type: any;
@@ -21,12 +25,12 @@ export interface userData {
 }
 
 @Component({
-  selector: 'app-clr-create-update',
+  selector: 'app-create-update-material-master',
+  templateUrl: './create-update-material-master.component.html',
+  styleUrls: ['./create-update-material-master.component.scss'],
   standalone: false,
-  templateUrl: './clr-create-update.component.html',
-  styleUrl: './clr-create-update.component.scss'
 })
-export class ClrCreateUpdateComponent implements OnInit {
+export class CreateUpdateMaterialMasterComponent implements OnInit {
   isReadOnly = true;
   isUpdate = false;
   DepartmentMaster: FormGroup;
@@ -40,58 +44,45 @@ export class ClrCreateUpdateComponent implements OnInit {
   selectedDialogData: any;
   isStatusSuccess = false;
   isPlantCodeSuccess = false;
-  pmmMaterialList: {
-    materialcode: string;
-    materialname: string;
-    materialnumber: string;
-  }[];
-
 
   constructor(
     public fb: FormBuilder,
-    private adminService: AdminService,
-    public buttonLabelService: ButtonLabelService,
     public dialog: MatDialog,
+    private apiService: ApiService,
+    public buttonLabelService: ButtonLabelService,
     private messageService: MessageService,
     private notificationService: NotificationService,
     private cookieService: CookieService,
-    private apiService: ApiService,
-    public dialogRef: MatDialogRef<ClrCreateUpdateComponent>,
+    public dialogRef: MatDialogRef<CreateUpdateMaterialMasterComponent>,
     @Inject(MAT_DIALOG_DATA) public userData: userData,
-    private clrServiceService: ClrServiceService,
-    private remoteLoader: RemoteComponentLoaderService,
-    
+    private materialMasterService: MaterialMasterService
   ) {
     this.DepartmentMaster = this.fb.group({
       uc0001: [''],
-      ff0001: [0, Validators.required],
+      ff0001: ['', Validators.required],
       ff0002: ['', Validators.required],
-      ff0003: ['', Validators.required],
-      ff0004: ['', Validators.required],
+      // ff0003: ['', Validators.required],
+      ff0004: ['', [Validators.required]],
       ff0005: ['', Validators.required],
-      ff0006: ['', Validators.required],
       ff0007: ['', Validators.required],
-      ff0008: ['', Validators.required],
-      ff0009: ['', Validators.required],
-      ff0010: ['', Validators.required],
-      version: [''],
       createdby: [''],
       status: [''],
       comments: ['', Validators.required],
-      unitcode: ['']
+      unitcode:['']
     });
   }
 
   ngOnInit(): void {
+   
     this.onLoadStatusDropDown();
     this.DepartmentMaster.controls['unitcode'].patchValue(
       this.cookieService.get('buCode')
     );
-    // this.DepartmentMaster.controls['ff0002'].patchValue(
-    //   this.cookieService.get('buCode')
-    // );
-    // this.onLoadStatusDropDown();
-    // this.onloadDropDown();
+    this.DepartmentMaster.controls['ff0004'].patchValue(
+      this.cookieService.get('buCode')
+    );
+    this.onloadDropDown();
+    this.onloadDFListDropDown();
     if (this.userData.type == 'Modification') {
       this.isReadOnly = true;
       this.isUpdate = true;
@@ -101,18 +92,32 @@ export class ClrCreateUpdateComponent implements OnInit {
       this.isUpdate = false;
     }
   }
-  saleProductList: any;
+  dfList: any;
+  onloadDFListDropDown() {
+    this.isLoading = true;
+    this.materialMasterService.getDropDownList(this.cookieService.get('buCode')).subscribe((data: any) => {
+      console.log(data);
+      this.dfList = data.data.dfList;
+      this.isLoading = false;
+    });
+  }
   buUnitList: any;
-  suUnitList: any;
-  puUnitList: any;
-  stageMasterList: any;
-
   mtMasterList: any;
   utMasterList: any;
-
+  onloadDropDown() {
+    this.isLoading = true;
+    console.log(this.cookieService.get('buCode'))
+    this.materialMasterService.getDropDownList(this.cookieService.get('buCode')).subscribe((data: any) => {
+      console.log(data);
+      this.buUnitList = data.data.buUnitList;
+      this.mtMasterList = data.data.mtMasterList;
+      this.utMasterList = data.data.utMasterList;
+      this.isLoading = false;
+    });
+  }
   onLoadStatusDropDown() {
     this.isLoading = true;
-    this.adminService.getDropDownList().subscribe((data: any) => {
+    this.materialMasterService.getDropDownList(this.cookieService.get('buCode')).subscribe((data: any) => {
       this.statusList = data.data.statusInfo;
       this.isLoading = false;
     });
@@ -124,7 +129,7 @@ export class ClrCreateUpdateComponent implements OnInit {
     const params = { UC0001 };
 
     this.apiService
-      .sendRequest(apiEndPoints.ClrLoadUpdatePage, 'POST', params)
+      .sendRequest(apiEndPoints.MaterialMasterLoadUpdatePage, 'POST', params)
       .subscribe((data: any) => {
         if (data.data == null) {
           this.isLoading = false;
@@ -145,16 +150,11 @@ export class ClrCreateUpdateComponent implements OnInit {
     this.DepartmentMaster.controls['uc0001'].setValue(this.formData.uc0001);
     this.DepartmentMaster.controls['ff0001'].setValue(this.formData.ff0001);
     this.DepartmentMaster.controls['ff0002'].setValue(this.formData.ff0002);
-    this.DepartmentMaster.controls['ff0003'].setValue(this.formData.ff0003);
+    // this.DepartmentMaster.controls['ff0003'].setValue(this.formData.ff0003);
     this.DepartmentMaster.controls['ff0004'].setValue(this.formData.ff0004);
     this.DepartmentMaster.controls['ff0005'].setValue(this.formData.ff0005);
-    this.DepartmentMaster.controls['ff0006'].setValue(this.formData.ff0006);
+    // this.DepartmentMaster.controls['ff0006'].setValue(this.formData.ff0006);
     this.DepartmentMaster.controls['ff0007'].setValue(this.formData.ff0007);
-    this.DepartmentMaster.controls['ff0008'].setValue(this.formData.ff0008);
-    this.DepartmentMaster.controls['ff0009'].setValue(this.formData.ff0009);
-    this.DepartmentMaster.controls['ff0010'].setValue(this.formData.ff0010);
-
-
     this.DepartmentMaster.controls['comments'].setValue(this.formData.comments);
     let statusByValue = changeStatusByCode(this.formData.status);
     this.DepartmentMaster.controls['status'].setValue(statusByValue);
@@ -164,9 +164,8 @@ export class ClrCreateUpdateComponent implements OnInit {
     this.DepartmentMaster.controls['status'].setValue(
       changeStatusByDescription(this.DepartmentMaster.controls['status'].value)
     );
-    // console.log(this.DepartmentMaster.value);
 
-    this.clrServiceService
+    this.materialMasterService
     .onCreate(this.DepartmentMaster.value)
     .subscribe((data: any) => {
         if (data.errorInfo != null) {
@@ -187,33 +186,16 @@ export class ClrCreateUpdateComponent implements OnInit {
         }
       });
   }
- async onSaveConfirmation() {
-    //  if(this.documentDtoList.length > 0){
-          const component = await this.remoteLoader.loadComponentByKey('CommonESignatureComponent');
-          const dialogRef = this.dialog.open(component, {
-      height: '300px',
-      width: '600px',
-      data: {},
-      disableClose: true,
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.selectedDialogData = result.data;
-        if (this.selectedDialogData) {
-          this.onCreate();
-        }
-      }
-    });
-  }
   onCreate() {
     this.isLoading = true;
+
     this.DepartmentMaster.controls['createdby'].setValue(
       this.cookieService.get('userId')
     );
 
-    this.clrServiceService
-    .onCreate(this.DepartmentMaster.value)
-    .subscribe((data: any) => {
+    this.materialMasterService
+      .onCreate(this.DepartmentMaster.value)
+      .subscribe((data: any) => {
         if (data.errorInfo != null) {
           this.isLoading = false;
           this.dialog.open(MessageDialogComponent, {
@@ -224,6 +206,10 @@ export class ClrCreateUpdateComponent implements OnInit {
           });
         } else {
           this.isLoading = false;
+          // this.messageService.sendSnackbar(
+          //   'success',
+          //   'Record Created Successfully'
+          // );
           this.notificationService.showSuccess(data.status, () => {
             console.log('Success Snackbar Closed');
           });
@@ -234,7 +220,92 @@ export class ClrCreateUpdateComponent implements OnInit {
   onClear() {
     this.DepartmentMaster.reset();
   }
+  openPlantCodeLOV() {
+    this.displayedColumns = [
+      { field: 'buunitcode', title: 'Code' },
+      { field: 'buunitname', title: 'Description' },
+    ];
+    const dialogRef = this.dialog.open(LovDialogComponent, {
+      height: '500px',
+      width: '600px',
+      data: {
+        dialogTitle: 'Plant Code',
+        dialogColumns: this.displayedColumns,
+        dialogData: this.buUnitList,
+        lovName: 'businessUnitList',
+      },
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.selectedDialogData = result.data;
+        this.DepartmentMaster.controls['ff0004'].setValue(
+          this.selectedDialogData.buunitcode
+        );
+      }
+    });
+  }
 
+  onChangePlantCode() {
+    if (this.DepartmentMaster.controls['ff0004'].value == '') {
+      this.DepartmentMaster.controls['ff0004'].setValue('');
+    } else {
+      let currentPlantCodeValue =
+        this.DepartmentMaster.controls['ff0004'].value;
+      this.isPlantCodeSuccess = false;
+      this.buUnitList.forEach((elements) => {
+        if (elements.buunitcode == currentPlantCodeValue) {
+          this.isPlantCodeSuccess = true;
+        }
+      });
+      if (this.isPlantCodeSuccess == false) {
+        this.DepartmentMaster.controls['ff0004'].setErrors({ incorrect: true });
+        this.openPlantCodeLOV();
+      }
+    }
+  }
+  openProductCategoryLOV() {
+    this.displayedColumns = [
+      { field: 'mtCode', title: 'Material Categoty Code' },
+      { field: 'mtName', title: 'Material Categoty Name' },
+    ];
+    const dialogRef = this.dialog.open(LovDialogComponent, {
+      height: '500px',
+      width: '600px',
+      data: {
+        dialogTitle: 'Material Categoty',
+        dialogColumns: this.displayedColumns,
+        dialogData: this.mtMasterList,
+        lovName: 'businessUnitList',
+      },
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.selectedDialogData = result.data;
+        this.DepartmentMaster.controls['ff0005'].setValue(
+          this.selectedDialogData.mtCode
+        );
+      }
+    });
+  }
+  onChangeProductCategory() {
+    if (this.DepartmentMaster.controls['ff0005'].value == '') {
+      this.DepartmentMaster.controls['ff0005'].setValue('');
+    } else {
+      this.isStatusSuccess = false;
+      let statusCurrentValue = this.DepartmentMaster.controls['ff0005'].value;
+      this.mtMasterList.forEach((elements) => {
+        if (elements.mtCode == statusCurrentValue) {
+          this.isStatusSuccess = true;
+        }
+      });
+      if (this.isStatusSuccess == false) {
+        this.DepartmentMaster.controls['ff0005'].setErrors({ incorrect: true });
+        this.openProductCategoryLOV();
+      }
+    }
+  }
   openStatusLOV() {
     this.displayedColumns = [
       { field: 'code', title: 'Status Code' },
@@ -261,6 +332,48 @@ export class ClrCreateUpdateComponent implements OnInit {
     });
   }
 
+  openUOMLOV() {
+    this.displayedColumns = [
+      { field: 'utCode', title: 'UOM Code' },
+      { field: 'utName', title: 'UOM Name' },
+    ];
+    const dialogRef = this.dialog.open(LovDialogComponent, {
+      height: '500px',
+      width: '600px',
+      data: {
+        dialogTitle: 'UOM',
+        dialogColumns: this.displayedColumns,
+        dialogData: this.utMasterList,
+        lovName: 'businessUnitList',
+      },
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.selectedDialogData = result.data;
+        this.DepartmentMaster.controls['ff0007'].setValue(
+          this.selectedDialogData.utName
+        );
+      }
+    });
+  }
+  onChangeUOM() {
+    if (this.DepartmentMaster.controls['ff0007'].value == '') {
+      this.DepartmentMaster.controls['ff0007'].setValue('');
+    } else {
+      this.isStatusSuccess = false;
+      let statusCurrentValue = this.DepartmentMaster.controls['ff0007'].value;
+      this.utMasterList.forEach((elements) => {
+        if (elements.utCode == statusCurrentValue) {
+          this.isStatusSuccess = true;
+        }
+      });
+      if (this.isStatusSuccess == false) {
+        this.DepartmentMaster.controls['ff0007'].setErrors({ incorrect: true });
+        this.openUOMLOV();
+      }
+    }
+  }
   onChangeStatus() {
     if (this.DepartmentMaster.controls['status'].value == '') {
       this.DepartmentMaster.controls['status'].setValue('');
@@ -268,7 +381,7 @@ export class ClrCreateUpdateComponent implements OnInit {
       this.isStatusSuccess = false;
       let statusCurrentValue = this.DepartmentMaster.controls['status'].value;
       this.statusList.forEach((elements) => {
-        if (elements.description == statusCurrentValue) {
+        if (elements.code == statusCurrentValue) {
           this.isStatusSuccess = true;
         }
       });
@@ -307,7 +420,7 @@ export class ClrCreateUpdateComponent implements OnInit {
       height: '500px',
       width: '600px',
       data: {
-        dialogTitle: 'crg Master',
+        dialogTitle: 'material Master',
         dialogColumns: this.displayedColumns,
         dialogData: this.unitList,
         lovName: 'businessUnitList',
@@ -324,4 +437,3 @@ export class ClrCreateUpdateComponent implements OnInit {
     });
   }
 }
-

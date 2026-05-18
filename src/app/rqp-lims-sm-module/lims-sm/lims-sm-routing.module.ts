@@ -20,6 +20,8 @@ import { WsrUpdateComponent } from '../wsr/wsr-update/wsr-update.component';
 import { WsrUpdateSaveComponent } from '../wsr/wsr-update-save/wsr-update-save.component';
 import { WsrReviewerComponent } from '../wsr/wsr-reviewer/wsr-reviewer.component';
 import { WsrReviewerSaveComponent } from '../wsr/wsr-reviewer-save/wsr-reviewer-save.component';
+import { DmproductHomePageComponent } from '../spm-masters/dmproduct-master/dmproduct-home-page/dmproduct-home-page.component';
+import { MaterialMasterHomePageComponent } from '../spm-masters/material-master-product/material-master-home-page/material-master-home-page.component';
 
 const routes: Routes = [
   {
@@ -101,6 +103,14 @@ const routes: Routes = [
   {
     path: 'spm-completed-save',
     component: SpmCompletedSaveComponent,
+  },
+  {
+    path: 'dmproduct-home-page',
+    component: DmproductHomePageComponent,
+  },
+  {
+    path: 'material-master-home-page',
+    component: MaterialMasterHomePageComponent,
   },
 ];
 
