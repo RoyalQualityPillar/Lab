@@ -9,8 +9,7 @@ import { PmsListComponent } from './pms-list/pms-list.component';
 import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CmCompletedComponent } from './cm/cm-completed/cm-completed.component';
-//import { CmCompletedSaveComponent } from './cm/cm-completed-save/cm-completed-save.component';
-
+import { CaInitiatorComponent } from './ca/ca-initiator/ca-initiator.component';
 
 
 @NgModule({
@@ -18,8 +17,9 @@ import { CmCompletedComponent } from './cm/cm-completed/cm-completed.component';
     CmInitiatorComponent,
     PmsListComponent,
     CmCompletedComponent,
-    //CmCompletedSaveComponent,
+    CaInitiatorComponent,
     
+     
   
    
   ],

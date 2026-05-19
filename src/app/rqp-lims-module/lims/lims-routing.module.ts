@@ -340,7 +340,24 @@ const routes: Routes = [
   {
     path: 'even-log-master-home-page',
     component: EvenLogMasterHomePageComponent,
-  }, 
+  },
+  {
+    path: 'ca-home',
+    component: CaHomeComponent,
+  },
+  {
+    path: 'ca-initiator',
+    component: CaInitiatorComponent,
+  },
+  {
+    path: 'cq-home',
+    component: CqHomeComponent,
+  },
+   {
+    path: 'cu-home',
+    component: CuHomeComponent,
+  },
+ 
 
 
 
