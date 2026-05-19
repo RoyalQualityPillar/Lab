@@ -10,18 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { LovDialogComponent } from './common/lov-dialog/lov-dialog.component';
 import { MessageDialogComponent } from './common/message-dialog/message-dialog.component';
-<<<<<<< HEAD
-import { CaInitiatorComponent } from './rqp-lims-module/cm/ca/ca-initiator/ca-initiator.component';
-import { CaHomeComponent } from './rqp-lims-module/cm/ca/ca-home/ca-home.component';
-import { CqHomeComponent } from './rqp-lims-module/cm/cq/cq-home/cq-home.component';
-import { CuHomeComponent } from './rqp-lims-module/cm/cu/cu-home/cu-home.component';
-import { CmInitiatorComponent } from './rqp-lims-module/cm/cm/cm-initiator/cm-initiator.component';
-//import { CaHomeComponent } from './rqp-lims-module/cm/cm/ca-home/ca-home.component';
-
-//import { CaUpdateComponent } from './rqp-lims-module/cm/ca/ca-update/ca-update.component';
-=======
 import { SharedModule } from './common/shared.module';
->>>>>>> 6371c1425057aa2e5ec4dd63db30893218a96f97
 
 
 // import { SharedModule } from './common/shared.module';
@@ -36,14 +25,6 @@ import { SharedModule } from './common/shared.module';
     LovDialogComponent,
     MessageDialogComponent,
    
-<<<<<<< HEAD
-   
-   
-    
-    
-
-=======
->>>>>>> 6371c1425057aa2e5ec4dd63db30893218a96f97
     
     
     

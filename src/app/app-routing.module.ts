@@ -16,13 +16,7 @@ const routes: Routes = [
       import('./rqp-lims-module/lims/lims.module').then((m) => m.LimsModule),
   },
   {
-<<<<<<< HEAD
-    path: 'cm',
-    loadChildren: () =>
-      import('./rqp-lims-module/cm/cm.module').then((m) => m.CmModule),
-  }
-=======
-    path: 'lims-cm',
+    path: 'lappims-cm',
     loadChildren: () =>
       import('./rqp-lims-cm-module/lims-cm/lims-cm.module').then((m) => m.LimsCmModule),
   },
@@ -61,7 +55,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./rqp-lims-vsm-module/lims-vsm/lims-vsm.module').then((m) => m.LimsVsmModule),
   },
->>>>>>> 6371c1425057aa2e5ec4dd63db30893218a96f97
 
 
 ];

@@ -27,12 +27,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
-<<<<<<< HEAD
-=======
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BkTableModule } from 'bk-angular-table';
 
->>>>>>> 6371c1425057aa2e5ec4dd63db30893218a96f97
 
 @NgModule({
   declarations: [],
@@ -66,14 +63,8 @@ import { BkTableModule } from 'bk-angular-table';
     MatTabsModule,
     MatIconModule,
     MatTooltipModule,
-<<<<<<< HEAD
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    
-=======
     ReactiveFormsModule ,
     BkTableModule
->>>>>>> 6371c1425057aa2e5ec4dd63db30893218a96f97
   ],
 })
 export class AngularMaterialModule {}
