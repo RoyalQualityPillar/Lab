@@ -3,10 +3,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
 import {ActivatedRoute,Router} from '@angular/router';
 import { environment } from '../../environments/environment';
-import { SessionExpireConfirmModel, SessionExpireDialogComponent } from '../toolbar/session-expire-dialog/session-expire-dialog.component';
+// import { SessionExpireConfirmModel, SessionExpireDialogComponent } from '../toolbar/session-expire-dialog/session-expire-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { GlobalConstants } from '../common/global-constants';
 import { ToolbarService } from './toolbar.service';
+import { SessionExpireConfirmModel, SessionExpireDialogComponent } from '../toolbar/session-expire-dialog/session-expire-dialog.component';
 
 @Injectable({
   providedIn: 'root'

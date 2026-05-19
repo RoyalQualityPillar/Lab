@@ -260,7 +260,7 @@ export class CalibrationRecSchCreateUpdateComponent
           timer(2000)
             .pipe(takeUntil(this.destroy$))
             .subscribe(() => {
-              this.route.navigateByUrl('/rqpquailtyui/lims/calibration-rec-sch-home-page');
+              this.route.navigateByUrl('/rqplabui/lims/calibration-rec-sch-home-page');
             });
         }
 

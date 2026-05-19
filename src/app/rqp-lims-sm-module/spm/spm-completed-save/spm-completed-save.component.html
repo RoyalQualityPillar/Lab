@@ -1,0 +1,193 @@
+<app-common-header [pageData]="this.pageData" (headerData)="getHeaderData($event)"></app-common-header>
+
+<div class="table-box">
+    <div class="section_header_child_1">
+        <div class="float-start">Product Information</div>
+    </div>
+</div>
+<form [formGroup]="SPMRequirementForm">
+    <div formArrayName="products">
+
+        <div *ngFor="let item of products.controls; let i = index" [formGroupName]="i">
+
+            <div class="table-box">
+                <div class="section_header_child_1">
+                    <div class="float-start">
+                        Product - {{ i + 1 }}
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row no-gutters ms-1 me-1 dense-4">
+                <mat-form-field appearance="outline" class="col-3 px-1">
+                    <mat-label>Product Number</mat-label>
+                    <input matInput formControlName="productNo">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="col-3 px-1">
+                    <mat-label>Product Name</mat-label>
+                    <input type="text" matInput formControlName="productName" placeholder="Product Name" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="col-3 px-1">
+                    <mat-label>Market</mat-label>
+                    <input type="text" matInput formControlName="market" placeholder="Market" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="col-3 px-1">
+                    <mat-label>Product Code</mat-label>
+                    <input type="text" matInput formControlName="productCode" placeholder="Product Code" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="col-3 px-1">
+                    <mat-label>UOM</mat-label>
+                    <input type="text" matInput formControlName="uom" placeholder="UOM" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="col-3 px-1">
+                    <mat-label>Shelf Life in Months</mat-label>
+                    <input type="text" matInput formControlName="shelfLifeMonths" placeholder="Shelf Life in Months" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="col-3 px-1">
+                    <mat-label>Product Type</mat-label>
+                    <input type="text" matInput formControlName="productType" placeholder="Product Type" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="col-3 px-1">
+                    <mat-label>Dosage Form</mat-label>
+                    <input type="text" matInput formControlName="dosageForm" placeholder="Dosage Form" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="col-3 px-1">
+                    <mat-label>Input Code</mat-label>
+                    <input type="text" matInput formControlName="inputCode" placeholder="Input Code" />
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="col-3 px-1">
+                    <mat-label>Product Tracking Code</mat-label>
+                    <input type="text" matInput formControlName="productTrackingCode"
+                        placeholder="Product Tracking Code" />
+                </mat-form-field>
+            </div>
+        </div>
+
+    </div>
+</form>
+<div class="table-box">
+    <div class="section_header_child_1">
+        <div class="float-start">Container Details (Lot Level)</div>
+    </div>
+</div>
+<form [formGroup]="ContainerRequirementForm">
+    <div formArrayName="containers">
+        <table class="display-table  no-gutters ms-1 me-1 dense-4" id="dataTable">
+            <thead>
+                <tr>
+                    <th>Material Number</th>
+                    <th>Material Name</th>
+                    <th>Material Code</th>
+                    <th>Weight</th>
+                    <th>UOM</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of containers.controls; let idx = index" [formGroupName]="idx">
+                    <td>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Material Number</mat-label>
+                            <input type="text" matInput formControlName="materialNo" placeholder="Material Number" />
+                        </mat-form-field>
+                    </td>
+                    <td class="">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Material Name</mat-label>
+                            <input type="text" matInput formControlName="materialName" placeholder="Material Name" />
+                        </mat-form-field>
+                    </td>
+                    <td class="">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Material Code</mat-label>
+                            <input type="text" matInput formControlName="materialCode" placeholder="Material Code" />
+                        </mat-form-field>
+                    </td>
+                    <td class="">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Weight</mat-label>
+                            <input type="text" formControlName="weight" matInput placeholder="Weight" />
+                        </mat-form-field>
+                    </td>
+                    <td class="">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>UOM</mat-label>
+                            <input type="text" formControlName="weightUom" matInput placeholder="UOM" />
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</form>
+<div class="table-box">
+    <div class="section_header">
+        <div class="float-left">
+            <p class="section_header_title">SPM Attachments </p>
+        </div>
+        <div class="float-right"></div>
+    </div>
+</div>
+<div class="m-2">
+    <div *ngIf="this.lc0003">
+        <div *ngIf="spAttachmentListData">
+            <mat-table [dataSource]="spAttachmentListTableData" matSort id="dataTable" class="bg-color_ghost_White">
+                <ng-container matColumnDef="uc0001">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Document No</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.uc0001 }} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="ff0007">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Document Name</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.ff0001 }} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="createdby">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Created By
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{ row.createdby }}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="createdon">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Created On
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                        {{ row.createdon | customDatePipe : "dateWithHrMin" }}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="ff0005">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Category Types
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{ row.ff0005 }}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="removeRow">
+                    <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                        <button *ngIf="row.uc0001" mat-icon-button color="primary" (click)="downloadDocument(row)">
+                            <mat-icon>download</mat-icon>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="spAttachListdisplayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: spAttachListdisplayedColumns"></mat-row>
+            </mat-table>
+        </div>
+        <div *ngIf="!spAttachmentListData">
+            <p style="color: red">No Record Found</p>
+        </div>
+    </div>
+</div>
+
+<app-as-common-footer [pageData]="this.pageData" [showCommentsSection]="false" (comments)="getCommentsData($event)">
+    <div class="table-box">
+        <app-comments-table [headerData]="this.headerData" [ff0005Value]="ff0005"
+            [commentType]="commentType"></app-comments-table>
+    </div>
+</app-as-common-footer>
+<div class="containerBTN margin-top_2 margin-bottom_35">
+    <div class="d-flex justify-content-center">
+        <button mat-raised-button class="submitButton" (click)="getComments()">
+            Comments
+        </button>
+        <button mat-raised-button class="submitButton" (click)="downloadSPMReport()">SPM Report</button>
+        <button mat-raised-button class="submitButton" (click)="downloadSPMAttachedReport()">SPM Report</button>
+    </div>
+</div>
+<mat-spinner *ngIf="isLoading" class="global-loading-spinner" color="primary" mode="indeterminate"></mat-spinner>
+<div class="height_5"></div>

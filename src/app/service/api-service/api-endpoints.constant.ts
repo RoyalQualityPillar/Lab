@@ -1389,6 +1389,205 @@ export enum apiEndPoints {
   EvenLogLoadUpdatePage = 'at/evenlog-master/get-by-max-code',
   EvenLogAllAuditTrail = 'at/evenlog-master/get-by-code-all',
 
+
+             /****************Cleaningcategory*********************/
+
+
+              /******* Sample Text Plan*********/
+  allStpTabledata = 'limsws/stpws-record/get-all',
+  activeStpTabledata = 'limsws/stpws-record/get-max-all',
+  StpUserProfileFilterData = 'limsws/stpws-record/search',
+  StpCreateUpdate = 'limsws/stpws-record/save-update',
+  StpLoadUpdatePage = 'limsws/stpws-record/get-by-max-code',
+  StpAllAuditTrail = 'limsws/stpws-record/get-by-code-all',
+
+   /******* Sample Regestration*********/
+  allSamRegTabledata = 'limsws/srws-record/get-all',
+  activeSamRegTabledata = 'limsws/srws-record/get-max-all',
+  SamRegUserProfileFilterData = 'limsws/srws-record/search',
+  SamRegCreateUpdate = 'limsws/srws-record/save-update',
+  SamRegLoadUpdatePage = 'limsws/srws-record/get-by-max-code',
+  SamRegAllAuditTrail = 'limsws/srws-record/get-by-code-all',
+
+     /******* Chemical Master Regestration*********/
+  allCmrTabledata = 'limssm/ch-master/get-all',
+  activeCmrTabledata = 'limssm/ch-master/get-max-all',
+  CmrUserProfileFilterData = 'limssm/ch-master/search',
+  CmrCreateUpdate = 'limssm/ch-master/save-update',
+  CmrLoadUpdatePage = 'limssm/ch-master/get-by-max-code',
+  CmrAllAuditTrail = 'limssm/ch-master/get-by-code-all',
+
+
+
+       /******* CHM Lot  Regestration*********/
+  allClrTabledata = 'limschm/chlr_record/get-all',
+  activeClrTabledata = 'limschm/chlr_record/get-max-all',
+  ClrUserProfileFilterData = 'limschm/chlr_record/search',
+  ClrCreateUpdate = 'limschm/chlr_record/save-update',
+  ClrLoadUpdatePage = 'limschm/chlr_record/get-by-max-code',
+  ClrAllAuditTrail = 'limschm/chlr_record/get-by-code-all',
+
+
+         /******* CHM Lot  Usage*********/
+  allCluTabledata = 'limschm/chlur_record/get-all',
+  activeCluTabledata = 'limschm/chlur_record/get-max-all',
+  CluUserProfileFilterData = 'limschm/chlur_record/search',
+  CluCreateUpdate = '/limschm/chlur_record/save-update',
+  CluLoadUpdatePage = 'limschm/chlur_record/get-by-max-code',
+  CluAllAuditTrail = 'limschm/chlur_record/get-by-code-all',
+
+
+           /******* Test Solution Master*********/
+  allTsmTabledata = 'limschm/chts_master/get-all',
+  activeTsmTabledata = 'limschm/chts_master/get-max-all',
+  TsmUserProfileFilterData = 'limschm/chts_master/search',
+  TsmCreateUpdate = 'limschm/chts_master/save-update',
+  TsmLoadUpdatePage = 'limschm/chts_master/get-by-max-code',
+  TsmAllAuditTrail = 'limschm/chts_master/get-by-code-all',
+
+
+
+   /******* Test Solution Preaparation Input Chemical Master*********/
+   allTspicmTabledata = 'limschm/chtsim_master/get-all',
+  activeTspicmTabledata = 'limschm/chtsim_master/get-max-all',
+  TspicmUserProfileFilterData = '/limschm/chtsim_master/search',
+  TspicmCreateUpdate = 'limschm/chtsim_master/save-update',
+  TspicmLoadUpdatePage = 'limschm/chtsim_master/get-by-max-code',
+  TspicmllAuditTrail = 'limschm/chtsim_master/get-by-code-all',
+
+
+      
+           /******* Test Solution Record*********/
+  allTsrTabledata = 'limschm/chts_record/get-all',
+  activeTsrTabledata = 'limschm/chts_record/get-max-all',
+  TsrUserProfileFilterData = 'limschm/chts_record/search',
+  TsrCreateUpdate = 'limschm/chts_record/save-update',
+  TsrLoadUpdatePage = 'limschm/chts_record/get-all',
+  TsrAllAuditTrail = 'limschm/chts_record/get-by-code-all',
+
+
+             /******* Test Solution Preparation Input Chemical Record*********/
+  allTspicTabledata = 'limschm/chtsir_record/get-all',
+  activeTspicTabledata = 'limschm/chtsir_record/get-max-all',
+  TspicUserProfileFilterData = 'limschm/chtsir_record/search',
+  TspicCreateUpdate = 'limschm/chtsir_record/save-update',
+  TspicLoadUpdatePage = 'limschm/chtsir_record/get-all',
+  TspicAllAuditTrail = 'limschm/chtsir_record/get-by-code-all',
   
 
+     /******* WS Lot Record*********/
+  allWlrTabledata = 'limsws/wstr-record/get-all',
+  activeWlrTabledata = 'limsws/wstr-record/get-max-all',
+  WlrUserProfileFilterData = 'limsws/wstr-record/search',
+  WlrCreateUpdate = 'limsws/wstr-record/save-update',
+  WlrLoadUpdatePage = 'limsws/wstr-record/get-by-max-code',
+  WlrAllAuditTrail = 'limsws/wstr-record/get-by-code-all',
+
+       /******* WS Lot Purities Record*********/
+  allWlprTabledata = 'limsws/wslpr-record/get-all',
+  activeWlprTabledata = 'limsws/wslpr-record/get-max-all',
+  WlprUserProfileFilterData = 'limsws/wslpr-record/search',
+  WlprCreateUpdate = 'limsws/wslpr-record/save-update',
+  WlprLoadUpdatePage = 'limsws/wslpr-record/get-by-max-code',
+  WlprAllAuditTrail = 'limsws/wslpr-record/get-by-code-all',
+
+      /******* WS Lot Containers Record *********/
+  allWlcrTabledata = 'limsws/wslcr-record/get-all',
+  activeWlcrTabledata = 'limsws/wslcr-record/get-max-all',
+  WlcrUserProfileFilterData = 'limsws/wslcr-record/search',
+  WlcrCreateUpdate = 'limsws/wslcr-record/save-update',
+  WlcrLoadUpdatePage = 'limsws/wslcr-record/get-by-max-code',
+  WlcrAllAuditTrail = 'limsws/wslcr-record/get-by-code-all',
+
+      /******* WS Lot Containers Usage *********/
+  allWlcuTabledata = 'limsws/wslcur-record/get-all',
+  activeWlcuTabledata = 'limsws/wslcur-record/get-max-all',
+  WlcuUserProfileFilterData = 'limsws/wslcur-record/search',
+  WlcuCreateUpdate = 'limsws/wslcur-record/save-update',
+  WlcuLoadUpdatePage = 'limsws/wslcur-record/get-by-max-code',
+  WlcuAllAuditTrail = 'limsws/wslcur-record/get-by-code-all',
+  
+ 
+   /******* volumetric solution usage *********/
+  allvolsolTabledata = 'limscs/visr_record/get-all',
+  activevolsolTabledata = 'limscs/visr_record/get-max-all',
+ volsolUserProfileFilterData = 'limscs/visr_record/search',
+ volsolCreateUpdate = 'limscs/visr_record/save-update',
+ volsolLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+ volsolAllAuditTrail = 'limscs/visr_record/get-by-code-all',
+
+
+
+   /*******Solution Name Master  *********/
+  allSolNaTabledata = 'limscs/visr_record/get-all',
+  activeSolNaTabledata = 'limscs/visr_record/get-max-all',
+ SolNaUserProfileFilterData = 'limscs/visr_record/search',
+ SolNaCreateUpdate = 'limscs/visr_record/save-update',
+ SolNaLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+ SolNaAllAuditTrail = 'limscs/visr_record/get-by-code-all',
+  
+
+   /*******Solution Templet Master  *********/
+  allSolTeTabledata = 'limscs/visr_record/get-all',
+  activeSolTeTabledata = 'limscs/visr_record/get-max-all',
+ SolTeUserProfileFilterData = 'limscs/visr_record/search',
+ SolTeCreateUpdate = 'limscs/visr_record/save-update',
+ SolTeLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+ SolTeAllAuditTrail = 'limscs/visr_record/get-by-code-all',
+
+
+ 
+   /*******Solution Preparation  Master  *********/
+  allSolPreTabledata = 'limscs/visr_record/get-all',
+  activeSolPreTabledata = 'limscs/visr_record/get-max-all',
+ SolPreUserProfileFilterData = 'limscs/visr_record/search',
+ SolPreCreateUpdate = 'limscs/visr_record/save-update',
+ SolPreLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+ SolPreAllAuditTrail = 'limscs/visr_record/get-by-code-all',
+
+
+ /*******Sample Regestration Vs Master  *********/
+  allSamRegVsTabledata = 'limscs/visr_record/get-all',
+  activeSamRegVsTabledata = 'limscs/visr_record/get-max-all',
+ SamRegVsUserProfileFilterData = 'limscs/visr_record/search',
+SamRegVsCreateUpdate = 'limscs/visr_record/save-update',
+ SamRegVsLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+ SamRegVsAllAuditTrail = 'limscs/visr_record/get-by-code-all',
+
+
+ /*******Sample Test Plan Vs Master  *********/
+  allSamTpVsTabledata = 'limscs/visr_record/get-all',
+  activeSamTpVsTabledata = 'limscs/visr_record/get-max-all',
+ SamTpVsUserProfileFilterData = 'limscs/visr_record/search',
+SamTpVsCreateUpdate = 'limscs/visr_record/save-update',
+ SamTpVsLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+ SamTpVsAllAuditTrail = 'limscs/visr_record/get-by-code-all',
+
+
+  /*******WSR*********/
+attachmentPDF = 'gm/attachment-pdf',
+attachmentHTML ='gm/attachment-html',
+
+
+ /*******Usage Type Master  *********/
+  allUtmTabledata = 'limsws/utm-master/get-all',
+  activeUtmTabledata = 'limsws/utm-master/get-max-all',
+ UtmUserProfileFilterData = 'limsws/utm-master/search',
+ UtmCreateUpdate = 'limsws/utm-master/save-update',
+ UtmLoadUpdatePage = 'limsws/utm-master/get-by-max-code',
+ UtmAllAuditTrail = 'limsws/utm-master/get-by-code-all',
+
+
+   /******* Purity type Master  *********/
+  allPurTyTabledata = 'limsws/ptm-master/get-all',
+  activePurTyTabledata = 'limsws/ptm-master/get-max-all',
+ purTyUserProfileFilterData = 'limsws/ptm-master/search',
+ PurTyCreateUpdate = 'limsws/ptm-master/save-update',
+ PurTyLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
+ PurTyAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+
+
+
+
 }
+

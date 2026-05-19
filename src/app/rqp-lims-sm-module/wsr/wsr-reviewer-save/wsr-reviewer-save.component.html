@@ -1,0 +1,110 @@
+<div class="adjust">
+  <div class="example-table-container">
+    <app-common-header
+      [pageData]="this.pageData"
+      (headerData)="getHeaderData($event)"
+    ></app-common-header>
+  </div>
+</div>
+<!-- <div class="table-box">
+  <div class="section_header">
+    <div class="float-left">
+      <p class="section_header_title">Word Editor</p>
+    </div>
+  </div>
+</div> -->
+<!-- <app-common-title [title]="'Word Editor'"> </app-common-title> -->
+<div *ngIf="showPdfPreview" class="pdf-preview-container">
+  <div class="pdf-preview-header">
+    <p class="pdf-preview-title">Document Preview</p>
+  </div>
+  <ngx-extended-pdf-viewer
+    [base64Src]="pdfSrc"
+    [height]="'600px'"
+    [showToolbar]="true"
+    [showSidebarButton]="false"
+    [showFindButton]="true"
+    [showPagingButtons]="true"
+    [showZoomButtons]="true"
+    [showPresentationModeButton]="false"
+    [showOpenFileButton]="false"
+    [showPrintButton]="true"
+    [showDownloadButton]="true"
+    [showSecondaryToolbarButton]="false"
+  ></ngx-extended-pdf-viewer>
+</div>
+<!-- HTML Preview Container -->
+<div *ngIf="!showPdfPreview" id="htmlPreviewContainer" class="html-preview-container" style="min-height:400px; border:1px solid #ccc; padding:16px; margin-bottom:16px;" [innerHTML]="htmlPreviewContent"></div>
+<ng-container [formGroup]="form">
+  <!-- <ckeditor [editor]="Editor" formControlName="html"></ckeditor> -->
+  <!-- <div
+    [ngxSummernote]="config"
+    [ngxSummernoteDisabled]="editorDisabled"
+    (blur)="onBlur()"
+    (mediaDelete)="onDelete($event)"
+    (summernoteInit)="summernoteInit($event)"
+  ></div> -->
+</ng-container>
+
+<!-- <div class="table-box">
+  <div class="section_header">
+    <div class="float-left">
+      <p class="section_header_title">Comments</p>
+    </div>
+  </div>
+</div> -->
+<!-- <div class="row">
+  <div class="col-12">
+    <form [formGroup]="commentForm">
+      <div class="row no-gutters ms-1 me-1">
+        <mat-form-field appearance="outline" class="col-12">
+          <mat-label>Comments</mat-label>
+          <textarea
+            type="text"
+            matInput
+            placeholder="Comments"
+            formControlName="comments"
+          >
+          </textarea>
+        </mat-form-field>
+      </div>
+      <div class="row no-gutters margin-left_12_px dense-4">
+        <mat-form-field appearance="outline" class="col-4 px-1">
+          <mat-label>Next stage</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Next Stage"
+            formControlName="nextStage"
+          />
+          <img
+            alt="lov img"
+            src="../../../../../../assets/searchfind.svg"
+            class="icon-size lovSearchButton"
+            color="primary"
+          />
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="display-flex mt-2">
+  <button mat-raised-button class="submitButton" (click)="onSubmit(true)">Save</button>
+  <button mat-raised-button class="submitButton" (click)="onSubmit(false)">
+    Submit
+  </button>
+  <button mat-raised-button class="submitButton">Cancel</button>
+</div> -->
+<app-common-comments
+  [nextStageListData]="nextStageListData"
+  (commentsData)="handleCommentsForm($event)"
+  [dataSource]="dataSource"
+></app-common-comments>
+<app-common-button-bar
+  [buttonConfig]="buttonConfig"
+  (buttonClicked)="onButtonClicked($event)"
+  [redirectUrl]="redirectUrl"
+>
+</app-common-button-bar>
+<div class="height_50"></div>

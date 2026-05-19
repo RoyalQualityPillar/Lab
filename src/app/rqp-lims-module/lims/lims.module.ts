@@ -74,14 +74,7 @@ import { UserMasterCreateUpdateComponent } from '../masterdata/ims-masterdata/us
 import { EvenLogMasterCreateUpdateComponent } from '../masterdata/ims-masterdata/even-log-master/even-log-master-create-update/even-log-master-create-update.component';
 import { EvenLogMasterHomePageComponent } from '../masterdata/ims-masterdata/even-log-master/even-log-master-home-page/even-log-master-home-page.component';
 import { MatTableModule } from '@angular/material/table';
-import { CaInitiatorComponent } from '../cm/ca/ca-initiator/ca-initiator.component';
-import { CaHomeComponent } from '../cm/ca/ca-home/ca-home.component';
-import { CqHomeComponent } from '../cm/cq/cq-home/cq-home.component';
-import { CuHomeComponent } from '../cm/cu/cu-home/cu-home.component';
-import { CmInitiatorComponent } from '../cm/cm/cm-initiator/cm-initiator.component';
-
-
-//import { CaUpdateComponent } from '../cm/ca/ca-update/ca-update.component';
+import { PmsListComponent } from '../pms-list/pms-list.component';
 
 
 @NgModule({
@@ -144,23 +137,15 @@ import { CmInitiatorComponent } from '../cm/cm/cm-initiator/cm-initiator.compone
     InstrumentMasterCreateUpdateComponent,
     SampleSetMasterCreateUpdateComponent,
     SampleSetMasterHomePageComponent,
-     SampleRunMasterCreateUpdateComponent,
+    SampleRunMasterCreateUpdateComponent,
     SampleRunMasterHomePageComponent,
     MethodMasterCreateUpdateComponent,
     MethodMasterHomePageComponent,
     UserMasterCreateUpdateComponent,
     UserMasterHomePageComponent,
     EvenLogMasterCreateUpdateComponent,
-    EvenLogMasterHomePageComponent,
-    CaHomeComponent,
-    CaInitiatorComponent,
-    CqHomeComponent,
-    CuHomeComponent,
-    
-    
-  
-
-
+    EvenLogMasterHomePageComponent,   
+    PmsListComponent,
 
   ],
   imports: [
@@ -170,6 +155,7 @@ import { CmInitiatorComponent } from '../cm/cm/cm-initiator/cm-initiator.compone
     FormsModule,
     MatTableModule,
     ReactiveFormsModule,
+    SharedModule,
     AngularMaterialModule,
   ],
 })

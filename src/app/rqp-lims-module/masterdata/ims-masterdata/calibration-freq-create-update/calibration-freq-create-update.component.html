@@ -58,8 +58,7 @@
 
             </div>
             <div class="row no-gutters ms-1 me-1 dense-4">
-              
-              <mat-form-field appearance="outline" class="col-6 px-1">
+              <mat-form-field appearance="outline" class="col-6 px-1" *ngIf="isUpdate">
                   <mat-label>Frequency No</mat-label>
                   <input
                     type="text"
@@ -99,68 +98,16 @@
                   placeholder="Frequency Type"
                 />
               </mat-form-field>
-                <!-- <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Torelance Period</mat-label>
+              <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Tolerance Period</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="ff0004"
-                  placeholder="Tolerance Period"
-                />
-              </mat-form-field> -->
-              
-              <!-- <mat-form-field appearance="outline" class="col-6 px-1"> -->
-                <!-- <mat-label>Product Category</mat-label>
-                <input
-                  type="text"
-                  matInput
-                  formControlName="ff0005"
-                  placeholder="Product Category"
-                  (change)="onChangeProductCategory()"
-                />
-                <img
-                  alt="lov img"
-                  src="../../../../../../assets/searchfind.svg"
-                  class="icon-size lovSearchButton"
-                  color="primary"
-                  (click)="openProductCategoryLOV()"
+                  placeholder="Frequency Type"
                 />
               </mat-form-field>
-              <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Dosage Form</mat-label>
-                <input
-                  type="text"
-                  matInput
-                  formControlName="ff0006"
-                  placeholder="Dosage Form"
-                  (change)="onChangeDosageForm()"
-                />
-                <img
-                  alt="lov img"
-                  src="../../../../../../assets/searchfind.svg"
-                  class="icon-size lovSearchButton"
-                  color="primary"
-                  (click)="openDosageFormLOV()"
-                />
-              </mat-form-field>
-              <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>UOM</mat-label>
-                <input
-                  type="text"
-                  matInput
-                  formControlName="ff0007"
-                  placeholder="UOM"
-                  (change)="onChangeUOM()"
-                />
-                <img
-                  alt="lov img"
-                  src="../../../../../../assets/searchfind.svg"
-                  class="icon-size lovSearchButton"
-                  color="primary"
-                  (click)="openUOMLOV()"
-                />
-              </mat-form-field> -->
-
+               </div>
               <div *ngIf="isUpdate" class="col-6 px-1">
                 <mat-form-field appearance="outline" class="col-12">
                   <mat-label>Status</mat-label>
@@ -179,7 +126,7 @@
                   />
                 </mat-form-field>
               </div>
-            </div>
+           
           </div>
         </div>
       </div>

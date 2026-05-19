@@ -260,7 +260,7 @@ implements OnInit {
               timer(2000)
                 .pipe(takeUntil(this.destroy$))
                 .subscribe(() => {
-                  this.route.navigateByUrl('/rqpquailtyui/lims/instrument-master-home-page');
+                  this.route.navigateByUrl('/rqplabui/lims/instrument-master-home-page');
                 });
             }
     

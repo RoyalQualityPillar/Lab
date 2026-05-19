@@ -6,11 +6,11 @@ import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BkTableModule } from 'bk-angular-table';
 //import { MatDialogModule } from '@angular/material/dialog';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { LovDialogComponent } from './common/lov-dialog/lov-dialog.component';
 import { MessageDialogComponent } from './common/message-dialog/message-dialog.component';
+<<<<<<< HEAD
 import { CaInitiatorComponent } from './rqp-lims-module/cm/ca/ca-initiator/ca-initiator.component';
 import { CaHomeComponent } from './rqp-lims-module/cm/ca/ca-home/ca-home.component';
 import { CqHomeComponent } from './rqp-lims-module/cm/cq/cq-home/cq-home.component';
@@ -19,6 +19,9 @@ import { CmInitiatorComponent } from './rqp-lims-module/cm/cm/cm-initiator/cm-in
 //import { CaHomeComponent } from './rqp-lims-module/cm/cm/ca-home/ca-home.component';
 
 //import { CaUpdateComponent } from './rqp-lims-module/cm/ca/ca-update/ca-update.component';
+=======
+import { SharedModule } from './common/shared.module';
+>>>>>>> 6371c1425057aa2e5ec4dd63db30893218a96f97
 
 
 // import { SharedModule } from './common/shared.module';
@@ -33,13 +36,22 @@ import { CmInitiatorComponent } from './rqp-lims-module/cm/cm/cm-initiator/cm-in
     LovDialogComponent,
     MessageDialogComponent,
    
+<<<<<<< HEAD
    
    
     
     
 
+=======
+>>>>>>> 6371c1425057aa2e5ec4dd63db30893218a96f97
     
     
+    
+   
+   
+  
+   
+   
    
    
     
@@ -53,8 +65,7 @@ import { CmInitiatorComponent } from './rqp-lims-module/cm/cm/cm-initiator/cm-in
     CommonModule,
     AppRoutingModule,
     AngularMaterialModule,
-   BkTableModule,
-  //  SharedModule
+   SharedModule
    
     //MatDialogModule,
     

@@ -1,0 +1,40 @@
+.example-table-container {
+  min-width: 100%;
+  /* overflow-x: scroll; */
+}
+
+.display-flex {
+  display: flex;
+  justify-content: center;
+}
+
+.height_50 {
+  height: 50px;
+}
+
+.margin-left_12_px {
+  margin-left: 12px;
+}
+
+.pdf-preview-container {
+  margin: 16px 8px;
+  border-radius: 14px;
+  border: 1px solid #dde3f0;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.pdf-preview-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #1a73e8, #1558b0);
+
+  .pdf-preview-title {
+    margin: 0;
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+  }
+}
+

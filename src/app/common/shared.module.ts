@@ -23,12 +23,17 @@ import { CommonAllAuditTrailComponent } from './common-all-audit-trail/common-al
 import { CommonActiveAuditTrailComponent } from './common-active-audit-trail/common-active-audit-trail.component';
 import { CommonTableFilterComponent } from './common-table-filter/common-table-filter.component';
 import { LcWeekDataComponent } from './lc-week-data/lc-week-data.component';
-//import { CustomDatePipe } from '../pipe/custom-date.pipe'; // ✅ Pipe must be declared, not imported
+import { CommonESignatureComponent } from './common-e-signature/common-e-signature.component';
+import { AsCommonFooterComponent } from './as-common-footer/as-common-footer.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+
 
 @NgModule({
   declarations: [
     CommonHeaderComponent,
     CommonCommentsComponent,
+    CommonESignatureComponent,
+    AsCommonFooterComponent,
     LccpComponent,
     CommonTitleComponent,
     ReviewerTemplateComponent,
@@ -45,6 +50,8 @@ import { LcWeekDataComponent } from './lc-week-data/lc-week-data.component';
   exports: [
     CommonHeaderComponent,
     CommonCommentsComponent,
+    CommonESignatureComponent,
+    AsCommonFooterComponent,
     LccpComponent,
     CommonTitleComponent,
     CustomSnackBarComponent,
@@ -54,9 +61,9 @@ import { LcWeekDataComponent } from './lc-week-data/lc-week-data.component';
     CustomDatePipe, // ✅ Exported to use in other modules
     CommonTableFilterComponent,
     NgApexchartsModule,
-       CommonActiveAuditTrailComponent,
+    CommonActiveAuditTrailComponent,
     CommonAllAuditTrailComponent,
-    LcWeekDataComponent
+    LcWeekDataComponent,
 
 
   ],
@@ -67,7 +74,9 @@ import { LcWeekDataComponent } from './lc-week-data/lc-week-data.component';
     FormsModule,
     ReactiveFormsModule,
     BkTableModule,
+    // CustomDatePipe,
+    NgxExtendedPdfViewerModule
   ],
   providers: [provideHttpClient(withInterceptorsFromDi())],
 })
-export class SharedModule {}
+export class SharedModule { }

@@ -65,10 +65,11 @@ export class CalibrationFreqCreateUpdateComponent
       
     ) {
       this.DepartmentMaster = this.fb.group({
-        ff0004: ['', Validators.required],
+        uc0001: [''],
         ff0001: ['', Validators.required],
         ff0002: ['', Validators.required],
         ff0003: ['', Validators.required],
+        ff0004: ['', Validators.required],
         createdby: [''],
         status: [''],
         comments: ['',Validators.required],
@@ -151,13 +152,10 @@ export class CalibrationFreqCreateUpdateComponent
         });
     }
     setFormValue() {
-      this.DepartmentMaster.controls['ff0004'].setValue(this.formData.ff0004);
       this.DepartmentMaster.controls['ff0001'].setValue(this.formData.ff0001);
       this.DepartmentMaster.controls['ff0002'].setValue(this.formData.ff0002);
       this.DepartmentMaster.controls['ff0003'].setValue(this.formData.ff0003);
-      this.DepartmentMaster.controls['ff0005'].setValue(this.formData.ff0005);
-      this.DepartmentMaster.controls['ff0006'].setValue(this.formData.ff0006);
-      this.DepartmentMaster.controls['ff0007'].setValue(this.formData.ff0007);
+      this.DepartmentMaster.controls['ff0004'].setValue(this.formData.ff0004);
       this.DepartmentMaster.controls['comments'].setValue(this.formData.comments);
       let statusByValue = changeStatusByCode(this.formData.status);
       this.DepartmentMaster.controls['status'].setValue(statusByValue);
@@ -260,7 +258,7 @@ export class CalibrationFreqCreateUpdateComponent
                 timer(2000)
                   .pipe(takeUntil(this.destroy$))
                   .subscribe(() => {
-                    this.route.navigateByUrl('/rqpquailtyui/lims/calibration-freq-home-page');
+                    this.route.navigateByUrl('/rqplabui/lims/calibration-freq-home-page');
                   });
               }
       

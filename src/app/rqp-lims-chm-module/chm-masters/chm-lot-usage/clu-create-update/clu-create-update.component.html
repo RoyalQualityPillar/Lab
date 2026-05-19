@@ -1,0 +1,224 @@
+<mat-spinner
+  *ngIf="isLoading"
+  class="global-loading-spinner"
+  color="primary"
+  mode="indeterminate"
+></mat-spinner>
+<div class="row gx-0 create-update-dialog-header-section">
+  <div class="col-10 d-flex justify-content-start">
+    <h1 class="daialog-title-name p-2">CHM Lot Usage{{ this.userData.type }}</h1>
+  </div>
+  <div class="col-2 d-flex justify-content-end">
+    <button mat-icon-button class="close-button" [mat-dialog-close]="true">
+      <mat-icon class="close-icon" color="warn">close</mat-icon>
+    </button>
+  </div>
+</div>
+<div class="screenOverFlowY" class="margin-top_7">
+  <form [formGroup]="DepartmentMaster" class="margin-top_7">
+    <mat-card>
+      <div class="p-2">
+        <div class="section_header">
+          <p class="section_header_title">CHM Lot Usage Informantion</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="p-2">
+            <div class="row no-gutters pb-2 ms-1 me-1">
+              <span class="form-validation-msg"
+                >Required Fields aredenoted by an asterisk(<span
+                  class="color_red"
+                  >*</span
+                >).</span
+              >
+            </div>
+            <div class="row no-gutters ms-1 me-1 dense-4 orgCode"><br/>
+              <mat-form-field appearance="outline" class="col-12 px-1">
+                <mat-label>Unit Code</mat-label>
+                <input type="text" matInput readonly formControlName="unitcode" (change)="onChangePlantCode2()" />
+              </mat-form-field>
+            </div>
+            <div class="row no-gutters ms-1 me-1 dense-4" *ngIf="isUpdate">
+              <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Chemical Lot Usage Code</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="uc0001"
+                  [readonly]="isUpdate"
+                  [class.isReadonlyField]="isUpdate"
+                  placeholder="Chemical Lot Usage Code"
+                />
+              </mat-form-field>
+            </div>
+            <div class="row no-gutters ms-1 me-1 dense-4">
+              <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Chemical Lot No</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="ff0001"
+                  placeholder="Chemical Lot No"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Lot Quantity Received</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="ff0002"
+                  placeholder="Lot Quantity Received"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Supler Name</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="ff0003"
+                  placeholder="Supler Name"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Manufacture Name</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="ff0004"
+                  placeholder="Manufacture Name"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Manufacture Date</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="ff0005"
+                  placeholder="Manufacture Date"
+                />
+              </mat-form-field>
+             <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Expiry date/User Before Date</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="ff0006"
+                  placeholder="Expiry date/User Before Date"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Storage Location</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="ff0007"
+                  placeholder="Storage Location"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Available Qty</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="ff0008"
+                  placeholder="Available Qty"
+                />
+              </mat-form-field>
+            <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Usage Qty</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="ff0009"
+                  placeholder="Usage Qty"
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>User For</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="ff0010"
+                  placeholder="Used For"
+                />
+              </mat-form-field>
+         </div>
+            <div class="row no-gutters ms-1 me-1 dense-4"><br/>
+              <div *ngIf="isUpdate" class="col-6 px-1">
+                <mat-form-field appearance="outline" class="col-12">
+                  <mat-label>Status</mat-label>
+                  <input
+                    type="text"
+                    matInput
+                    formControlName="status"
+                    (change)="onChangeStatus()"
+                  />
+                  <img
+                    alt="lov img"
+                    src="../../../../../../assets/searchfind.svg"
+                    class="icon-size lovSearchButton"
+                    color="primary"
+                    (click)="openStatusLOV()"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+    <mat-card>
+      <div class="p-2">
+        <div class="section_header">
+          <p class="section_header_title">Comments</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="col-12">
+          <div class="p-2">
+            <div class="row no-gutters ms-1 me-1">
+              <mat-form-field appearance="outline">
+                <mat-label>Comments</mat-label>
+                <textarea
+                  type="text"
+                  matInput
+                  formControlName="comments"
+                  placeholder="Comments"
+                >
+                </textarea>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </form>
+</div>
+<div class="containerBTN">
+  <div class="d-flex justify-content-center">
+    <button
+      mat-raised-button
+      class="submitButton"
+      (click)="isUpdate ? onUpdate() : onSaveConfirmation()"
+      [class.isDisabledBtn]="DepartmentMaster.invalid"
+    >
+      {{
+        isUpdate
+          ? buttonLabelService.getLabel("submit")
+          : buttonLabelService.getLabel("submit")
+      }}
+    </button>
+    <button
+      mat-raised-button
+      class="submitButton"
+      *ngIf="!isUpdate"
+      (click)="onClear()"
+    >
+      Clear
+    </button>
+  </div>
+</div>
+
+

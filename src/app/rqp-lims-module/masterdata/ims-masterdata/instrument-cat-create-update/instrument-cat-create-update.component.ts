@@ -68,7 +68,7 @@ export class InstrumentCatCreateUpdateComponent implements
       ff0001: ['', Validators.required],
       ff0002: ['', Validators.required],
       ff0003: ['', Validators.required],
-      ff0004: ['', Validators.required],
+      ff0004: [''],
       createdby: [''],
       status: [''],
       comments: [''],
@@ -215,7 +215,7 @@ export class InstrumentCatCreateUpdateComponent implements
           timer(2000)
             .pipe(takeUntil(this.destroy$))
             .subscribe(() => {
-              this.route.navigateByUrl('/rqpquailtyui/lims/instrument-cat-home-page');
+              this.route.navigateByUrl('/rqplabui/lims/instrument-cat-home-page');
             });
         }
 

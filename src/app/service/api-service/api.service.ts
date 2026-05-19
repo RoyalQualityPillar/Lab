@@ -141,4 +141,18 @@ export class ApiService {
     };
     return this.http.post(`${this.API_URL}imp/bgimp-master/save-update`, data);
   }
+   public saveAndUpdate(data): Observable<any> {
+    return this.http.post(this.API_URL + 'limspc/ws/save-update', data);
+  }
+  public getModuleRequestNo(lc0002: string, lc0001: string): Observable<any> {
+    return this.http.get(
+      this.API_URL +
+        `limspc/module-request-no?lc0002=${lc0002}&lc0001=${lc0001}`
+    );
+  }
+   public update(uc0001: string): Observable<any> {
+    return this.http.get(
+      this.API_URL + `limspc/fetchWsAttachement?uc0001=${uc0001}`
+    );
+  }
 }

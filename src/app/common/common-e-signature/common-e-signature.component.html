@@ -1,0 +1,67 @@
+<div cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+  <div
+    class="content-heading"
+    cdkDragHandle
+    style="outline: none; margin-right: 10px; cursor: move"
+  >
+    E-Signature
+  </div>
+  <div class="content-container">
+    <mat-spinner
+      *ngIf="isLoading"
+      class="global-loading-spinner"
+      color="primary"
+      mode="indeterminate"
+    ></mat-spinner>
+    <form [formGroup]="EsignatureForm" style="width: 100%">
+      <div class="row no-gutters ms-1 me-1 dense-4">
+        <mat-form-field appearance="outline" style="width: 100%">
+          <mat-label>User Id</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="userId"
+            placeholder="User Id"
+            [readonly]="isReadonly"
+            [class.isReadonlyFieldForQuotation]="isReadonly"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="width: 100%">
+          <mat-label>Password</mat-label>
+          <input
+            type="password"
+            matInput
+            formControlName="password"
+            placeholder="Password"
+          />
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+
+  <div style="display: flex">
+    <button
+      class="button-container yes-button"
+      mat-raised-button
+      mat-primary
+      mat-flat-button
+      id="yes-button"
+      [class.isDisabledBtn]="this.EsignatureForm.invalid"
+      [disabled]="disableSubmit"
+      (click)="onConfirm()"
+    >
+      Submit
+    </button>
+
+    <button
+      class="button-container no-button"
+      mat-raised-button
+      mat-primary
+      mat-flat-button
+      id="no-button"
+      (click)="onDismiss()"
+    >
+      Cancel
+    </button>
+  </div>
+</div>

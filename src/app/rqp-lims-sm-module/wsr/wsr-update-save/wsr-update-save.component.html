@@ -1,0 +1,174 @@
+<div class="adjust">
+  <div class="example-table-container">
+    <app-common-header
+      [pageData]="this.pageData"
+      (headerData)="getHeaderData($event)"
+    ></app-common-header>
+  </div>
+</div>
+
+<div class="table-box">
+  <div class="section_header">
+    <div class="float-left">
+      <p class="section_header_title">Product Information</p>
+    </div>
+  </div>
+</div>
+
+<ng-container [formGroup]="productInformation">
+  <div class="row no-gutters ms-1 me-1 dense-4">
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>Product Name</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Please enter product name"
+        formControlName="productName"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>Protocol No</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Please enter protocol no"
+        formControlName="protocolNo"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>Sample Description</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Please enter sample description"
+        formControlName="sampleDes"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>Test Parameter</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Please enter text parameter"
+        formControlName="testParameter"
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="row no-gutters ms-1 me-1 dense-4">
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>Analyst Name</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Please enter analyst name"
+        formControlName="analystName"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>Batch No</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Please enter batch no"
+        formControlName="batchNo"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>AR No</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Please enter ar no"
+        formControlName="arNo"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-3 px-1">
+      <mat-label>Stp</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Please enter ar no"
+        formControlName="stp"
+      />
+    </mat-form-field>
+  </div>
+</ng-container>
+
+<div class="table-box">
+  <div class="section_header">
+    <div class="float-left">
+      <p class="section_header_title">Word Editor</p>
+    </div>
+  </div>
+</div>
+<ng-container [formGroup]="form">
+  <!-- <div
+    #summernote
+    [ngxSummernote]="config"
+    [ngxSummernoteDisabled]="editorDisabled"
+    formControlName="html"
+    (summernoteChange)="onContentChange($event)"
+    (blur)="onBlur()"
+    (mediaDelete)="onDelete($event)"
+    (summernoteInit)="summernoteInit($event)"
+  ></div> -->
+</ng-container>
+
+<div class="table-box">
+  <div class="section_header">
+    <div class="float-left">
+      <p class="section_header_title">Comments</p>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <form [formGroup]="commentForm">
+      <div class="row no-gutters ms-1 me-1">
+        <mat-form-field appearance="outline" class="col-12">
+          <mat-label>Comments</mat-label>
+          <textarea
+            type="text"
+            matInput
+            placeholder="Comments"
+            formControlName="comments"
+          >
+          </textarea>
+        </mat-form-field>
+      </div>
+      <div class="row no-gutters margin-left_12_px dense-4">
+        <mat-form-field appearance="outline" class="col-4 px-1">
+          <mat-label>Next stage</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Next Stage"
+            formControlName="nextStage"
+          />
+          <img
+            alt="lov img"
+            src="../../../../../../assets/searchfind.svg"
+            class="icon-size lovSearchButton"
+            color="primary"
+          />
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="display-flex mt-2">
+  <button mat-raised-button class="submitButton" (click)="onSubmit(true)">Save</button>
+  <button mat-raised-button class="submitButton" (click)="onSubmit(false)">
+    Submit
+  </button>
+  <button mat-raised-button class="submitButton">Cancel</button>
+</div>
+<div class="height_50"></div>
