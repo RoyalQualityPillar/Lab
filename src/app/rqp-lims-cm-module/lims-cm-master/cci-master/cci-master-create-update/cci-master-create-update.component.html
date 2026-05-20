@@ -6,9 +6,7 @@
 ></mat-spinner>
 <div class="row gx-0 create-update-dialog-header-section">
   <div class="col-10 d-flex justify-content-start">
-    <h1 class="daialog-title-name p-2">
-      Column Code Index{{ this.userData.type }}
-    </h1>
+    <h1 class="daialog-title-name p-2">Column Code Index {{ this.userData.type }}</h1>
   </div>
   <div class="col-2 d-flex justify-content-end">
     <button mat-icon-button class="close-button" [mat-dialog-close]="true">
@@ -16,12 +14,12 @@
     </button>
   </div>
 </div>
-<div class="screenOverFlowY" class="margin-top_7">
+<div class="dmProductMasterY">
   <form [formGroup]="DepartmentMaster" class="margin-top_7">
     <mat-card>
       <div class="p-2">
         <div class="section_header">
-          <p class="section_header_title">Column Code Index</p>
+          <p class="section_header_title">All Column Code Index Information</p>
         </div>
       </div>
       <div class="row">
@@ -35,37 +33,34 @@
                 >).</span
               >
             </div>
-            <div class="row no-gutters ms-1 me-1 dense-4" *ngIf="isUpdate">
-              <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Column Code</mat-label>
-                <input
-                  type="text"
-                  matInput
-                  formControlName="uc0001"
-                  placeholder="General Ledger No"
-                />
-              </mat-form-field>
-            </div>
-            <div class="orgCode">
+            <div class="row no-gutters ms-1 me-1 dense-4 orgCode"><br/>       
               <mat-form-field appearance="outline" class="col-6 px-1">
                 <mat-label>Column Name</mat-label>
                 <input
                   type="text"
                   matInput
-                  readonly
                   formControlName="ff0001"
-                  (change)="onChangePlantCode()"
+                  placeholder="Column Name"
                 />
               </mat-form-field>
-            </div>
-
-            <div *ngIf="isUpdate" class="col-6 px-1">
-              <mat-form-field appearance="outline" class="col-12">
+              <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Column Code</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="ff0002"
+                  placeholder="Column Code"
+                />
+              </mat-form-field>
+              </div>
+            <div class="row no-gutters ms-1 me-1 dense-4" *ngIf="isUpdate">
+              <mat-form-field appearance="outline" class="col-12 px-1">
                 <mat-label>Status</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="status"
+                  placeholder="Status"
                   (change)="onChangeStatus()"
                 />
                 <img
@@ -88,26 +83,27 @@
         </div>
       </div>
 
-      <div class="col-12">
-        <div class="p-2">
-          <div class="row no-gutters ms-1 me-1">
-            <mat-form-field appearance="outline">
-              <mat-label>Comments</mat-label>
-              <textarea
-                type="text"
-                matInput
-                formControlName="comments"
-                placeholder="Comments"
-              >
-              </textarea>
-            </mat-form-field>
+      <div>
+        <div class="col-12">
+          <div class="p-2">
+            <div class="row no-gutters ms-1 me-1">
+              <mat-form-field appearance="outline">
+                <mat-label>Comments</mat-label>
+                <textarea
+                  type="text"
+                  matInput
+                  formControlName="comments"
+                  placeholder="Comments"
+                >
+                </textarea>
+              </mat-form-field>
+            </div>
           </div>
         </div>
       </div>
     </mat-card>
   </form>
 </div>
-
 <div class="containerBTN">
   <div class="d-flex justify-content-center">
     <button
@@ -132,3 +128,4 @@
     </button>
   </div>
 </div>
+
