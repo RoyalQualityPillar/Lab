@@ -73,7 +73,7 @@ export class ColumnMasterCreateUpdateComponent implements OnInit {
       ff0007: ['', Validators.required],
       ff0008: ['', Validators.required],
       ff0009: ['', Validators.required],
-
+      unitcode:[''],
       version: [''],
       createdby: [''],
       status: [''],
@@ -82,7 +82,7 @@ export class ColumnMasterCreateUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.DepartmentMaster.controls['ff0009'].patchValue(
+    this.DepartmentMaster.controls['unitcode'].patchValue(
       this.cookieService.get('buCode')
     );
     this.onLoadStatusDropDown();
@@ -269,9 +269,12 @@ export class ColumnMasterCreateUpdateComponent implements OnInit {
           });
         } else {
           this.isLoading = false;
-          this.notificationService.showSuccess(data.status, () => {
-            console.log('Success Snackbar Closed');
-          });
+          this.notificationService.showSuccess(
+ data.data.uc0001 + data.status,
+  () => {
+    console.log('Success Snackbar Closed');
+  }
+);
           this.dialogRef.close();
         }
       });
