@@ -56,6 +56,7 @@ const routes: Routes = [
       import('./rqp-lims-vsm-module/lims-vsm/lims-vsm.module').then((m) => m.LimsVsmModule),
   },
 
+
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)], // ✅ correct for MFE remotes

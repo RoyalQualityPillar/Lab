@@ -10,6 +10,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { LovDialogComponent } from './common/lov-dialog/lov-dialog.component';
 import { MessageDialogComponent } from './common/message-dialog/message-dialog.component';
+import { CaInitiatorComponent } from './rqp-lims-module/cm/ca/ca-initiator/ca-initiator.component';
+import { CaHomeComponent } from './rqp-lims-module/cm/ca/ca-home/ca-home.component';
+import { CqHomeComponent } from './rqp-lims-module/cm/cq/cq-home/cq-home.component';
+import { CuHomeComponent } from './rqp-lims-module/cm/cu/cu-home/cu-home.component';
+import { CmInitiatorComponent } from './rqp-lims-module/cm/cm/cm-initiator/cm-initiator.component';
+//import { CaHomeComponent } from './rqp-lims-module/cm/cm/ca-home/ca-home.component';
+//import { CaUpdateComponent } from './rqp-lims-module/cm/ca/ca-update/ca-update.component';
 import { SharedModule } from './common/shared.module';
 
 
@@ -24,18 +31,6 @@ import { SharedModule } from './common/shared.module';
     //CustomSnackBarComponent,
     LovDialogComponent,
     MessageDialogComponent,
-   
-    
-    
-    
-   
-   
-  
-   
-   
-   
-   
-    
    
     
     

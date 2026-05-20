@@ -18,6 +18,13 @@ import { MethodMasterHomePageComponent } from '../masterdata/ims-masterdata/meth
 import { UserMasterHomePageComponent } from '../masterdata/ims-masterdata/user-master/user-master-home-page/user-master-home-page.component';
 import { EvenLogMasterHomePageComponent } from '../masterdata/ims-masterdata/even-log-master/even-log-master-home-page/even-log-master-home-page.component';
 import { ImsMasterHomePageComponent } from '../masterdata/ims-master-home-page/ims-master-home-page.component';
+import { CaHomeComponent } from '../cm/ca/ca-home/ca-home.component';
+import { CaInitiatorComponent } from '../cm/ca/ca-initiator/ca-initiator.component';
+import { CqHomeComponent } from '../cm/cq/cq-home/cq-home.component';
+import { CuHomeComponent } from '../cm/cu/cu-home/cu-home.component';
+import { CmInitiatorComponent } from '../cm/cm/cm-initiator/cm-initiator.component';
+//import { CmHomeComponent } from '../cm/cm/cm-home/cm-home.component';
+//import { CaUpdateComponent } from '../cm/ca/ca-update/ca-update.component';
 // import { LimsModuleHomePageComponent } from '../lims-module-home-page/lims-module-home-page.component';
 // import { LimsMasterHomePageComponent } from '../lims-master/lims-master-home-page/lims-master-home-page.component';
 // import { FieldActiveComponent } from '../lims-master/field-master/field-active/field-active.component';
@@ -333,7 +340,24 @@ const routes: Routes = [
   {
     path: 'even-log-master-home-page',
     component: EvenLogMasterHomePageComponent,
-  }, 
+  },
+  {
+    path: 'ca-home',
+    component: CaHomeComponent,
+  },
+  {
+    path: 'ca-initiator',
+    component: CaInitiatorComponent,
+  },
+  {
+    path: 'cq-home',
+    component: CqHomeComponent,
+  },
+   {
+    path: 'cu-home',
+    component: CuHomeComponent,
+  },
+ 
 
 
 
