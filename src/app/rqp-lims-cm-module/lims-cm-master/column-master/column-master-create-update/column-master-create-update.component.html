@@ -6,9 +6,7 @@
 ></mat-spinner>
 <div class="row gx-0 create-update-dialog-header-section">
   <div class="col-10 d-flex justify-content-start">
-    <h1 class="daialog-title-name p-2">
-      Column Master{{ this.userData.type }}
-    </h1>
+    <h1 class="daialog-title-name p-2">Column Master {{ this.userData.type }}</h1>
   </div>
   <div class="col-2 d-flex justify-content-end">
     <button mat-icon-button class="close-button" [mat-dialog-close]="true">
@@ -16,12 +14,12 @@
     </button>
   </div>
 </div>
-<div class="screenOverFlowY" class="margin-top_7">
+<div class="dmProductMasterY">
   <form [formGroup]="DepartmentMaster" class="margin-top_7">
     <mat-card>
       <div class="p-2">
         <div class="section_header">
-          <p class="section_header_title">Column Master</p>
+          <p class="section_header_title">Column Master Information</p>
         </div>
       </div>
       <div class="row">
@@ -34,126 +32,119 @@
                   >*</span
                 >).</span
               >
-            </div>
-            <div class="row no-gutters ms-1 me-1 dense-4" *ngIf="isUpdate">
-              <mat-form-field appearance="outline" class="col-6 px-1">
+            </div>        
+            <div class="row no-gutters ms-1 me-1 dense-4">
+              <mat-form-field appearance="outline" class="col-6 px-1" *ngIf="isUpdate">
                 <mat-label>Column No</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="uc0001"
-                  placeholder="General Ledger No"
+                  [readonly]="isUpdate"
+                  [class.isReadonlyField]="isUpdate"
+                  placeholder="Column No"
                 />
               </mat-form-field>
-            </div>
-            <div class="orgCode">
               <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Column Name</mat-label>
+                <mat-label>Column Type</mat-label>
                 <input
                   type="text"
                   matInput
-                  readonly
                   formControlName="ff0001"
-                  (change)="onChangePlantCode()"
+                  placeholder="Column Type"
                 />
               </mat-form-field>
-            </div>
-            <div class="row no-gutters ms-1 me-1 dense-4" *ngIf="isUpdate">
               <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Manfacture Code</mat-label>
+                <mat-label>Make / Model</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="ff0002"
-                  placeholder="General Ledger No"
+                  placeholder="Make / Model"
                 />
               </mat-form-field>
-            </div>
-            <div class="row no-gutters ms-1 me-1 dense-4" *ngIf="isUpdate">
               <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Mfg. Part No</mat-label>
+                <mat-label>Dimensions</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="ff0003"
-                  placeholder="General Ledger No"
+                  placeholder="Dimensions"
                 />
-              </mat-form-field>
-            </div>
-            <div class="row no-gutters ms-1 me-1 dense-4" *ngIf="isUpdate">
-              <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Film thickness/Particlesize</mat-label>
+              </mat-form-field> 
+                           <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Serial Number</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="ff0004"
-                  placeholder="General Ledger No"
+                  placeholder="Serial Number"
                 />
-              </mat-form-field>
-            </div>
-            <div class="row no-gutters ms-1 me-1 dense-4" *ngIf="isUpdate">
-              <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Length</mat-label>
+              </mat-form-field> 
+			  <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Batch No</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="ff0005"
-                  placeholder="General Ledger No"
+                  placeholder="Batch No"
                 />
-              </mat-form-field>
-            </div>
-            <div class="row no-gutters ms-1 me-1 dense-4" *ngIf="isUpdate">
-              <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>inner diameter</mat-label>
+              </mat-form-field> 
+			  <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Vendor Name</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="ff0006"
-                  placeholder="General Ledger No"
+                  placeholder="Vendor Name"
                 />
-              </mat-form-field>
-            </div>
-            <div class="row no-gutters ms-1 me-1 dense-4" *ngIf="isUpdate">
-              <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>outer diameter</mat-label>
-                <input
-                  type="text"
-                  matInput
-                  formControlName="ff0007"
-                  placeholder="General Ledger No"
-                />
-              </mat-form-field>
-            </div>
-            <div class="row no-gutters ms-1 me-1 dense-4" *ngIf="isUpdate">
-              <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Application type</mat-label>
+              </mat-form-field> 
+			    
+			 
+			  <mat-form-field appearance="outline" class="col-6 px-1">
+  <mat-label>Date of Receipt</mat-label>
+
+  <input
+    matInput
+    formControlName="ff0007"
+    [matDatepicker]="picker"
+    placeholder="Date of Receipt"
+  />
+
+  <mat-datepicker-toggle
+    matIconSuffix
+    [for]="picker"
+  ></mat-datepicker-toggle>
+
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+			  <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Storage Condition</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="ff0008"
-                  placeholder="General Ledger No"
+                  placeholder="Storage Condition"
                 />
-              </mat-form-field>
-            </div>
-            <div class="row no-gutters ms-1 me-1 dense-4" *ngIf="isUpdate">
-              <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Make</mat-label>
+              </mat-form-field> 
+			   <mat-form-field appearance="outline" class="col-6 px-1">
+                <mat-label>Invoice No</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="ff0009"
-                  placeholder="General Ledger No"
+                  placeholder="Invoice No"
                 />
-              </mat-form-field>
+              </mat-form-field> 
             </div>
-
-            <div *ngIf="isUpdate" class="col-6 px-1">
-              <mat-form-field appearance="outline" class="col-12">
+            <div class="row no-gutters ms-1 me-1 dense-4" *ngIf="isUpdate">
+              <mat-form-field appearance="outline" class="col-12 px-1">
                 <mat-label>Status</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="status"
+                  placeholder="Status"
                   (change)="onChangeStatus()"
                 />
                 <img
@@ -176,26 +167,27 @@
         </div>
       </div>
 
-      <div class="col-12">
-        <div class="p-2">
-          <div class="row no-gutters ms-1 me-1">
-            <mat-form-field appearance="outline">
-              <mat-label>Comments</mat-label>
-              <textarea
-                type="text"
-                matInput
-                formControlName="comments"
-                placeholder="Comments"
-              >
-              </textarea>
-            </mat-form-field>
+      <div>
+        <div class="col-12">
+          <div class="p-2">
+            <div class="row no-gutters ms-1 me-1">
+              <mat-form-field appearance="outline">
+                <mat-label>Comments</mat-label>
+                <textarea
+                  type="text"
+                  matInput
+                  formControlName="comments"
+                  placeholder="Comments"
+                >
+                </textarea>
+              </mat-form-field>
+            </div>
           </div>
         </div>
       </div>
     </mat-card>
   </form>
 </div>
-
 <div class="containerBTN">
   <div class="d-flex justify-content-center">
     <button
@@ -220,3 +212,4 @@
     </button>
   </div>
 </div>
+

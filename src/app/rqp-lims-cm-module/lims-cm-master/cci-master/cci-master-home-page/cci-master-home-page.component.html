@@ -23,16 +23,15 @@
       [columnConfig]="columnConfig"
       [filterOptions]="filterOptions"
       [apiUrl]="allColumnCodeIndexTableDataUrl"
-      tableTitle="All Column Code Index"
+      tableTitle="All Column Code Index "
       [dynamicButtons]="allButtonConfig"
       (buttonClick)="handleButtonAction($event)"
       columnClass="rqp-life-cycle-table-columns"
       [filterApiUrl]="filterApiUrl"
       [HttpMethod]="HttpMethod"
       [params]="params"
-      [getLatestData]="getLatestData"
       downloadFileName="  Column Code Index "
-    ></app-common-table-filter>
+    ></app-common-table-filter> 
 
     <div style="height: 50px"></div>
   </mat-tab>
@@ -55,15 +54,15 @@
       [columnConfig]="columnConfig"
       [filterOptions]="filterOptions"
       [apiUrl]="activeColumnCodeIndexTableDataUrl"
-      tableTitle="Active Column Code Index"
+      tableTitle="Active Column Code Index "
       [dynamicButtons]="activeButtonConfig"
       (buttonClick)="activeHandleButtonAction($event)"
       columnClass="rqp-life-cycle-table-columns"
       [filterApiUrl]="filterApiUrl"
       [HttpMethod]="HttpMethod"
       [params]="params"
-      [getLatestData]="getLatestData"
       downloadFileName="  Column Code Index "
     ></app-common-table-filter>
   </mat-tab>
 </mat-tab-group>
+

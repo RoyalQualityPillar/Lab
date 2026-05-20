@@ -65,6 +65,8 @@ export class CciMasterCreateUpdateComponent implements OnInit {
     this.DepartmentMaster = this.fb.group({
       uc0001: [''],
       ff0001: ['', Validators.required],
+      ff0002: ['', Validators.required],
+      unitcode: [''],
       version: [''],
       createdby: [''],
       status: [''],
@@ -73,7 +75,7 @@ export class CciMasterCreateUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.DepartmentMaster.controls['ff0001'].patchValue(
+    this.DepartmentMaster.controls['unitcode'].patchValue(
       this.cookieService.get('buCode')
     );
     this.onLoadStatusDropDown();
@@ -253,9 +255,12 @@ export class CciMasterCreateUpdateComponent implements OnInit {
           });
         } else {
           this.isLoading = false;
-          this.notificationService.showSuccess(data.status, () => {
-            console.log('Success Snackbar Closed');
-          });
+          this.notificationService.showSuccess(
+  data.data.uc0001 +  data.status ,
+  () => {
+    console.log('Success Snackbar Closed');
+  }
+);
           this.dialogRef.close();
         }
       });
