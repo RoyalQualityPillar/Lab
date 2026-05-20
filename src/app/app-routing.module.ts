@@ -16,7 +16,7 @@ const routes: Routes = [
       import('./rqp-lims-module/lims/lims.module').then((m) => m.LimsModule),
   },
   {
-    path: 'lappims-cm',
+    path: 'lims-cm',
     loadChildren: () =>
       import('./rqp-lims-cm-module/lims-cm/lims-cm.module').then((m) => m.LimsCmModule),
   },
