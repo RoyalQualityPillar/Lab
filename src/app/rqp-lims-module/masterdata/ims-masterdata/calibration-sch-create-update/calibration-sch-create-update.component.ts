@@ -63,6 +63,7 @@ implements OnInit {
     
   ) {
     this.DepartmentMaster = this.fb.group({
+      uc0001: [''],
       ff0004: ['', Validators.required],
       ff0001: ['', Validators.required],
       ff0002: ['', Validators.required],
@@ -81,9 +82,7 @@ implements OnInit {
     this.DepartmentMaster.controls['unitcode'].patchValue(
       this.cookieService.get('buCode')
     );
-    this.DepartmentMaster.controls['ff0004'].patchValue(
-      this.cookieService.get('buCode')
-    );
+   
     // this.onLoadStatusDropDown();
     this.onloadDropDown();
     this.onloadDFListDropDown();
@@ -151,11 +150,10 @@ implements OnInit {
       });
   }
   setFormValue() {
-    this.DepartmentMaster.controls['ff0004'].setValue(this.formData.ff0004);
     this.DepartmentMaster.controls['ff0001'].setValue(this.formData.ff0001);
     this.DepartmentMaster.controls['ff0002'].setValue(this.formData.ff0002);
     this.DepartmentMaster.controls['ff0003'].setValue(this.formData.ff0003);
-
+    this.DepartmentMaster.controls['ff0004'].setValue(this.formData.ff0004);
     this.DepartmentMaster.controls['ff0005'].setValue(this.formData.ff0005);
     this.DepartmentMaster.controls['ff0006'].setValue(this.formData.ff0006);
     this.DepartmentMaster.controls['ff0007'].setValue(this.formData.ff0007);
