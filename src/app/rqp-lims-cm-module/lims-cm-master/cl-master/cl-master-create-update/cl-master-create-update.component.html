@@ -6,9 +6,7 @@
 ></mat-spinner>
 <div class="row gx-0 create-update-dialog-header-section">
   <div class="col-10 d-flex justify-content-start">
-    <h1 class="daialog-title-name p-2">
-      Column Lot Master{{ this.userData.type }}
-    </h1>
+    <h1 class="daialog-title-name p-2">Column Lot Master {{ this.userData.type }}</h1>
   </div>
   <div class="col-2 d-flex justify-content-end">
     <button mat-icon-button class="close-button" [mat-dialog-close]="true">
@@ -16,12 +14,12 @@
     </button>
   </div>
 </div>
-<div class="screenOverFlowY" class="margin-top_7">
+<div class="dmProductMasterY">
   <form [formGroup]="DepartmentMaster" class="margin-top_7">
     <mat-card>
       <div class="p-2">
         <div class="section_header">
-          <p class="section_header_title">Column Lot Master</p>
+          <p class="section_header_title">Column Lot Master Information</p>
         </div>
       </div>
       <div class="row">
@@ -34,30 +32,28 @@
                   >*</span
                 >).</span
               >
-            </div>
-            <div class="row no-gutters ms-1 me-1 dense-4" *ngIf="isUpdate">
-              <mat-form-field appearance="outline" class="col-6 px-1">
+            </div>        
+            <div class="row no-gutters ms-1 me-1 dense-4">
+              <mat-form-field appearance="outline" class="col-6 px-1" *ngIf="isUpdate">
                 <mat-label>Column Lot No</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="uc0001"
+                  [readonly]="isUpdate"
+                  [class.isReadonlyField]="isUpdate"
                   placeholder="Column Lot No"
                 />
               </mat-form-field>
-            </div>
-            <div class="orgCode">
               <mat-form-field appearance="outline" class="col-6 px-1">
                 <mat-label>Column Lot Code</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="ff0001"
-                  (change)="onChangePlantCode()"
+                  placeholder="Column Lot Code"
                 />
               </mat-form-field>
-            </div>
-            <div class="row no-gutters ms-1 me-1 dense-4" *ngIf="isUpdate">
               <mat-form-field appearance="outline" class="col-6 px-1">
                 <mat-label>Manfacture Lot No.</mat-label>
                 <input
@@ -67,26 +63,23 @@
                   placeholder="Manfacture Lot No."
                 />
               </mat-form-field>
-            </div>
-            <div class="row no-gutters ms-1 me-1 dense-4" *ngIf="isUpdate">
               <mat-form-field appearance="outline" class="col-6 px-1">
                 <mat-label>COA</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="ff0003"
-                  placeholder="COA"
+                  placeholder="Dimensions"
                 />
               </mat-form-field>
-            </div>
-
-            <div *ngIf="isUpdate" class="col-6 px-1">
-              <mat-form-field appearance="outline" class="col-12">
+            <div class="row no-gutters ms-1 me-1 dense-4" *ngIf="isUpdate">
+              <mat-form-field appearance="outline" class="col-12 px-1">
                 <mat-label>Status</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="status"
+                  placeholder="Status"
                   (change)="onChangeStatus()"
                 />
                 <img
@@ -101,7 +94,7 @@
           </div>
         </div>
       </div>
-    </mat-card>
+  
     <mat-card>
       <div class="p-2">
         <div class="section_header">
@@ -109,26 +102,27 @@
         </div>
       </div>
 
-      <div class="col-12">
-        <div class="p-2">
-          <div class="row no-gutters ms-1 me-1">
-            <mat-form-field appearance="outline">
-              <mat-label>Comments</mat-label>
-              <textarea
-                type="text"
-                matInput
-                formControlName="comments"
-                placeholder="Comments"
-              >
-              </textarea>
-            </mat-form-field>
+      <div>
+        <div class="col-12">
+          <div class="p-2">
+            <div class="row no-gutters ms-1 me-1">
+              <mat-form-field appearance="outline">
+                <mat-label>Comments</mat-label>
+                <textarea
+                  type="text"
+                  matInput
+                  formControlName="comments"
+                  placeholder="Comments"
+                >
+                </textarea>
+              </mat-form-field>
+            </div>
           </div>
         </div>
       </div>
     </mat-card>
-  </form>
+ 
 </div>
-
 <div class="containerBTN">
   <div class="d-flex justify-content-center">
     <button
@@ -153,3 +147,4 @@
     </button>
   </div>
 </div>
+
