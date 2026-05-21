@@ -67,6 +67,7 @@ export class ClMasterCreateUpdateComponent implements OnInit {
       ff0002: ['', Validators.required],
       uc0001: [''],
       ff0001: ['', Validators.required],
+      unitcode:[''],
       version: [''],
       createdby: [''],
       status: [''],
@@ -75,7 +76,7 @@ export class ClMasterCreateUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.DepartmentMaster.controls['ff0002'].patchValue(
+    this.DepartmentMaster.controls['unitcode'].patchValue(
       this.cookieService.get('buCode')
     );
     this.onLoadStatusDropDown();
@@ -249,10 +250,12 @@ export class ClMasterCreateUpdateComponent implements OnInit {
             },
           });
         } else {
-          this.isLoading = false;
-          this.notificationService.showSuccess(data.status, () => {
-            console.log('Success Snackbar Closed');
-          });
+           this.notificationService.showSuccess(
+ data.data.uc0001 + data.status,
+  () => {
+    console.log('Success Snackbar Closed');
+  }
+);
           this.dialogRef.close();
         }
       });
