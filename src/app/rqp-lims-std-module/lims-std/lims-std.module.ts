@@ -20,6 +20,8 @@ import { UtmCreateUpdateComponent } from '../std-masters/usage-type-master/utm-c
 import { UtmHomePageComponent } from '../std-masters/usage-type-master/utm-home-page/utm-home-page.component';
 import { PurityTypeMasterCreateUpdateComponent } from '../std-masters/purity-type-master/purity-type-master-create-update/purity-type-master-create-update.component';
 import { PurityTypeMasterHomePageComponent } from '../std-masters/purity-type-master/purity-type-master-home-page/purity-type-master-home-page.component';
+import { CreateUpdateWsLotRecordComponent } from '../std-masters/ws-lot-record/create-update-ws-lot-record/create-update-ws-lot-record.component';
+import { HomePageWsLotRecordComponent } from '../std-masters/ws-lot-record/home-page-ws-lot-record/home-page-ws-lot-record.component';
 
 
 @NgModule({
@@ -39,6 +41,8 @@ import { PurityTypeMasterHomePageComponent } from '../std-masters/purity-type-ma
     UtmHomePageComponent,
     PurityTypeMasterCreateUpdateComponent,
     PurityTypeMasterHomePageComponent,
+    CreateUpdateWsLotRecordComponent,
+    HomePageWsLotRecordComponent
 
 
 

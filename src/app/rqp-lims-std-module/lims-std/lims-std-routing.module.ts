@@ -8,6 +8,7 @@ import { HomePageWsLotContainersRecordComponent } from '../std-masters/ws-lot-co
 import { HomePageWsLotContainersUsageComponent } from '../std-masters/ws-lot-containers-usage/home-page-ws-lot-containers-usage/home-page-ws-lot-containers-usage.component';
 import { UtmHomePageComponent } from '../std-masters/usage-type-master/utm-home-page/utm-home-page.component';
 import { PurityTypeMasterHomePageComponent } from '../std-masters/purity-type-master/purity-type-master-home-page/purity-type-master-home-page.component';
+import { HomePageWsLotRecordComponent } from '../std-masters/ws-lot-record/home-page-ws-lot-record/home-page-ws-lot-record.component';
 
 const routes: Routes = [
   {path:'std-module-admin', component:StdModuleAdminComponent},
@@ -18,6 +19,8 @@ const routes: Routes = [
   {path:'home-page-ws-lot-containers-usage', component:HomePageWsLotContainersUsageComponent},
   {path:'utm-home-page', component:UtmHomePageComponent},
   {path:'purity-type-master-home-page', component:PurityTypeMasterHomePageComponent},
+  {path:'home-page-ws-lot-record', component:HomePageWsLotRecordComponent},
+  
   
   
   
