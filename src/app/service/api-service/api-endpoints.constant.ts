@@ -877,6 +877,14 @@ export enum apiEndPoints {
   ColumnMasterLoadUpdatePage = 'limscm/cm-master/get-by-max-code',
   ColumnMasterAllAuditTrail = 'limscm/cm-master/get-by-code-all',
 
+
+  /**cptr**/
+  allCptrMasterTabledata = 'limscm/cptr-master/get-all',
+  activeCptrMasterTabledata = 'limscm/cptr-master/get-max-all',
+  CptrMasterUserProfileFilterData = 'limscm/cptr-master/search',
+  CptrMasterCreateUpdate = 'limscm/cptr-master/save-update',
+  CptrMasterLoadUpdatePage = 'limscm/cptr-master/get-by-max-code',
+  CptrMasterAllAuditTrail = 'limscm/cptr-master/get-by-code-all',
   /***************DMSModule***************/
 
   /*******DmProduct*********/
