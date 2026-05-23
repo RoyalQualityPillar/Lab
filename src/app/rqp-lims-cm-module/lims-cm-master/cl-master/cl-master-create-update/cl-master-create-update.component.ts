@@ -137,7 +137,7 @@ export class ClMasterCreateUpdateComponent implements OnInit {
     const params = { UC0001 };
 
     this.apiService
-      .sendRequest(apiEndPoints.ColumnMasterLoadUpdatePage, 'POST', params)
+      .sendRequest(apiEndPoints.ClMasterLoadUpdatePage, 'POST', params)
       .subscribe((data: any) => {
         if (data.data == null) {
           this.isLoading = false;
@@ -235,7 +235,7 @@ export class ClMasterCreateUpdateComponent implements OnInit {
 
     this.apiService
       .sendRequest(
-        apiEndPoints.ColumnMasterCreateUpdate,
+        apiEndPoints.ClMasterCreateUpdate,
         'POST',
         params,
         this.DepartmentMaster.value
