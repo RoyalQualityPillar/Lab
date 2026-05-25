@@ -20,10 +20,7 @@ import { InstrumentMasterService } from '../instrument-master.service';
   templateUrl: './instrument-master-home-page.component.html',
   styleUrl: './instrument-master-home-page.component.scss'
 })
-export class InstrumentMasterHomePageComponent 
-
-
- implements OnInit, AfterViewInit {
+export class InstrumentMasterHomePageComponent   implements OnInit, AfterViewInit {
   @ViewChild('commonTableContainer', { read: ViewContainerRef, static: true })
   commonTableContainer!: ViewContainerRef;
   @ViewChild('activeRoleMasterContainer', { read: ViewContainerRef })
@@ -206,12 +203,19 @@ export class InstrumentMasterHomePageComponent
         value: this.onChangeStatus(this.selectedRow.status),
       },
       { labelName: 'Inustrument No', value: this.selectedRow.uc0001 },
-      { labelName: 'Inustrument  Code', value: this.selectedRow.ff0001 },
-      { labelName: 'Category', value: this.selectedRow.ff0002 },
-      { labelName: 'Make', value: this.selectedRow.ff0003 },
-      { labelName: 'Model', value: this.selectedRow.ff0005 },
-      { labelName: 'Mfg.Serial no', value: this.selectedRow.ff0006 },
-      { labelName: 'Installed  on ', value: this.selectedRow.ff0007 },
+      { labelName: 'Inustrument Category No', value: this.selectedRow.ff0001 },
+      { labelName: 'Category No', value: this.selectedRow.ff0002 },
+      { labelName: 'Category Code', value: this.selectedRow.ff0003 },
+      { labelName: 'Category Name', value: this.selectedRow.ff0004 },
+      { labelName: 'Category Type', value: this.selectedRow.ff0005 },
+      { labelName: 'Depatment', value: this.selectedRow.ff0006 },
+      { labelName: 'Make', value: this.selectedRow.ff0007 },
+      { labelName: 'Model', value: this.selectedRow.ff0008 },
+      { labelName: 'Mfg.Serial No', value: this.selectedRow.ff0009 },
+      { labelName: 'Installed on ', value: this.selectedRow.ff0010 },
+      { labelName: 'Warentry Expiry On', value: this.selectedRow.ff0011 },
+      { labelName: 'Supplier Code', value: this.selectedRow.ff0012 },
+      { labelName: 'software', value: this.selectedRow.ff0013 },
       { labelName: 'Createdon', value: this.selectedRow.createdon },
       { labelName: 'Createdby', value: this.selectedRow.createdby },
       { labelName: 'Comments', value: this.selectedRow.comments },
@@ -269,12 +273,19 @@ export class InstrumentMasterHomePageComponent
             value: this.onChangeStatus(item.status),
           },
           { labelName: 'Inustrument No', value: item.uc0001 },
-          { labelName: 'Inustrument  Code', value: item.ff0001 },
-          { labelName: 'Category', value: item.ff0002 },
-          { labelName: 'Make', value: item.ff0003 },
-          { labelName: 'Model', value: item.ff0005 },
-          { labelName: 'Mfg.serial no', value: item.ff0006 },
-          { labelName: 'Installed on', value: item.ff0007 },
+          { labelName: 'Inustrument Category No', value: item.ff0001 },
+          { labelName: 'Category No', value: item.ff0002 },
+          { labelName: 'Category Code', value: item.ff0003 },
+          { labelName: 'Category Name', value: item.ff0004 },
+          { labelName: 'Category Type', value: item.ff0005 },
+          { labelName: 'Depatment', value: item.ff0006 },
+          { labelName: 'Make', value: item.ff0007 },
+          { labelName: 'Model', value: item.ff0008 },
+          { labelName: 'Mfg.Serial No', value: item.ff0009 },
+          { labelName: 'Installed on', value: item.ff0010 },
+          { labelName: 'Warentry Expiry On', value: item.ff0011 },
+          { labelName: 'Supplier Code', value: item.ff0012 },
+          { labelName: 'software', value: item.ff0013 },
           { labelName: 'Createdon', value: item.createdon },
           { labelName: 'Createdby', value: item.createdby },
           { labelName: 'Comments', value: item.comments },
@@ -293,10 +304,10 @@ export class InstrumentMasterHomePageComponent
   columnConfig = {
     action: 'Action',
     uc0001: 'Instrument No',
-    ff0001: 'Instrument Code',
-    ff0002: 'Category',
-    ff0004: 'Organization Unit Code',
-    ff0005: 'Mfg.Serial no',
+    ff0001: 'Instrument Category No',
+    ff0002: 'Category No',
+    ff0003: 'Category Code',
+    ff0004: 'Category Name',
     status: 'Status',
     version: 'Version',
     createdon: 'CreatedOn',
