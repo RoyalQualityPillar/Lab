@@ -37,6 +37,11 @@ implements OnInit {
   buTypeList: any;
   unitList: any;
   formData: any;
+  icMasterList: any;
+  deptCodeList: any;
+  clfMasterList: any;
+  imMasterList: any;
+  cdIndexList: any;
   isLoading = false;
   statusList: any;
   displayedColumns: any;
@@ -82,10 +87,7 @@ implements OnInit {
     this.DepartmentMaster.controls['unitcode'].patchValue(
       this.cookieService.get('buCode')
     );
-   
-    // this.onLoadStatusDropDown();
-    this.onloadDropDown();
-    this.onloadDFListDropDown();
+    this.onloadDeptListDropDown();
     this.onLoadStatusDropDown();
     if (this.userData.type == 'Modification') {
       this.isReadOnly = true;
@@ -96,28 +98,17 @@ implements OnInit {
       this.isUpdate = false;
     }
   }
-  dfList: any;
-  onloadDFListDropDown() {
+ onloadDeptListDropDown() {
     this.isLoading = true;
-    this.calibrationSchService.getDropDownList(this.cookieService.get('buCode')).subscribe((data: any) => {
+    this.calibrationSchService.getDropDownDeptList(this.cookieService.get('buCode')).subscribe((data: any) => {
       console.log(data);
-      this.dfList = data.data.dfList;
+      this.clfMasterList = data.data.clfMasterList;
+      this.imMasterList = data.data.imMasterList;
+      this.cdIndexList = data.data.cdIndexList;
       this.isLoading = false;
     });
   }
-  buUnitList: any;
-  mtMasterList: any;
-  utMasterList: any;
-  onloadDropDown() {
-    this.isLoading = true;
-    this.calibrationSchService.getDropDownList(this.cookieService.get('buCode')).subscribe((data: any) => {
-      console.log(data);
-      this.buUnitList = data.data.buUnitList;
-      this.mtMasterList = data.data.mtMasterList;
-      this.utMasterList = data.data.utMasterList;
-      this.isLoading = false;
-    });
-  }
+ 
   onLoadStatusDropDown() {
     this.isLoading = true;
     this.adminService.getDropDownList().subscribe((data: any) => {
@@ -205,36 +196,7 @@ implements OnInit {
       }
     });
   }
-  // onCreate() {
-  //   this.isLoading = true;
-  //   this.DepartmentMaster.controls['ff0010'].setValue('test');
-  //   this.DepartmentMaster.controls['ff0012'].setValue('test');
-  //   this.DepartmentMaster.controls['ff0013'].setValue('test');
-  //   this.DepartmentMaster.controls['ff0014'].setValue('test');
-  //   this.DepartmentMaster.controls['ff0015'].setValue('test');
-  //   this.DepartmentMaster.controls['createdby'].setValue(
-  //     this.cookieService.get('userId')
-  //   );
-  //   this.calibrationSchService
-  //     .onCreate(this.DepartmentMaster.value)
-  //     .subscribe((data: any) => {
-  //       if (data.errorInfo != null) {
-  //         this.isLoading = false;
-  //         this.dialog.open(MessageDialogComponent, {
-  //           data: {
-  //             message: data.errorInfo.message,
-  //             heading: 'Error Information',
-  //           },
-  //         });
-  //       } else {
-  //         this.isLoading = false;
-  //         this.notificationService.showSuccess(data.status, () => {
-  //           console.log('Success Snackbar Closed');
-  //         });
-  //         this.dialogRef.close();
-  //       }
-  //     });
-  // }
+  
     onCreate() {
           this.isLoading = true;
           this.DepartmentMaster.controls['createdby'].setValue(
@@ -270,92 +232,188 @@ implements OnInit {
   onClear() {
     this.DepartmentMaster.reset();
   }
-  openPlantCodeLOV() {
+  
+onChangeModuleNo() {
+    if (this.DepartmentMaster.controls['ff0001'].value == '') {
+      this.DepartmentMaster.controls['ff0001'].setValue('');
+      this.isStatusSuccess = false;
+      let statusCurrentValue = this.DepartmentMaster.controls['ff0001'].value;
+      this.imMasterList.forEach((elements) => {
+        if (elements.productNO == statusCurrentValue) {
+          this.isStatusSuccess = true;
+        }
+      });
+      if (this.isStatusSuccess == false) {
+        this.DepartmentMaster.controls['ff0001'].setErrors({ incorrect: true });
+        this.openModuleNoLOV();
+      }
+    }
+  }
+   openModuleNoLOV() {
     this.displayedColumns = [
-      { field: 'buunitcode', title: 'Code' },
-      { field: 'buunitname', title: 'Description' },
+      { field: 'unitName', title: 'Department Name' },
+      { field: 'unitCode', title: 'Department Code' },
     ];
     const dialogRef = this.dialog.open(LovDialogComponent, {
       height: '500px',
       width: '600px',
       data: {
-        dialogTitle: 'Plant Code',
+        dialogTitle: 'Im Master List',
         dialogColumns: this.displayedColumns,
-        dialogData: this.buUnitList,
-        lovName: 'businessUnitList',
+        dialogData: this.imMasterList,
+        lovName: 'deptCodeList',
       },
       disableClose: true,
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.selectedDialogData = result.data;
-        this.DepartmentMaster.controls['ff0004'].setValue(
-          this.selectedDialogData.buunitcode
+        this.DepartmentMaster.controls['ff0001'].setValue(
+          this.selectedDialogData.unitCode
         );
       }
     });
   }
 
-  onChangePlantCode() {
-    if (this.DepartmentMaster.controls['ff0004'].value == '') {
-      this.DepartmentMaster.controls['ff0004'].setValue('');
-    } else {
-      let currentPlantCodeValue =
-        this.DepartmentMaster.controls['ff0004'].value;
-      this.isPlantCodeSuccess = false;
-      this.buUnitList.forEach((elements) => {
-        if (elements.buunitcode == currentPlantCodeValue) {
-          this.isPlantCodeSuccess = true;
+  onChangeSheetNo() {
+    if (this.DepartmentMaster.controls['ff0002'].value == '') {
+      this.DepartmentMaster.controls['ff0002'].setValue('');
+      this.isStatusSuccess = false;
+      let statusCurrentValue = this.DepartmentMaster.controls['ff0002'].value;
+      this.cdIndexList.forEach((elements) => {
+        if (elements.productNO == statusCurrentValue) {
+          this.isStatusSuccess = true;
         }
       });
-      if (this.isPlantCodeSuccess == false) {
-        this.DepartmentMaster.controls['ff0004'].setErrors({ incorrect: true });
-        this.openPlantCodeLOV();
+      if (this.isStatusSuccess == false) {
+        this.DepartmentMaster.controls['ff0002'].setErrors({ incorrect: true });
+        this.openSheetNoLOV();
       }
     }
   }
-  // openProductCategoryLOV() {
-  //   this.displayedColumns = [
-  //     { field: 'mtCode', title: 'Product Category Code' },
-  //     { field: 'mtName', title: 'Product Category Name' },
-  //   ];
-  //   const dialogRef = this.dialog.open(LovDialogComponent, {
-  //     height: '500px',
-  //     width: '600px',
-  //     data: {
-  //       dialogTitle: 'Product Category',
-  //       dialogColumns: this.displayedColumns,
-  //       dialogData: this.mtMasterList,
-  //       lovName: 'businessUnitList',
-  //     },
-  //     disableClose: true,
-  //   });
-  //   dialogRef.afterClosed().subscribe((result) => {
-  //     if (result) {
-  //       this.selectedDialogData = result.data;
-  //       this.DepartmentMaster.controls['ff0005'].setValue(
-  //         this.selectedDialogData.mtCode
-  //       );
-  //     }
-  //   });
-  // }
-  // onChangeProductCategory() {
-  //   if (this.DepartmentMaster.controls['ff0005'].value == '') {
-  //     this.DepartmentMaster.controls['ff0005'].setValue('');
-  //   } else {
-  //     this.isStatusSuccess = false;
-  //     let statusCurrentValue = this.DepartmentMaster.controls['ff0005'].value;
-  //     this.mtMasterList.forEach((elements) => {
-  //       if (elements.mtCode == statusCurrentValue) {
-  //         this.isStatusSuccess = true;
-  //       }
-  //     });
-  //     if (this.isStatusSuccess == false) {
-  //       this.DepartmentMaster.controls['ff0005'].setErrors({ incorrect: true });
-  //       this.openProductCategoryLOV();
-  //     }
-  //   }
-  // }
+
+   onChangeFrequencyCode() {
+    if (this.DepartmentMaster.controls['ff0003'].value == '') {
+      this.DepartmentMaster.controls['ff0003'].setValue('');
+      this.DepartmentMaster.controls['ff0006'].setValue('');
+      this.DepartmentMaster.controls['ff0007'].setValue('');
+      this.isStatusSuccess = false;
+      let statusCurrentValue = this.DepartmentMaster.controls['ff0003'].value;
+      this.clfMasterList.forEach((elements) => {
+        if (elements.productNO == statusCurrentValue) {
+          this.isStatusSuccess = true;
+        }
+      });
+      if (this.isStatusSuccess == false) {
+        this.DepartmentMaster.controls['ff0003'].setErrors({ incorrect: true });
+        this.DepartmentMaster.controls['ff0006'].setErrors({ incorrect: true });
+        this.DepartmentMaster.controls['ff0007'].setErrors({ incorrect: true });
+        this.openFrequencyListLOV();
+      }
+    }
+  }
+    onChangeScheduleCount() {
+    if (this.DepartmentMaster.controls['ff0006'].value == '') {
+      this.DepartmentMaster.controls['ff0006'].setValue('');
+      this.DepartmentMaster.controls['ff0003'].setValue('');
+      this.DepartmentMaster.controls['ff0007'].setValue('');
+      this.isStatusSuccess = false;
+      let statusCurrentValue = this.DepartmentMaster.controls['ff0006'].value;
+      this.clfMasterList.forEach((elements) => {
+        if (elements.productNO == statusCurrentValue) {
+          this.isStatusSuccess = true;
+        }
+      });
+      if (this.isStatusSuccess == false) {
+        this.DepartmentMaster.controls['ff0006'].setErrors({ incorrect: true });
+        this.DepartmentMaster.controls['ff0003'].setErrors({ incorrect: true });
+        this.DepartmentMaster.controls['ff0007'].setErrors({ incorrect: true });
+        this.openFrequencyListLOV();
+      }
+    }
+  }
+    onChangeFrequencyType() {
+    if (this.DepartmentMaster.controls['ff0007'].value == '') {
+      this.DepartmentMaster.controls['ff0007'].setValue('');
+      this.DepartmentMaster.controls['ff0003'].setValue('');
+      this.DepartmentMaster.controls['ff0006'].setValue('');
+      this.isStatusSuccess = false;
+      let statusCurrentValue = this.DepartmentMaster.controls['ff0007'].value;
+      this.clfMasterList.forEach((elements) => {
+        if (elements.productNO == statusCurrentValue) {
+          this.isStatusSuccess = true;
+        }
+      });
+      if (this.isStatusSuccess == false) {
+        this.DepartmentMaster.controls['ff0007'].setErrors({ incorrect: true });
+        this.DepartmentMaster.controls['ff0003'].setErrors({ incorrect: true });
+        this.DepartmentMaster.controls['ff0006'].setErrors({ incorrect: true });
+        this.openFrequencyListLOV();
+      }
+    }
+  }
+
+
+   openFrequencyListLOV() {
+    this.displayedColumns = [
+      { field: 'ff0001', title: 'Frequency Code' },
+      { field: 'ff0002', title: 'Schedule Count' },
+      { field: 'ff0003', title: 'Frequency Type' },
+    ];
+    const dialogRef = this.dialog.open(LovDialogComponent, {
+      height: '500px',
+      width: '600px',
+      data: {
+        dialogTitle: 'Clf Master List',
+        dialogColumns: this.displayedColumns,
+        dialogData: this.clfMasterList,
+        lovName: 'deptCodeList',
+      },
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.selectedDialogData = result.data;
+        
+        this.DepartmentMaster.controls['ff0003'].setValue(
+          this.selectedDialogData.ff0001
+        );
+        this.DepartmentMaster.controls['ff0006'].setValue(
+          this.selectedDialogData.ff0002
+        );
+        this.DepartmentMaster.controls['ff0007'].setValue(
+          this.selectedDialogData.ff0003
+        );
+      }
+    });
+  }
+
+   openSheetNoLOV() {
+    this.displayedColumns = [
+      { field: 'unitName', title: 'Department Name' },
+      { field: 'unitCode', title: 'Department Code' },
+    ];
+    const dialogRef = this.dialog.open(LovDialogComponent, {
+      height: '500px',
+      width: '600px',
+      data: {
+        dialogTitle: 'Cd Index List',
+        dialogColumns: this.displayedColumns,
+        dialogData: this.cdIndexList,
+        lovName: 'deptCodeList',
+      },
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.selectedDialogData = result.data;
+        this.DepartmentMaster.controls['ff0002'].setValue(
+          this.selectedDialogData.unitCode
+        );
+      }
+    });
+  }
+
   openStatusLOV() {
     this.displayedColumns = [
       { field: 'code', title: 'Status Code' },
@@ -381,90 +439,7 @@ implements OnInit {
       }
     });
   }
-  onChangeDosageForm() {
-    if (this.DepartmentMaster.controls['ff0006'].value == '') {
-      this.DepartmentMaster.controls['ff0006'].setValue('');
-    } else {
-      this.isStatusSuccess = false;
-      let statusCurrentValue = this.DepartmentMaster.controls['ff0006'].value;
-      this.dfList.forEach((elements) => {
-        if (elements.dfCode == statusCurrentValue) {
-          this.isStatusSuccess = true;
-        }
-      });
-      if (this.isStatusSuccess == false) {
-        this.DepartmentMaster.controls['ff0006'].setErrors({ incorrect: true });
-        this.openDosageFormLOV();
-      }
-    }
-  }
-  openDosageFormLOV() {
-    this.displayedColumns = [
-      { field: 'dfCode', title: 'Dosage Form Code' },
-      { field: 'dfName', title: 'Dosage Form Name' },
-    ];
-    const dialogRef = this.dialog.open(LovDialogComponent, {
-      height: '500px',
-      width: '600px',
-      data: {
-        dialogTitle: 'Dosage Form',
-        dialogColumns: this.displayedColumns,
-        dialogData: this.dfList,
-        lovName: 'Dosage Form List',
-      },
-      disableClose: true,
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.selectedDialogData = result.data;
-        this.DepartmentMaster.controls['ff0006'].setValue(
-          this.selectedDialogData.dfCode
-        );
-      }
-    });
-  }
-  openUOMLOV() {
-    this.displayedColumns = [
-      { field: 'utCode', title: 'UOM Code' },
-      { field: 'utName', title: 'UOM Name' },
-    ];
-    const dialogRef = this.dialog.open(LovDialogComponent, {
-      height: '500px',
-      width: '600px',
-      data: {
-        dialogTitle: 'UOM',
-        dialogColumns: this.displayedColumns,
-        dialogData: this.utMasterList,
-        lovName: 'businessUnitList',
-      },
-      disableClose: true,
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.selectedDialogData = result.data;
-        this.DepartmentMaster.controls['ff0007'].setValue(
-          this.selectedDialogData.utName
-        );
-      }
-    });
-  }
-  onChangeUOM() {
-    if (this.DepartmentMaster.controls['ff0007'].value == '') {
-      this.DepartmentMaster.controls['ff0007'].setValue('');
-    } else {
-      this.isStatusSuccess = false;
-      let statusCurrentValue = this.DepartmentMaster.controls['ff0007'].value;
-      this.utMasterList.forEach((elements) => {
-        if (elements.utCode == statusCurrentValue) {
-          this.isStatusSuccess = true;
-        }
-      });
-      if (this.isStatusSuccess == false) {
-        this.DepartmentMaster.controls['ff0007'].setErrors({ incorrect: true });
-        this.openUOMLOV();
-      }
-    }
-  }
+
   onChangeStatus() {
     if (this.DepartmentMaster.controls['status'].value == '') {
       this.DepartmentMaster.controls['status'].setValue('');

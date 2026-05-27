@@ -30,12 +30,11 @@ export class CalibrationSchService {
   
       return this.http.get(fetchAllBusinessUnitInfoApiUrl);
     }
-     getDropDownList(unitCode: any) {
-      let queryParams = `?unitCode=${unitCode}`;
-      let fetchAllBusinessUnitInfoApiUrl = this.API_URL + 'sd/input' + queryParams;
-  
-      return this.http.get(fetchAllBusinessUnitInfoApiUrl);
-    }
+    getDropDownDeptList(unitCode: any) {
+   let queryParams = `?unitCode=${unitCode}`;
+    const ALLSALEPRODUCTURL = this.API_URL + 'limsm-im/input' + queryParams;
+    return this.http.get(ALLSALEPRODUCTURL);
+  }
         }
     
     

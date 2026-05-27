@@ -43,7 +43,7 @@
               </mat-form-field>
             </div>
             <div class="row no-gutters ms-1 me-1 dense-4">
-              <div class="orgCode">
+              <!-- <div class="orgCode">
                 <mat-form-field appearance="outline" class="col-12 px-1">
                   <mat-label>Organization Unit Code</mat-label>
                   <input
@@ -54,7 +54,7 @@
                     (change)="onChangePlantCode()"
                   />
                 </mat-form-field>
-              </div>
+              </div> -->
 
              
             </div>
@@ -71,12 +71,20 @@
                   />
                 </mat-form-field>
               <mat-form-field appearance="outline" class="col-6 px-1">
-                <mat-label>Module  No</mat-label>
+                <mat-label>Inustrument No</mat-label>
                 <input
                   type="text"
                   matInput
                   formControlName="ff0001"
-                  placeholder="Module  No"
+                  placeholder="Inustrument No"
+                  (change)="onChangeModuleNo()"
+                />
+                 <img
+                  alt="lov img"
+                  src="../../../../../../assets/searchfind.svg"
+                  class="icon-size lovSearchButton"
+                  color="primary"
+                  (click)="openModuleNoLOV()"
                 />
               </mat-form-field>
 
@@ -87,6 +95,15 @@
                   matInput
                   formControlName="ff0002"
                   placeholder="Data Sheet No."
+                  (change)="onChangeSheetNo()"
+
+                />
+                 <img
+                  alt="lov img"
+                  src="../../../../../../assets/searchfind.svg"
+                  class="icon-size lovSearchButton"
+                  color="primary"
+                  (click)="openSheetNoLOV()"
                 />
               </mat-form-field>
 
@@ -97,6 +114,14 @@
                   matInput
                   formControlName="ff0003"
                   placeholder="Frequency Code"
+                  (change)="onChangeFrequencyCode()"
+                />
+                 <img
+                  alt="lov img"
+                  src="../../../../../../assets/searchfind.svg"
+                  class="icon-size lovSearchButton"
+                  color="primary"
+                  (click)="openFrequencyListLOV()"
                 />
               </mat-form-field>
                <mat-form-field appearance="outline" class="col-6 px-1">
@@ -104,9 +129,15 @@
                 <input
                   type="text"
                   matInput
+                   [matDatepicker]="picker"
                   formControlName="ff0004"
                   placeholder="Start Date"
                 />
+                 <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
                </mat-form-field>
                <mat-form-field appearance="outline" class="col-6 px-1">
                 <mat-label>Schedule Count Type</mat-label>
@@ -124,6 +155,15 @@
                   matInput
                   formControlName="ff0006"
                   placeholder="Schedule Count"
+                  (change)="onChangeScheduleCount()"
+
+                />
+                 <img
+                  alt="lov img"
+                  src="../../../../../../assets/searchfind.svg"
+                  class="icon-size lovSearchButton"
+                  color="primary"
+                  (click)="openFrequencyListLOV()"
                 />
               </mat-form-field>
                <mat-form-field appearance="outline" class="col-6 px-1">
@@ -133,6 +173,15 @@
                   matInput
                   formControlName="ff0007"
                   placeholder="Frequency Type"
+                  (change)="onChangeFrequencyType()"
+
+                />
+                 <img
+                  alt="lov img"
+                  src="../../../../../../assets/searchfind.svg"
+                  class="icon-size lovSearchButton"
+                  color="primary"
+                  (click)="openFrequencyListLOV()"
                 />
               </mat-form-field>
             </div>
