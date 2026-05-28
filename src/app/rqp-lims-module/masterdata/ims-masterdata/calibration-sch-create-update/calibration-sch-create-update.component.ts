@@ -40,7 +40,7 @@ implements OnInit {
   icMasterList: any;
   deptCodeList: any;
   clfMasterList: any;
-  imMasterList: any;
+  // imMasterList: any;
   cdIndexList: any;
   isLoading = false;
   statusList: any;
@@ -103,7 +103,7 @@ implements OnInit {
     this.calibrationSchService.getDropDownDeptList(this.cookieService.get('buCode')).subscribe((data: any) => {
       console.log(data);
       this.clfMasterList = data.data.clfMasterList;
-      this.imMasterList = data.data.imMasterList;
+      // this.imMasterList = data.data.imMasterList;
       this.cdIndexList = data.data.cdIndexList;
       this.isLoading = false;
     });
@@ -236,41 +236,46 @@ implements OnInit {
 onChangeModuleNo() {
     if (this.DepartmentMaster.controls['ff0001'].value == '') {
       this.DepartmentMaster.controls['ff0001'].setValue('');
+      this.DepartmentMaster.controls['ff0002'].setValue('');
       this.isStatusSuccess = false;
       let statusCurrentValue = this.DepartmentMaster.controls['ff0001'].value;
-      this.imMasterList.forEach((elements) => {
+      this.cdIndexList.forEach((elements) => {
         if (elements.productNO == statusCurrentValue) {
           this.isStatusSuccess = true;
         }
       });
       if (this.isStatusSuccess == false) {
         this.DepartmentMaster.controls['ff0001'].setErrors({ incorrect: true });
-        this.openModuleNoLOV();
+        this.DepartmentMaster.controls['ff0002'].setErrors({ incorrect: true });
+        this.openCIndexListLOV();
       }
     }
   }
-   openModuleNoLOV() {
+   openCIndexListLOV() {
     this.displayedColumns = [
-      { field: 'unitName', title: 'Department Name' },
-      { field: 'unitCode', title: 'Department Code' },
+      { field: 'ff0001', title: 'Department Name' },
+      { field: 'lc0002', title: 'Department Code' },
     ];
     const dialogRef = this.dialog.open(LovDialogComponent, {
       height: '500px',
       width: '600px',
       data: {
-        dialogTitle: 'Im Master List',
+        dialogTitle: 'Cd Index List',
         dialogColumns: this.displayedColumns,
-        dialogData: this.imMasterList,
+        dialogData: this.cdIndexList,
         lovName: 'deptCodeList',
       },
-      
+
       disableClose: true,
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.selectedDialogData = result.data;
         this.DepartmentMaster.controls['ff0001'].setValue(
-          this.selectedDialogData.unitCode
+          this.selectedDialogData.ff0001
+        );
+        this.DepartmentMaster.controls['ff0002'].setValue(
+          this.selectedDialogData.lc0002
         );
       }
     });
@@ -279,6 +284,7 @@ onChangeModuleNo() {
   onChangeSheetNo() {
     if (this.DepartmentMaster.controls['ff0002'].value == '') {
       this.DepartmentMaster.controls['ff0002'].setValue('');
+      this.DepartmentMaster.controls['ff0001'].setValue('');
       this.isStatusSuccess = false;
       let statusCurrentValue = this.DepartmentMaster.controls['ff0002'].value;
       this.cdIndexList.forEach((elements) => {
@@ -288,7 +294,8 @@ onChangeModuleNo() {
       });
       if (this.isStatusSuccess == false) {
         this.DepartmentMaster.controls['ff0002'].setErrors({ incorrect: true });
-        this.openSheetNoLOV();
+        this.DepartmentMaster.controls['ff0001'].setErrors({ incorrect: true });
+        this.openCIndexListLOV();
       }
     }
   }
@@ -377,39 +384,13 @@ onChangeModuleNo() {
         this.selectedDialogData = result.data;
         
         this.DepartmentMaster.controls['ff0003'].setValue(
-          this.selectedDialogData.ff0001
+          this.selectedDialogData.ff0002
         );
         this.DepartmentMaster.controls['ff0006'].setValue(
-          this.selectedDialogData.ff0002
+          this.selectedDialogData.ff0001
         );
         this.DepartmentMaster.controls['ff0007'].setValue(
           this.selectedDialogData.ff0003
-        );
-      }
-    });
-  }
-
-   openSheetNoLOV() {
-    this.displayedColumns = [
-      { field: 'unitName', title: 'Department Name' },
-      { field: 'unitCode', title: 'Department Code' },
-    ];
-    const dialogRef = this.dialog.open(LovDialogComponent, {
-      height: '500px',
-      width: '600px',
-      data: {
-        dialogTitle: 'Cd Index List',
-        dialogColumns: this.displayedColumns,
-        dialogData: this.cdIndexList,
-        lovName: 'deptCodeList',
-      },
-      disableClose: true,
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.selectedDialogData = result.data;
-        this.DepartmentMaster.controls['ff0002'].setValue(
-          this.selectedDialogData.unitCode
         );
       }
     });

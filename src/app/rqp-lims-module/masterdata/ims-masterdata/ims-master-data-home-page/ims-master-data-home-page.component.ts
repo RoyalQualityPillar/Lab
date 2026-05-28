@@ -20,11 +20,9 @@ export class ImsMasterDataHomePageComponent {
   onCalibrationSchedule() {
     this.router.navigate(['./rqplabui/lims/calibration-sch-home-page'])
   }
-
   onCalibrationFrequency() {
     this.router.navigate(['./rqplabui/lims/calibration-freq-home-page'])
-
-  }
+ }
 
   onCalibrationRecordSchedule() {
     this.router.navigate(['./rqplabui/lims/calibration-rec-sch-home-page'])
