@@ -263,6 +263,7 @@ onChangeModuleNo() {
         dialogData: this.imMasterList,
         lovName: 'deptCodeList',
       },
+      
       disableClose: true,
     });
     dialogRef.afterClosed().subscribe((result) => {
