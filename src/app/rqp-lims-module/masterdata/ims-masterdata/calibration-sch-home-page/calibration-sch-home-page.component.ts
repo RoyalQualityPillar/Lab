@@ -13,6 +13,7 @@ import { CalibrationSchCreateUpdateComponent } from '../calibration-sch-create-u
 import { changeStatusByCode } from 'src/app/common/removeEmptyStrings';
 import { CalibrationSchService } from '../calibration-sch.service';
 import { GlobalConstants } from 'src/app/common/global-constants';
+import { MessageService } from 'src/app/service/message.service';
 
 @Component({
   selector: 'app-calibration-sch-home-page',
@@ -54,7 +55,9 @@ export class CalibrationSchHomePageComponent
     public dialog: MatDialog,
     public cookieService: CookieService,
     private apiService: ApiService,
-    private remoteLoader: RemoteComponentLoaderService
+        public messageService: MessageService,
+    private remoteLoader: RemoteComponentLoaderService,
+    
 
   ) { }
   filterObject: any;
@@ -74,7 +77,39 @@ export class CalibrationSchHomePageComponent
     console.log('Bharat');
     this.loadRoleMasterTableFilter();
     this.loadActiveRoleMasterTableFilter();
+    this.manualSchedule();
   }
+    public manualSchedule() {
+    // this.isLoading = true;
+    this.calibrationSchService.onManualSchedulTrail(this.selectedId.uc0001).subscribe((data: any) => {
+      if (data.errorInfo != null) {
+        this.dialog.open(MessageDialogComponent, {
+          data: {
+            message: data.errorInfo.message,
+            heading: 'Error Information',
+          },
+        });
+      } 
+      else {
+        this.messageService.sendSnackbar('success', data.status);
+      }    });
+  }
+  selectedId:any;
+  //   public manualSchedule() {
+  //   this.calibrationSchService.onManualSchedulTrail(this.selectedId.uc0001).subscribe((data) => {
+  //     if (data.errorInfo != null) {
+  //       this.dialog.open(MessageDialogComponent, {
+  //         data: {
+  //           message: data.errorInfo.message,
+  //           heading: 'Error Information',
+  //         },
+  //       });
+  //     } 
+  //     else {
+  //       this.messageService.sendSnackbar('success', data.status);
+  //     }
+  //   });
+  // }
 
   async loadRoleMasterTableFilter() {
     try {
@@ -258,6 +293,7 @@ export class CalibrationSchHomePageComponent
         });
     }
   }
+  
   formatedData: any;
   async structureResponse(apiResponse: any) {
     const rows = apiResponse.map((item) => {
@@ -314,6 +350,8 @@ export class CalibrationSchHomePageComponent
   activeButtonConfig = [
     { label: ' Audit Trail', action: 'Audit_Trail', color: 'primary' },
     { label: 'Update', action: 'Update', color: 'accent' },
+    { label: ' Manual Schedule', action: 'Manual_Schedule', color: 'primary' },
+
     // Add more button configurations as needed
   ];
   // selectedRow:any;
@@ -338,9 +376,19 @@ export class CalibrationSchHomePageComponent
       case 'Update':
         this.onActiveSelectRow();
         break;
+      // case 'Manual_Schedule':
+      //   this.manualSchedule();
+      //   break;
     }
   }
+ 
+buttonAction(action: string) {
 
+  if (action === 'Manual_Schedule') {
+    this.manualSchedule();
+  }
+
+}
   handleSubmit(row: any) {
     console.log(row);
     console.log('submitBtn');
