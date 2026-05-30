@@ -43,5 +43,8 @@ export class ImsMasterDataHomePageComponent {
   onEvenLogMaster() {
     this.router.navigate(['./rqplabui/lims/even-log-master-home-page'])
   }
+  onInstrumentStatusMaster() {
+    this.router.navigate(['./rqplabui/lims/home-page-instrument-status'])
+  }
 }
 

@@ -1398,6 +1398,15 @@ export enum apiEndPoints {
   EvenLogAllAuditTrail = 'at/evenlog-master/get-by-code-all',
 
 
+   /*********Instrument Status Master******/
+  allIuMasterTabledata = 'limsm-im/iu-status/get-all',
+  activeIuMasterTabledata = 'limsm-im/iu-status/get-max-all',
+  IuMasterUserProfileFilterData = 'limsm-im/iu-status/search',
+  IuMasterCreateUpdate = 'limsm-im/iu-status/save-update',
+  IuMasterLoadUpdatePage = 'limsm-im/iu-status/get-by-max-code',
+  IuMasterAllAuditTrail = 'limsm-im/iu-status/get-by-code-all',
+
+
              /****************Cleaningcategory*********************/
 
 
