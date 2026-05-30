@@ -81,6 +81,8 @@ import { CuHomeComponent } from '../cm/cu/cu-home/cu-home.component';
 import { CmInitiatorComponent } from '../cm/cm/cm-initiator/cm-initiator.component';
 //import { CaUpdateComponent } from '../cm/ca/ca-update/ca-update.component';
 import { PmsListComponent } from '../pms-list/pms-list.component';
+import { CreateUpdateInstrumentStatusComponent } from '../masterdata/ims-masterdata/instrument-status-master/create-update-instrument-status/create-update-instrument-status.component';
+import { HomePageInstrumentStatusComponent } from '../masterdata/ims-masterdata/instrument-status-master/home-page-instrument-status/home-page-instrument-status.component';
 
 
 @NgModule({
@@ -158,6 +160,8 @@ import { PmsListComponent } from '../pms-list/pms-list.component';
     CuHomeComponent,
     EvenLogMasterHomePageComponent,   
     PmsListComponent,
+    CreateUpdateInstrumentStatusComponent,
+    HomePageInstrumentStatusComponent,
 
   ],
   imports: [
