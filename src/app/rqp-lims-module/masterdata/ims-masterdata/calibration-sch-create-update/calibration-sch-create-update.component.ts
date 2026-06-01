@@ -27,9 +27,9 @@ export interface userData {
   templateUrl: './calibration-sch-create-update.component.html',
   styleUrl: './calibration-sch-create-update.component.scss'
 })
-export class CalibrationSchCreateUpdateComponent 
+export class CalibrationSchCreateUpdateComponent
 
-implements OnInit {
+  implements OnInit {
   isReadOnly = true;
   isUpdate = false;
   DepartmentMaster: FormGroup;
@@ -48,8 +48,8 @@ implements OnInit {
   selectedDialogData: any;
   isStatusSuccess = false;
   isPlantCodeSuccess = false;
-       private destroy$ = new Subject<void>();
-  
+  private destroy$ = new Subject<void>();
+
 
   constructor(
     public fb: FormBuilder,
@@ -59,13 +59,13 @@ implements OnInit {
     private notificationService: NotificationService,
     public buttonLabelService: ButtonLabelService,
     private cookieService: CookieService,
-     private calibrationSchService: CalibrationSchService,
+    private calibrationSchService: CalibrationSchService,
     public dialogRef: MatDialogRef<CalibrationSchCreateUpdateComponent>,
     @Inject(MAT_DIALOG_DATA) public userData: userData,
     private apiService: ApiService,
-        private remoteLoader: RemoteComponentLoaderService,
-        private route:Router
-    
+    private remoteLoader: RemoteComponentLoaderService,
+    private route: Router
+
   ) {
     this.DepartmentMaster = this.fb.group({
       uc0001: [''],
@@ -78,7 +78,7 @@ implements OnInit {
       ff0007: ['', Validators.required],
       createdby: [''],
       status: [''],
-      comments: ['',Validators.required],
+      comments: ['', Validators.required],
       unitcode: ['']
     });
   }
@@ -98,7 +98,7 @@ implements OnInit {
       this.isUpdate = false;
     }
   }
- onloadDeptListDropDown() {
+  onloadDeptListDropDown() {
     this.isLoading = true;
     this.calibrationSchService.getDropDownDeptList(this.cookieService.get('buCode')).subscribe((data: any) => {
       console.log(data);
@@ -108,7 +108,7 @@ implements OnInit {
       this.isLoading = false;
     });
   }
- 
+
   onLoadStatusDropDown() {
     this.isLoading = true;
     this.adminService.getDropDownList().subscribe((data: any) => {
@@ -178,9 +178,9 @@ implements OnInit {
         }
       });
   }
- async onSaveConfirmation() {
+  async onSaveConfirmation() {
     //  if(this.documentDtoList.length > 0){
-      const component = await this.remoteLoader.loadComponentByKey('CommonESignatureComponent');
+    const component = await this.remoteLoader.loadComponentByKey('CommonESignatureComponent');
     const dialogRef = this.dialog.open(component, {
       height: '300px',
       width: '600px',
@@ -196,44 +196,44 @@ implements OnInit {
       }
     });
   }
-  
-    onCreate() {
-          this.isLoading = true;
-          this.DepartmentMaster.controls['createdby'].setValue(
-            this.cookieService.get('userId')
-          );
-          let params = {};
-          this.calibrationSchService
-            .onCreate(this.DepartmentMaster.value)
-            .subscribe((data: any) => {
-              if (data.errorInfo != null) {
-                this.isLoading = false;
-                this.dialog.open(MessageDialogComponent, {
-                  data: {
-                    message: data.errorInfo.message,
-                    heading: 'Error Information',
-                  },
-                });
-              } else {
-                this.isLoading = false;
-                this.notificationService.showSuccess(data.status, () => { });
-                timer(2000)
-                  .pipe(takeUntil(this.destroy$))
-                  .subscribe(() => {
-                    this.route.navigateByUrl('/rqplabui/lims/calibration-sch-home-page');
-                  });
-              }
-      
-      
-      
+
+  onCreate() {
+    this.isLoading = true;
+    this.DepartmentMaster.controls['createdby'].setValue(
+      this.cookieService.get('userId')
+    );
+    let params = {};
+    this.calibrationSchService
+      .onCreate(this.DepartmentMaster.value)
+      .subscribe((data: any) => {
+        if (data.errorInfo != null) {
+          this.isLoading = false;
+          this.dialog.open(MessageDialogComponent, {
+            data: {
+              message: data.errorInfo.message,
+              heading: 'Error Information',
+            },
+          });
+        } else {
+          this.isLoading = false;
+          this.notificationService.showSuccess(data.status, () => { });
+          timer(2000)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(() => {
+              this.route.navigateByUrl('/rqplabui/lims/calibration-sch-home-page');
             });
-          this.dialogRef.close();
         }
+
+
+
+      });
+    this.dialogRef.close();
+  }
   onClear() {
     this.DepartmentMaster.reset();
   }
-  
-onChangeModuleNo() {
+
+  onChangeModuleNo() {
     if (this.DepartmentMaster.controls['ff0001'].value == '') {
       this.DepartmentMaster.controls['ff0001'].setValue('');
       this.DepartmentMaster.controls['ff0002'].setValue('');
@@ -251,7 +251,7 @@ onChangeModuleNo() {
       }
     }
   }
-   openCIndexListLOV() {
+  openCIndexListLOV() {
     this.displayedColumns = [
       { field: 'ff0001', title: 'Department Name' },
       { field: 'lc0002', title: 'Department Code' },
@@ -300,7 +300,7 @@ onChangeModuleNo() {
     }
   }
 
-   onChangeFrequencyCode() {
+  onChangeFrequencyCode() {
     if (this.DepartmentMaster.controls['ff0003'].value == '') {
       this.DepartmentMaster.controls['ff0003'].setValue('');
       this.DepartmentMaster.controls['ff0006'].setValue('');
@@ -320,7 +320,7 @@ onChangeModuleNo() {
       }
     }
   }
-    onChangeScheduleCount() {
+  onChangeScheduleCount() {
     if (this.DepartmentMaster.controls['ff0006'].value == '') {
       this.DepartmentMaster.controls['ff0006'].setValue('');
       this.DepartmentMaster.controls['ff0003'].setValue('');
@@ -340,7 +340,7 @@ onChangeModuleNo() {
       }
     }
   }
-    onChangeFrequencyType() {
+  onChangeFrequencyType() {
     if (this.DepartmentMaster.controls['ff0007'].value == '') {
       this.DepartmentMaster.controls['ff0007'].setValue('');
       this.DepartmentMaster.controls['ff0003'].setValue('');
@@ -362,7 +362,7 @@ onChangeModuleNo() {
   }
 
 
-   openFrequencyListLOV() {
+  openFrequencyListLOV() {
     this.displayedColumns = [
       { field: 'ff0001', title: 'Frequency Code' },
       { field: 'ff0002', title: 'Schedule Count' },
@@ -382,7 +382,7 @@ onChangeModuleNo() {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.selectedDialogData = result.data;
-        
+
         this.DepartmentMaster.controls['ff0003'].setValue(
           this.selectedDialogData.ff0002
         );
@@ -439,7 +439,7 @@ onChangeModuleNo() {
       }
     }
   }
- onChangePlantCode2 () {
+  onChangePlantCode2() {
     if (this.DepartmentMaster.controls['unitcode'].value == '') {
       this.DepartmentMaster.controls['unitcode'].setValue('');
     } else {

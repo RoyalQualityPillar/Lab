@@ -68,7 +68,7 @@ export class SpmReviewerSaveComponent implements OnInit {
   ngOnInit(): void {
     this.pageData = {
       pageName: 'homePage',
-    };   
+    };
     const reviewData = sessionStorage.getItem('selectedRow');
     let params: any = null;
     if (reviewData) {

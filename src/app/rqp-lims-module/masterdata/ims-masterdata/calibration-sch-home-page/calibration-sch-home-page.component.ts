@@ -14,6 +14,7 @@ import { changeStatusByCode } from 'src/app/common/removeEmptyStrings';
 import { CalibrationSchService } from '../calibration-sch.service';
 import { GlobalConstants } from 'src/app/common/global-constants';
 import { MessageService } from 'src/app/service/message.service';
+import { NotificationService } from 'src/app/common/notification.service';
 
 @Component({
   selector: 'app-calibration-sch-home-page',
@@ -21,9 +22,9 @@ import { MessageService } from 'src/app/service/message.service';
   templateUrl: './calibration-sch-home-page.component.html',
   styleUrl: './calibration-sch-home-page.component.scss'
 })
-export class CalibrationSchHomePageComponent 
+export class CalibrationSchHomePageComponent
 
- implements OnInit, AfterViewInit {
+  implements OnInit, AfterViewInit {
   @ViewChild('commonTableContainer', { read: ViewContainerRef, static: true })
   commonTableContainer!: ViewContainerRef;
   @ViewChild('activeRoleMasterContainer', { read: ViewContainerRef })
@@ -42,8 +43,8 @@ export class CalibrationSchHomePageComponent
   activeUserFilterValueError = false;
   tableData: MatTableDataSource<any>;
   isFilterExpanded = false;
-   activecalibrationschMasterTabledataUrl: any;
-   allcalibrationschMasterTabledataUrl: any;
+  activecalibrationschMasterTabledataUrl: any;
+  allcalibrationschMasterTabledataUrl: any;
   filterApiUrl: any;
   params: any;
   HttpMethod = 'POST';
@@ -51,13 +52,14 @@ export class CalibrationSchHomePageComponent
 
   constructor(
     private router: Router,
-     private calibrationSchService: CalibrationSchService,
+    private calibrationSchService: CalibrationSchService,
+    private notificationService: NotificationService,
     public dialog: MatDialog,
     public cookieService: CookieService,
     private apiService: ApiService,
-        public messageService: MessageService,
+    public messageService: MessageService,
     private remoteLoader: RemoteComponentLoaderService,
-    
+
 
   ) { }
   filterObject: any;
@@ -77,11 +79,10 @@ export class CalibrationSchHomePageComponent
     console.log('Bharat');
     this.loadRoleMasterTableFilter();
     this.loadActiveRoleMasterTableFilter();
-    this.manualSchedule();
   }
-    public manualSchedule() {
-    // this.isLoading = true;
-    this.calibrationSchService.onManualSchedulTrail(this.selectedId.uc0001).subscribe((data: any) => {
+  public manualSchedule(row: any) {
+    this.isLoading = true;
+    this.calibrationSchService.onManualSchedulTrail(row.uc0001).subscribe((data: any) => {
       if (data.errorInfo != null) {
         this.dialog.open(MessageDialogComponent, {
           data: {
@@ -89,28 +90,12 @@ export class CalibrationSchHomePageComponent
             heading: 'Error Information',
           },
         });
-      } 
+      }
       else {
-        this.messageService.sendSnackbar('success', data.status);
-      }    });
+        this.notificationService.showSuccess(data.status, () => { });
+      }
+    });
   }
-  selectedId:any;
-  //   public manualSchedule() {
-  //   this.calibrationSchService.onManualSchedulTrail(this.selectedId.uc0001).subscribe((data) => {
-  //     if (data.errorInfo != null) {
-  //       this.dialog.open(MessageDialogComponent, {
-  //         data: {
-  //           message: data.errorInfo.message,
-  //           heading: 'Error Information',
-  //         },
-  //       });
-  //     } 
-  //     else {
-  //       this.messageService.sendSnackbar('success', data.status);
-  //     }
-  //   });
-  // }
-
   async loadRoleMasterTableFilter() {
     try {
       const component = await this.remoteLoader.loadComponentByKey(
@@ -180,7 +165,7 @@ export class CalibrationSchHomePageComponent
 
   selectedRow: any;
   onOpenRolePOPUP() {
-    const dialogRef = this.dialog.open(CalibrationSchCreateUpdateComponent , {
+    const dialogRef = this.dialog.open(CalibrationSchCreateUpdateComponent, {
       minWidth: '80%',
       data: { tableData: this.selectedRow, type: 'Registration' },
     });
@@ -208,7 +193,7 @@ export class CalibrationSchHomePageComponent
       });
     } else {
       const dialogRef = this.dialog.open(
-        CalibrationSchCreateUpdateComponent ,
+        CalibrationSchCreateUpdateComponent,
         {
           minWidth: '80%',
           data: { tableData: this.selectedRow, type: 'Modification' },
@@ -225,8 +210,8 @@ export class CalibrationSchHomePageComponent
   refreshData() {
     this.loadRoleMasterTableFilter();
     this.loadActiveRoleMasterTableFilter();
-     this.commonTableContainer.clear()
-     this.activeRoleMasterContainer.clear()
+    this.commonTableContainer.clear()
+    this.activeRoleMasterContainer.clear()
 
   }
   onChangeStatus(data: any) {
@@ -293,7 +278,7 @@ export class CalibrationSchHomePageComponent
         });
     }
   }
-  
+
   formatedData: any;
   async structureResponse(apiResponse: any) {
     const rows = apiResponse.map((item) => {
@@ -363,11 +348,12 @@ export class CalibrationSchHomePageComponent
       case 'Audit_Trail':
         this.onSearchAllAuditTrail();
         break;
-      }
+    }
   }
   activeHandleButtonAction(event: { action: string; row: any }) {
     const { action, row } = event;
     this.selectedRow = row; // Set the selected row
+    console.log(row);
     console.log(action);
     switch (action) {
       case 'Audit_Trail':
@@ -376,19 +362,19 @@ export class CalibrationSchHomePageComponent
       case 'Update':
         this.onActiveSelectRow();
         break;
-      // case 'Manual_Schedule':
-      //   this.manualSchedule();
-      //   break;
+      case 'Manual_Schedule':
+        this.manualSchedule(row);
+        break;
     }
   }
- 
-buttonAction(action: string) {
 
-  if (action === 'Manual_Schedule') {
-    this.manualSchedule();
+  buttonAction(action: string) {
+
+    // if (action === 'Manual_Schedule') {
+    //   this.manualSchedule();
+    // }
+
   }
-
-}
   handleSubmit(row: any) {
     console.log(row);
     console.log('submitBtn');
