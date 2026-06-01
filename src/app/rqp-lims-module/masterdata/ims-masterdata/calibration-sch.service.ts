@@ -38,7 +38,7 @@ export class CalibrationSchService {
   //   return this.http.post(nextStageURL,queryParams);
   // }
   public onManualSchedulTrail(uc0001: any): Observable<any> {
-    return this.http.post(this.API_URL + `limsm-im/manual-schedule=${uc0001}`, '');
+    return this.http.post(this.API_URL + `limsm-im/manual-schedule?uc0001=${uc0001}`, '');
   }
     getDropDownDeptList(unitCode: any) {
    let queryParams = `?unitCode=${unitCode}`;
