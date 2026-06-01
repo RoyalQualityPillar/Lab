@@ -96,8 +96,6 @@ export class CalibrationSchHomePageComponent
       }
     });
   }
-  selectedId: any;
-
   async loadRoleMasterTableFilter() {
     try {
       const component = await this.remoteLoader.loadComponentByKey(
