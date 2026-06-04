@@ -83,8 +83,16 @@ import { CmInitiatorComponent } from '../cm/cm/cm-initiator/cm-initiator.compone
 import { PmsListComponent } from '../pms-list/pms-list.component';
 import { CreateUpdateInstrumentStatusComponent } from '../masterdata/ims-masterdata/instrument-status-master/create-update-instrument-status/create-update-instrument-status.component';
 import { HomePageInstrumentStatusComponent } from '../masterdata/ims-masterdata/instrument-status-master/home-page-instrument-status/home-page-instrument-status.component';
+import { IpmInitiatorComponent } from '../ipm/ipm-initiator/ipm-initiator.component';
+import { IpmUpdateComponent } from '../ipm/ipm-update/ipm-update.component';
+import { IpmUpdateSaveComponent } from '../ipm/ipm-update-save/ipm-update-save.component';
+import { IpmReviewerSaveComponent } from '../ipm/ipm-reviewer-save/ipm-reviewer-save.component';
+import { IpmReviewerComponent } from '../ipm/ipm-reviewer/ipm-reviewer.component';
+import { CpmCreateUpdateComponent } from '../masterdata/ims-masterdata/calibraion-perameter-master/cpm-create-update/cpm-create-update.component';
+import { CpmHomePageComponent } from '../masterdata/ims-masterdata/calibraion-perameter-master/cpm-home-page/cpm-home-page.component';
 import { IsmHomeComponent } from '../ism/ism-home/ism-home.component';
 import { IsmInitiatorComponent } from '../ism/ism-initiator/ism-initiator.component';
+
 
 
 @NgModule({
@@ -164,6 +172,13 @@ import { IsmInitiatorComponent } from '../ism/ism-initiator/ism-initiator.compon
     PmsListComponent,
     CreateUpdateInstrumentStatusComponent,
     HomePageInstrumentStatusComponent,
+    IpmInitiatorComponent,
+    IpmUpdateComponent,
+    IpmUpdateSaveComponent,
+    IpmReviewerComponent,
+    IpmReviewerSaveComponent,
+    CpmCreateUpdateComponent,
+    CpmHomePageComponent,
     IsmHomeComponent,
     IsmInitiatorComponent,
 

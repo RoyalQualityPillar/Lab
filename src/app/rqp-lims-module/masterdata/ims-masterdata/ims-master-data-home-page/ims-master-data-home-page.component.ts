@@ -46,5 +46,8 @@ export class ImsMasterDataHomePageComponent {
   onInstrumentStatusMaster() {
     this.router.navigate(['./rqplabui/lims/home-page-instrument-status'])
   }
+  onCalibraionPerameterMaster(){
+    this.router.navigate(['./rqplabui/lims/cpm-home-page'])
+  }
 }
 

@@ -1,0 +1,46 @@
+mat-header-row {
+  background: purple !important;
+  min-height: min-content;
+  border-bottom: 1;
+}
+.example-table-container {
+  min-width: 100%;
+  /* overflow-x: scroll; */
+}
+.example-input-container {
+  min-width: 49%;
+}
+.mat-column-removeRow {
+  flex: 0 0 10%;
+}
+
+.float-left {
+  flex: 1;
+}
+
+.float-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+.section_header_child_1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.section_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* Ensure the header does not wrap */
+  white-space: nowrap;
+}
+.add-btn-container {
+  display: flex;
+  justify-content: flex-start; /* Align items to the left */
+  align-items: center; /* Center items vertically */
+}
+th {
+  color: white;
+  background-color: purple;
+}
