@@ -30,6 +30,11 @@ import { IpmUpdateSaveComponent } from '../ipm/ipm-update-save/ipm-update-save.c
 import { IpmReviewerComponent } from '../ipm/ipm-reviewer/ipm-reviewer.component';
 import { IpmReviewerSaveComponent } from '../ipm/ipm-reviewer-save/ipm-reviewer-save.component';
 import { CpmHomePageComponent } from '../masterdata/ims-masterdata/calibraion-perameter-master/cpm-home-page/cpm-home-page.component';
+import { IsmHomeComponent } from '../ism/ism-home/ism-home.component';
+import { IsmInitiatorComponent } from '../ism/ism-initiator/ism-initiator.component';
+
+// import { IsmInitiatorComponent } from '../ism/ism-initiator/ism-initiator.component';
+// import { IsmHomeComponent } from '../ism/ism-home/ism-home.component';
 //import { CmHomeComponent } from '../cm/cm/cm-home/cm-home.component';
 //import { CaUpdateComponent } from '../cm/ca/ca-update/ca-update.component';
 // import { LimsModuleHomePageComponent } from '../lims-module-home-page/lims-module-home-page.component';
@@ -393,6 +398,14 @@ const routes: Routes = [
     component: IpmReviewerSaveComponent,
   },
  
+  {
+   path: 'ism-home',
+    component: IsmHomeComponent,
+  },
+  {
+  path: 'ism-initiator',
+    component: IsmInitiatorComponent,
+  },
 
 
 

@@ -8,7 +8,11 @@ describe('ItemNameNoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+<<<<<<< HEAD
       declarations: [ ItemNameNoComponent ]
+=======
+      declarations: [ItemNameNoComponent]
+>>>>>>> c1dd0cab77d773e794ac76c4925113411d037d5c
     })
     .compileComponents();
 

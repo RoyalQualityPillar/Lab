@@ -90,6 +90,9 @@ import { IpmReviewerSaveComponent } from '../ipm/ipm-reviewer-save/ipm-reviewer-
 import { IpmReviewerComponent } from '../ipm/ipm-reviewer/ipm-reviewer.component';
 import { CpmCreateUpdateComponent } from '../masterdata/ims-masterdata/calibraion-perameter-master/cpm-create-update/cpm-create-update.component';
 import { CpmHomePageComponent } from '../masterdata/ims-masterdata/calibraion-perameter-master/cpm-home-page/cpm-home-page.component';
+import { IsmHomeComponent } from '../ism/ism-home/ism-home.component';
+import { IsmInitiatorComponent } from '../ism/ism-initiator/ism-initiator.component';
+
 
 
 @NgModule({
@@ -176,6 +179,8 @@ import { CpmHomePageComponent } from '../masterdata/ims-masterdata/calibraion-pe
     IpmReviewerSaveComponent,
     CpmCreateUpdateComponent,
     CpmHomePageComponent,
+    IsmHomeComponent,
+    IsmInitiatorComponent,
 
   ],
   imports: [
