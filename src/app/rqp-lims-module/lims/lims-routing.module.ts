@@ -24,6 +24,8 @@ import { CqHomeComponent } from '../cm/cq/cq-home/cq-home.component';
 import { CuHomeComponent } from '../cm/cu/cu-home/cu-home.component';
 import { CmInitiatorComponent } from '../cm/cm/cm-initiator/cm-initiator.component';
 import { HomePageInstrumentStatusComponent } from '../masterdata/ims-masterdata/instrument-status-master/home-page-instrument-status/home-page-instrument-status.component';
+import { IsmHomeComponent } from '../ism/ism-home/ism-home.component';
+import { IsmInitiatorComponent } from '../ism/ism-initiator/ism-initiator.component';
 // import { IsmInitiatorComponent } from '../ism/ism-initiator/ism-initiator.component';
 // import { IsmHomeComponent } from '../ism/ism-home/ism-home.component';
 //import { CmHomeComponent } from '../cm/cm/cm-home/cm-home.component';
@@ -364,14 +366,14 @@ const routes: Routes = [
     path: 'home-page-instrument-status',
     component: HomePageInstrumentStatusComponent,
   },
-  // {
-  //  path: 'ism-home',
-  //   component: IsmHomeComponent,
-  // },
-  // {
-  // path: 'ism-initiator',
-  //   component: IsmInitiatorComponent,
-  // },
+  {
+   path: 'ism-home',
+    component: IsmHomeComponent,
+  },
+  {
+  path: 'ism-initiator',
+    component: IsmInitiatorComponent,
+  },
 
 
 
