@@ -18,6 +18,8 @@ import { RemoteComponentLoaderService } from 'src/app/service/remote-component-l
 import { ToolbarService } from 'src/app/service/toolbar.service';
 import { LimsService } from '../../lims.service';
 import { ItemNameNoComponent } from 'src/app/common/item-name-no/item-name-no.component';
+import moment from 'moment';
+import { GtpService } from 'src/app/service/gtp.service';
 
 export const MY_FORMATS = {
   parse: {
@@ -57,14 +59,18 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
   documentDtoListAttachment: any[] = [];
   UserRoleTable: any[] = [];
   UserRoleTableAttachment: any[] = [];
+  UserRoleTableAssessment: any[] = [];
   selectedFileListAttachment: File[] = [];
   tableData: any;
   tableDataAttachment: any;
+  tableDataAssessment: any;
   isLoading = false;
   pageData: any;
+  dueDate: Date = new Date();
   sList: any;
   oList: any;
   dList: any;
+  reqList: any;
   lcMasterList: any;
   itemCategoryList: any;
   icsMasterList: any;
@@ -96,6 +102,11 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
     'categoryTypes',
     'removeRow',
   ];
+  AddedDocumentdisplayedColumnsAttachment: string[] = [
+    'documentName',
+    'categoryTypes',
+    'removeRow',
+  ];
   constructor(
     public router: ActivatedRoute,
     private limsService: LimsService,
@@ -107,6 +118,7 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
     private toolbarService: ToolbarService,
     public buttonLabelService: ButtonLabelService,
     private route: Router,
+    private gtpService: GtpService,
     private cookieService: CookieService,
     private adminService: AdminService,
     private remoteLoader: RemoteComponentLoaderService
@@ -133,6 +145,11 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
       ff0001: [''],
       ff0002: [''],
       ff0003: [''],
+      status: [''],
+      title: [''],
+      market: [''],
+      customerName: [''],
+      // changeClassification: [''],
     });
     this.CCRequirementForm = this.fb.group({
       comments: [''],
@@ -147,6 +164,7 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
   actionDtoList: any = [
     {
       uc0001: null,
+      //unitcode: this.cookieService.get('buCode'),
       ff0001: '',
       ff0002: '',
       ff0003: '',
@@ -163,6 +181,7 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
       ff0014: '',
       ff0015: '',
       ff0016: '',
+      ff0017: '',
       lc0001: '',
       lc0002: '',
       lc0003: '',
@@ -170,7 +189,7 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
       lc0005: '',
       lc0006: '',
       createdby: '',
-      status: '',
+      status: 0,
       comments: '',
       actionAttachmentList: [],
     },
@@ -178,6 +197,7 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
 
   ccLineItemIndexDTOList: any = [
     {
+     // unitcode: this.cookieService.get('buCode'),
       ff0001: '',
       ff0002: '',
       ff0003: '',
@@ -186,6 +206,10 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
     },
   ];
   ngOnInit(): void {
+    const today = new Date();
+    const formattedDate = this.formatDate(today);
+    this.UserRequirementForm.controls['ff0002'].setValue(formattedDate);
+    this.onloadDropDown();
     this.pageData = {
       pageName: 'homePage',
       pageType: 'create',
@@ -194,15 +218,21 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
     this.headerRequestBody = this.lifeCycleDataService.getSelectedRowData();
     this.onLoadNextStageData();
 
-    this.limsService
+    this.gtpService
       .getInput(this.cookieService.get('buCode'))
       .subscribe(({ data }: any) => {
         this.courseList = data.crList;
+        console.log(data);
       });
 
-    this.onloadDropDown();
   }
-  ngAfterViewInit(): void {}
+  formatDate(date: Date): string {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+  }
+  ngAfterViewInit(): void { }
   public onLoadNextStageData() {
     let body: any;
     body = {
@@ -230,38 +260,38 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
       { field: 'crCode', title: 'Code' },
     ];
 
-    if (this.courseList.length > 0 && this.moduleTypeList.length > 0) {
-      const dialogRef = this.dialog.open(ItemNameNoComponent, {
-        height: '500px',
-        width: '1200px',
-        data: {
-          dialogTitle: 'Status',
-          dialogColumns: this.displayedColumns,
-          dialogData: this.courseList,
-          lovName: 'statusList',
-          ff0004: this.headerData.unitcode,
-          index: index,
-          moduleTypeList: this.moduleTypeList,
-        },
-        disableClose: true,
-      });
+    //if (this.courseList.length > 0 && this.moduleTypeList.length > 0) {
+    const dialogRef = this.dialog.open(ItemNameNoComponent, {
+      height: '500px',
+      width: '1200px',
+      data: {
+        dialogTitle: 'Status',
+        dialogColumns: this.displayedColumns,
+        dialogData: this.courseList,
+        lovName: 'statusList',
+        ff0004: this.headerData.unitcode,
+        index: index,
+        moduleTypeList: this.moduleTypeList,
+      },
+      disableClose: true,
+    });
 
-      dialogRef.afterClosed().subscribe(({ data }) => {
-        if (data) {
-          this.actionDtoList[index].ff0006 = data[0].ff0001;
-          this.actionDtoList[index].ff0005 = data[0].uc0001;
-        }
-      });
-    }
+    dialogRef.afterClosed().subscribe(({ data }) => {
+      if (data) {
+        this.actionDtoList[index].ff0006 = data[0].ff0001;
+        this.actionDtoList[index].ff0005 = data[0].uc0001;
+      }
+    });
+    // }
   }
 
   onLoadInputApi() {
     console.log(this.headerData);
-    let businessunit = this.headerData.unitcode;
+    let unitCode = this.headerData.unitcode;
     let module = 'CCA';
     let mainModule = 'CC';
     this.limsService
-      .onLoadInputNewAPI(businessunit, module, mainModule)
+      .onLoadInputNewAPI(unitCode, module, mainModule)
       .subscribe((data: any) => {
         console.log(data);
         this.sList = data.data.slist;
@@ -273,11 +303,13 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
         this.rctMasterList = data.data.rctMasterList;
         this.ctMasterList = data.data.ctMasterList;
         this.actionTypeList = data.data.actionTypeList;
+        this.reqList = data.data.reqList;
         this.isReadonly = true;
       });
   }
   public handleCommentsForm(event: any) {
     this.comments = event.comments;
+    this.actionDtoList.comments = this.comments;
   }
 
   getHeaderData(event: any) {
@@ -285,6 +317,8 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
     this.headerData = event;
     this.onLoadInputApi();
     this.ViewDetailForm.controls['orgUnitCode'].setValue(event.unitcode);
+    this.UserRequirementForm.controls['status'].setValue('Open');
+
   }
   addLineItem(item: any): void {
     item.ccLineDesDTOList.push({
@@ -328,11 +362,44 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
   }
 
   /********************************LOV LIST ***************************************** */
+  filteredOlist: any[] = [];
+  filteredDlist: any[] = [];
+  // Apply filtering logic based on selected severity
+  applySeverityFilter(selectedSeverity: number) {
+    if (!selectedSeverity) {
+      this.filteredOlist = [...this.oList];
+      this.filteredDlist = [...this.dList];
+      return;
+    }
 
+    // Filter Probability of Occurrence based on Severity
+    this.filteredOlist = this.oList.filter((o) => o.oname <= selectedSeverity);
+
+    // Get the selected Probability of Occurrence
+    const selectedProbability = this.EventForm.get('ff0002')?.value;
+
+    // Filter Detection Mechanism based on Probability of Occurrence
+    if (selectedProbability) {
+      this.filteredDlist = this.dList.filter((d) => d.dname <= selectedProbability);
+    } else {
+      this.filteredDlist = [...this.dList];
+    }
+
+    // Clear invalid selections
+    const probCtrl = this.EventForm.get('ff0002');
+    const detectCtrl = this.EventForm.get('ff0003');
+
+    if (probCtrl && probCtrl.value > selectedSeverity) {
+      probCtrl.setValue(null);
+    }
+    if (detectCtrl && detectCtrl.value > selectedProbability) {
+      detectCtrl.setValue(null);
+    }
+  }
   openSeverityEventLov() {
     this.displayedColumns = [
-      { field: 'scode', title: 'Code' },
-      { field: 'sname', title: 'Description' },
+      { field: 'scode', title: 'Severity Name' },
+      { field: 'sname', title: 'Severity Code' },
     ];
     const dialogRef = this.dialog.open(LovDialogComponent, {
       height: '500px',
@@ -349,14 +416,17 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
       if (result) {
         this.selectedDialogData = result.data;
         this.EventForm.controls['ff0001'].setValue(result.data.sname);
+        this.applySeverityFilter(result.data.sname); // Apply filter after selecting severity
+        this.EventForm.controls['ff0003'].setValue(""); // Clear detection mechanism on severity change
+        this.EventForm.controls['ff0002'].setValue("");
         this.onGetRPNValue();
       }
     });
   }
   openOccurenceLov() {
     this.displayedColumns = [
-      { field: 'ocode', title: 'Code' },
-      { field: 'oname', title: 'Description' },
+      { field: 'ocode', title: 'Probability Name' },
+      { field: 'oname', title: 'Probability Code' },
     ];
     const dialogRef = this.dialog.open(LovDialogComponent, {
       height: '500px',
@@ -364,7 +434,8 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
       data: {
         dialogTitle: 'Probability of Occurrence',
         dialogColumns: this.displayedColumns,
-        dialogData: this.oList,
+        //dialogData: this.oList,
+        dialogData: this.filteredOlist,
         lovName: 'businessUnitList',
       },
       disableClose: true,
@@ -373,14 +444,16 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
       if (result) {
         this.selectedDialogData = result.data;
         this.EventForm.controls['ff0002'].setValue(result.data.oname);
+        this.applySeverityFilter(result.data.oname); // Apply filter after selecting occurrence
+        this.EventForm.controls['ff0003'].setValue(""); // Clear detection mechanism on occurrence change
         this.onGetRPNValue();
       }
     });
   }
   openDetectionLov() {
     this.displayedColumns = [
-      { field: 'dcode', title: 'Code' },
-      { field: 'dname', title: 'Description' },
+      { field: 'dcode', title: 'Detection Name' },
+      { field: 'dname', title: 'Detection Code' },
     ];
     const dialogRef = this.dialog.open(LovDialogComponent, {
       height: '500px',
@@ -388,7 +461,7 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
       data: {
         dialogTitle: 'Detection Mechanism',
         dialogColumns: this.displayedColumns,
-        dialogData: this.dList,
+        dialogData: this.filteredDlist,
         lovName: 'businessUnitList',
       },
       disableClose: true,
@@ -435,11 +508,41 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
         this.noRisk = false;
         this.EventForm.controls['ff0005'].setValue('');
       }
+      this.calculateEndDate();
     } else {
       this.EventForm.controls['ff0004'].setValue('');
       this.EventForm.controls['ff0005'].setValue('');
       this.isRiskFlag = false;
       console.log('else block');
+    }
+  }
+  calculateEndDate() {
+    const changeDetectionValue = this.EventForm.controls['ff0005'].value;
+    const selectedModule = 'CC';
+    const today = new Date();
+
+    const reqItem = this.reqList.find((item) => item.ff0006 === selectedModule);
+
+    if (reqItem) {
+      let daysToAdd = 0;
+
+      if (changeDetectionValue === 'Critical') {
+        daysToAdd = reqItem.ff0001; // Critical
+      } else if (changeDetectionValue === 'Minor') {
+        daysToAdd = reqItem.ff0002; // Minor
+      } else if (changeDetectionValue === 'Major') {
+        daysToAdd = reqItem.ff0003; // Major
+      }
+
+      const endDate = new Date(today);
+      endDate.setDate(today.getDate() + daysToAdd);
+
+      const formattedEndDate = this.formatDate(endDate);
+
+      this.UserRequirementForm.controls['ff0003'].setValue(formattedEndDate);
+    } else {
+      console.error('No matching reqList item found for the selected module.');
+      this.UserRequirementForm.controls['ff0003'].setValue('');
     }
   }
   checkFieldValue(value: any) {
@@ -451,8 +554,8 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
   }
   openItemCategoryLov(index: any) {
     this.displayedColumns = [
-      { field: 'itemCode', title: 'Code' },
-      { field: 'itemName', title: 'Description' },
+      { field: 'itemCode', title: 'Item Name' },
+      { field: 'itemName', title: 'Item Code' },
     ];
     const dialogRef = this.dialog.open(LovDialogComponent, {
       height: '500px',
@@ -474,8 +577,8 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
   }
   openItemSubCategoryLov(index: any) {
     this.displayedColumns = [
-      { field: 'icsCode', title: 'Code' },
-      { field: 'icsName', title: 'Description' },
+      { field: 'icsCode', title: 'Item Subcategory Name' },
+      { field: 'icsName', title: 'Item Subcategory Code' },
     ];
     const dialogRef = this.dialog.open(LovDialogComponent, {
       height: '500px',
@@ -519,6 +622,7 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
       ff0014: '',
       ff0015: '',
       ff0016: '',
+      ff0017: '',
       lc0001: '',
       lc0002: '',
       lc0003: '',
@@ -541,7 +645,7 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
       height: '500px',
       width: '600px',
       data: {
-        dialogTitle: 'Item Subcategory',
+        dialogTitle: 'LifeCycle Info',
         dialogColumns: this.displayedColumns,
         dialogData: this.lcMasterList,
         lovName: 'businessUnitList',
@@ -654,8 +758,8 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
 
   openActionItemCategoryLov(index: any) {
     this.displayedColumns = [
-      { field: 'itemCode', title: 'Code' },
-      { field: 'itemName', title: 'Description' },
+      { field: 'itemCode', title: 'Item Category Name' },
+      { field: 'itemName', title: 'Item Category Code' },
     ];
     const dialogRef = this.dialog.open(LovDialogComponent, {
       height: '500px',
@@ -677,8 +781,8 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
   }
   openActionItemSubCategoryLov(index: any) {
     this.displayedColumns = [
-      { field: 'icsCode', title: 'Code' },
-      { field: 'icsName', title: 'Description' },
+      { field: 'icsCode', title: 'Item Subcategory Name' },
+      { field: 'icsName', title: 'Item Subcategory Code' },
     ];
     const dialogRef = this.dialog.open(LovDialogComponent, {
       height: '500px',
@@ -767,9 +871,8 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
       }
     });
   }
-  onChangeNextStage() {}
+  onChangeNextStage() { }
   async onSaveConfirmation(btnStatus: any) {
-    console.log(btnStatus);
     const component = await this.remoteLoader.loadComponentByKey(
       'CommonESignatureComponent'
     );
@@ -789,7 +892,6 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
     });
   }
   async onSubmit(btnStatus: any) {
-    console.log(btnStatus);
     const component = await this.remoteLoader.loadComponentByKey(
       'CommonESignatureComponent'
     );
@@ -809,6 +911,23 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
     });
   }
   formatRequestBody() {
+    let startRaw = this.UserRequirementForm.controls['ff0002'].value;
+    const startDate = moment()
+  .utc()
+  .format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
+    let endRaw = this.UserRequirementForm.controls['ff0003']?.value;
+
+    const endDate = moment(endRaw, 'DD-MM-YYYY', true).isValid()
+      ? moment(endRaw, 'DD-MM-YYYY')
+        .utc()
+        .format('YYYY-MM-DDTHH:mm:ss.SSS[Z]')
+      : null;
+    // let endDate1 = moment(
+    //   this.UserRequirementForm.controls['ff0003'].value
+    // ).format('DD-MM-YYYY HH:mm:ss.SSS');
+    // const endDate = moment(endDate1, 'DD-MM-YYYY HH:mm:ss.SSS')
+    //   .utc() // Convert to UTC
+    //   .format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
     this.body1 = {
       lcRequest: {
         unitCode: this.headerData.unitcode,
@@ -829,6 +948,7 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
       actionDtoList: this.actionDtoList,
       eventClasificationDtoList: [
         {
+          unitcode: this.headerData.unitcode,
           ff0001: this.EventForm.controls['ff0001'].value,
           ff0002: this.EventForm.controls['ff0002'].value,
           ff0003: this.EventForm.controls['ff0003'].value,
@@ -843,16 +963,17 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
           lc0004: 'string',
           lc0005: 'string',
           lc0006: 'string',
-          createdby: 'string',
+          createdby: this.headerData.createdby,
           status: 0,
           comments: this.comments,
         },
       ],
       ccCommonDataDtoList: [
         {
+          unitcode: this.headerData.unitcode,
           ff0001: this.UserRequirementForm.controls['ff0001'].value, //description
-          ff0002: this.UserRequirementForm.controls['ff0002'].value, //start date
-          ff0003: this.UserRequirementForm.controls['ff0003'].value, //end date
+          ff0002: startDate, //start date
+          ff0003: endDate, //end date
           ff0004: '2024-04-04T06:47:36.746Z',
           ff0005: 'string',
           ff0006: 'string',
@@ -861,20 +982,28 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
           ff0009: '2025-01-30T08:21:36.531Z',
           ff0010: '2025-01-30T08:21:36.531Z',
           ff0011: 'string',
+          // ff0012: this.UserRequirementForm.controls['departmentCode'].value,
+          // ff0013: this.UserRequirementForm.controls['market'].value,
+          // ff0014: this.UserRequirementForm.controls['customerName'].value,
+          // ff0015: this.UserRequirementForm.controls['changeClassification'].value,
+          ff0012: this.UserRequirementForm.controls['title'].value,
+          ff0013: this.UserRequirementForm.controls['status'].value,
+          ff0014: this.UserRequirementForm.controls['market'].value,
+          ff0015: this.UserRequirementForm.controls['customerName'].value,
           lc0001: 'string',
           lc0002: 'string',
           lc0003: 'string',
           lc0004: 0,
           lc0005: 'string',
           lc0006: 'string',
-          createdby: 'string',
+          createdby: this.headerData.createdby,
           status: 0,
           comments: this.comments,
-        },
+        }
       ],
       ccLineItemDtoList: [
         {
-          ccLineItemIndexDTOList: [...this.ccLineItemIndexDTOList],
+          unitcode: this.headerData.unitcode,
           ff0008: 'string',
           ff0009: 'string',
           ff0010: 'string',
@@ -884,9 +1013,11 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
           lc0004: 'string',
           lc0005: 'string',
           lc0006: 'string',
-          createdby: 'string',
+          createdby: this.headerData.createdby,
           status: 0,
           comments: this.comments,
+          ccLineItemIndexDTOList: [...this.ccLineItemIndexDTOList],
+
         },
       ],
       // attachmentDtoList: [
@@ -925,20 +1056,18 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
       //   }
       // ],
       ccAttachmentList: [...this.UserRoleTableAttachment],
+      riskAttachmentList: [...this.UserRoleTableAssessment],
     };
-    this.actionDtoList.forEach((action) => {
-      if (
-        !action.ccLineItemIndexDTOList ||
-        (Array.isArray(action.ccLineItemIndexDTOList) &&
-          action.ccLineItemIndexDTOList.length === 1 &&
-          Object.keys(action.ccLineItemIndexDTOList[0]).length === 0)
-      ) {
-        action.ccLineItemIndexDTOList = [];
-      }
-    });
-    console.log(this.body1.ccLineItemDtoList);
-    console.log(this.body1.ccLineItemDtoList[0].ccLineItemIndexDTOList);
-    console.log(this.body1);
+    // this.actionDtoList.forEach((action) => {
+    //   if (
+    //     !action.ccLineItemIndexDTOList ||
+    //     (Array.isArray(action.ccLineItemIndexDTOList) &&
+    //       action.ccLineItemIndexDTOList.length === 1 &&
+    //       Object.keys(action.ccLineItemIndexDTOList[0]).length === 0)
+    //   ) {
+    //     action.ccLineItemIndexDTOList = [];
+    //   }
+    // });
   }
 
   onSaveUpdate(btnStatus: any) {
@@ -963,15 +1092,15 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
     console.log(this.body1);
     //this.body1.actionDtoList.
     console.log(this.body1.actionDtoList);
-    //  this.body1.actionDtoList.forEach(obj => {
-    //   // Check if actionAttachmentList exists in the current object
-    //   if (obj.actionAttachmentList) {
-    //     // Push each element of actionAttachmentList into actionAttachmentList array
-    //     obj.actionAttachmentList.forEach(attachment => {
-    //       actionAttachmentList.push(attachment.selectedFileList);
-    //     });
-    //   }
-    // });
+    this.body1.actionDtoList.forEach(obj => {
+      // Check if actionAttachmentList exists in the current object
+      if (obj.actionAttachmentList) {
+        // Push each element of actionAttachmentList into actionAttachmentList array
+        obj.actionAttachmentList.forEach(attachment => {
+          actionAttachmentList.push(attachment.selectedFileList);
+        });
+      }
+    });
     const rowWiseActionAttachmentList = [];
     this.body1.actionDtoList.forEach((obj) => {
       if (obj.actionAttachmentList) {
@@ -993,10 +1122,18 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
         attachmentList.push(obj.selectedFileList);
       }
     });
+    let riskAttachment: any[] = [];
+    this.body1.riskAttachmentList.forEach((obj) => {
+      console.log(obj.selectedFileList);
+      if (obj.selectedFileList) {
+        riskAttachment.push(obj.selectedFileList);
+      }
+    });
     console.log(attachmentList);
     console.log(actionAttachmentList);
+    console.log(riskAttachment);
     this.limsService
-      .onCCSaveUpdate(rowWiseActionAttachmentList, attachmentList, this.body1)
+      .onCCSaveUpdate(rowWiseActionAttachmentList, attachmentList, riskAttachment)
       .subscribe((data: any) => {
         // console.log(data)
         console.log(this.body1);
@@ -1037,7 +1174,10 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
   }
   selectedFileList: File[] = [];
   onCreateSelectedDataList(item) {
-   
+    // Ensure actionAttachmentList is properly initialized
+    // if (!item.actionAttachmentList) {
+    // item.actionAttachmentList = [{}];
+    //}
     console.log(item.actionAttachmentList);
     // Check if the document name is provided before proceeding
     if (this.CCRequirementForm.controls['documentName'].value) {
@@ -1045,11 +1185,17 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
       item.actionAttachmentList.push({
         uc0001: null,
         selectedFileList: this.selectedFiles,
-        documentName: this.CCRequirementForm.controls['documentName'].value,
+        // documentName: this.CCRequirementForm.controls['documentName'].value,
         // categoryTypes: 'A',
         ff0001: this.CCRequirementForm.controls['documentName'].value,
-        ff0005: 'A',
+        ff0005: 'AT',
+        "ff0013": "string",
+        ff0015: "att",
+        "lc0002": "string",
+        "lc0003": "string",
+        "lc0004": "string",
         documentAction: 'CREATE',
+        "documnetType": "CREATE"
       });
 
       let filteredObjects = this.filterEmptyObjects(item.actionAttachmentList);
@@ -1082,13 +1228,45 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
       documentName: this.CCRequirementForm.controls['documentName'].value,
       // categoryTypes: this.CCRequirementForm.controls['categoryTypes'].value,
       ff0001: this.CCRequirementForm.controls['documentName'].value,
-      ff0005: 'A',
+      ff0005: 'AT',
+      ff0015: 'att',
       documentAction: 'CREATE',
     });
-    
+    // this.documentDtoListAttachment.push({
+    //   uc0001:null,
+    //   selectedFileList: this.selectedFilesAttachment,
+    //   ff0001: this.CCRequirementForm.controls['documentName'].value,
+    //   ff0005: this.CCRequirementForm.controls['categoryTypes'].value,
+    //   documentAction:'CREATE'
+    // });
     console.log(this.UserRoleTableAttachment);
     this.tableDataAttachment = new MatTableDataSource(
       this.UserRoleTableAttachment
+    );
+  }
+  onCreateSelectedDataListAssessment() {
+    this.selectedFileListAttachment.push(this.selectedFiles);
+    this.UserRoleTableAssessment.push({
+      uc0001: null,
+      selectedFileList: this.selectedFilesAttachment,
+      documentName: this.CCRequirementForm.controls['documentName'].value,
+      // categoryTypes: this.CCRequirementForm.controls['categoryTypes'].value,
+      ff0001: this.CCRequirementForm.controls['documentName'].value,
+      ff0005: 'RA',
+      ff0015: 'risk',
+      documentAction: 'CREATE',
+      documnetType: 'CREATE'
+    });
+    // this.documentDtoListAttachment.push({
+    //   uc0001:null,
+    //   selectedFileList: this.selectedFilesAttachment,
+    //   ff0001: this.CCRequirementForm.controls['documentName'].value,
+    //   ff0005: this.CCRequirementForm.controls['categoryTypes'].value,
+    //   documentAction:'CREATE'
+    // });
+    console.log(this.UserRoleTableAssessment);
+    this.tableDataAssessment = new MatTableDataSource(
+      this.UserRoleTableAssessment
     );
   }
   removeRowAttachment(row: any) {
