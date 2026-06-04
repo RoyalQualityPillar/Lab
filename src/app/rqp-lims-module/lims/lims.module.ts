@@ -83,8 +83,8 @@ import { CmInitiatorComponent } from '../cm/cm/cm-initiator/cm-initiator.compone
 import { PmsListComponent } from '../pms-list/pms-list.component';
 import { CreateUpdateInstrumentStatusComponent } from '../masterdata/ims-masterdata/instrument-status-master/create-update-instrument-status/create-update-instrument-status.component';
 import { HomePageInstrumentStatusComponent } from '../masterdata/ims-masterdata/instrument-status-master/home-page-instrument-status/home-page-instrument-status.component';
-import { IsmHomeComponent } from './ism-home/ism-home.component';
-import { IsmInitiatorComponent } from './ism-initiator/ism-initiator.component';
+import { IsmHomeComponent } from '../ism/ism-home/ism-home.component';
+import { IsmInitiatorComponent } from '../ism/ism-initiator/ism-initiator.component';
 
 
 @NgModule({
