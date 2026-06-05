@@ -49,5 +49,8 @@ export class ImsMasterDataHomePageComponent {
   onCalibraionPerameterMaster(){
     this.router.navigate(['./rqplabui/lims/cpm-home-page'])
   }
+  onPreventiveMaintenanceSchedule(){
+    this.router.navigate(['./rqplabui/lims/home-page-prevnt-main-sche'])
+  }
 }
 

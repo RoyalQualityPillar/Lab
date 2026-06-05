@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row no-gutters"style="background-color: #18155b;">
+        <div class="col-10 d-flex justify-content-start">
+            <h1 class="customeHeading">{{this.userData.title}}</h1>
+        </div>
+        <div class="col-2 d-flex justify-content-end">
+            <button mat-icon-button class="close-button" [mat-dialog-close]="true">
+                <mat-icon class="close-icon" color="warn">close</mat-icon>
+              </button>
+        </div>
+        </div>
+         <div class="m-2">
+        <form [formGroup]="UserRequirementForm">
+            <div class="row no-gutters ms-1 me-1 dense-4 padding-top_5">
+              <mat-form-field appearance="outline" class="col-5 px-1">
+                <mat-label>Document Name</mat-label>
+                <input type="text" matInput formControlName="documentName" placeholder="Document Name"
+                  />
+              </mat-form-field>
+      
+              <mat-form-field appearance="outline" class="col-5 px-1">
+                <mat-label>Document Type</mat-label>
+                <mat-select formControlName="categoryTypes">
+                  <mat-option value="M">M</mat-option>
+                  <mat-option value="F">F</mat-option>
+                  <mat-option value="A">A</mat-option>
+                </mat-select>
+              </mat-form-field>
+               </div>
+               <div class="row no-gutters ms-1 me-1 dense-4 padding-top_5">
+              <div class="col-5 px-1 margin-top_5">
+                <input type="file" id="file" (change)="handleFileInput($event)" accept=".doc, .docx, .pdf,.DOC, .DOCX, .PDF" />
+                <p class="color_red">
+                </p>
+              </div>
+            </div>
+          </form> 
+          </div>
+          
+          <div class="containerBTN" style="margin-top: 26px; margin-bottom: 20px;">
+            <div  class="d-flex justify-content-center">
+            <button mat-raised-button color="primary" style="font-size: smaller;background-color: #295ea3;height: 25px;"
+              (click)="userData.isUpdate ? onUpdate() : onCreate()" [class.isDisabledBtn]="UserRequirementForm.invalid">{{userData.isUpdate ? "Submit" : "Submit"}}</button>
+          </div>
+</div>
+        </div>
+        

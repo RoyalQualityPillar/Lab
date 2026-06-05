@@ -28,6 +28,8 @@ import { AsCommonFooterComponent } from './as-common-footer/as-common-footer.com
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { ItemNameNoComponent } from './item-name-no/item-name-no.component';
 import { TrainingPendingListComponent } from './training-pending-list/training-pending-list.component';
+import { PreviewFileComponent } from '../toolbar/preview-file/preview-file.component';
+import { CommonFileUploadComponent } from './common-file-upload/common-file-upload.component';
 
 
 @NgModule({
@@ -49,6 +51,8 @@ import { TrainingPendingListComponent } from './training-pending-list/training-p
     LcWeekDataComponent,
     TrainingPendingListComponent,
     ItemNameNoComponent,
+    PreviewFileComponent,
+    CommonFileUploadComponent
 
   ],
   exports: [
@@ -70,6 +74,8 @@ import { TrainingPendingListComponent } from './training-pending-list/training-p
     LcWeekDataComponent,
     TrainingPendingListComponent,
     ItemNameNoComponent,
+    PreviewFileComponent,
+   CommonFileUploadComponent
 
   ],
   imports: [
