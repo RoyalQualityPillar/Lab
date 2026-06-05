@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './ipm-update.component.scss'
 })
 export class IpmUpdateComponent {
+  public updateSaveUrl = './rqplabui/lims/ipm-update-save';
 
 }

@@ -92,6 +92,8 @@ import { CpmCreateUpdateComponent } from '../masterdata/ims-masterdata/calibraio
 import { CpmHomePageComponent } from '../masterdata/ims-masterdata/calibraion-perameter-master/cpm-home-page/cpm-home-page.component';
 import { IsmHomeComponent } from '../ism/ism-home/ism-home.component';
 import { IsmInitiatorComponent } from '../ism/ism-initiator/ism-initiator.component';
+import { CreateUpdatePrevntMainScheComponent } from '../masterdata/ims-masterdata/preventive-maintenance-schedule/create-update-prevnt-main-sche/create-update-prevnt-main-sche.component';
+import { HomePagePrevntMainScheComponent } from '../masterdata/ims-masterdata/preventive-maintenance-schedule/home-page-prevnt-main-sche/home-page-prevnt-main-sche.component';
 
 
 
@@ -181,6 +183,8 @@ import { IsmInitiatorComponent } from '../ism/ism-initiator/ism-initiator.compon
     CpmHomePageComponent,
     IsmHomeComponent,
     IsmInitiatorComponent,
+    CreateUpdatePrevntMainScheComponent,
+    HomePagePrevntMainScheComponent,
 
   ],
   imports: [

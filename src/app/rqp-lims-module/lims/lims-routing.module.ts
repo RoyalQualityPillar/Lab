@@ -32,6 +32,7 @@ import { IpmReviewerSaveComponent } from '../ipm/ipm-reviewer-save/ipm-reviewer-
 import { CpmHomePageComponent } from '../masterdata/ims-masterdata/calibraion-perameter-master/cpm-home-page/cpm-home-page.component';
 import { IsmHomeComponent } from '../ism/ism-home/ism-home.component';
 import { IsmInitiatorComponent } from '../ism/ism-initiator/ism-initiator.component';
+import { HomePagePrevntMainScheComponent } from '../masterdata/ims-masterdata/preventive-maintenance-schedule/home-page-prevnt-main-sche/home-page-prevnt-main-sche.component';
 
 // import { IsmInitiatorComponent } from '../ism/ism-initiator/ism-initiator.component';
 // import { IsmHomeComponent } from '../ism/ism-home/ism-home.component';
@@ -405,6 +406,10 @@ const routes: Routes = [
   {
   path: 'ism-initiator',
     component: IsmInitiatorComponent,
+  },
+  {
+  path: 'home-page-prevnt-main-sche',
+    component: HomePagePrevntMainScheComponent,
   },
 
 
