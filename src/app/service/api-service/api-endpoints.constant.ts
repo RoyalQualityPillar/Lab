@@ -23,6 +23,7 @@ export enum apiEndPoints {
   soloMaterialTypeList = 'solo/input',
   materialTypeList = 'imp/input',
   topicDropDownInputList = 'lmsr/topic-list',
+   actionUpdateReviewList = 'qms/review-nci-ai_list',
 
   //clv input
   clvInput = 'clv/input',
@@ -1359,6 +1360,14 @@ WsmasterLoadUpdatePage = 'limspc/ws_fields/get-by-max-code',
   calibrationschMasterLoadUpdatePage = 'limsm-im/cls-master/get-by-max-code',
   calibrationschMasterAllAuditTrail = 'limsm-im/cls-master/get-by-code-all',
 
+  /*** Preventive Maintenance Schedule  ***/
+  allPmsMasterTabledata = 'limsm-im/pmm-cls-master/get-all',
+  activePmsMasterTabledata = 'limsm-im/pmm-cls-master/get-max-all',
+  pmsMasterUserProfileFilterData = 'limsm-im/pmm-cls-Master/search',
+  pmsMasterCreateUpdate = 'limsm-im/pmm-cls-master/save-update',
+  pmsMasterLoadUpdatePage = 'limsm-im/pmm-cls-master/get-by-max-code',
+  pmsMasterAllAuditTrail = 'limsm-im/pmm-cls-master/get-by-code-all',
+
   /***Calibration Record  Schedule  ***/
   allcalibrationrecschMasterTabledata = 'limsm-im/crs_master/get-all',
   activecalibrationrecschMasterTabledata = 'limsm-im/crs_master/get-max-all',
@@ -1424,6 +1433,14 @@ WsmasterLoadUpdatePage = 'limspc/ws_fields/get-by-max-code',
   IuMasterCreateUpdate = 'limsm-im/iu-status/save-update',
   IuMasterLoadUpdatePage = 'limsm-im/iu-status/get-by-max-code',
   IuMasterAllAuditTrail = 'limsm-im/iu-status/get-by-code-all',
+
+   /******* Calibraion Perameter Master*********/
+  allCpmTabledata = 'lbms/calper-master/get-all',
+  activeCpmTabledata = 'lbms/calper-master/get-all',
+  CpmUserProfileFilterData = 'lbms/calper-master/search',
+  CpmCreateUpdate = 'lbms/calper-master/save-update',
+  CpmLoadUpdatePage = 'lbms/calper-master/get-by-max-code',
+  CpmAllAuditTrail = 'lbms/calper-master/get-by-code-all',
 
 
              /****************Cleaningcategory*********************/

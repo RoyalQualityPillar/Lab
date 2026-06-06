@@ -13,6 +13,9 @@ import { MessageDialogComponent } from './common/message-dialog/message-dialog.c
 import { SharedModule } from './common/shared.module';
 
 
+import { NciReviewDetailComponent } from './rqp-qms-module/nci-review-detail/nci-review-detail.component';
+
+
 // import { SharedModule } from './common/shared.module';
 
 
@@ -23,8 +26,7 @@ import { SharedModule } from './common/shared.module';
     DashboardComponent,
     //CustomSnackBarComponent,
     LovDialogComponent,
-    MessageDialogComponent,  
-   
+    MessageDialogComponent,     
    
     
     

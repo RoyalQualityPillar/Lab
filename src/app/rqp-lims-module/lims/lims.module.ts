@@ -83,6 +83,24 @@ import { CmInitiatorComponent } from '../cm/cm/cm-initiator/cm-initiator.compone
 import { PmsListComponent } from '../pms-list/pms-list.component';
 import { CreateUpdateInstrumentStatusComponent } from '../masterdata/ims-masterdata/instrument-status-master/create-update-instrument-status/create-update-instrument-status.component';
 import { HomePageInstrumentStatusComponent } from '../masterdata/ims-masterdata/instrument-status-master/home-page-instrument-status/home-page-instrument-status.component';
+import { IpmInitiatorComponent } from '../ipm/ipm-initiator/ipm-initiator.component';
+import { IpmUpdateComponent } from '../ipm/ipm-update/ipm-update.component';
+import { IpmUpdateSaveComponent } from '../ipm/ipm-update-save/ipm-update-save.component';
+import { IpmReviewerSaveComponent } from '../ipm/ipm-reviewer-save/ipm-reviewer-save.component';
+import { IpmReviewerComponent } from '../ipm/ipm-reviewer/ipm-reviewer.component';
+import { CpmCreateUpdateComponent } from '../masterdata/ims-masterdata/calibraion-perameter-master/cpm-create-update/cpm-create-update.component';
+import { CpmHomePageComponent } from '../masterdata/ims-masterdata/calibraion-perameter-master/cpm-home-page/cpm-home-page.component';
+import { IsmHomeComponent } from '../ism/ism-home/ism-home.component';
+import { IsmInitiatorComponent } from '../ism/ism-initiator/ism-initiator.component';
+import { IsmCompletedSaveComponent } from '../ism/ism-completed-save/ism-completed-save.component';
+import { IsmCompletedComponent } from '../ism/ism-completed/ism-completed.component';
+import { IsmReviewerHomePageComponent } from '../ism/ism-reviewer-home-page/ism-reviewer-home-page.component';
+import { IsmReviewerComponent } from '../ism/ism-reviewer/ism-reviewer.component';
+import { IsmUpdateHomePageComponent } from '../ism/ism-update-home-page/ism-update-home-page.component';
+import { IsmUpdateComponent } from '../ism/ism-update/ism-update.component';
+import { CreateUpdatePrevntMainScheComponent } from '../masterdata/ims-masterdata/preventive-maintenance-schedule/create-update-prevnt-main-sche/create-update-prevnt-main-sche.component';
+import { HomePagePrevntMainScheComponent } from '../masterdata/ims-masterdata/preventive-maintenance-schedule/home-page-prevnt-main-sche/home-page-prevnt-main-sche.component';
+
 
 
 @NgModule({
@@ -162,6 +180,25 @@ import { HomePageInstrumentStatusComponent } from '../masterdata/ims-masterdata/
     PmsListComponent,
     CreateUpdateInstrumentStatusComponent,
     HomePageInstrumentStatusComponent,
+    IpmInitiatorComponent,
+    IpmUpdateComponent,
+    IpmUpdateSaveComponent,
+    IpmReviewerComponent,
+    IpmReviewerSaveComponent,
+    CpmCreateUpdateComponent,
+    CpmHomePageComponent,
+    IsmHomeComponent,
+    IsmInitiatorComponent,
+     IsmCompletedComponent,
+    IsmCompletedSaveComponent,
+    IsmReviewerComponent,
+    IsmReviewerHomePageComponent,
+    IsmUpdateComponent,
+    IsmUpdateHomePageComponent,
+    
+   
+    CreateUpdatePrevntMainScheComponent,
+    HomePagePrevntMainScheComponent,
 
   ],
   imports: [
