@@ -26,14 +26,7 @@ import { NciReviewDetailComponent } from './rqp-qms-module/nci-review-detail/nci
     DashboardComponent,
     //CustomSnackBarComponent,
     LovDialogComponent,
-    MessageDialogComponent,
-    
-    NciReviewDetailComponent,
-          
-   
-  
-  
-   
+    MessageDialogComponent,     
    
     
     

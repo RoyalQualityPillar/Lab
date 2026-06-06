@@ -22,6 +22,9 @@ import { WsrReviewerComponent } from '../wsr/wsr-reviewer/wsr-reviewer.component
 import { WsrReviewerSaveComponent } from '../wsr/wsr-reviewer-save/wsr-reviewer-save.component';
 import { DmproductHomePageComponent } from '../spm-masters/dmproduct-master/dmproduct-home-page/dmproduct-home-page.component';
 import { MaterialMasterHomePageComponent } from '../spm-masters/material-master-product/material-master-home-page/material-master-home-page.component';
+import { WsrModuleAdminComponent } from '../wsr/wsr-module-admin/wsr-module-admin.component';
+import { WsrCompletedSaveComponent } from '../wsr/wsr-completed-save/wsr-completed-save.component';
+import { WsrCompletedComponent } from '../wsr/wsr-completed/wsr-completed.component';
 
 const routes: Routes = [
   {
@@ -47,6 +50,18 @@ const routes: Routes = [
   {
     path: 'wsr-reviewer-save',
     component: WsrReviewerSaveComponent,
+  },
+   {
+    path: 'wsr-completed',
+    component: WsrCompletedComponent,
+  },
+  {
+    path: 'wsr-completed-save',
+    component: WsrCompletedSaveComponent,
+  },
+  {
+    path: 'wsr-module-admin',
+    component: WsrModuleAdminComponent,
   },
    {
     path: 'test-registration-home-page',
