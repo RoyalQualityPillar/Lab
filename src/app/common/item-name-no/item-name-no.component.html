@@ -1,1 +1,68 @@
+<<<<<<< HEAD
+<div class="container-fluid">
+  <div class="row no-gutters" style="background-color: #18155b">
+    <div class="col-10 d-flex justify-content-start">
+      <h1 class="customeHeading">{{ this.dialogTitle }}</h1>
+    </div>
+    <div class="col-2 d-flex justify-content-end">
+      <button mat-icon-button class="close-button" (click)="closePopUp()">
+        <mat-icon class="close-icon" color="warn">close</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div [formGroup]="LifeCycleForm">
+    <mat-form-field appearance="outline" class="col-4 px-1">
+      <mat-label>Module Input</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="moduleInput"
+        placeholder="Module Input"
+        (change)="moduleInput()"
+      />
+      <img
+        alt="lov img"
+        src="../../../../../../assets/searchfind.svg"
+        class="icon-size lovSearchButton"
+        color="primary"
+        (click)="moduleInputLOV()"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-4 px-1">
+      <mat-label>Module</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="module"
+        placeholder="module"
+        (change)="onChangeModuleCode()"
+      />
+      <img
+        alt="lov img"
+        src="../../../../../../assets/searchfind.svg"
+        class="icon-size lovSearchButton"
+        color="primary"
+        (click)="openModuleCodeLOV()"
+      />
+    </mat-form-field>
+  </div>
+  <!-- 
+  <div class="tabOverFlowY">
+    <bk-angular-table
+      [displayedColumns]="dialogColumns"
+      [dataSource]="this.dialogData"
+      (selectedRow$)="onSelectedChange($event)"
+      (pagination)="onPagination($event)"
+      class="rqp-table-name-class"
+    ></bk-angular-table>
+  </div> -->
+
+  <app-training-pending-list
+    [groupList]="trainingPending"
+  ></app-training-pending-list>
+</div>
+=======
 <p>item-name-no works!</p>
+>>>>>>> c1dd0cab77d773e794ac76c4925113411d037d5c

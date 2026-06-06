@@ -24,6 +24,12 @@ import { CqHomeComponent } from '../cm/cq/cq-home/cq-home.component';
 import { CuHomeComponent } from '../cm/cu/cu-home/cu-home.component';
 import { CmInitiatorComponent } from '../cm/cm/cm-initiator/cm-initiator.component';
 import { HomePageInstrumentStatusComponent } from '../masterdata/ims-masterdata/instrument-status-master/home-page-instrument-status/home-page-instrument-status.component';
+import { IpmInitiatorComponent } from '../ipm/ipm-initiator/ipm-initiator.component';
+import { IpmUpdateComponent } from '../ipm/ipm-update/ipm-update.component';
+import { IpmUpdateSaveComponent } from '../ipm/ipm-update-save/ipm-update-save.component';
+import { IpmReviewerComponent } from '../ipm/ipm-reviewer/ipm-reviewer.component';
+import { IpmReviewerSaveComponent } from '../ipm/ipm-reviewer-save/ipm-reviewer-save.component';
+import { CpmHomePageComponent } from '../masterdata/ims-masterdata/calibraion-perameter-master/cpm-home-page/cpm-home-page.component';
 import { IsmHomeComponent } from '../ism/ism-home/ism-home.component';
 import { IsmInitiatorComponent } from '../ism/ism-initiator/ism-initiator.component';
 import { IsmCompletedComponent } from '../ism/ism-completed/ism-completed.component';
@@ -32,6 +38,9 @@ import { IsmReviewerComponent } from '../ism/ism-reviewer/ism-reviewer.component
 import { IsmReviewerHomePageComponent } from '../ism/ism-reviewer-home-page/ism-reviewer-home-page.component';
 import { IsmUpdateComponent } from '../ism/ism-update/ism-update.component';
 import { IsmUpdateHomePageComponent } from '../ism/ism-update-home-page/ism-update-home-page.component';
+// import { HomePagePrevntMainScheComponent } from '../masterdata/ims-masterdata/preventive-maintenance-schedule/home-page-prevnt-main-sche/home-page-prevnt-main-sche.component';
+// import { HomePagePrevntMainScheComponent } from '../masterdata/ims-masterdata/preventive-maintenance-schedule/home-page-prevnt-main-sche/home-page-prevnt-main-sche.component';
+
 // import { IsmInitiatorComponent } from '../ism/ism-initiator/ism-initiator.component';
 // import { IsmHomeComponent } from '../ism/ism-home/ism-home.component';
 //import { CmHomeComponent } from '../cm/cm/cm-home/cm-home.component';
@@ -372,6 +381,31 @@ const routes: Routes = [
     path: 'home-page-instrument-status',
     component: HomePageInstrumentStatusComponent,
   },
+   {
+    path: 'cpm-home-page',
+    component: CpmHomePageComponent,
+  },
+   {
+    path: 'ipm-initiator',
+    component: IpmInitiatorComponent,
+  },
+   {
+    path: 'ipm-update',
+    component: IpmUpdateComponent,
+  },
+   {
+    path: 'ipm-update-save',
+    component: IpmUpdateSaveComponent,
+  },
+   {
+    path: 'ipm-reviewer',
+    component: IpmReviewerComponent,
+  },
+   {
+    path: 'ipm-reviewer-save',
+    component: IpmReviewerSaveComponent,
+  },
+ 
   {
    path: 'ism-home',
     component: IsmHomeComponent,
@@ -403,7 +437,11 @@ const routes: Routes = [
    {
    path: 'ism-update-home-page',
     component: IsmUpdateHomePageComponent,
-  },
+   },
+  //{
+  // path: 'home-page-prevnt-main-sche',
+  //   component: HomePagePrevntMainScheComponent,
+  // },
 
 
 
