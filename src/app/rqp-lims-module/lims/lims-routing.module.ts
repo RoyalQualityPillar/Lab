@@ -33,11 +33,12 @@ import { CpmHomePageComponent } from '../masterdata/ims-masterdata/calibraion-pe
 import { IsmHomeComponent } from '../ism/ism-home/ism-home.component';
 import { IsmInitiatorComponent } from '../ism/ism-initiator/ism-initiator.component';
 import { IsmCompletedComponent } from '../ism/ism-completed/ism-completed.component';
-import { IsmCompletedSaveComponent } from '../ism/ism-completed-save/ism-completed-save.component';
+// import { IsmCompletedSaveComponent } from '../ism/ism-completed-save/ism-completed-save.component';
 import { IsmReviewerComponent } from '../ism/ism-reviewer/ism-reviewer.component';
 import { IsmReviewerHomePageComponent } from '../ism/ism-reviewer-home-page/ism-reviewer-home-page.component';
 import { IsmUpdateComponent } from '../ism/ism-update/ism-update.component';
 import { IsmUpdateHomePageComponent } from '../ism/ism-update-home-page/ism-update-home-page.component';
+import { IsmCompletedSaveComponent } from '../ism/ism-completed-save/ism-completed-save.component';
 // import { HomePagePrevntMainScheComponent } from '../masterdata/ims-masterdata/preventive-maintenance-schedule/home-page-prevnt-main-sche/home-page-prevnt-main-sche.component';
 // import { HomePagePrevntMainScheComponent } from '../masterdata/ims-masterdata/preventive-maintenance-schedule/home-page-prevnt-main-sche/home-page-prevnt-main-sche.component';
 

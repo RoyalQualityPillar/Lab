@@ -14,6 +14,7 @@ import { SharedModule } from './common/shared.module';
 
 
 import { NciReviewDetailComponent } from './rqp-qms-module/nci-review-detail/nci-review-detail.component';
+import { IsmCompletedSaveComponent } from './rqp-lims-module/ism/ism-completed-save/ism-completed-save.component';
 
 
 // import { SharedModule } from './common/shared.module';
