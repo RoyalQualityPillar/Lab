@@ -18,6 +18,8 @@ import { IsmReviewerHomePageComponent } from './rqp-lims-module/ism/ism-reviewer
 import { IsmUpdateComponent } from './rqp-lims-module/ism/ism-update/ism-update.component';
 import { IsmUpdateHomePageComponent } from './rqp-lims-module/ism/ism-update-home-page/ism-update-home-page.component';
 
+import { NciReviewDetailComponent } from './rqp-qms-module/nci-review-detail/nci-review-detail.component';
+
 
 // import { SharedModule } from './common/shared.module';
 
@@ -30,12 +32,9 @@ import { IsmUpdateHomePageComponent } from './rqp-lims-module/ism/ism-update-hom
     //CustomSnackBarComponent,
     LovDialogComponent,
     MessageDialogComponent,
-    IsmCompletedComponent,
-    IsmCompletedSaveComponent,
-    IsmReviewerComponent,
-    IsmReviewerHomePageComponent,
-    IsmUpdateComponent,
-    IsmUpdateHomePageComponent,
+    
+    NciReviewDetailComponent,
+          
    
    
    

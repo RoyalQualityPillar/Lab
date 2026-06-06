@@ -23,6 +23,7 @@ export enum apiEndPoints {
   soloMaterialTypeList = 'solo/input',
   materialTypeList = 'imp/input',
   topicDropDownInputList = 'lmsr/topic-list',
+   actionUpdateReviewList = 'qms/review-nci-ai_list',
 
   //clv input
   clvInput = 'clv/input',

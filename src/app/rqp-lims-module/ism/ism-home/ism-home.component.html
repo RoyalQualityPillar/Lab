@@ -1,1 +1,18 @@
-<p>ism-home works!</p>
+<div style="margin-top: 5px; margin-left: 5px">
+  <mat-grid-list cols="4" rowHeight="3:1">
+    <mat-grid-tile>
+      <button
+        mat-raised-button
+        class="tile-view"
+        (click)="onAllPaAssignmentDashBord()"
+      >
+        All Pending Assignment Dash Board
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button mat-raised-button class="tile-view" (click)="allCompletedRecords()">
+        Completed Records
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
