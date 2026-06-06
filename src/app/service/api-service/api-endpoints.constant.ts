@@ -1313,6 +1313,25 @@ export enum apiEndPoints {
   psiWeekWiseData ='pmmpsi/psi-index-fta-Week',
   psiDayWiseData ='pmmpsi/psi-index-fta-Day',
 
+
+    /********************************Lims-spc Module ***********************************************/
+
+      /***Field Master***/
+  allFieldmasterTabledata = 'limspc/field_master/get-all',
+  activeFieldmasterTabledata = 'limspc/field_master/get-max-all',
+  FieldmasterUserProfileFilterData = 'limspc/field_master/search',
+  FieldmasterCreateUpdate = 'limspc/field_master/save-update',
+FieldmasterLoadUpdatePage = 'limspc/field_master/get-by-max-code',
+  FieldmasterAllAuditTrail = 'limspc/field_master/get-by-code-all',
+
+   /***Ws Master***/
+  allWsmasterTabledata = 'limspc/ws_fields/get-all',
+  activeWsmasterTabledata = 'limspc/ws_fields/get-max-all',
+  WsmasterUserProfileFilterData = 'limspc/ws_fields/search',
+  WsmasterCreateUpdate = 'limspc/ws_fields/save-update',
+WsmasterLoadUpdatePage = 'limspc/ws_fields/get-by-max-code',
+  WsmasterAllAuditTrail = 'limspc/ws_fields/get-by-code-all',
+
    /********************************Lims-im Module ***********************************************/
 
   /***Instrument Category  Master***/

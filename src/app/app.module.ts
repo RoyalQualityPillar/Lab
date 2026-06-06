@@ -23,7 +23,7 @@ import { SharedModule } from './common/shared.module';
     DashboardComponent,
     //CustomSnackBarComponent,
     LovDialogComponent,
-    MessageDialogComponent,
+    MessageDialogComponent,  
    
    
     
