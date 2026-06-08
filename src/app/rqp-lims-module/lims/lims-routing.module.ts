@@ -403,12 +403,10 @@ const routes: Routes = [
     path: 'ism-reviewer-save',
     component: IpmReviewerSaveComponent,
   },
-<<<<<<< HEAD
  
   
    
   
-=======
    {
    path: 'ism-update',
     component: IsmUpdateComponent,
@@ -423,7 +421,6 @@ const routes: Routes = [
   },
 
 
->>>>>>> 1b59b3745449365b3263603f4e4102cda14a46de
 
 
 

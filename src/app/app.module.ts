@@ -14,12 +14,9 @@ import { SharedModule } from './common/shared.module';
 
 
 import { NciReviewDetailComponent } from './rqp-qms-module/nci-review-detail/nci-review-detail.component';
-<<<<<<< HEAD
 import { DropdownListComponent } from './rqp-dms-module/sop/dropdown-list/dropdown-list.component';
 import { ActionAttachmentsListComponent } from './rqp-lims-module/ism/action-attachments-list/action-attachments-list.component';
-=======
 import { IsmCompletedSaveComponent } from './rqp-lims-module/ism/ism-completed-save/ism-completed-save.component';
->>>>>>> 1b59b3745449365b3263603f4e4102cda14a46de
 
 
 // import { SharedModule } from './common/shared.module';
@@ -32,7 +29,6 @@ import { IsmCompletedSaveComponent } from './rqp-lims-module/ism/ism-completed-s
     DashboardComponent,
     //CustomSnackBarComponent,
     LovDialogComponent,
-<<<<<<< HEAD
     MessageDialogComponent,
     
     NciReviewDetailComponent,
@@ -43,9 +39,7 @@ import { IsmCompletedSaveComponent } from './rqp-lims-module/ism/ism-completed-s
   
   
    
-=======
     MessageDialogComponent,     
->>>>>>> 1b59b3745449365b3263603f4e4102cda14a46de
    
     
     
