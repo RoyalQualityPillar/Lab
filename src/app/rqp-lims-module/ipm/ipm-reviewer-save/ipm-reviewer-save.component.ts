@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
@@ -18,7 +18,8 @@ import { RemoteComponentLoaderService } from 'src/app/service/remote-component-l
 import { ToolbarService } from 'src/app/service/toolbar.service';
 import { PreviewFileComponent } from 'src/app/toolbar/preview-file/preview-file.component';
 import { LimsService } from '../../lims.service';
-import { IpmReviewerComponent } from '../ipm-reviewer/ipm-reviewer.component';
+import { NciReviewDetailComponent } from 'src/app/rqp-qms-module/nci-review-detail/nci-review-detail.component';
+import { DropdownListComponent } from 'src/app/rqp-dms-module/sop/dropdown-list/dropdown-list.component';
 
 @Component({
   selector: 'app-ipm-reviewer-save',
@@ -26,8 +27,8 @@ import { IpmReviewerComponent } from '../ipm-reviewer/ipm-reviewer.component';
   templateUrl: './ipm-reviewer-save.component.html',
   styleUrl: './ipm-reviewer-save.component.scss'
 })
-export class IpmReviewerSaveComponent implements OnInit {
-  @ViewChild(MatSort) sort: MatSort;
+export class IpmReviewerSaveComponent implements OnInit, OnDestroy {
+  public redirectUrl: string = '/lims/ipm-home';
   EventForm: FormGroup;
   isReadonly = true;
   UserRequirementForm: FormGroup;
@@ -40,19 +41,20 @@ export class IpmReviewerSaveComponent implements OnInit {
   dList: any;
   lcMasterList: any;
   itemCategoryList: any;
+  public SelectedValue: string = 'specific';
   icsMasterList: any;
   rctMasterList: any;
-  private ff0005: number;
+  public ff0005: number;
   ctMasterList: any;
   actionDtoList: any = [{}];
   nextStageListData: any;
   headerRequestBody: any;
   previousStageListData: any;
+  showDropdownList: boolean;
   ff0003: any;
   ff0001: any;
   lc0003: any;
   module: any;
-  private comments: string;
   moduleCode: any;
   documentListData: any;
   reviewCommentsData: any;
@@ -60,6 +62,7 @@ export class IpmReviewerSaveComponent implements OnInit {
   dataSource: any;
   copiedData: any;
   tableData: any;
+  list: any[] = [];
   dataSourceActionItem: any;
   tableDataActionItem: any;
   documentListTableData: any;
@@ -75,13 +78,17 @@ export class IpmReviewerSaveComponent implements OnInit {
   selectedFilesAttachment: any;
   uploadedDocfileName: any;
   body1: any;
+  disableButtons = false;
+  selectedValue: string;
   draftValue: any;
   UserRoleTableAttachment: any;
   isRiskFlag = false;
+  public userCurrentComments: any;
   mediumRisk = false;
   noRisk = false;
-  actionTypeList: any;
   destroy$ = new Subject<void>();
+  actionTypeList: any;
+  documentList: any[];
   isStatusSuccess: boolean;
   selectedFileList: File[] = [];
   displayedEventColumns: string[] = ['action', 'uc0001', 'ff0001', 'ff0002'];
@@ -119,7 +126,6 @@ export class IpmReviewerSaveComponent implements OnInit {
     private notificationService: NotificationService,
     private toolbarService: ToolbarService,
     private dmsService: DmsService,
-    private route: Router,
     private remoteLoader: RemoteComponentLoaderService
   ) {
     this.UserRequirementForm = this.fb.group({
@@ -161,7 +167,7 @@ export class IpmReviewerSaveComponent implements OnInit {
   ];
   ngOnInit(): void {
     this.pageData = {
-      pageName: 'qms',
+      pageName: 'lims',
     };
 
     this.router.queryParams.subscribe((params: any) => {
@@ -199,19 +205,17 @@ export class IpmReviewerSaveComponent implements OnInit {
   }
   ngAfterViewInit(): void {}
 
-  onReviewData() {
-    this.limsService
-      .onCommentsData(this.ff0001, this.headerData.lcnum, this.ff0005)
-      .subscribe((data: any) => {
-        this.reviewCommentsData = data.data;
-        this.dataSource = new MatTableDataSource(this.reviewCommentsData);
-        this.dataSource.sort = this.sort;
-      });
-  }
-  public handleCommentsForm(event: any) {
-    this.comments = event.comments;
-    console.log(event);
-  }
+  // onReviewData() {
+  //   this.qmsService
+  //     .onCommentsData(this.ff0001, this.headerData.lcnum,this.ff0005)
+  //     .subscribe((data: any) => {
+  //       this.reviewCommentsData = data.data;
+  //       this.commentsDataSource = new MatTableDataSource(
+  //         this.reviewCommentsData
+  //       );
+  //     });
+  // }
+
   onLoadEventClassification(lc0003: any) {
     this.limsService.getEventClassification(lc0003).subscribe((data: any) => {
       console.log(data);
@@ -395,25 +399,9 @@ export class IpmReviewerSaveComponent implements OnInit {
     const fileExtension = parts[parts.length - 1];
     return fileExtension;
   }
-  onGetRequestNo() {
-    console.log('Bharat');
-
-    this.limsService
-      .getResquestNoIDForURS(this.ff0001)
-      .subscribe((data: any) => {
-        console.log(data);
-        this.lc0003 = data.data[0].lc0003;
-        if (this.lc0003) {
-          this.onLoadEventClassification(this.lc0003);
-          // this.getLoadActionItem(this.lc0003);
-          this.lineItemHeading(this.lc0003);
-          this.IssueDetails(this.lc0003);
-          this.getDocumentList();
-        }
-      });
-  }
   onGetQMSRequestNo() {
     console.log('Bharat');
+
     this.limsService
       .getResquestNoIDForQMS(this.ff0001)
       .subscribe((data: any) => {
@@ -422,7 +410,7 @@ export class IpmReviewerSaveComponent implements OnInit {
         if (this.lc0003) {
           // this.onLoadEventClassification(this.lc0003);
           this.getLoadActionItem(this.lc0003);
-          //  this.lineItemHeading(this.lc0003);
+          // this.lineItemHeading(this.lc0003);
           // this.IssueDetails(this.lc0003);
           // this.getDocumentList();
         }
@@ -459,12 +447,31 @@ export class IpmReviewerSaveComponent implements OnInit {
   getHeaderData(event: any) {
     console.log(event);
     this.headerData = event;
-    this.onReviewData();
+    this.dmsService
+      .managerRights(this.headerData.lcnum)
+      .subscribe(({ data }) => {
+        this.documentList = data;
+      });
+    this.showDropdownList = this.headerData.role.includes('QA Reviewer');
+    // this.onReviewData();
     if (this.headerData) {
       this.onLoadInputApi();
       //this.getDocumentList();
     }
   }
+  public getCommentsData(event: any): void {
+    this.userCurrentComments = event;
+    console.log(event);
+  }
+  // selectionChange(): void {
+  //   if (this.selectedValue === 'specific') {
+  //     this.dmsService
+  //       .managerRights(this.headerData.lcnum)
+  //       .subscribe(({ data }) => {
+  //         this.documentList = data;
+  //       });
+  //   }
+  // }
   addLineItem(item: any): void {
     item.ccLineDesDTOList.push({
       value4: '',
@@ -472,7 +479,7 @@ export class IpmReviewerSaveComponent implements OnInit {
     });
     console.log(this.ccLineItemIndexDTOList);
   }
-  addNewRow() {
+  addNewliRow() {
     this.lineItemData.push({
       ccLineItemIndexDTOList: [
         {
@@ -594,7 +601,7 @@ export class IpmReviewerSaveComponent implements OnInit {
     });
   }
   eventSelectedRow(row) {
-    const dialogRef = this.dialog.open(IpmReviewerComponent, {
+    const dialogRef = this.dialog.open(NciReviewDetailComponent, {
       data: { type: 'event', tableData: row },
       disableClose: true,
     });
@@ -801,7 +808,7 @@ export class IpmReviewerSaveComponent implements OnInit {
     console.log(attachmentList);
     console.log(actionAttachmentList);
     this.limsService
-      .onCCSaveUpdate(rowWiseActionAttachmentList, attachmentList, this.body1)
+      .onIPMSaveUpdate(rowWiseActionAttachmentList, attachmentList, this.body1)
       .subscribe((data: any) => {
         // console.log(data)
         console.log(this.body1);
@@ -816,11 +823,6 @@ export class IpmReviewerSaveComponent implements OnInit {
           this.notificationService.showSuccess(data.status, () => {
             console.log('Success Snackbar Closed');
           });
-          timer(2000)
-            .pipe(takeUntil(this.destroy$))
-            .subscribe(() => {
-              this.route.navigateByUrl('/rqpquailtyui/qms/cc-home');
-            });
         }
         this.isLoading = false;
       });
@@ -851,13 +853,9 @@ export class IpmReviewerSaveComponent implements OnInit {
         lcRole: this.headerData.role,
         lcrqNumber: this.pageData?.requestNo,
         stage2: this.FooterForm.controls['nextStage'].value,
-        requestType: '',
         createdBy: this.headerData.createdby,
-        comments: this.comments,
-        documentModule: 'string',
-        documentStatus: 'string',
-        gmuserDTOList: [],
         draft: this.draftValue,
+        //comments need to add
       },
       actionDtoList: this.actionDtoList,
       eventClasificationDtoList: [
@@ -1117,8 +1115,8 @@ export class IpmReviewerSaveComponent implements OnInit {
   onLoadInputApi() {
     console.log(this.headerData);
     let businessunit = this.headerData.unitcode;
-    let module = 'CCA';
-    let mainModule = 'CC';
+    let module = 'IPMA';
+    let mainModule = 'IPM';
     this.limsService
       .onLoadInputNewAPI(businessunit, module, mainModule)
       .subscribe((data: any) => {
@@ -1348,6 +1346,108 @@ export class IpmReviewerSaveComponent implements OnInit {
       }
     });
   }
+  addNewRow() {
+    const dialogRef = this.dialog.open(DropdownListComponent, {
+      minWidth: '80%',
+      data: {
+        type: 'List',
+        data: this.documentList,
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result != true) {
+        if (result.data.length > 0) {
+          this.list = result.data;
+          this.list.forEach((element) => {
+            element.version = this.pageData.version[2];
+            element.rversion = this.pageData.version[0];
+          });
+        }
+      }
+    });
+  }
+  buttonConfig = [
+    { label: 'Return', getPayload: () => this.calculateReturnPayload() },
+    { label: 'Submit', getPayload: () => this.calculateReturnPayload() },
+    // { label: 'Clear', getPayload: () => this.calculateReturnPayload() },
+    { label: 'Comments', getPayload: () => this.calculateCommentsPayload() },
+    // Add more buttons as needed
+  ];
+  calculateReturnPayload() {
+    return {
+      data: 'returnData',
+      calculatedValue: this.headerData,
+      requestFieldData: 'specific',
+      commentsFieldData: this.userCurrentComments,
+      pageData: this.pageData,
+      list: this.list,
+    };
+  }
+
+  calculateCommentsPayload() {
+    return {
+      data: 'returnData',
+      calculatedValue: this.headerData,
+      lcRequestnumber: this.headerData.requestNo,
+      lcnum: this.headerData.lcnum,
+      templateName: 'ch.html',
+      stage: this.headerData.stage,
+      userid: this.headerData.createdby,
+      moduleCode: this.headerData.modulecode,
+    };
+  }
+  onButtonClicked(event: { buttonName: string; success: boolean }) {
+    console.log('Button: ${event.buttonName}, Success: ${event.success}');
+    this.disableButtons = true;
+    if (event.success && event.buttonName == 'Return') {
+    }
+    if (event.success && event.buttonName == 'Submit') {
+    }
+    if (event.success && event.buttonName == 'Comments') {
+    }
+    // if (event.success && event.buttonName == 'Clear') {
+    // }
+  }
+  getComments() {
+    const lcRequestnumber = this.headerData.requestNo;
+    const lcnum = this.headerData.lcnum;
+    const templateName = 'ch.html';
+    const stage = 1;
+    const userid = this.headerData.createdby;
+    const moduleCode = this.headerData.modulecode;
+    this.dmsService
+      .onGetCommentsData(
+        lcRequestnumber,
+        lcnum,
+        templateName,
+        stage,
+        userid,
+        moduleCode
+      )
+      .subscribe((data: any) => {
+        console.log(data);
+        let fileExtension = 'pdf';
+        const binaryData = atob(data.data);
+        const arrayBuffer = new ArrayBuffer(binaryData.length);
+        const uint8Array = new Uint8Array(arrayBuffer);
+        for (let i = 0; i < binaryData.length; i++) {
+          uint8Array[i] = binaryData.charCodeAt(i);
+        }
+        let blob: any;
+        blob = new Blob([uint8Array], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = lcRequestnumber + '.' + fileExtension;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      });
+    this.isLoading = false;
+  }
+  ngOnDestroy(): void {
+    this.destroy$.next(undefined);
+    this.destroy$.complete();
+  }
 }
-
-

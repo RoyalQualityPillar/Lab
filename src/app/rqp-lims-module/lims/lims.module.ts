@@ -100,6 +100,9 @@ import { IsmUpdateHomePageComponent } from '../ism/ism-update-home-page/ism-upda
 import { CreateUpdatePrevntMainScheComponent } from '../masterdata/ims-masterdata/preventive-maintenance-schedule/create-update-prevnt-main-sche/create-update-prevnt-main-sche.component';
 import { HomePagePrevntMainScheComponent } from '../masterdata/ims-masterdata/preventive-maintenance-schedule/home-page-prevnt-main-sche/home-page-prevnt-main-sche.component';
 import { IsmCompletedSaveComponent } from '../ism/ism-completed-save/ism-completed-save.component';
+import { IpmHomeComponent } from '../ipm/ipm-home/ipm-home.component';
+import { IpmCompletedSaveComponent } from '../ipm/ipm-completed-save/ipm-completed-save.component';
+import { IpmCompletedComponent } from '../ipm/ipm-completed/ipm-completed.component';
 
 
 
@@ -176,7 +179,7 @@ import { IsmCompletedSaveComponent } from '../ism/ism-completed-save/ism-complet
     CaInitiatorComponent,
     CqHomeComponent,
     CuHomeComponent,
-    EvenLogMasterHomePageComponent,   
+    EvenLogMasterHomePageComponent,
     PmsListComponent,
     CreateUpdateInstrumentStatusComponent,
     HomePageInstrumentStatusComponent,
@@ -189,16 +192,17 @@ import { IsmCompletedSaveComponent } from '../ism/ism-completed-save/ism-complet
     CpmHomePageComponent,
     IsmHomeComponent,
     IsmInitiatorComponent,
-     IsmCompletedComponent,
+    IsmCompletedComponent,
     IsmCompletedSaveComponent,
     IsmReviewerComponent,
     IsmReviewerHomePageComponent,
-    
     IsmUpdateHomePageComponent,
-    
-   
     CreateUpdatePrevntMainScheComponent,
     HomePagePrevntMainScheComponent,
+    IpmHomeComponent,
+    IpmCompletedComponent,
+    IpmCompletedSaveComponent,
+
 
   ],
   imports: [

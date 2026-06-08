@@ -22,7 +22,7 @@ export class LimsService {
     const nextStageURL = this.API_URL + 'gm/input/get-np-stages';
     return this.http.post(nextStageURL, requestBody);
   }
-   onCCSaveUpdate(
+   onIPMSaveUpdate(
     actionAttachments: any[],
     referenceAttachments: any[],
     body: any
@@ -53,7 +53,7 @@ export class LimsService {
 
     console.log(formData); // Check the FormData structure in the browser's console
 
-    let createUserURL = this.API_URL + 'cc/save-update';
+    let createUserURL = this.API_URL + 'limsm-im/isr-save-update';
 
     const httpOptions = {
       headers: new HttpHeaders({
