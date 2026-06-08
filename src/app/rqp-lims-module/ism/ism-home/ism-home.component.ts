@@ -11,10 +11,10 @@ export class IsmHomeComponent {
    constructor(private router: Router) {}
   onAllPaAssignmentDashBord() {
     console.log('paaa');
-    this.router.navigate(['./rqpquailtyui/qms/cc-pa-dash-bord']);
+    this.router.navigate(['./qms/cc-pa-dash-bord']);
   }
   allCompletedRecords() {
-    this.router.navigate(['./rqpquailtyui/qms/cc-completed']);
+    this.router.navigate(['./rqplabui/lims/ism-completed']);
   }
 
 }
