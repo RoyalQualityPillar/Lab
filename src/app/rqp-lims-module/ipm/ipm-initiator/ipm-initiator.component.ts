@@ -213,7 +213,7 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
     this.pageData = {
       pageName: 'homePage',
       pageType: 'create',
-      isRasiInit: 'cc-Initiator',
+      isRasiInit: 'ipm-Initiator',
     };
     this.headerRequestBody = this.lifeCycleDataService.getSelectedRowData();
     this.onLoadNextStageData();
@@ -288,8 +288,8 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
   onLoadInputApi() {
     console.log(this.headerData);
     let unitCode = this.headerData.unitcode;
-    let module = 'CCA';
-    let mainModule = 'CC';
+    let module = 'IPMA';
+    let mainModule = 'IPM';
     this.limsService
       .onLoadInputNewAPI(unitCode, module, mainModule)
       .subscribe((data: any) => {
@@ -518,7 +518,7 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
   }
   calculateEndDate() {
     const changeDetectionValue = this.EventForm.controls['ff0005'].value;
-    const selectedModule = 'CC';
+    const selectedModule = 'IPM';
     const today = new Date();
 
     const reqItem = this.reqList.find((item) => item.ff0006 === selectedModule);
@@ -1133,7 +1133,7 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
     console.log(actionAttachmentList);
     console.log(riskAttachment);
     this.limsService
-      .onCCSaveUpdate(rowWiseActionAttachmentList, attachmentList, riskAttachment)
+      .onIPMSaveUpdate(rowWiseActionAttachmentList, attachmentList, riskAttachment)
       .subscribe((data: any) => {
         // console.log(data)
         console.log(this.body1);
@@ -1151,7 +1151,7 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
           timer(2000)
             .pipe(takeUntil(this.destroy$))
             .subscribe(() => {
-              this.route.navigateByUrl('/rqpquailtyui/qms/cc-home');
+              this.route.navigateByUrl('/rqpquailtyui/lims/ipm-home');
             });
         }
         this.isLoading = false;

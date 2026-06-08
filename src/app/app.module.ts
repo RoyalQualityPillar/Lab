@@ -16,7 +16,6 @@ import { SharedModule } from './common/shared.module';
 import { NciReviewDetailComponent } from './rqp-qms-module/nci-review-detail/nci-review-detail.component';
 import { DropdownListComponent } from './rqp-dms-module/sop/dropdown-list/dropdown-list.component';
 import { ActionAttachmentsListComponent } from './rqp-lims-module/ism/action-attachments-list/action-attachments-list.component';
-import { IsmCompletedSaveComponent } from './rqp-lims-module/ism/ism-completed-save/ism-completed-save.component';
 
 
 // import { SharedModule } from './common/shared.module';
@@ -27,33 +26,27 @@ import { IsmCompletedSaveComponent } from './rqp-lims-module/ism/ism-completed-s
   declarations: [
     AppComponent,
     DashboardComponent,
-    //CustomSnackBarComponent,
     LovDialogComponent,
     MessageDialogComponent,
-    
     NciReviewDetailComponent,
-          DropdownListComponent,
-          ActionAttachmentsListComponent,
-          
-   
+    DropdownListComponent,
+    ActionAttachmentsListComponent,
+    MessageDialogComponent,
   
-  
-   
-    MessageDialogComponent,     
-   
-    
-    
-    
-    
+
+
+
+
+
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
     AngularMaterialModule,
-   SharedModule
-   
+    SharedModule
+
     //MatDialogModule,
-    
+
   ],
   providers: [
     provideClientHydration(withEventReplay())

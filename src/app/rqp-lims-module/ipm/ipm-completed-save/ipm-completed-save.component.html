@@ -67,6 +67,7 @@
                 matInput
                 placeholder="Change Description"
                 formControlName="ff0001"
+                readonly
               >
               </textarea>
             </mat-form-field>
@@ -84,7 +85,7 @@
         </div>
       </div>
     </div> -->
-    <!-- <div class="row">
+     <!-- <div class="row">
       <div class="col-12">
         <form [formGroup]="EventForm">
           <div class="row no-gutters ms-1 me-1 dense-4">
@@ -95,13 +96,7 @@
                 matInput
                 formControlName="ff0001"
                 placeholder="Severity of the Event"
-              />
-              <img
-                alt="lov img"
-                src="../../../../../../assets/searchfind.svg"
-                class="icon-size lovSearchButton"
-                color="primary"
-                (click)="openSeverityEventLov()"
+                readonly
               />
             </mat-form-field>
             <mat-form-field appearance="outline" class="col-4 px-1">
@@ -111,15 +106,9 @@
                 matInput
                 formControlName="ff0002"
                 placeholder="Probability of Occurrence"
+                readonly
               />
-              <img
-                alt="lov img"
-                src="../../../../../../assets/searchfind.svg"
-                class="icon-size lovSearchButton"
-                color="primary"
-                (click)="openOccurenceLov()"
-              />
-            </mat-form-field>
+                         </mat-form-field>
             <mat-form-field appearance="outline" class="col-4 px-1">
               <mat-label>Detection Mechanism</mat-label>
               <input
@@ -127,14 +116,9 @@
                 matInput
                 formControlName="ff0003"
                 placeholder="Detection Mechanism"
+                readonly
               />
-              <img
-                alt="lov img"
-                src="../../../../../../assets/searchfind.svg"
-                class="icon-size lovSearchButton"
-                color="primary"
-                (click)="openDetectionLov()"
-              />
+             
             </mat-form-field>
           </div>
           <div class="row no-gutters ms-1 me-1 dense-4">
@@ -169,8 +153,7 @@
           </div>
         </form>
       </div>
-    </div> -->
-
+    </div>  -->
     <!-- my-component.component.html -->
     <div class="table-box">
       <div class="section_header_child_1">
@@ -179,7 +162,7 @@
           <button
             mat-raised-button
             class="section-add-new-record-btn"
-            (click)="addNewliRow()"
+            (click)="addNewRow()"
           >
             Add Line Item
           </button>
@@ -221,6 +204,7 @@
                 [(ngModel)]="item.ff0001"
                 matInput
                 placeholder="Item Category"
+                readonly
               />
             </mat-form-field>
             <mat-form-field appearance="outline" class="col-3 px-1">
@@ -230,6 +214,7 @@
                 [(ngModel)]="item.ff0002"
                 matInput
                 placeholder="Item Subcategory"
+                readonly
               />
             </mat-form-field>
             <mat-form-field appearance="outline" class="col-3 px-1">
@@ -239,6 +224,7 @@
                 [(ngModel)]="item.ff0003"
                 matInput
                 placeholder="Item Name"
+                readonly
               />
             </mat-form-field>
             <mat-form-field appearance="outline" class="col-3 px-1">
@@ -248,6 +234,7 @@
                 [(ngModel)]="item.ff0004"
                 matInput
                 placeholder="Item No"
+                readonly
               />
             </mat-form-field>
           </div>
@@ -285,6 +272,7 @@
                       class="form-control form-control-sm"
                       [(ngModel)]="element.ff0005"
                       rows="3"
+                      readonly
                     >
                     </textarea>
                   </td>
@@ -294,6 +282,7 @@
                       class="form-control form-control-sm"
                       [(ngModel)]="element.ff0006"
                       rows="3"
+                      readonly
                     >
                     </textarea>
                   </td>
@@ -303,6 +292,7 @@
                       class="form-control form-control-sm"
                       [(ngModel)]="element.ff0007"
                       rows="3"
+                      readonly
                     >
                     </textarea>
                   </td>
@@ -460,13 +450,9 @@
                 class="width_auto border_1_b4b1b1"
                 (change)="onChangeLifeCycle(i)"
               />
-              <img
-                alt="lov img"
-                src="../../../../../../assets/searchfind.svg"
-                class="icon-size lovSearchButton"
-                color="primary"
-                (click)="openLifeCycleNoLov(i)"
-              />
+              <!-- <img alt="lov img" src="../../../../../../assets/searchfind.svg"
+                                            class="icon-size lovSearchButton" color="primary"
+                                            (click)="openLifeCycleNoLov(i)" /> -->
             </mat-form-field>
             <mat-form-field appearance="outline" class="col-3 px-1">
               <mat-label>Department Code</mat-label>
@@ -771,48 +757,29 @@
     >
       <div class="table-box">
         <app-comments-table
-          [headerData]="headerData"
+          [headerData]="this.headerData"
           [ff0005Value]="ff0005"
+          [commentType]="commentType"
         ></app-comments-table>
       </div>
     </app-as-common-footer>
-    <!-- <ng-container *ngIf="showDropdownList">
-      <mat-form-field appearance="outline">
-        <mat-label>Select List</mat-label>
-        <mat-select
-          [(ngModel)]="selectedValue"
-          (selectionChange)="selectionChange()"
+    <div class="containerBTN margin-top_2 margin-bottom_35">
+      <div class="d-flex justify-content-center">
+        <button mat-raised-button class="submitButton">Download</button>
+        <button mat-raised-button class="submitButton">Download</button>
+        <button mat-raised-button class="submitButton">Download</button>
+        <button mat-raised-button class="submitButton" (click)="getComments()">
+          Comments
+        </button>
+        <button
+          mat-raised-button
+          class="submitButton"
+          (click)="onSaveConfirmation()"
         >
-          <mat-option value="specific"> Specific </mat-option>
-          <mat-option value="all"> All</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <button
-        mat-raised-button
-        class="submitButton"
-        (click)="addNewRow()"
-        *ngIf="selectedValue === 'specific'"
-        [disabled]="disableButtons"
-      >
-        CFT User
-      </button>
-    </ng-container> -->
-    <button
-  *ngIf="headerData?.role === 'CC-QA Reviewer'"
-  mat-raised-button
-  class="submitButton"
-  (click)="addNewRow()"
->
-  CFT User
-</button>
-    
-    <app-common-button-bar
-      [buttonConfig]="buttonConfig"
-      (buttonClicked)="onButtonClicked($event)"
-      [redirectUrl]="redirectUrl"
-    >
-    </app-common-button-bar>
+          Rivision
+        </button>
+      </div>
+    </div>
     <mat-spinner
       *ngIf="isLoading"
       class="global-loading-spinner"

@@ -1,15 +1,15 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import moment from 'moment';
-import { Subject, timer, takeUntil } from 'rxjs';
+import { CommonFileUploadComponent } from 'src/app/common/common-file-upload/common-file-upload.component';
 import { LovDialogComponent } from 'src/app/common/lov-dialog/lov-dialog.component';
 import { MessageDialogComponent } from 'src/app/common/message-dialog/message-dialog.component';
 import { NotificationService } from 'src/app/common/notification.service';
 import { getFileExtension } from 'src/app/common/removeEmptyStrings';
+import { NciReviewDetailComponent } from 'src/app/rqp-qms-module/nci-review-detail/nci-review-detail.component';
 import { DmsService } from 'src/app/service/dms.service';
 import { LifeCycleDataService } from 'src/app/service/life-cycle-data.service';
 import { MessageService } from 'src/app/service/message.service';
@@ -17,17 +17,14 @@ import { RemoteComponentLoaderService } from 'src/app/service/remote-component-l
 import { ToolbarService } from 'src/app/service/toolbar.service';
 import { PreviewFileComponent } from 'src/app/toolbar/preview-file/preview-file.component';
 import { LimsService } from '../../lims.service';
-import { CommonFileUploadComponent } from 'src/app/common/common-file-upload/common-file-upload.component';
-import { IpmReviewerComponent } from '../ipm-reviewer/ipm-reviewer.component';
 
 @Component({
-  selector: 'app-ipm-update-save',
+  selector: 'app-ipm-completed-save',
   standalone: false,
-  templateUrl: './ipm-update-save.component.html',
-  styleUrl: './ipm-update-save.component.scss'
+  templateUrl: './ipm-completed-save.component.html',
+  styleUrl: './ipm-completed-save.component.scss'
 })
-export class IpmUpdateSaveComponent implements OnInit {
-  @ViewChild(MatSort) sort: MatSort;
+export class IpmCompletedSaveComponent implements OnInit {
   EventForm: FormGroup;
   isReadonly = true;
   UserRequirementForm: FormGroup;
@@ -42,7 +39,7 @@ export class IpmUpdateSaveComponent implements OnInit {
   itemCategoryList: any;
   icsMasterList: any;
   rctMasterList: any;
-  private ff0005: number;
+  public ff0005: number;
   ctMasterList: any;
   actionDtoList: any = [{}];
   nextStageListData: any;
@@ -52,7 +49,6 @@ export class IpmUpdateSaveComponent implements OnInit {
   ff0001: any;
   lc0003: any;
   module: any;
-  private comments: string;
   moduleCode: any;
   documentListData: any;
   reviewCommentsData: any;
@@ -66,6 +62,7 @@ export class IpmUpdateSaveComponent implements OnInit {
   lineItemData: any;
   issueDetailData: any;
   fileType: any;
+  commentType = 'completedRecord';
   url: any;
   headerData: any;
   displayedColumns: any;
@@ -78,10 +75,10 @@ export class IpmUpdateSaveComponent implements OnInit {
   draftValue: any;
   UserRoleTableAttachment: any;
   isRiskFlag = false;
+  public userCurrentComments: any;
   mediumRisk = false;
   noRisk = false;
   actionTypeList: any;
-  destroy$ = new Subject<void>();
   isStatusSuccess: boolean;
   selectedFileList: File[] = [];
   displayedEventColumns: string[] = ['action', 'uc0001', 'ff0001', 'ff0002'];
@@ -118,8 +115,8 @@ export class IpmUpdateSaveComponent implements OnInit {
     private messageService: MessageService,
     private notificationService: NotificationService,
     private toolbarService: ToolbarService,
-    private dmsService: DmsService,
     private route: Router,
+    private dmsService: DmsService,
     private remoteLoader: RemoteComponentLoaderService
   ) {
     this.UserRequirementForm = this.fb.group({
@@ -180,7 +177,7 @@ export class IpmUpdateSaveComponent implements OnInit {
           params.ff0010,
       };
       this.ff0001 = params.uc0001;
-      this.ff0005 = params.ff0007;
+      this.ff0005 = params.ff0008;
       console.log(this.pageData);
     });
     if (this.ff0001) {
@@ -199,19 +196,17 @@ export class IpmUpdateSaveComponent implements OnInit {
   }
   ngAfterViewInit(): void {}
 
-  onReviewData() {
-    this.limsService
-      .onCommentsData(this.ff0001, this.headerData.lcnum, this.ff0005)
-      .subscribe((data: any) => {
-        this.reviewCommentsData = data.data;
-        this.dataSource = new MatTableDataSource(this.reviewCommentsData);
-        this.dataSource.sort = this.sort;
-      });
-  }
-  public handleCommentsForm(event: any) {
-    this.comments = event.comments;
-    console.log(event);
-  }
+  // onReviewData() {
+  //   this.qmsService
+  //     .onCommentsData(this.ff0001, this.headerData.lcnum,this.ff0005)
+  //     .subscribe((data: any) => {
+  //       this.reviewCommentsData = data.data;
+  //       this.commentsDataSource = new MatTableDataSource(
+  //         this.reviewCommentsData
+  //       );
+  //     });
+  // }
+
   onLoadEventClassification(lc0003: any) {
     this.limsService.getEventClassification(lc0003).subscribe((data: any) => {
       console.log(data);
@@ -395,25 +390,9 @@ export class IpmUpdateSaveComponent implements OnInit {
     const fileExtension = parts[parts.length - 1];
     return fileExtension;
   }
-  onGetRequestNo() {
-    console.log('Bharat');
-
-    this.limsService
-      .getResquestNoIDForURS(this.ff0001)
-      .subscribe((data: any) => {
-        console.log(data);
-        this.lc0003 = data.data[0].lc0003;
-        if (this.lc0003) {
-          this.onLoadEventClassification(this.lc0003);
-          // this.getLoadActionItem(this.lc0003);
-          this.lineItemHeading(this.lc0003);
-          this.IssueDetails(this.lc0003);
-          this.getDocumentList();
-        }
-      });
-  }
   onGetQMSRequestNo() {
     console.log('Bharat');
+
     this.limsService
       .getResquestNoIDForQMS(this.ff0001)
       .subscribe((data: any) => {
@@ -422,7 +401,7 @@ export class IpmUpdateSaveComponent implements OnInit {
         if (this.lc0003) {
           // this.onLoadEventClassification(this.lc0003);
           this.getLoadActionItem(this.lc0003);
-          //  this.lineItemHeading(this.lc0003);
+          // this.lineItemHeading(this.lc0003);
           // this.IssueDetails(this.lc0003);
           // this.getDocumentList();
         }
@@ -435,7 +414,7 @@ export class IpmUpdateSaveComponent implements OnInit {
       this.lc0003 = data.data[0].lc0003;
       if (this.lc0003) {
         this.onLoadEventClassification(this.lc0003);
-        // this.getLoadActionItem(this.lc0003);
+        this.getLoadActionItem(this.lc0003);
         this.lineItemHeading(this.lc0003);
         this.IssueDetails(this.lc0003);
         this.getDocumentList();
@@ -459,11 +438,15 @@ export class IpmUpdateSaveComponent implements OnInit {
   getHeaderData(event: any) {
     console.log(event);
     this.headerData = event;
-    this.onReviewData();
+    // this.onReviewData();
     if (this.headerData) {
       this.onLoadInputApi();
       //this.getDocumentList();
     }
+  }
+  public getCommentsData(event: any): void {
+    this.userCurrentComments = event;
+    console.log(event);
   }
   addLineItem(item: any): void {
     item.ccLineDesDTOList.push({
@@ -594,7 +577,7 @@ export class IpmUpdateSaveComponent implements OnInit {
     });
   }
   eventSelectedRow(row) {
-    const dialogRef = this.dialog.open(IpmReviewerComponent, {
+    const dialogRef = this.dialog.open(NciReviewDetailComponent, {
       data: { type: 'event', tableData: row },
       disableClose: true,
     });
@@ -717,11 +700,27 @@ export class IpmUpdateSaveComponent implements OnInit {
   filterEmptyObjects(objects: any[]): any[] {
     return objects.filter((obj) => Object.keys(obj).length > 0);
   }
-  async onSaveConfirmation(btnStatus: any) {
-    console.log(this.lineItemData);
-    console.log(this.documentListData);
-    console.log(this.actionDtoList);
-    console.log(btnStatus);
+  // onSaveConfirmation(btnStatus: any) {
+  //   console.log(this.lineItemData);
+  //   console.log(this.documentListData);
+  //   console.log(this.actionDtoList);
+  //   console.log(btnStatus);
+  //   const dialogRef = this.dialog.open(QMSESignatureComponent, {
+  //     height: '300px',
+  //     width: '600px',
+  //     data: {},
+  //     disableClose: true,
+  //   });
+  //   dialogRef.afterClosed().subscribe((result) => {
+  //     if (result) {
+  //       this.selectedDialogData = result.data;
+  //       if (this.selectedDialogData) {
+  //         this.onSaveUpdate('0');
+  //       }
+  //     }
+  //   });
+  // }
+  async onSaveConfirmation() {
     const component = await this.remoteLoader.loadComponentByKey(
       'CommonESignatureComponent'
     );
@@ -735,9 +734,32 @@ export class IpmUpdateSaveComponent implements OnInit {
       if (result) {
         this.selectedDialogData = result.data;
         if (this.selectedDialogData) {
-          this.onSaveUpdate('0');
+          this.getDocumentRivision();
         }
       }
+    });
+  }
+  getDocumentRivision() {
+    const data = {
+      uc0001: null,
+      ff0001: this.headerData.requestNo,
+      ff0002: this.headerData.lcnum,
+      ff0003: this.headerData.role,
+      ff0004: this.headerData.requestNo,
+      ff0005: this.pageData.version.slice(0, 1),
+      ff0006: this.pageData.version.slice(2, 3),
+      ff0007: this.pageData.version.slice(4, 5),
+      ff0008: this.pageData.version.slice(6, 7),
+      ff0009: this.headerData.requestNo,
+      createdby: this.headerData.createdby,
+      comments: this.userCurrentComments,
+    };
+    this.dmsService.documentRivision(data).subscribe({
+      next: (data) => {},
+      complete: () => {
+        this.route.navigate(['/dms/sop-module-home-page']);
+      },
+      error: (err) => console.log(err),
     });
   }
   async onSaveUpdate(btnStatus: any) {
@@ -816,11 +838,6 @@ export class IpmUpdateSaveComponent implements OnInit {
           this.notificationService.showSuccess(data.status, () => {
             console.log('Success Snackbar Closed');
           });
-          timer(2000)
-            .pipe(takeUntil(this.destroy$))
-            .subscribe(() => {
-              this.route.navigateByUrl('/rqplabui/lims/ipm-home');
-            });
         }
         this.isLoading = false;
       });
@@ -853,11 +870,10 @@ export class IpmUpdateSaveComponent implements OnInit {
         stage2: this.FooterForm.controls['nextStage'].value,
         requestType: '',
         createdBy: this.headerData.createdby,
-        comments: this.comments,
-        documentModule: 'string',
-        documentStatus: 'string',
-        gmuserDTOList: [],
         draft: this.draftValue,
+        gmuserDTOList: [],
+
+        //comments need to add
       },
       actionDtoList: this.actionDtoList,
       eventClasificationDtoList: [
@@ -1348,5 +1364,81 @@ export class IpmUpdateSaveComponent implements OnInit {
       }
     });
   }
-}
+  buttonConfig = [
+    { label: 'Return', getPayload: () => this.calculateReturnPayload() },
+    { label: 'Submit', getPayload: () => this.calculateReturnPayload() },
+    // { label: 'Clear', getPayload: () => this.calculateReturnPayload() },
+    { label: 'Comments', getPayload: () => this.calculateCommentsPayload() },
+    // Add more buttons as needed
+  ];
+  calculateReturnPayload() {
+    return {
+      data: 'returnData',
+      calculatedValue: this.headerData,
+      commentsFieldData: this.userCurrentComments,
+      pageData: this.pageData,
+    };
+  }
 
+  calculateCommentsPayload() {
+    return {
+      data: 'returnData',
+      calculatedValue: this.headerData,
+      lcRequestnumber: this.headerData.requestNo,
+      lcnum: this.headerData.lcnum,
+      templateName: 'ch.html',
+      stage: this.headerData.stage,
+      userid: this.headerData.createdby,
+      moduleCode: this.headerData.modulecode,
+    };
+  }
+  onButtonClicked(event: { buttonName: string; success: boolean }) {
+    console.log('Button: ${event.buttonName}, Success: ${event.success}');
+    if (event.success && event.buttonName == 'Return') {
+    }
+    if (event.success && event.buttonName == 'Submit') {
+    }
+    if (event.success && event.buttonName == 'Comments') {
+    }
+    // if (event.success && event.buttonName == 'Clear') {
+    // }
+  }
+  getComments() {
+    const lcRequestnumber = this.headerData.requestNo;
+    const lcnum = this.headerData.lcnum;
+    const templateName = 'ch.html';
+    const stage = 1;
+    const userid = this.headerData.createdby;
+    const moduleCode = this.headerData.modulecode;
+    this.dmsService
+      .onGetCommentsData(
+        lcRequestnumber,
+        lcnum,
+        templateName,
+        stage,
+        userid,
+        moduleCode
+      )
+      .subscribe((data: any) => {
+        console.log(data);
+        let fileExtension = 'pdf';
+        const binaryData = atob(data.data);
+        const arrayBuffer = new ArrayBuffer(binaryData.length);
+        const uint8Array = new Uint8Array(arrayBuffer);
+        for (let i = 0; i < binaryData.length; i++) {
+          uint8Array[i] = binaryData.charCodeAt(i);
+        }
+        let blob: any;
+        blob = new Blob([uint8Array], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = lcRequestnumber + '.' + fileExtension;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      });
+    this.isLoading = false;
+  }
+}
