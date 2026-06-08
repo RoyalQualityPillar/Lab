@@ -389,4 +389,5 @@ export const SUB_MENU_ROUTES: { [key: string]: string } = {
   'SPM-Initiator': './rmp/spm-master-home-page',
   'SPM-Update': './rmp/spm-master-home-page',
   'SPM-Approver': './rmp/spm-master-home-page',
+  
 };
