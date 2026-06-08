@@ -92,7 +92,6 @@ import { CpmCreateUpdateComponent } from '../masterdata/ims-masterdata/calibraio
 import { CpmHomePageComponent } from '../masterdata/ims-masterdata/calibraion-perameter-master/cpm-home-page/cpm-home-page.component';
 import { IsmHomeComponent } from '../ism/ism-home/ism-home.component';
 import { IsmInitiatorComponent } from '../ism/ism-initiator/ism-initiator.component';
-import { IsmCompletedSaveComponent } from '../ism/ism-completed-save/ism-completed-save.component';
 import { IsmCompletedComponent } from '../ism/ism-completed/ism-completed.component';
 import { IsmReviewerHomePageComponent } from '../ism/ism-reviewer-home-page/ism-reviewer-home-page.component';
 import { IsmReviewerComponent } from '../ism/ism-reviewer/ism-reviewer.component';
@@ -100,6 +99,7 @@ import { IsmUpdateHomePageComponent } from '../ism/ism-update-home-page/ism-upda
 
 import { CreateUpdatePrevntMainScheComponent } from '../masterdata/ims-masterdata/preventive-maintenance-schedule/create-update-prevnt-main-sche/create-update-prevnt-main-sche.component';
 import { HomePagePrevntMainScheComponent } from '../masterdata/ims-masterdata/preventive-maintenance-schedule/home-page-prevnt-main-sche/home-page-prevnt-main-sche.component';
+import { IsmCompletedSaveComponent } from '../ism/ism-completed-save/ism-completed-save.component';
 
 
 

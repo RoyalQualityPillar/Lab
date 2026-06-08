@@ -33,6 +33,9 @@ import { CreateUpdateMaterialMasterComponent } from '../spm-masters/material-mas
 import { MaterialMasterHomePageComponent } from '../spm-masters/material-master-product/material-master-home-page/material-master-home-page.component';
 import { AddNewRecordComponent } from '../spm-masters/add-new-record/add-new-record.component';
 import { PmsListComponent } from '../spm-masters/pms-list/pms-list.component';
+import { WsrCompletedComponent } from '../wsr/wsr-completed/wsr-completed.component';
+import { WsrCompletedSaveComponent } from '../wsr/wsr-completed-save/wsr-completed-save.component';
+import { WsrModuleAdminComponent } from '../wsr/wsr-module-admin/wsr-module-admin.component';
 // import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
@@ -57,12 +60,15 @@ import { PmsListComponent } from '../spm-masters/pms-list/pms-list.component';
     WsrReviewerSaveComponent,
     WsrUpdateComponent,
     WsrUpdateSaveComponent,
+    WsrCompletedComponent,
+    WsrCompletedSaveComponent,
+    WsrModuleAdminComponent,
     DmproductCreateUpdateComponent,
     DmproductHomePageComponent,
     CreateUpdateMaterialMasterComponent,
     MaterialMasterHomePageComponent,
     AddNewRecordComponent,
-    PmsListComponent
+    PmsListComponent,
 
   ],
   imports: [
