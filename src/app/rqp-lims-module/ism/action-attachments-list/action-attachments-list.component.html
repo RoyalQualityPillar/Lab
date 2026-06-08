@@ -1,0 +1,78 @@
+<div class="row gx-0 create-update-dialog-header-section">
+  <div class="col-10 d-flex justify-content-start">
+    <h1 class="daialog-title-name p-2">Action List</h1>
+  </div>
+  <div class="col-2 d-flex justify-content-end">
+    <button mat-icon-button class="close-button" [mat-dialog-close]="true">
+      <mat-icon class="close-icon" color="warn">close</mat-icon>
+    </button>
+  </div>
+</div>
+<div class="table-box">
+  <mat-table [dataSource]="tableData" matTableExporter class="table_background_color" matSort id="dataTable">
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-checkbox class="margin-left_7_7_rem" (click)="$event.stopPropagation()"
+          (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="requestNo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Request No.
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.uc0001 }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="lifeCycleNo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>LifeCycle No.
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.ff0001 }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="department">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Department
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.ff0002 }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="moduleCode">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Module Code
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.ff0003 }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="createdby">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Created By
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.createdby }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Status
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.status }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="createdon">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Created On
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.createdon }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actionDescription">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Action Description
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.ff0012 }}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="addedActiondisplayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: addedActiondisplayedColumns"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[10, 15, 20, 25]" (page)="pageChanged($event)" showFirstLastButtons
+    aria-label="Select page of periodic rows">
+  </mat-paginator>
+  <!-- <button
+          mat-raised-button
+          class="submitButton"
+          (click)="onSubmit('row')"
+        >
+          Submit
+        </button> -->
+</div>

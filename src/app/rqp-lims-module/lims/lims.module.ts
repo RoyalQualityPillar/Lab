@@ -97,7 +97,7 @@ import { IsmCompletedComponent } from '../ism/ism-completed/ism-completed.compon
 import { IsmReviewerHomePageComponent } from '../ism/ism-reviewer-home-page/ism-reviewer-home-page.component';
 import { IsmReviewerComponent } from '../ism/ism-reviewer/ism-reviewer.component';
 import { IsmUpdateHomePageComponent } from '../ism/ism-update-home-page/ism-update-home-page.component';
-import { IsmUpdateComponent } from '../ism/ism-update/ism-update.component';
+
 import { CreateUpdatePrevntMainScheComponent } from '../masterdata/ims-masterdata/preventive-maintenance-schedule/create-update-prevnt-main-sche/create-update-prevnt-main-sche.component';
 import { HomePagePrevntMainScheComponent } from '../masterdata/ims-masterdata/preventive-maintenance-schedule/home-page-prevnt-main-sche/home-page-prevnt-main-sche.component';
 
@@ -193,7 +193,7 @@ import { HomePagePrevntMainScheComponent } from '../masterdata/ims-masterdata/pr
     IsmCompletedSaveComponent,
     IsmReviewerComponent,
     IsmReviewerHomePageComponent,
-    IsmUpdateComponent,
+    
     IsmUpdateHomePageComponent,
     
    

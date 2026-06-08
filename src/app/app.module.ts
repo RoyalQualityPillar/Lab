@@ -14,6 +14,8 @@ import { SharedModule } from './common/shared.module';
 
 
 import { NciReviewDetailComponent } from './rqp-qms-module/nci-review-detail/nci-review-detail.component';
+import { DropdownListComponent } from './rqp-dms-module/sop/dropdown-list/dropdown-list.component';
+import { ActionAttachmentsListComponent } from './rqp-lims-module/ism/action-attachments-list/action-attachments-list.component';
 
 
 // import { SharedModule } from './common/shared.module';
@@ -29,6 +31,8 @@ import { NciReviewDetailComponent } from './rqp-qms-module/nci-review-detail/nci
     MessageDialogComponent,
     
     NciReviewDetailComponent,
+          DropdownListComponent,
+          ActionAttachmentsListComponent,
           
    
   

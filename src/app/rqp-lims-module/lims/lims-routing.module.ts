@@ -410,40 +410,32 @@ const routes: Routes = [
    path: 'ism-home',
     component: IsmHomeComponent,
   },
-  {
-  path: 'ism-initiator',
-    component: IsmInitiatorComponent,
+ 
+  
+    {
+    path: 'ism-initiator',
+    component: IpmInitiatorComponent,
   },
    {
-   path: 'ism-completed',
-    component: IsmCompletedComponent,
+    path: 'ism-update',
+    component: IpmUpdateComponent,
   },
    {
-   path: 'ism-completed-save',
-    component: IsmCompletedSaveComponent,
+    path: 'ism-update-save',
+    component: IpmUpdateSaveComponent,
   },
    {
-   path: 'ism-reviewer',
-    component: IsmReviewerComponent,
+    path: 'ism-reviewer',
+    component: IpmReviewerComponent,
   },
    {
-   path: 'ism-reviewer-home-page',
-    component: IsmReviewerHomePageComponent,
+    path: 'ism-reviewer-save',
+    component: IpmReviewerSaveComponent,
   },
-   {
-   path: 'ism-update',
-    component: IsmUpdateComponent,
-  },
-   {
-   path: 'ism-update-home-page',
-    component: IsmUpdateHomePageComponent,
-   },
-  //{
-  // path: 'home-page-prevnt-main-sche',
-  //   component: HomePagePrevntMainScheComponent,
-  // },
-
-
+ 
+  
+   
+  
 
 
 
