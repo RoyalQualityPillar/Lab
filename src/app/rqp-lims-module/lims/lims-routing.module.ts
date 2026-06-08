@@ -39,37 +39,7 @@ import { IsmReviewerHomePageComponent } from '../ism/ism-reviewer-home-page/ism-
 import { IsmUpdateComponent } from '../ism/ism-update/ism-update.component';
 import { IsmUpdateHomePageComponent } from '../ism/ism-update-home-page/ism-update-home-page.component';
 import { IsmCompletedSaveComponent } from '../ism/ism-completed-save/ism-completed-save.component';
-// import { HomePagePrevntMainScheComponent } from '../masterdata/ims-masterdata/preventive-maintenance-schedule/home-page-prevnt-main-sche/home-page-prevnt-main-sche.component';
-// import { HomePagePrevntMainScheComponent } from '../masterdata/ims-masterdata/preventive-maintenance-schedule/home-page-prevnt-main-sche/home-page-prevnt-main-sche.component';
-
-// import { IsmInitiatorComponent } from '../ism/ism-initiator/ism-initiator.component';
-// import { IsmHomeComponent } from '../ism/ism-home/ism-home.component';
-//import { CmHomeComponent } from '../cm/cm/cm-home/cm-home.component';
-//import { CaUpdateComponent } from '../cm/ca/ca-update/ca-update.component';
-// import { LimsModuleHomePageComponent } from '../lims-module-home-page/lims-module-home-page.component';
-// import { LimsMasterHomePageComponent } from '../lims-master/lims-master-home-page/lims-master-home-page.component';
-// import { FieldActiveComponent } from '../lims-master/field-master/field-active/field-active.component';
-// import { FieldHomePageComponent } from '../lims-master/field-master/field-home-page/field-home-page.component';
-// import { GtpHomeComponent } from '../gtp/gtp-home/gtp-home.component';
-// import { GtpInitComponent } from '../gtp/gtp-init/gtp-init.component';
-// import { GtpUpdateComponent } from '../gtp/gtp-update/gtp-update.component';
-// import { GtpUpdateSaveComponent } from '../gtp/gtp-update-save/gtp-update-save.component';
-// import { GtpReviewerComponent } from '../gtp/gtp-reviewer/gtp-reviewer.component';
-// import { GtpReviewerSaveComponent } from '../gtp/gtp-reviewer-save/gtp-reviewer-save.component';
-// import { CourseSessionHomeComponent } from '../course-session/course-session-home/course-session-home.component';
-// import { CourseSessionInitiatorComponent } from '../course-session/course-session-initiator/course-session-initiator.component';
-// import { CourseSessionUpdateComponent } from '../course-session/course-session-update/course-session-update.component';
-// import { CourseSessionUpdateSaveComponent } from '../course-session/course-session-update-save/course-session-update-save.component';
-// import { CourseSessionReviewerComponent } from '../course-session/course-session-reviewer/course-session-reviewer.component';
-// import { CourseSessionReviewerSaveComponent } from '../course-session/course-session-reviewer-save/course-session-reviewer-save.component';
-// import { CourseHomeComponent } from '../course/course-home/course-home.component';
-// import { CourseInitiatorComponent } from '../course/course-initiator/course-initiator.component';
-// import { CourseUpdateComponent } from '../course/course-update/course-update.component';
-// import { CourseUpdateSaveComponent } from '../course/course-update-save/course-update-save.component';
-// import { CourseReviewerComponent } from '../course/course-reviewer/course-reviewer.component';
-// import { CourseReviewerSaveComponent } from '../course/course-reviewer-save/course-reviewer-save.component';
-// import { TopicRegistrationCompletedSaveComponent } from '../topic-registration/topic-registration-completed-save/topic-registration-completed-save.component';
-// import { TopicRegistrationCompletedComponent } from '../topic-registration/topic-registration-completed/topic-registration-completed.component';
+import { HomePagePrevntMainScheComponent } from '../masterdata/ims-masterdata/preventive-maintenance-schedule/home-page-prevnt-main-sche/home-page-prevnt-main-sche.component';
 
 const routes: Routes = [
   // {
@@ -439,10 +409,10 @@ const routes: Routes = [
    path: 'ism-update-home-page',
     component: IsmUpdateHomePageComponent,
    },
-  //{
-  // path: 'home-page-prevnt-main-sche',
-  //   component: HomePagePrevntMainScheComponent,
-  // },
+  {
+  path: 'home-page-prevnt-main-sche',
+    component: HomePagePrevntMainScheComponent,
+  },
 
 
 
