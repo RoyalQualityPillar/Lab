@@ -2,19 +2,19 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-ism-home',
+  selector: 'app-ipm-home',
   standalone: false,
-  templateUrl: './ism-home.component.html',
-  styleUrl: './ism-home.component.scss'
+  templateUrl: './ipm-home.component.html',
+  styleUrl: './ipm-home.component.scss'
 })
-export class IsmHomeComponent {
-   constructor(private router: Router) {}
+export class IpmHomeComponent {
+ constructor(private router: Router) {}
   onAllPaAssignmentDashBord() {
     console.log('paaa');
     this.router.navigate(['./qms/cc-pa-dash-bord']);
   }
   allCompletedRecords() {
-    this.router.navigate(['./rqplabui/lims/ism-completed']);
+    this.router.navigate(['./rqplabui/lims/ipm-completed']);
   }
-
 }
+

@@ -10,6 +10,12 @@
   (headerData)="getHeaderData($event)"
 ></app-common-header>
 <div>
+  <mat-spinner
+    *ngIf="isLoading"
+    class="global-loading-spinner"
+    color="primary"
+    mode="indeterminate"
+  ></mat-spinner>
   <div>
     <!--Issue Detail start -->
     <div class="table-box">
@@ -77,8 +83,8 @@
           <p class="section_header_title">Event Classification</p>
         </div>
       </div>
-    </div> -->
-    <!-- <div class="row">
+    </div>
+    <div class="row">
       <div class="col-12">
         <form [formGroup]="EventForm">
           <div class="row no-gutters ms-1 me-1 dense-4">
@@ -173,7 +179,7 @@
           <button
             mat-raised-button
             class="section-add-new-record-btn"
-            (click)="addNewRow()"
+            (click)="addNewliRow()"
           >
             Add Line Item
           </button>
@@ -330,7 +336,7 @@
         <div *ngIf="documentListData">
           <mat-table
             [dataSource]="documentListTableData"
-           
+            
             matSort
             id="dataTable"
             class="bg-color_ghost_White"
@@ -601,39 +607,23 @@
               />
             </mat-form-field>
             <!-- <mat-form-field appearance="outline" class="col-3 px-1">
-              <mat-label>Root Cause Type</mat-label>
-              <input
-                type="text"
-                [(ngModel)]="item.ff0009"
-                matInput
-                placeholder="Root Cause Type"
-              />
-              <img
-                alt="lov img"
-                src="../../../../../../assets/searchfind.svg"
-                class="icon-size lovSearchButton"
-                color="primary"
-                (click)="openActionRootCauseTypeLov(i)"
-              />
-            </mat-form-field> -->
+                                        <mat-label>Root Cause Type</mat-label>
+                                        <input type="text" [(ngModel)]="item.ff0009" matInput
+                                            placeholder="Root Cause Type" />
+                                        <img alt="lov img" src="../../../../../../assets/searchfind.svg"
+                                            class="icon-size lovSearchButton" color="primary"
+                                            (click)="openActionRootCauseTypeLov(i)" />
+                                    </mat-form-field> -->
           </div>
           <div class="row no-gutters ms-1 me-1 dense-4 margin-top_5">
             <!-- <mat-form-field appearance="outline" class="col-3 px-1">
-              <mat-label>Root Cause</mat-label>
-              <input
-                type="text"
-                [(ngModel)]="item.ff0010"
-                matInput
-                placeholder="Root Cause"
-              />
-              <img
-                alt="lov img"
-                src="../../../../../../assets/searchfind.svg"
-                class="icon-size lovSearchButton"
-                color="primary"
-                (click)="openActionRootCauseLov(i)"
-              />
-            </mat-form-field> -->
+                                        <mat-label>Root Cause</mat-label>
+                                        <input type="text" [(ngModel)]="item.ff0010" matInput
+                                            placeholder="Root Cause" />
+                                        <img alt="lov img" src="../../../../../../assets/searchfind.svg"
+                                            class="icon-size lovSearchButton" color="primary"
+                                            (click)="openActionRootCauseLov(i)" />
+                                    </mat-form-field> -->
             <mat-form-field appearance="outline" class="col-3 px-1">
               <mat-label>Action Due date</mat-label>
               <input
@@ -692,13 +682,13 @@
                 </mat-form-field>
 
                 <!-- <mat-form-field appearance="outline" class="col-3 px-1">
-                  <mat-label>Document Type</mat-label>
-                  <mat-select formControlName="categoryTypes">
-                    <mat-option value="M">M</mat-option>
-                    <mat-option value="F">F</mat-option>
-                    <mat-option value="A">A</mat-option>
-                  </mat-select>
-                </mat-form-field> -->
+                                                <mat-label>Document Type</mat-label>
+                                                <mat-select formControlName="categoryTypes">
+                                                    <mat-option value="M">M</mat-option>
+                                                    <mat-option value="F">F</mat-option>
+                                                    <mat-option value="A">A</mat-option>
+                                                </mat-select>
+                                            </mat-form-field> -->
 
                 <div class="col-5 px-1 margin-top_5">
                   <input
@@ -775,26 +765,60 @@
       </div>
     </div>
 
-    <app-common-comments
-      [nextStageListData]="nextStageListData"
-      (commentsData)="handleCommentsForm($event)"
-      [dataSource]="dataSource"
-    ></app-common-comments>
-    <div class="containerBTN">
-      <div class="d-flex justify-content-center">
-        <button
-          mat-raised-button
-          class="submitButton"
-          (click)="onSaveConfirmation('0')"
-        >
-          Save
-        </button>
-        <button mat-raised-button class="submitButton" (click)="onSubmit('1')">
-          Submit
-        </button>
-        <button mat-raised-button class="submitButton">Clear</button>
+    <app-as-common-footer
+      [pageData]="this.pageData"
+      (comments)="getCommentsData($event)"
+    >
+      <div class="table-box">
+        <app-comments-table
+          [headerData]="headerData"
+          [ff0005Value]="ff0005"
+        ></app-comments-table>
       </div>
-    </div>
+    </app-as-common-footer>
+    <!-- <ng-container *ngIf="showDropdownList">
+      <mat-form-field appearance="outline">
+        <mat-label>Select List</mat-label>
+        <mat-select
+          [(ngModel)]="selectedValue"
+          (selectionChange)="selectionChange()"
+        >
+          <mat-option value="specific"> Specific </mat-option>
+          <mat-option value="all"> All</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        class="submitButton"
+        (click)="addNewRow()"
+        *ngIf="selectedValue === 'specific'"
+        [disabled]="disableButtons"
+      >
+        CFT User
+      </button>
+    </ng-container> -->
+    <button
+  *ngIf="headerData?.role === 'CC-QA Reviewer'"
+  mat-raised-button
+  class="submitButton"
+  (click)="addNewRow()"
+>
+  CFT User
+</button>
+    
+    <app-common-button-bar
+      [buttonConfig]="buttonConfig"
+      (buttonClicked)="onButtonClicked($event)"
+      [redirectUrl]="redirectUrl"
+    >
+    </app-common-button-bar>
+    <mat-spinner
+      *ngIf="isLoading"
+      class="global-loading-spinner"
+      color="primary"
+      mode="indeterminate"
+    ></mat-spinner>
+    <div class="height_5"></div>
   </div>
 </div>
-<div style="height: 25px"></div>

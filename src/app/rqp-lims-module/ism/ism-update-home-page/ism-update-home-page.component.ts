@@ -7,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './ism-update-home-page.component.scss'
 })
 export class IsmUpdateHomePageComponent {
+  public updateSaveUrl = './rqplabui/lims/ism-update';
+
 
 }

@@ -161,7 +161,7 @@ export class IpmUpdateSaveComponent implements OnInit {
   ];
   ngOnInit(): void {
     this.pageData = {
-      pageName: 'qms',
+      pageName: 'lims',
     };
 
     this.router.queryParams.subscribe((params: any) => {
@@ -279,7 +279,7 @@ export class IpmUpdateSaveComponent implements OnInit {
   }
 
   getDocumentList() {
-    let moduleCode = 'CC';
+    let moduleCode = 'IPM';
     this.limsService
       .documentList(this.lc0003, moduleCode)
       .subscribe((data: any) => {
@@ -789,9 +789,9 @@ export class IpmUpdateSaveComponent implements OnInit {
 
     console.log(actionAttachmentList);
     let attachmentList: any[] = [];
-    console.log(this.body1.ccAttachmentList);
-    if (this.body1.ccAttachmentList) {
-      this.body1.ccAttachmentList.forEach((obj) => {
+    console.log(this.body1.ipmAttachmentList);
+    if (this.body1.ipmAttachmentList) {
+      this.body1.ipmAttachmentList.forEach((obj) => {
         console.log(obj.selectedFileList);
         if (obj.selectedFileList) {
           attachmentList.push(obj.selectedFileList);
@@ -801,7 +801,7 @@ export class IpmUpdateSaveComponent implements OnInit {
     console.log(attachmentList);
     console.log(actionAttachmentList);
     this.limsService
-      .onCCSaveUpdate(rowWiseActionAttachmentList, attachmentList, this.body1)
+      .onIPMSaveUpdate(rowWiseActionAttachmentList, attachmentList, this.body1)
       .subscribe((data: any) => {
         // console.log(data)
         console.log(this.body1);
@@ -819,7 +819,7 @@ export class IpmUpdateSaveComponent implements OnInit {
           timer(2000)
             .pipe(takeUntil(this.destroy$))
             .subscribe(() => {
-              this.route.navigateByUrl('/rqpquailtyui/qms/cc-home');
+              this.route.navigateByUrl('/rqplabui/lims/ipm-home');
             });
         }
         this.isLoading = false;
@@ -954,8 +954,8 @@ export class IpmUpdateSaveComponent implements OnInit {
       //   },
       // ],
 
-      // "ccAttachmentList": [...this.UserRoleTableAttachment]
-      ccAttachmentList: [...this.documentListData],
+      // "ipmAttachmentList": [...this.UserRoleTableAttachment]
+      ipmAttachmentList: [...this.documentListData],
     };
     console.log(this.actionDtoList);
     this.actionDtoList.forEach((action) => {
@@ -1117,8 +1117,8 @@ export class IpmUpdateSaveComponent implements OnInit {
   onLoadInputApi() {
     console.log(this.headerData);
     let businessunit = this.headerData.unitcode;
-    let module = 'CCA';
-    let mainModule = 'CC';
+    let module = 'IPMA';
+    let mainModule = 'IPM';
     this.limsService
       .onLoadInputNewAPI(businessunit, module, mainModule)
       .subscribe((data: any) => {

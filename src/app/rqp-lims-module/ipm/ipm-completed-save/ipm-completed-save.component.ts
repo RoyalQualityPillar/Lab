@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { LimsService } from '../../lims.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { LifeCycleDataService } from 'src/app/service/life-cycle-data.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
 import moment from 'moment';
 import { CommonFileUploadComponent } from 'src/app/common/common-file-upload/common-file-upload.component';
 import { LovDialogComponent } from 'src/app/common/lov-dialog/lov-dialog.component';
@@ -13,18 +11,20 @@ import { NotificationService } from 'src/app/common/notification.service';
 import { getFileExtension } from 'src/app/common/removeEmptyStrings';
 import { NciReviewDetailComponent } from 'src/app/rqp-qms-module/nci-review-detail/nci-review-detail.component';
 import { DmsService } from 'src/app/service/dms.service';
+import { LifeCycleDataService } from 'src/app/service/life-cycle-data.service';
 import { MessageService } from 'src/app/service/message.service';
 import { RemoteComponentLoaderService } from 'src/app/service/remote-component-loader.service';
 import { ToolbarService } from 'src/app/service/toolbar.service';
 import { PreviewFileComponent } from 'src/app/toolbar/preview-file/preview-file.component';
+import { LimsService } from '../../lims.service';
 
 @Component({
-  selector: 'app-ism-completed-save',
+  selector: 'app-ipm-completed-save',
   standalone: false,
-  templateUrl: './ism-completed-save.component.html',
-  styleUrl: './ism-completed-save.component.scss'
+  templateUrl: './ipm-completed-save.component.html',
+  styleUrl: './ipm-completed-save.component.scss'
 })
-export class IsmCompletedSaveComponent implements OnInit {
+export class IpmCompletedSaveComponent implements OnInit {
   EventForm: FormGroup;
   isReadonly = true;
   UserRequirementForm: FormGroup;
@@ -274,7 +274,7 @@ export class IsmCompletedSaveComponent implements OnInit {
   }
 
   getDocumentList() {
-    let moduleCode = 'ISM';
+    let moduleCode = 'IPM';
     this.limsService
       .documentList(this.lc0003, moduleCode)
       .subscribe((data: any) => {
@@ -823,7 +823,7 @@ export class IsmCompletedSaveComponent implements OnInit {
     console.log(attachmentList);
     console.log(actionAttachmentList);
     this.limsService
-      .onISMSaveUpdate(rowWiseActionAttachmentList, attachmentList, this.body1)
+      .onIPMSaveUpdate(rowWiseActionAttachmentList, attachmentList, this.body1)
       .subscribe((data: any) => {
         // console.log(data)
         console.log(this.body1);
@@ -1133,8 +1133,8 @@ export class IsmCompletedSaveComponent implements OnInit {
   onLoadInputApi() {
     console.log(this.headerData);
     let businessunit = this.headerData.unitcode;
-    let module = 'ISMA';
-    let mainModule = 'ISM';
+    let module = 'IPMA';
+    let mainModule = 'IPM';
     this.limsService
       .onLoadInputNewAPI(businessunit, module, mainModule)
       .subscribe((data: any) => {
@@ -1442,4 +1442,3 @@ export class IsmCompletedSaveComponent implements OnInit {
     this.isLoading = false;
   }
 }
-

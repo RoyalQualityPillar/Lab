@@ -40,6 +40,9 @@ import { IsmUpdateComponent } from '../ism/ism-update/ism-update.component';
 import { IsmUpdateHomePageComponent } from '../ism/ism-update-home-page/ism-update-home-page.component';
 import { IsmCompletedSaveComponent } from '../ism/ism-completed-save/ism-completed-save.component';
 import { HomePagePrevntMainScheComponent } from '../masterdata/ims-masterdata/preventive-maintenance-schedule/home-page-prevnt-main-sche/home-page-prevnt-main-sche.component';
+import { IpmHomeComponent } from '../ipm/ipm-home/ipm-home.component';
+import { IpmCompletedComponent } from '../ipm/ipm-completed/ipm-completed.component';
+import { IpmCompletedSaveComponent } from '../ipm/ipm-completed-save/ipm-completed-save.component';
 
 const routes: Routes = [
   // {
@@ -418,6 +421,18 @@ const routes: Routes = [
   {
   path: 'home-page-prevnt-main-sche',
     component: HomePagePrevntMainScheComponent,
+  },
+  {
+  path: 'ipm-home',
+    component: IpmHomeComponent,
+  },
+  {
+  path: 'ipm-completed',
+    component: IpmCompletedComponent,
+  },
+  {
+  path: 'ipm-completed-save',
+    component: IpmCompletedSaveComponent,
   },
 
 

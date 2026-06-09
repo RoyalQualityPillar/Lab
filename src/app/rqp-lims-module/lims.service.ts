@@ -22,7 +22,7 @@ export class LimsService {
     const nextStageURL = this.API_URL + 'gm/input/get-np-stages';
     return this.http.post(nextStageURL, requestBody);
   }
-   onCCSaveUpdate(
+   onIPMSaveUpdate(
     actionAttachments: any[],
     referenceAttachments: any[],
     body: any
@@ -49,11 +49,11 @@ export class LimsService {
     const jsonBlob = new Blob([JSON.stringify(body)], {
       type: 'application/json',
     });
-    formData.append('ccDTO', jsonBlob, 'data.json');
+    formData.append('ipmDTO', jsonBlob, 'data.json');
 
     console.log(formData); // Check the FormData structure in the browser's console
 
-    let createUserURL = this.API_URL + 'cc/save-update';
+    let createUserURL = this.API_URL + 'limsm-im/ipm-save-update';
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -127,4 +127,48 @@ export class LimsService {
     const reviewURL = this.API_URL + 'gm/attachment-list' + queryParams;
     return this.http.get(reviewURL);
   }
+  onISMSaveUpdate(
+    actionAttachments: any[],
+    referenceAttachments: any[],
+    body: any
+  ) {
+    console.log(actionAttachments);
+    console.log(referenceAttachments);
+    let token = this.cookieService.get('token');
+    let formData: FormData = new FormData();
+
+    // for (let file of attachments) {
+    //   formData.append('docFiles', file);
+    // }
+    // Append files in referenceAttachments
+    for (let files of referenceAttachments) {
+      formData.append('ccAttachments', files); // Adjust 'referenceAttachments' as per your API's expected key
+    }
+    // Append files in attachments
+
+    for (let files of actionAttachments) {
+      for (let file of files) {
+        formData.append('actionAttachments', file); // Adjust 'docFiles' as per your API's expected key
+      }
+    }
+    const jsonBlob = new Blob([JSON.stringify(body)], {
+      type: 'application/json',
+    });
+    formData.append('ccDTO', jsonBlob, 'data.json');
+
+    console.log(formData); // Check the FormData structure in the browser's console
+
+    let createUserURL = this.API_URL + 'limsm-im/ism-save-update';
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + token,
+      }),
+    };
+
+    return this.http.post(createUserURL, formData, httpOptions);
+  }
+
+
+  
 }

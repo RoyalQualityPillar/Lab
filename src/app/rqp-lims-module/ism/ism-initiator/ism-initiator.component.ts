@@ -1,22 +1,24 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import moment from 'moment';
 import { CookieService } from 'ngx-cookie-service';
-import { Subject, takeUntil, timer } from 'rxjs';
+import { Subject, timer, takeUntil } from 'rxjs';
 import { AdminService } from 'src/app/admin.service';
 import { LovDialogComponent } from 'src/app/common/lov-dialog/lov-dialog.component';
 import { MessageDialogComponent } from 'src/app/common/message-dialog/message-dialog.component';
 import { NotificationService } from 'src/app/common/notification.service';
 import { ButtonLabelService } from 'src/app/service/button-label.service';
 import { LifeCycleDataService } from 'src/app/service/life-cycle-data.service';
-import { LimsService } from 'src/app/service/lims.service';
 import { MessageService } from 'src/app/service/message.service';
 import { RemoteComponentLoaderService } from 'src/app/service/remote-component-loader.service';
 import { ToolbarService } from 'src/app/service/toolbar.service';
+import { LimsService } from '../../lims.service';
 import { ItemNameNoComponent } from 'src/app/common/item-name-no/item-name-no.component';
+import moment from 'moment';
 import { GtpService } from 'src/app/service/gtp.service';
 
 export const MY_FORMATS = {
@@ -204,7 +206,7 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
     this.pageData = {
       pageName: 'homePage',
       pageType: 'create',
-      isRasiInit: 'cc-Initiator',
+      isRasiInit: 'ism-Initiator',
     };
     this.headerRequestBody = this.lifeCycleDataService.getSelectedRowData();
     this.onLoadNextStageData();
@@ -279,8 +281,8 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
   onLoadInputApi() {
     console.log(this.headerData);
     let unitCode = this.headerData.unitcode;
-    let module = 'CCA';
-    let mainModule = 'CC';
+    let module = 'ISMA';
+    let mainModule = 'ISM';
     this.limsService
       .onLoadInputNewAPI(unitCode, module, mainModule)
       .subscribe((data: any) => {
@@ -509,7 +511,7 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
   }
   calculateEndDate() {
     const changeDetectionValue = this.EventForm.controls['ff0005'].value;
-    const selectedModule = 'CC';
+    const selectedModule = 'ISM';
     const today = new Date();
 
     const reqItem = this.reqList.find((item) => item.ff0006 === selectedModule);
@@ -1124,7 +1126,7 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
     console.log(actionAttachmentList);
     console.log(riskAttachment);
     this.limsService
-      .onISMSaveUpdate(rowWiseActionAttachmentList, attachmentList, riskAttachment, this.body1)
+      .onISMSaveUpdate(rowWiseActionAttachmentList, attachmentList, riskAttachment)
       .subscribe((data: any) => {
         // console.log(data)
         console.log(this.body1);
@@ -1142,7 +1144,7 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
           timer(2000)
             .pipe(takeUntil(this.destroy$))
             .subscribe(() => {
-              this.route.navigateByUrl('/rqpquailtyui/qms/cc-home');
+              this.route.navigateByUrl('/rqplabui/lims/ism-home');
             });
         }
         this.isLoading = false;
