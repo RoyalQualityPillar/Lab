@@ -40,6 +40,7 @@ export class CreateUpdatePrevntMainScheComponent implements OnInit {
   clfMasterList: any;
   // imMasterList: any;
   cdIndexList: any;
+  pmmcdIndexList:any;
   isLoading = false;
   statusList: any;
   displayedColumns: any;
@@ -103,6 +104,7 @@ export class CreateUpdatePrevntMainScheComponent implements OnInit {
       this.clfMasterList = data.data.clfMasterList;
       // this.imMasterList = data.data.imMasterList;
       this.cdIndexList = data.data.cdIndexList;
+      this.pmmcdIndexList = data.data.pmmcdIndexList;
       this.isLoading = false;
     });
   }
@@ -237,7 +239,7 @@ export class CreateUpdatePrevntMainScheComponent implements OnInit {
       this.DepartmentMaster.controls['ff0002'].setValue('');
       this.isStatusSuccess = false;
       let statusCurrentValue = this.DepartmentMaster.controls['ff0001'].value;
-      this.cdIndexList.forEach((elements) => {
+      this.pmmcdIndexList.forEach((elements) => {
         if (elements.productNO == statusCurrentValue) {
           this.isStatusSuccess = true;
         }
@@ -260,7 +262,7 @@ export class CreateUpdatePrevntMainScheComponent implements OnInit {
       data: {
         dialogTitle: 'Cd Index List',
         dialogColumns: this.displayedColumns,
-        dialogData: this.cdIndexList,
+        dialogData: this.pmmcdIndexList,
         lovName: 'deptCodeList',
       },
 
@@ -285,7 +287,7 @@ export class CreateUpdatePrevntMainScheComponent implements OnInit {
       this.DepartmentMaster.controls['ff0001'].setValue('');
       this.isStatusSuccess = false;
       let statusCurrentValue = this.DepartmentMaster.controls['ff0002'].value;
-      this.cdIndexList.forEach((elements) => {
+      this.pmmcdIndexList.forEach((elements) => {
         if (elements.productNO == statusCurrentValue) {
           this.isStatusSuccess = true;
         }

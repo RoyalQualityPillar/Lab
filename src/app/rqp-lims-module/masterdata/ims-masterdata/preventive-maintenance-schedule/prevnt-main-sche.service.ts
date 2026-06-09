@@ -35,6 +35,9 @@ export class PrevntMainScheService {
    public onManualSchedulTrail(uc0001: any): Observable<any> {
      return this.http.post(this.API_URL + `limsm-im/manual-schedule?uc0001=${uc0001}`, '');
    }
+   public onPMMManualSchedulTrail(uc0001: any): Observable<any> {
+     return this.http.post(this.API_URL + `limsm-im/pmm-manual-schedule?uc0001=${uc0001}`, '');
+   }
    getDropDownDeptList(unitCode: any) {
      let queryParams = `?unitCode=${unitCode}`;
      const ALLSALEPRODUCTURL = this.API_URL + 'limsm-im/input' + queryParams;
