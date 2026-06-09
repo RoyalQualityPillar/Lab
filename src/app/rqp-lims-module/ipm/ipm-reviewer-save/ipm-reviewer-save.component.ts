@@ -29,7 +29,7 @@ import { DropdownListComponent } from 'src/app/rqp-dms-module/sop/dropdown-list/
 })
 export class IpmReviewerSaveComponent implements OnInit, OnDestroy {
   public redirectUrl: string = '/lims/ipm-home';
-  EventForm: FormGroup;
+   EventForm: FormGroup;
   isReadonly = true;
   UserRequirementForm: FormGroup;
   CCRequirementForm: FormGroup;
@@ -167,7 +167,7 @@ export class IpmReviewerSaveComponent implements OnInit, OnDestroy {
   ];
   ngOnInit(): void {
     this.pageData = {
-      pageName: 'lims',
+      pageName: 'qms',
     };
 
     this.router.queryParams.subscribe((params: any) => {
@@ -283,7 +283,7 @@ export class IpmReviewerSaveComponent implements OnInit, OnDestroy {
   }
 
   getDocumentList() {
-    let moduleCode = 'CC';
+    let moduleCode = 'IPM';
     this.limsService
       .documentList(this.lc0003, moduleCode)
       .subscribe((data: any) => {
@@ -769,7 +769,6 @@ export class IpmReviewerSaveComponent implements OnInit, OnDestroy {
     console.log(this.body1);
     //this.body1.actionDtoList.
     console.log(this.body1.actionDtoList);
-
     const rowWiseActionAttachmentList = [];
     this.body1.actionDtoList.forEach((obj) => {
       if (obj.actionAttachmentList) {
