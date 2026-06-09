@@ -49,11 +49,11 @@ export class LimsService {
     const jsonBlob = new Blob([JSON.stringify(body)], {
       type: 'application/json',
     });
-    formData.append('ccDTO', jsonBlob, 'data.json');
+    formData.append('ipmDTO', jsonBlob, 'data.json');
 
     console.log(formData); // Check the FormData structure in the browser's console
 
-    let createUserURL = this.API_URL + 'limsm-im/isr-save-update';
+    let createUserURL = this.API_URL + 'limsm-im/ipm-save-update';
 
     const httpOptions = {
       headers: new HttpHeaders({
