@@ -32,12 +32,19 @@ export const MY_FORMATS = {
     monthYearA11yLabel: 'MMMM YYYY',
   },
 };
-
 @Component({
   selector: 'app-ism-initiator',
   standalone: false,
   templateUrl: './ism-initiator.component.html',
-  styleUrl: './ism-initiator.component.scss'
+  styleUrl: './ism-initiator.component.scss',
+  providers: [
+      {
+        provide: DateAdapter,
+        useClass: MomentDateAdapter,
+        deps: [MAT_DATE_LOCALE],
+      },
+      { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+    ],
 })
 export class IsmInitiatorComponent implements OnInit, OnDestroy {
   EventForm: FormGroup;

@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import moment from 'moment';
 import { Subject, timer, takeUntil } from 'rxjs';
 import { CommonFileUploadComponent } from 'src/app/common/common-file-upload/common-file-upload.component';
@@ -18,7 +17,6 @@ import { MessageService } from 'src/app/service/message.service';
 import { RemoteComponentLoaderService } from 'src/app/service/remote-component-loader.service';
 import { ToolbarService } from 'src/app/service/toolbar.service';
 import { PreviewFileComponent } from 'src/app/toolbar/preview-file/preview-file.component';
-import { IpmReviewerComponent } from '../../ipm/ipm-reviewer/ipm-reviewer.component';
 import { LimsService } from '../../lims.service';
 import { IsmReviewerComponent } from '../ism-reviewer/ism-reviewer.component';
 

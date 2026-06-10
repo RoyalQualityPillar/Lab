@@ -159,20 +159,41 @@ export class LimsService {
 
   for (let file of referenceAttachments) {
     formData.append('ipmAttachments', file);
+  for (let files of actionAttachments) {
+    for (let file of files) {
+      formData.append('actionAttachments', file);
+    }
   }
+ const jsonBlob = new Blob([JSON.stringify(body)], {
+      type: 'application/json',
+    });
+    formData.append('ipmDTO', jsonBlob, 'data.json');
 
+    console.log(formData); // Check the FormData structure in the browser's console
+
+    let createUserURL = this.API_URL + 'limsm-im/ism-save-update';
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + token,
+      }),
+    };
+
+    return this.http.post(createUserURL, formData, httpOptions);
+  }
   for (let files of actionAttachments) {
     for (let file of files) {
       formData.append('ipmAttachments', file);
     }
   }
 
-  const dtoBlob = new Blob(
+  // JSON DTO
+  const jsonBlob = new Blob(
     [JSON.stringify(body)],
     { type: 'application/json' }
   );
 
-  formData.append('ipmDTO', dtoBlob, 'ipmDTO.json');
+  formData.append('ipmDTO', jsonBlob, 'jsonBlob.json');
 console.log(JSON.stringify(body));
   return this.http.post(
     this.API_URL + 'limsm-im/ism-save-update',

@@ -156,8 +156,6 @@ export class LimsService {
     referenceAttachments: any[],
     body: any
   ) {
-    console.log(actionAttachments);
-    console.log(referenceAttachments);
     let token = this.cookieService.get('token');
     let formData: FormData = new FormData();
 
@@ -176,8 +174,6 @@ export class LimsService {
       type: 'application/json',
     });
     formData.append('cActionDTO', jsonBlob, 'data.json');
-
-    console.log(formData); // Check the FormData structure in the browser's console
 
     let createUserURL = this.API_URL + 'action/save-update';
 

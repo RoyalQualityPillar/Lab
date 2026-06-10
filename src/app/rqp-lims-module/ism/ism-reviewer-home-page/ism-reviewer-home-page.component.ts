@@ -17,17 +17,8 @@ import { MessageService } from 'src/app/service/message.service';
 import { RemoteComponentLoaderService } from 'src/app/service/remote-component-loader.service';
 import { ToolbarService } from 'src/app/service/toolbar.service';
 import { PreviewFileComponent } from 'src/app/toolbar/preview-file/preview-file.component';
-
 import { NciReviewDetailComponent } from 'src/app/rqp-qms-module/nci-review-detail/nci-review-detail.component';
 import { DropdownListComponent } from 'src/app/rqp-dms-module/sop/dropdown-list/dropdown-list.component';
-import { MatPaginator } from '@angular/material/paginator';
-import { ApiService } from 'src/app/service/api.service';
-import { CookieService } from 'ngx-cookie-service';
-import { AdminService } from 'src/app/admin.service';
-import { ItemNameNoComponent } from 'src/app/common/item-name-no/item-name-no.component';
-import { apiEndPoints } from 'src/app/service/api-service/api-endpoints.constant';
-import { GtpService } from 'src/app/service/gtp.service';
-import { ActionAttachmentsListComponent } from '../action-attachments-list/action-attachments-list.component';
 import { LimsService } from 'src/app/service/lims.service';
 
 @Component({
@@ -38,7 +29,7 @@ import { LimsService } from 'src/app/service/lims.service';
 })
 export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
   public redirectUrl: string = '/lims/ism-home';
-  EventForm: FormGroup;
+   EventForm: FormGroup;
   isReadonly = true;
   UserRequirementForm: FormGroup;
   CCRequirementForm: FormGroup;
@@ -63,6 +54,8 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
   ff0003: any;
   ff0001: any;
   lc0003: any;
+  ff0002: any;
+  lc0001: any;
   module: any;
   moduleCode: any;
   documentListData: any;
