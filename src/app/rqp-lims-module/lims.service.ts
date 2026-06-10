@@ -22,47 +22,45 @@ export class LimsService {
     const nextStageURL = this.API_URL + 'gm/input/get-np-stages';
     return this.http.post(nextStageURL, requestBody);
   }
-   onIPMSaveUpdate(
-    actionAttachments: any[],
-    referenceAttachments: any[],
-    body: any
-  ) {
-    console.log(actionAttachments);
-    console.log(referenceAttachments);
-    let token = this.cookieService.get('token');
-    let formData: FormData = new FormData();
+  onIPMSaveUpdate(
+  actionAttachments: any[],
+  referenceAttachments: any[],
+  body: any
+) {
 
-    // for (let file of attachments) {
-    //   formData.append('docFiles', file);
-    // }
-    // Append files in referenceAttachments
-    for (let files of referenceAttachments) {
-      formData.append('ccAttachments', files); // Adjust 'referenceAttachments' as per your API's expected key
-    }
-    // Append files in attachments
+  let token = this.cookieService.get('token');
 
-    for (let files of actionAttachments) {
-      for (let file of files) {
-        formData.append('actionAttachments', file); // Adjust 'docFiles' as per your API's expected key
-      }
-    }
-    const jsonBlob = new Blob([JSON.stringify(body)], {
-      type: 'application/json',
-    });
-    formData.append('ccDTO', jsonBlob, 'data.json');
+  const formData = new FormData();
 
-    console.log(formData); // Check the FormData structure in the browser's console
-
-    let createUserURL = this.API_URL + 'limsm-im/isr-save-update';
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + token,
-      }),
-    };
-
-    return this.http.post(createUserURL, formData, httpOptions);
+  // FILES
+  for (let file of referenceAttachments) {
+    formData.append('ipmAttachments', file);
   }
+
+  for (let files of actionAttachments) {
+    for (let file of files) {
+      formData.append('ipmAttachments', file);
+    }
+  }
+
+  // JSON DTO
+  const jsonBlob = new Blob(
+    [JSON.stringify(body)],
+    { type: 'application/json' }
+  );
+
+  formData.append('ipmDTO', jsonBlob);
+
+  return this.http.post(
+    this.API_URL + 'limsm-im/ism-save-update',
+    formData,
+    {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + token
+      })
+    }
+  );
+}
   public getInput(unitCode: string) {
     const inputUrl = this.API_URL + `lmsm/input?unitCode=${unitCode}`;
     return this.http.get(inputUrl);
@@ -127,48 +125,42 @@ export class LimsService {
     const reviewURL = this.API_URL + 'gm/attachment-list' + queryParams;
     return this.http.get(reviewURL);
   }
+
   onISMSaveUpdate(
-    actionAttachments: any[],
-    referenceAttachments: any[],
-    body: any
-  ) {
-    console.log(actionAttachments);
-    console.log(referenceAttachments);
-    let token = this.cookieService.get('token');
-    let formData: FormData = new FormData();
+  actionAttachments: any[],
+  referenceAttachments: any[],
+  body: any
+) {
 
-    // for (let file of attachments) {
-    //   formData.append('docFiles', file);
-    // }
-    // Append files in referenceAttachments
-    for (let files of referenceAttachments) {
-      formData.append('ccAttachments', files); // Adjust 'referenceAttachments' as per your API's expected key
-    }
-    // Append files in attachments
+  let token = this.cookieService.get('token');
 
-    for (let files of actionAttachments) {
-      for (let file of files) {
-        formData.append('actionAttachments', file); // Adjust 'docFiles' as per your API's expected key
-      }
-    }
-    const jsonBlob = new Blob([JSON.stringify(body)], {
-      type: 'application/json',
-    });
-    formData.append('ccDTO', jsonBlob, 'data.json');
+  const formData = new FormData();
 
-    console.log(formData); // Check the FormData structure in the browser's console
-
-    let createUserURL = this.API_URL + 'limsm-im/ism-save-update';
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + token,
-      }),
-    };
-
-    return this.http.post(createUserURL, formData, httpOptions);
+  for (let file of referenceAttachments) {
+    formData.append('ipmAttachments', file);
   }
 
+  for (let files of actionAttachments) {
+    for (let file of files) {
+      formData.append('ipmAttachments', file);
+    }
+  }
 
-  
+  const dtoBlob = new Blob(
+    [JSON.stringify(body)],
+    { type: 'application/json' }
+  );
+
+  formData.append('ipmDTO', dtoBlob, 'ipmDTO.json');
+console.log(JSON.stringify(body));
+  return this.http.post(
+    this.API_URL + 'limsm-im/ism-save-update',
+    formData,
+    {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + token
+      })
+    }
+  );
+}
 }

@@ -103,6 +103,7 @@ import { IsmCompletedSaveComponent } from '../ism/ism-completed-save/ism-complet
 import { IpmHomeComponent } from '../ipm/ipm-home/ipm-home.component';
 import { IpmCompletedSaveComponent } from '../ipm/ipm-completed-save/ipm-completed-save.component';
 import { IpmCompletedComponent } from '../ipm/ipm-completed/ipm-completed.component';
+import { IsmUpdateComponent } from '../ism/ism-update/ism-update.component';
 
 
 
@@ -202,6 +203,9 @@ import { IpmCompletedComponent } from '../ipm/ipm-completed/ipm-completed.compon
     IpmHomeComponent,
     IpmCompletedComponent,
     IpmCompletedSaveComponent,
+     IsmUpdateComponent,
+    
+  
 
 
   ],
