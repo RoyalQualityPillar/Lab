@@ -36,13 +36,14 @@ import { IsmCompletedComponent } from '../ism/ism-completed/ism-completed.compon
 // import { IsmCompletedSaveComponent } from '../ism/ism-completed-save/ism-completed-save.component';
 import { IsmReviewerComponent } from '../ism/ism-reviewer/ism-reviewer.component';
 import { IsmReviewerHomePageComponent } from '../ism/ism-reviewer-home-page/ism-reviewer-home-page.component';
-import { IsmUpdateComponent } from '../ism/ism-update/ism-update.component';
+//import { IsmUpdateComponent } from '../ism/ism-update/ism-update.component';
 import { IsmUpdateHomePageComponent } from '../ism/ism-update-home-page/ism-update-home-page.component';
 import { IsmCompletedSaveComponent } from '../ism/ism-completed-save/ism-completed-save.component';
 import { HomePagePrevntMainScheComponent } from '../masterdata/ims-masterdata/preventive-maintenance-schedule/home-page-prevnt-main-sche/home-page-prevnt-main-sche.component';
 import { IpmHomeComponent } from '../ipm/ipm-home/ipm-home.component';
 import { IpmCompletedComponent } from '../ipm/ipm-completed/ipm-completed.component';
 import { IpmCompletedSaveComponent } from '../ipm/ipm-completed-save/ipm-completed-save.component';
+import { IsmUpdateComponent } from '../ism/ism-update/ism-update.component';
 
 const routes: Routes = [
   // {
@@ -388,32 +389,32 @@ const routes: Routes = [
   
     {
     path: 'ism-initiator',
-    component: IpmInitiatorComponent,
+    component: IsmInitiatorComponent,
   },
    {
     path: 'ism-update',
-    component: IpmUpdateComponent,
+    component: IsmUpdateComponent,
   },
    {
-    path: 'ism-update-save',
-    component: IpmUpdateSaveComponent,
+    path: 'ism-update-home-page',
+    component: IsmUpdateHomePageComponent,
   },
    {
     path: 'ism-reviewer',
-    component: IpmReviewerComponent,
+    component: IsmReviewerComponent,
   },
    {
-    path: 'ism-reviewer-save',
-    component: IpmReviewerSaveComponent,
+    path: 'ism-reviewer-home-page',
+    component: IsmReviewerHomePageComponent,
   },
  
   
    
   
-   {
-   path: 'ism-update',
-    component: IsmUpdateComponent,
-  },
+  //  {
+  //  path: 'ism-update',
+  //   component: IsmUpdateComponent,
+  // },
    {
    path: 'ism-update-home-page',
     component: IsmUpdateHomePageComponent,

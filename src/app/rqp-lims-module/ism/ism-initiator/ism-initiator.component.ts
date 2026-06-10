@@ -102,7 +102,7 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
   ];
   constructor(
     public router: ActivatedRoute,
-    private limsService: LimsService,
+  private qmsService: LimsService,
     public fb: FormBuilder,
     public dialog: MatDialog,
     private lifeCycleDataService: LifeCycleDataService,
@@ -157,7 +157,7 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
   actionDtoList: any = [
     {
       uc0001: null,
-      //unitcode: this.cookieService.get('buCode'),
+     // unitcode: this.cookieService.get('buCode'),
       ff0001: '',
       ff0002: '',
       ff0003: '',
@@ -190,7 +190,7 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
 
   ccLineItemIndexDTOList: any = [
     {
-     // unitcode: this.cookieService.get('buCode'),
+      //unitcode: this.cookieService.get('buCode'),
       ff0001: '',
       ff0002: '',
       ff0003: '',
@@ -206,7 +206,7 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
     this.pageData = {
       pageName: 'homePage',
       pageType: 'create',
-      isRasiInit: 'ism-Initiator',
+      isRasiInit: 'cc-Initiator',
     };
     this.headerRequestBody = this.lifeCycleDataService.getSelectedRowData();
     this.onLoadNextStageData();
@@ -234,7 +234,7 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
       lcStage: this.toolbarService.currentStage,
     };
 
-    this.limsService.getNextStageList(body).subscribe((data: any) => {
+    this.qmsService.getNextStageList(body).subscribe((data: any) => {
       this.nextStageListData = data.data.nstage;
       console.log(this.nextStageListData);
     });
@@ -283,7 +283,7 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
     let unitCode = this.headerData.unitcode;
     let module = 'ISMA';
     let mainModule = 'ISM';
-    this.limsService
+    this.qmsService
       .onLoadInputNewAPI(unitCode, module, mainModule)
       .subscribe((data: any) => {
         console.log(data);
@@ -511,7 +511,7 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
   }
   calculateEndDate() {
     const changeDetectionValue = this.EventForm.controls['ff0005'].value;
-    const selectedModule = 'ISM';
+    const selectedModule = 'CC';
     const today = new Date();
 
     const reqItem = this.reqList.find((item) => item.ff0006 === selectedModule);
@@ -1125,8 +1125,8 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
     console.log(attachmentList);
     console.log(actionAttachmentList);
     console.log(riskAttachment);
-    this.limsService
-      .onISMSaveUpdate(rowWiseActionAttachmentList, attachmentList, riskAttachment)
+    this.qmsService
+      .onISMSaveUpdate(rowWiseActionAttachmentList, attachmentList, this.body1)
       .subscribe((data: any) => {
         // console.log(data)
         console.log(this.body1);
