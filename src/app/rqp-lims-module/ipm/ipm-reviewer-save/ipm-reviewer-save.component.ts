@@ -28,7 +28,7 @@ import { DropdownListComponent } from 'src/app/rqp-dms-module/sop/dropdown-list/
   styleUrl: './ipm-reviewer-save.component.scss'
 })
 export class IpmReviewerSaveComponent implements OnInit, OnDestroy {
-  public redirectUrl: string = '/lims/ipm-home';
+  public redirectUrl: string = '/rqplabui/lims/ipm-home';
   EventForm: FormGroup;
   isReadonly = true;
   UserRequirementForm: FormGroup;

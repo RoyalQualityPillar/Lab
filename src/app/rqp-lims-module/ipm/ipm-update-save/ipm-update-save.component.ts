@@ -10,7 +10,6 @@ import { LovDialogComponent } from 'src/app/common/lov-dialog/lov-dialog.compone
 import { MessageDialogComponent } from 'src/app/common/message-dialog/message-dialog.component';
 import { NotificationService } from 'src/app/common/notification.service';
 import { getFileExtension } from 'src/app/common/removeEmptyStrings';
-import { DmsService } from 'src/app/service/dms.service';
 import { LifeCycleDataService } from 'src/app/service/life-cycle-data.service';
 import { MessageService } from 'src/app/service/message.service';
 import { RemoteComponentLoaderService } from 'src/app/service/remote-component-loader.service';
@@ -19,6 +18,8 @@ import { PreviewFileComponent } from 'src/app/toolbar/preview-file/preview-file.
 import { LimsService } from '../../lims.service';
 import { CommonFileUploadComponent } from 'src/app/common/common-file-upload/common-file-upload.component';
 import { IpmReviewerComponent } from '../ipm-reviewer/ipm-reviewer.component';
+import { DmsService } from 'src/app/service/dms.service';
+import { NciReviewDetailComponent } from 'src/app/rqp-qms-module/nci-review-detail/nci-review-detail.component';
 
 @Component({
   selector: 'app-ipm-update-save',
@@ -594,7 +595,7 @@ export class IpmUpdateSaveComponent implements OnInit {
     });
   }
   eventSelectedRow(row) {
-    const dialogRef = this.dialog.open(IpmReviewerComponent, {
+    const dialogRef = this.dialog.open(NciReviewDetailComponent, {
       data: { type: 'event', tableData: row },
       disableClose: true,
     });
@@ -789,9 +790,9 @@ export class IpmUpdateSaveComponent implements OnInit {
 
     console.log(actionAttachmentList);
     let attachmentList: any[] = [];
-    console.log(this.body1.ipmAttachmentList);
-    if (this.body1.ipmAttachmentList) {
-      this.body1.ipmAttachmentList.forEach((obj) => {
+    console.log(this.body1.ccAttachmentList);
+    if (this.body1.ccAttachmentList) {
+      this.body1.ccAttachmentList.forEach((obj) => {
         console.log(obj.selectedFileList);
         if (obj.selectedFileList) {
           attachmentList.push(obj.selectedFileList);
@@ -954,8 +955,8 @@ export class IpmUpdateSaveComponent implements OnInit {
       //   },
       // ],
 
-      // "ipmAttachmentList": [...this.UserRoleTableAttachment]
-      ipmAttachmentList: [...this.documentListData],
+      // "ccAttachmentList": [...this.UserRoleTableAttachment]
+      ccAttachmentList: [...this.documentListData],
     };
     console.log(this.actionDtoList);
     this.actionDtoList.forEach((action) => {
@@ -1349,4 +1350,3 @@ export class IpmUpdateSaveComponent implements OnInit {
     });
   }
 }
-
