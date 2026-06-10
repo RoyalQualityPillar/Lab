@@ -54,6 +54,8 @@ export class IpmReviewerSaveComponent implements OnInit, OnDestroy {
   ff0003: any;
   ff0001: any;
   lc0003: any;
+  ff0002: any;
+  lc0001: any;
   module: any;
   moduleCode: any;
   documentListData: any;
@@ -167,12 +169,12 @@ export class IpmReviewerSaveComponent implements OnInit, OnDestroy {
   ];
   ngOnInit(): void {
     this.pageData = {
-      pageName: 'lims',
+      pageName: 'homePage',
     };
-
-    this.router.queryParams.subscribe((params: any) => {
-      console.log(params);
-      this.ff0003 = params.ff0003;
+    const reviewData = sessionStorage.getItem('selectedRow');
+    let params: any = null;
+    if (reviewData) {
+      params = JSON.parse(reviewData);
       this.pageData = {
         pageName: 'qtUpdateDetail',
         requestNo: params.uc0001,
@@ -186,9 +188,10 @@ export class IpmReviewerSaveComponent implements OnInit, OnDestroy {
           params.ff0010,
       };
       this.ff0001 = params.uc0001;
+      this.lc0001 = params.ff0001;
       this.ff0005 = params.ff0007;
-      console.log(this.pageData);
-    });
+      this.ff0002 = params.ff0005;
+    }
     if (this.ff0001) {
       this.onGetQMSRequestNo();
       this.onGetCCRequestNo();
@@ -203,7 +206,7 @@ export class IpmReviewerSaveComponent implements OnInit, OnDestroy {
     //   this.onLoadEventClassification(this.headerRequestBody.lifeCycleCode)
     // }
   }
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void { }
 
   // onReviewData() {
   //   this.qmsService
@@ -283,7 +286,7 @@ export class IpmReviewerSaveComponent implements OnInit, OnDestroy {
   }
 
   getDocumentList() {
-    let moduleCode = 'CC';
+    let moduleCode = 'IPM';
     this.limsService
       .documentList(this.lc0003, moduleCode)
       .subscribe((data: any) => {
@@ -391,7 +394,7 @@ export class IpmReviewerSaveComponent implements OnInit, OnDestroy {
       minHeight: '60%',
       data: { tableData: url, type: this.fileType, showIframe: false },
     });
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((result) => { });
   }
 
   fileExtension(path: any) {
@@ -504,7 +507,7 @@ export class IpmReviewerSaveComponent implements OnInit, OnDestroy {
   isEven(index: number): boolean {
     return index % 2 === 0;
   }
-  addRemoveRow() {}
+  addRemoveRow() { }
   removeRow(lineIndex: number, itemIndex: number) {
     this.lineItemData[lineIndex].ccLineItemIndexDTOList.splice(itemIndex, 1);
     if (this.lineItemData[lineIndex].ccLineItemIndexDTOList.length === 0) {
@@ -769,7 +772,6 @@ export class IpmReviewerSaveComponent implements OnInit, OnDestroy {
     console.log(this.body1);
     //this.body1.actionDtoList.
     console.log(this.body1.actionDtoList);
-
     const rowWiseActionAttachmentList = [];
     this.body1.actionDtoList.forEach((obj) => {
       if (obj.actionAttachmentList) {

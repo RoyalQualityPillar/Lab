@@ -789,9 +789,9 @@ export class IpmUpdateSaveComponent implements OnInit {
 
     console.log(actionAttachmentList);
     let attachmentList: any[] = [];
-    console.log(this.body1.ccAttachmentList);
-    if (this.body1.ccAttachmentList) {
-      this.body1.ccAttachmentList.forEach((obj) => {
+    console.log(this.body1.ipmAttachmentList);
+    if (this.body1.ipmAttachmentList) {
+      this.body1.ipmAttachmentList.forEach((obj) => {
         console.log(obj.selectedFileList);
         if (obj.selectedFileList) {
           attachmentList.push(obj.selectedFileList);
@@ -954,8 +954,8 @@ export class IpmUpdateSaveComponent implements OnInit {
       //   },
       // ],
 
-      // "ccAttachmentList": [...this.UserRoleTableAttachment]
-      ccAttachmentList: [...this.documentListData],
+      // "ipmAttachmentList": [...this.UserRoleTableAttachment]
+      ipmAttachmentList: [...this.documentListData],
     };
     console.log(this.actionDtoList);
     this.actionDtoList.forEach((action) => {

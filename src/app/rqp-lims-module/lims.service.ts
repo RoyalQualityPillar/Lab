@@ -35,6 +35,27 @@ export class LimsService {
   // FILES
   for (let file of referenceAttachments) {
     formData.append('ipmAttachments', file);
+    for (let files of actionAttachments) {
+      for (let file of files) {
+        formData.append('actionAttachments', file); // Adjust 'docFiles' as per your API's expected key
+      }
+    }
+    const jsonBlob = new Blob([JSON.stringify(body)], {
+      type: 'application/json',
+    });
+    formData.append('ipmDTO', jsonBlob, 'data.json');
+
+    console.log(formData); // Check the FormData structure in the browser's console
+
+    let createUserURL = this.API_URL + 'limsm-im/ipm-save-update';
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + token,
+      }),
+    };
+
+    return this.http.post(createUserURL, formData, httpOptions);
   }
 
   for (let files of actionAttachments) {

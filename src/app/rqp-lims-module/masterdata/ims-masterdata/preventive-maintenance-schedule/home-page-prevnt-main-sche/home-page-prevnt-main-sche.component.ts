@@ -80,7 +80,7 @@ export class HomePagePrevntMainScheComponent implements OnInit, AfterViewInit {
   }
   public manualSchedule(row: any) {
     this.isLoading = true;
-    this.prevntMainScheService.onManualSchedulTrail(row.uc0001).subscribe((data: any) => {
+    this.prevntMainScheService.onPMMManualSchedulTrail(row.uc0001).subscribe((data: any) => {
       if (data.errorInfo != null) {
         this.dialog.open(MessageDialogComponent, {
           data: {
