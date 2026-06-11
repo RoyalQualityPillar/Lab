@@ -17,9 +17,9 @@ import { MessageService } from 'src/app/service/message.service';
 import { RemoteComponentLoaderService } from 'src/app/service/remote-component-loader.service';
 import { ToolbarService } from 'src/app/service/toolbar.service';
 import { PreviewFileComponent } from 'src/app/toolbar/preview-file/preview-file.component';
+import { LimsService } from '../../lims.service';
 import { NciReviewDetailComponent } from 'src/app/rqp-qms-module/nci-review-detail/nci-review-detail.component';
 import { DropdownListComponent } from 'src/app/rqp-dms-module/sop/dropdown-list/dropdown-list.component';
-import { LimsService } from 'src/app/service/lims.service';
 
 @Component({
   selector: 'app-ism-reviewer-home-page',
@@ -28,8 +28,8 @@ import { LimsService } from 'src/app/service/lims.service';
   styleUrl: './ism-reviewer-home-page.component.scss'
 })
 export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
-  public redirectUrl: string = '/lims/ism-home';
-   EventForm: FormGroup;
+  public redirectUrl: string = '/rqplabui/lims/ism-home';
+  EventForm: FormGroup;
   isReadonly = true;
   UserRequirementForm: FormGroup;
   CCRequirementForm: FormGroup;
@@ -169,12 +169,12 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
   ];
   ngOnInit(): void {
     this.pageData = {
-      pageName: 'lims',
+      pageName: 'homePage',
     };
-
-    this.router.queryParams.subscribe((params: any) => {
-      console.log(params);
-      this.ff0003 = params.ff0003;
+    const reviewData = sessionStorage.getItem('selectedRow');
+    let params: any = null;
+    if (reviewData) {
+      params = JSON.parse(reviewData);
       this.pageData = {
         pageName: 'qtUpdateDetail',
         requestNo: params.uc0001,
@@ -188,9 +188,10 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
           params.ff0010,
       };
       this.ff0001 = params.uc0001;
+      this.lc0001 = params.ff0001;
       this.ff0005 = params.ff0007;
-      console.log(this.pageData);
-    });
+      this.ff0002 = params.ff0005;
+    }
     if (this.ff0001) {
       this.onGetQMSRequestNo();
       this.onGetCCRequestNo();
@@ -205,7 +206,7 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
     //   this.onLoadEventClassification(this.headerRequestBody.lifeCycleCode)
     // }
   }
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void { }
 
   // onReviewData() {
   //   this.qmsService
@@ -285,7 +286,7 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
   }
 
   getDocumentList() {
-    let moduleCode = 'CC';
+    let moduleCode = 'ISM';
     this.limsService
       .documentList(this.lc0003, moduleCode)
       .subscribe((data: any) => {
@@ -393,7 +394,7 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
       minHeight: '60%',
       data: { tableData: url, type: this.fileType, showIframe: false },
     });
-    dialogRef.afterClosed().subscribe((result) => {});
+    dialogRef.afterClosed().subscribe((result) => { });
   }
 
   fileExtension(path: any) {
@@ -506,7 +507,7 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
   isEven(index: number): boolean {
     return index % 2 === 0;
   }
-  addRemoveRow() {}
+  addRemoveRow() { }
   removeRow(lineIndex: number, itemIndex: number) {
     this.lineItemData[lineIndex].ccLineItemIndexDTOList.splice(itemIndex, 1);
     if (this.lineItemData[lineIndex].ccLineItemIndexDTOList.length === 0) {
@@ -771,7 +772,6 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
     console.log(this.body1);
     //this.body1.actionDtoList.
     console.log(this.body1.actionDtoList);
-
     const rowWiseActionAttachmentList = [];
     this.body1.actionDtoList.forEach((obj) => {
       if (obj.actionAttachmentList) {
@@ -810,24 +810,24 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
     console.log(attachmentList);
     console.log(actionAttachmentList);
     this.limsService
-      // .onISMSaveUpdate(rowWiseActionAttachmentList, attachmentList, this.body1)
-      // .subscribe((data: any) => {
-      //   // console.log(data)
-      //   console.log(this.body1);
-      //   if (data.errorInfo != null) {
-      //     this.dialog.open(MessageDialogComponent, {
-      //       data: {
-      //         message: data.errorInfo.message,
-      //         heading: 'Error Information',
-      //       },
-      //     });
-      //   } else {
-      //     this.notificationService.showSuccess(data.status, () => {
-      //       console.log('Success Snackbar Closed');
-      //     });
-      //   }
-      //   this.isLoading = false;
-      // });
+      .onISMSaveUpdate(rowWiseActionAttachmentList, attachmentList, this.body1)
+      .subscribe((data: any) => {
+        // console.log(data)
+        console.log(this.body1);
+        if (data.errorInfo != null) {
+          this.dialog.open(MessageDialogComponent, {
+            data: {
+              message: data.errorInfo.message,
+              heading: 'Error Information',
+            },
+          });
+        } else {
+          this.notificationService.showSuccess(data.status, () => {
+            console.log('Success Snackbar Closed');
+          });
+        }
+        this.isLoading = false;
+      });
   }
 
   formatRequestBody() {
@@ -1453,4 +1453,3 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 }
-

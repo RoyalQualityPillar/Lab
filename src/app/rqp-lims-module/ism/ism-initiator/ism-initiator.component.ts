@@ -37,14 +37,14 @@ export const MY_FORMATS = {
   standalone: false,
   templateUrl: './ism-initiator.component.html',
   styleUrl: './ism-initiator.component.scss',
-  providers: [
-      {
-        provide: DateAdapter,
-        useClass: MomentDateAdapter,
-        deps: [MAT_DATE_LOCALE],
-      },
-      { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
-    ],
+   providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE],
+    },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+  ],
 })
 export class IsmInitiatorComponent implements OnInit, OnDestroy {
   EventForm: FormGroup;
@@ -109,7 +109,7 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
   ];
   constructor(
     public router: ActivatedRoute,
-  private qmsService: LimsService,
+    private limsService: LimsService,
     public fb: FormBuilder,
     public dialog: MatDialog,
     private lifeCycleDataService: LifeCycleDataService,
@@ -164,7 +164,7 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
   actionDtoList: any = [
     {
       uc0001: null,
-     // unitcode: this.cookieService.get('buCode'),
+      //unitcode: this.cookieService.get('buCode'),
       ff0001: '',
       ff0002: '',
       ff0003: '',
@@ -197,7 +197,7 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
 
   ccLineItemIndexDTOList: any = [
     {
-      //unitcode: this.cookieService.get('buCode'),
+     // unitcode: this.cookieService.get('buCode'),
       ff0001: '',
       ff0002: '',
       ff0003: '',
@@ -213,7 +213,7 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
     this.pageData = {
       pageName: 'homePage',
       pageType: 'create',
-      isRasiInit: 'cc-Initiator',
+      isRasiInit: 'ism-Initiator',
     };
     this.headerRequestBody = this.lifeCycleDataService.getSelectedRowData();
     this.onLoadNextStageData();
@@ -241,7 +241,7 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
       lcStage: this.toolbarService.currentStage,
     };
 
-    this.qmsService.getNextStageList(body).subscribe((data: any) => {
+    this.limsService.getNextStageList(body).subscribe((data: any) => {
       this.nextStageListData = data.data.nstage;
       console.log(this.nextStageListData);
     });
@@ -290,7 +290,7 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
     let unitCode = this.headerData.unitcode;
     let module = 'ISMA';
     let mainModule = 'ISM';
-    this.qmsService
+    this.limsService
       .onLoadInputNewAPI(unitCode, module, mainModule)
       .subscribe((data: any) => {
         console.log(data);
@@ -518,7 +518,7 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
   }
   calculateEndDate() {
     const changeDetectionValue = this.EventForm.controls['ff0005'].value;
-    const selectedModule = 'CC';
+    const selectedModule = 'ISM';
     const today = new Date();
 
     const reqItem = this.reqList.find((item) => item.ff0006 === selectedModule);
@@ -804,483 +804,484 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
   }
   openActionRootCauseLov(index: any) {
     this.displayedColumns = [
-      { field: 'ctCode', title: 'Code' },
-      { field: 'ctName', title: 'Description' },
-    ];
-    const dialogRef = this.dialog.open(LovDialogComponent, {
-      height: '500px',
-      width: '600px',
-      data: {
-        dialogTitle: 'Root Cause',
-        dialogColumns: this.displayedColumns,
-        dialogData: this.ctMasterList,
-        lovName: 'businessUnitList',
-      },
-      disableClose: true,
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.selectedDialogData = result.data;
-        this.actionDtoList[index].ff0010 = result.data.ctCode;
-      }
-    });
-  }
-  openActionRootCauseTypeLov(index: any) {
-    this.displayedColumns = [
-      { field: 'rctCode', title: 'Code' },
-      { field: 'rctName', title: 'Description' },
-    ];
-    const dialogRef = this.dialog.open(LovDialogComponent, {
-      height: '500px',
-      width: '600px',
-      data: {
-        dialogTitle: 'Root Cause Type',
-        dialogColumns: this.displayedColumns,
-        dialogData: this.rctMasterList,
-        lovName: 'businessUnitList',
-      },
-      disableClose: true,
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.selectedDialogData = result.data;
-        this.actionDtoList[index].ff0009 = result.data.rctCode;
-      }
-    });
-  }
-  openNextStageLov() {
-    this.displayedColumns = [
-      { field: 'stage', title: 'Code' },
-      { field: 'lcRole', title: 'Description' },
-    ];
-    const dialogRef = this.dialog.open(LovDialogComponent, {
-      height: '500px',
-      width: '600px',
-      data: {
-        dialogTitle: 'Stage',
-        dialogColumns: this.displayedColumns,
-        dialogData: this.nextStageListData,
-        lovName: 'businessUnitList',
-      },
-      disableClose: true,
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.selectedDialogData = result.data;
-        this.EventForm.controls['nextStage'].setValue(result.data.stage);
-      }
-    });
-  }
-  onChangeNextStage() { }
-  async onSaveConfirmation(btnStatus: any) {
-    const component = await this.remoteLoader.loadComponentByKey(
-      'CommonESignatureComponent'
-    );
-    const dialogRef = this.dialog.open(component, {
-      height: '300px',
-      width: '600px',
-      data: {},
-      disableClose: true,
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.selectedDialogData = result.data;
-        if (this.selectedDialogData) {
-          this.onSaveUpdate('0');
-        }
-      }
-    });
-  }
-  async onSubmit(btnStatus: any) {
-    const component = await this.remoteLoader.loadComponentByKey(
-      'CommonESignatureComponent'
-    );
-    const dialogRef = this.dialog.open(component, {
-      height: '300px',
-      width: '600px',
-      data: {},
-      disableClose: true,
-    });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.selectedDialogData = result.data;
-        if (this.selectedDialogData) {
-          this.onSaveUpdate('1');
-        }
-      }
-    });
-  }
-  formatRequestBody() {
-    let startRaw = this.UserRequirementForm.controls['ff0002'].value;
-    const startDate = moment()
-  .utc()
-  .format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
-    let endRaw = this.UserRequirementForm.controls['ff0003']?.value;
-
-    const endDate = moment(endRaw, 'DD-MM-YYYY', true).isValid()
-      ? moment(endRaw, 'DD-MM-YYYY')
-        .utc()
-        .format('YYYY-MM-DDTHH:mm:ss.SSS[Z]')
-      : null;
-    // let endDate1 = moment(
-    //   this.UserRequirementForm.controls['ff0003'].value
-    // ).format('DD-MM-YYYY HH:mm:ss.SSS');
-    // const endDate = moment(endDate1, 'DD-MM-YYYY HH:mm:ss.SSS')
-    //   .utc() // Convert to UTC
-    //   .format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
-    this.body1 = {
-      lcRequest: {
-        unitCode: this.headerData.unitcode,
-        moduleCode: this.headerData.modulecode,
-        departmentCode: this.headerData.departmentcode,
-        lcNumber: this.headerData.lcnum,
-        lcStage: this.headerData.stage,
-        lcRole: this.headerData.role,
-        stage2: this.EventForm.controls['nextStage'].value,
-        requestType: '',
-        createdBy: this.headerData.createdby,
-        comments: this.comments,
-        documentModule: 'string',
-        documentStatus: 'string',
-        gmuserDTOList: [],
-        draft: this.draftValue,
-      },
-      actionDtoList: this.actionDtoList,
-      eventClasificationDtoList: [
-        {
-          unitcode: this.headerData.unitcode,
-          ff0001: this.EventForm.controls['ff0001'].value,
-          ff0002: this.EventForm.controls['ff0002'].value,
-          ff0003: this.EventForm.controls['ff0003'].value,
-          ff0004: this.EventForm.controls['ff0004'].value,
-          ff0005: this.EventForm.controls['ff0005'].value,
-          ff0006: 'string',
-          ff0007: 'string',
-          ff0008: 'string',
-          lc0001: 'string',
-          lc0002: 'string',
-          lc0003: 'string',
-          lc0004: 'string',
-          lc0005: 'string',
-          lc0006: 'string',
-          createdby: this.headerData.createdby,
-          status: 0,
-          comments: this.comments,
-        },
-      ],
-      ccCommonDataDtoList: [
-        {
-          unitcode: this.headerData.unitcode,
-          ff0001: this.UserRequirementForm.controls['ff0001'].value, //description
-          ff0002: startDate, //start date
-          ff0003: endDate, //end date
-          ff0004: '2024-04-04T06:47:36.746Z',
-          ff0005: 'string',
-          ff0006: 'string',
-          ff0007: 'string',
-          ff0008: 'string',
-          ff0009: '2025-01-30T08:21:36.531Z',
-          ff0010: '2025-01-30T08:21:36.531Z',
-          ff0011: 'string',
-          // ff0012: this.UserRequirementForm.controls['departmentCode'].value,
-          // ff0013: this.UserRequirementForm.controls['market'].value,
-          // ff0014: this.UserRequirementForm.controls['customerName'].value,
-          // ff0015: this.UserRequirementForm.controls['changeClassification'].value,
-          ff0012: this.UserRequirementForm.controls['title'].value,
-          ff0013: this.UserRequirementForm.controls['status'].value,
-          ff0014: this.UserRequirementForm.controls['market'].value,
-          ff0015: this.UserRequirementForm.controls['customerName'].value,
-          lc0001: 'string',
-          lc0002: 'string',
-          lc0003: 'string',
-          lc0004: 0,
-          lc0005: 'string',
-          lc0006: 'string',
-          createdby: this.headerData.createdby,
-          status: 0,
-          comments: this.comments,
-        }
-      ],
-      ccLineItemDtoList: [
-        {
-          unitcode: this.headerData.unitcode,
-          ff0008: 'string',
-          ff0009: 'string',
-          ff0010: 'string',
-          lc0001: 'string',
-          lc0002: 'string',
-          lc0003: 'string',
-          lc0004: 'string',
-          lc0005: 'string',
-          lc0006: 'string',
-          createdby: this.headerData.createdby,
-          status: 0,
-          comments: this.comments,
-          ccLineItemIndexDTOList: [...this.ccLineItemIndexDTOList],
-
-        },
-      ],
-      // attachmentDtoList: [
-      //   {
-      //     ff0001: 'string',
-      //     ff0002: 'string',
-      //     ff0003: 'string',
-      //     ff0004: 'string',
-      //     ff0005: 'string',
-      //     ff0006: 'string',
-      //     ff0007: 'string',
-      //     ff0008: 'string',
-      //     ff0009: 0,
-      //     ff0010: 0,
-      //     ff0011: 0,
-      //     ff0012: 0,
-      //     ff0013: 'string',
-      //     ff0014: 'string',
-      //     lc0001: 'string',
-      //     lc0002: 'string',
-      //     lc0003: 'string',
-      //     lc0004: 'string',
-      //     lc0005: 'string',
-      //     lc0006: 'string',
-      //     createdby: 'string',
-      //     status: 0,
-      //     comments: this.comments,
-      //   },
-      // ],
-      // "ccAttachmentList": [
-      //   {
-      //     "uc0001": "string",
-      //     "ff0001": "string",
-      //     "ff0005": "A",
-      //     "documentAction": "CREATE"
-      //   }
-      // ],
-      ccAttachmentList: [...this.UserRoleTableAttachment],
-      riskAttachmentList: [...this.UserRoleTableAssessment],
-    };
-    // this.actionDtoList.forEach((action) => {
-    //   if (
-    //     !action.ccLineItemIndexDTOList ||
-    //     (Array.isArray(action.ccLineItemIndexDTOList) &&
-    //       action.ccLineItemIndexDTOList.length === 1 &&
-    //       Object.keys(action.ccLineItemIndexDTOList[0]).length === 0)
-    //   ) {
-    //     action.ccLineItemIndexDTOList = [];
-    //   }
-    // });
-  }
-
-  onSaveUpdate(btnStatus: any) {
-    console.log(this.actionDtoList);
-    console.log(this.ccLineItemIndexDTOList);
-    if (
-      this.EventForm.controls['nextStage'].value == '' ||
-      this.EventForm.controls['nextStage'].value == undefined
-    ) {
-      this.EventForm.controls['nextStage'].setValue(0);
-    }
-
-    if (btnStatus == 1) {
-      this.draftValue = false;
-    } else {
-      this.draftValue = true;
-    }
-
-    this.isLoading = true;
-    let actionAttachmentList: any[] = [];
-    let bodyData = this.formatRequestBody();
-    console.log(this.body1);
-    //this.body1.actionDtoList.
-    console.log(this.body1.actionDtoList);
-    this.body1.actionDtoList.forEach(obj => {
-      // Check if actionAttachmentList exists in the current object
-      if (obj.actionAttachmentList) {
-        // Push each element of actionAttachmentList into actionAttachmentList array
-        obj.actionAttachmentList.forEach(attachment => {
-          actionAttachmentList.push(attachment.selectedFileList);
+          { field: 'ctCode', title: 'Code' },
+          { field: 'ctName', title: 'Description' },
+        ];
+        const dialogRef = this.dialog.open(LovDialogComponent, {
+          height: '500px',
+          width: '600px',
+          data: {
+            dialogTitle: 'Root Cause',
+            dialogColumns: this.displayedColumns,
+            dialogData: this.ctMasterList,
+            lovName: 'businessUnitList',
+          },
+          disableClose: true,
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+          if (result) {
+            this.selectedDialogData = result.data;
+            this.actionDtoList[index].ff0010 = result.data.ctCode;
+          }
         });
       }
-    });
-    const rowWiseActionAttachmentList = [];
-    this.body1.actionDtoList.forEach((obj) => {
-      if (obj.actionAttachmentList) {
-        const currentRowAttachments = [];
-        obj.actionAttachmentList.forEach((attachment) => {
-          currentRowAttachments.push(attachment.selectedFileList);
+      openActionRootCauseTypeLov(index: any) {
+        this.displayedColumns = [
+          { field: 'rctCode', title: 'Code' },
+          { field: 'rctName', title: 'Description' },
+        ];
+        const dialogRef = this.dialog.open(LovDialogComponent, {
+          height: '500px',
+          width: '600px',
+          data: {
+            dialogTitle: 'Root Cause Type',
+            dialogColumns: this.displayedColumns,
+            dialogData: this.rctMasterList,
+            lovName: 'businessUnitList',
+          },
+          disableClose: true,
         });
-        rowWiseActionAttachmentList.push(currentRowAttachments);
+        dialogRef.afterClosed().subscribe((result) => {
+          if (result) {
+            this.selectedDialogData = result.data;
+            this.actionDtoList[index].ff0009 = result.data.rctCode;
+          }
+        });
       }
-    });
-    console.log(rowWiseActionAttachmentList);
-
-    console.log(actionAttachmentList);
-    let attachmentList: any[] = [];
-    console.log(this.body1.ccAttachmentList);
-    this.body1.ccAttachmentList.forEach((obj) => {
-      console.log(obj.selectedFileList);
-      if (obj.selectedFileList) {
-        attachmentList.push(obj.selectedFileList);
+      openNextStageLov() {
+        this.displayedColumns = [
+          { field: 'stage', title: 'Code' },
+          { field: 'lcRole', title: 'Description' },
+        ];
+        const dialogRef = this.dialog.open(LovDialogComponent, {
+          height: '500px',
+          width: '600px',
+          data: {
+            dialogTitle: 'Stage',
+            dialogColumns: this.displayedColumns,
+            dialogData: this.nextStageListData,
+            lovName: 'businessUnitList',
+          },
+          disableClose: true,
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+          if (result) {
+            this.selectedDialogData = result.data;
+            this.EventForm.controls['nextStage'].setValue(result.data.stage);
+          }
+        });
       }
-    });
-    let riskAttachment: any[] = [];
-    this.body1.riskAttachmentList.forEach((obj) => {
-      console.log(obj.selectedFileList);
-      if (obj.selectedFileList) {
-        riskAttachment.push(obj.selectedFileList);
+      onChangeNextStage() { }
+      async onSaveConfirmation(btnStatus: any) {
+        const component = await this.remoteLoader.loadComponentByKey(
+          'CommonESignatureComponent'
+        );
+        const dialogRef = this.dialog.open(component, {
+          height: '300px',
+          width: '600px',
+          data: {},
+          disableClose: true,
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+          if (result) {
+            this.selectedDialogData = result.data;
+            if (this.selectedDialogData) {
+              this.onSaveUpdate('0');
+            }
+          }
+        });
       }
-    });
-    console.log(attachmentList);
-    console.log(actionAttachmentList);
-    console.log(riskAttachment);
-    this.qmsService
-      .onISMSaveUpdate(rowWiseActionAttachmentList, attachmentList, this.body1)
-      .subscribe((data: any) => {
-        // console.log(data)
-        console.log(this.body1);
-        if (data.errorInfo != null) {
-          this.dialog.open(MessageDialogComponent, {
-            data: {
-              message: data.errorInfo.message,
-              heading: 'Error Information',
+      async onSubmit(btnStatus: any) {
+        const component = await this.remoteLoader.loadComponentByKey(
+          'CommonESignatureComponent'
+        );
+        const dialogRef = this.dialog.open(component, {
+          height: '300px',
+          width: '600px',
+          data: {},
+          disableClose: true,
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+          if (result) {
+            this.selectedDialogData = result.data;
+            if (this.selectedDialogData) {
+              this.onSaveUpdate('1');
+            }
+          }
+        });
+      }
+      formatRequestBody() {
+        let startRaw = this.UserRequirementForm.controls['ff0002'].value;
+        const startDate = moment()
+      .utc()
+      .format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
+        let endRaw = this.UserRequirementForm.controls['ff0003']?.value;
+    
+        const endDate = moment(endRaw, 'DD-MM-YYYY', true).isValid()
+          ? moment(endRaw, 'DD-MM-YYYY')
+            .utc()
+            .format('YYYY-MM-DDTHH:mm:ss.SSS[Z]')
+          : null;
+        // let endDate1 = moment(
+        //   this.UserRequirementForm.controls['ff0003'].value
+        // ).format('DD-MM-YYYY HH:mm:ss.SSS');
+        // const endDate = moment(endDate1, 'DD-MM-YYYY HH:mm:ss.SSS')
+        //   .utc() // Convert to UTC
+        //   .format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
+        this.body1 = {
+          lcRequest: {
+            unitCode: this.headerData.unitcode,
+            moduleCode: this.headerData.modulecode,
+            departmentCode: this.headerData.departmentcode,
+            lcNumber: this.headerData.lcnum,
+            lcStage: this.headerData.stage,
+            lcRole: this.headerData.role,
+            stage2: this.EventForm.controls['nextStage'].value,
+            requestType: '',
+            createdBy: this.headerData.createdby,
+            comments: this.comments,
+            documentModule: 'string',
+            documentStatus: 'string',
+            gmuserDTOList: [],
+            draft: this.draftValue,
+          },
+          actionDtoList: this.actionDtoList,
+          eventClasificationDtoList: [
+            {
+              unitcode: this.headerData.unitcode,
+              ff0001: this.EventForm.controls['ff0001'].value,
+              ff0002: this.EventForm.controls['ff0002'].value,
+              ff0003: this.EventForm.controls['ff0003'].value,
+              ff0004: this.EventForm.controls['ff0004'].value,
+              ff0005: this.EventForm.controls['ff0005'].value,
+              ff0006: 'string',
+              ff0007: 'string',
+              ff0008: 'string',
+              lc0001: 'string',
+              lc0002: 'string',
+              lc0003: 'string',
+              lc0004: 'string',
+              lc0005: 'string',
+              lc0006: 'string',
+              createdby: this.headerData.createdby,
+              status: 0,
+              comments: this.comments,
             },
-          });
-        } else {
-          this.notificationService.showSuccess(data.status, () => {
-            console.log('Success Snackbar Closed');
-          });
-          timer(2000)
-            .pipe(takeUntil(this.destroy$))
-            .subscribe(() => {
-              this.route.navigateByUrl('/rqplabui/lims/ism-home');
-            });
+          ],
+          ccCommonDataDtoList: [
+            {
+              unitcode: this.headerData.unitcode,
+              ff0001: this.UserRequirementForm.controls['ff0001'].value, //description
+              ff0002: startDate, //start date
+              ff0003: endDate, //end date
+              ff0004: '2024-04-04T06:47:36.746Z',
+              ff0005: 'string',
+              ff0006: 'string',
+              ff0007: 'string',
+              ff0008: 'string',
+              ff0009: '2025-01-30T08:21:36.531Z',
+              ff0010: '2025-01-30T08:21:36.531Z',
+              ff0011: 'string',
+              // ff0012: this.UserRequirementForm.controls['departmentCode'].value,
+              // ff0013: this.UserRequirementForm.controls['market'].value,
+              // ff0014: this.UserRequirementForm.controls['customerName'].value,
+              // ff0015: this.UserRequirementForm.controls['changeClassification'].value,
+              ff0012: this.UserRequirementForm.controls['title'].value,
+              ff0013: this.UserRequirementForm.controls['status'].value,
+              ff0014: this.UserRequirementForm.controls['market'].value,
+              ff0015: this.UserRequirementForm.controls['customerName'].value,
+              lc0001: 'string',
+              lc0002: 'string',
+              lc0003: 'string',
+              lc0004: 0,
+              lc0005: 'string',
+              lc0006: 'string',
+              createdby: this.headerData.createdby,
+              status: 0,
+              comments: this.comments,
+            }
+          ],
+          ccLineItemDtoList: [
+            {
+              unitcode: this.headerData.unitcode,
+              ff0008: 'string',
+              ff0009: 'string',
+              ff0010: 'string',
+              lc0001: 'string',
+              lc0002: 'string',
+              lc0003: 'string',
+              lc0004: 'string',
+              lc0005: 'string',
+              lc0006: 'string',
+              createdby: this.headerData.createdby,
+              status: 0,
+              comments: this.comments,
+              ccLineItemIndexDTOList: [...this.ccLineItemIndexDTOList],
+    
+            },
+          ],
+          // attachmentDtoList: [
+          //   {
+          //     ff0001: 'string',
+          //     ff0002: 'string',
+          //     ff0003: 'string',
+          //     ff0004: 'string',
+          //     ff0005: 'string',
+          //     ff0006: 'string',
+          //     ff0007: 'string',
+          //     ff0008: 'string',
+          //     ff0009: 0,
+          //     ff0010: 0,
+          //     ff0011: 0,
+          //     ff0012: 0,
+          //     ff0013: 'string',
+          //     ff0014: 'string',
+          //     lc0001: 'string',
+          //     lc0002: 'string',
+          //     lc0003: 'string',
+          //     lc0004: 'string',
+          //     lc0005: 'string',
+          //     lc0006: 'string',
+          //     createdby: 'string',
+          //     status: 0,
+          //     comments: this.comments,
+          //   },
+          // ],
+          // "ismAttachmentList": [
+          //   {
+          //     "uc0001": "string",
+          //     "ff0001": "string",
+          //     "ff0005": "A",
+          //     "documentAction": "CREATE"
+          //   }
+          // ],
+          ismAttachmentList: [...this.UserRoleTableAttachment],
+          riskAttachmentList: [...this.UserRoleTableAssessment],
+        };
+        // this.actionDtoList.forEach((action) => {
+        //   if (
+        //     !action.ccLineItemIndexDTOList ||
+        //     (Array.isArray(action.ccLineItemIndexDTOList) &&
+        //       action.ccLineItemIndexDTOList.length === 1 &&
+        //       Object.keys(action.ccLineItemIndexDTOList[0]).length === 0)
+        //   ) {
+        //     action.ccLineItemIndexDTOList = [];
+        //   }
+        // });
+      }
+    
+      onSaveUpdate(btnStatus: any) {
+        console.log(this.actionDtoList);
+        console.log(this.ccLineItemIndexDTOList);
+        if (
+          this.EventForm.controls['nextStage'].value == '' ||
+          this.EventForm.controls['nextStage'].value == undefined
+        ) {
+          this.EventForm.controls['nextStage'].setValue(0);
         }
-        this.isLoading = false;
-      });
-  }
-
-  /*******************ADDITIONAL CHANGES **************************************/
-
-  handleFileInput(event: any) {
-    this.selectedFiles = event.target.files[0];
-    if (this.selectedFiles) {
-      this.uploadedDocfileName = this.selectedFiles.name;
+    
+        if (btnStatus == 1) {
+          this.draftValue = false;
+        } else {
+          this.draftValue = true;
+        }
+    
+        this.isLoading = true;
+        let actionAttachmentList: any[] = [];
+        let bodyData = this.formatRequestBody();
+        console.log(this.body1);
+        //this.body1.actionDtoList.
+        console.log(this.body1.actionDtoList);
+        this.body1.actionDtoList.forEach(obj => {
+          // Check if actionAttachmentList exists in the current object
+          if (obj.actionAttachmentList) {
+            // Push each element of actionAttachmentList into actionAttachmentList array
+            obj.actionAttachmentList.forEach(attachment => {
+              actionAttachmentList.push(attachment.selectedFileList);
+            });
+          }
+        });
+        const rowWiseActionAttachmentList = [];
+        this.body1.actionDtoList.forEach((obj) => {
+          if (obj.actionAttachmentList) {
+            const currentRowAttachments = [];
+            obj.actionAttachmentList.forEach((attachment) => {
+              currentRowAttachments.push(attachment.selectedFileList);
+            });
+            rowWiseActionAttachmentList.push(currentRowAttachments);
+          }
+        });
+        console.log(rowWiseActionAttachmentList);
+    
+        console.log(actionAttachmentList);
+        let attachmentList: any[] = [];
+        console.log(this.body1.ismAttachmentList);
+        this.body1.ismAttachmentList.forEach((obj) => {
+          console.log(obj.selectedFileList);
+          if (obj.selectedFileList) {
+            attachmentList.push(obj.selectedFileList);
+          }
+        });
+        let riskAttachment: any[] = [];
+        this.body1.riskAttachmentList.forEach((obj) => {
+          console.log(obj.selectedFileList);
+          if (obj.selectedFileList) {
+            riskAttachment.push(obj.selectedFileList);
+          }
+        });
+        console.log(attachmentList);
+        console.log(actionAttachmentList);
+        console.log(riskAttachment);
+        this.limsService
+          .onISMSaveUpdate(rowWiseActionAttachmentList, attachmentList, this.body1)
+          .subscribe((data: any) => {
+            // console.log(data)
+            console.log(this.body1);
+            if (data.errorInfo != null) {
+              this.dialog.open(MessageDialogComponent, {
+                data: {
+                  message: data.errorInfo.message,
+                  heading: 'Error Information',
+                },
+              });
+            } else {
+              this.notificationService.showSuccess(data.status, () => {
+                console.log('Success Snackbar Closed');
+              });
+              timer(2000)
+                .pipe(takeUntil(this.destroy$))
+                .subscribe(() => {
+                  this.route.navigateByUrl('/rqplabui/lims/ism-home');
+                });
+            }
+            this.isLoading = false;
+          });
+      }
+    
+      /*******************ADDITIONAL CHANGES **************************************/
+    
+      handleFileInput(event: any) {
+        this.selectedFiles = event.target.files[0];
+        if (this.selectedFiles) {
+          this.uploadedDocfileName = this.selectedFiles.name;
+        }
+      }
+      handleFileInputAttachment(event: any) {
+        this.selectedFilesAttachment = event.target.files[0];
+        if (this.selectedFilesAttachment) {
+          this.uploadedDocfileName = this.selectedFilesAttachment.name;
+        }
+      }
+      selectedFileList: File[] = [];
+      onCreateSelectedDataList(item) {
+        // Ensure actionAttachmentList is properly initialized
+        // if (!item.actionAttachmentList) {
+        // item.actionAttachmentList = [{}];
+        //}
+        console.log(item.actionAttachmentList);
+        // Check if the document name is provided before proceeding
+        if (this.CCRequirementForm.controls['documentName'].value) {
+          // Add new action attachment object
+          item.actionAttachmentList.push({
+            uc0001: null,
+            selectedFileList: this.selectedFiles,
+            // documentName: this.CCRequirementForm.controls['documentName'].value,
+            // categoryTypes: 'A',
+            ff0001: this.CCRequirementForm.controls['documentName'].value,
+            ff0005: 'AT',
+            "ff0013": "string",
+            ff0015: "att",
+            "lc0002": "string",
+            "lc0003": "string",
+            "lc0004": "string",
+            documentAction: 'CREATE',
+            "documnetType": "CREATE"
+          });
+    
+          let filteredObjects = this.filterEmptyObjects(item.actionAttachmentList);
+          item.actionAttachmentList = filteredObjects;
+          // this.tableData = new MatTableDataSource(item.actionAttachmentList);
+          this.tableData = item.actionAttachmentList;
+        } else {
+          console.log('Document name is empty, not adding actionAttachmentList');
+        }
+      }
+      filterEmptyObjects(objects: any[]): any[] {
+        return objects.filter((obj) => Object.keys(obj).length > 0);
+      }
+      removeRow(row: any) {
+        const index = this.actionDtoList.actionAttachmentList.indexOf(row);
+        if (index !== -1) {
+          this.actionDtoList.actionAttachmentList.splice(index, 1);
+        }
+        // this.documentDtoList = this.UserRoleTable;
+        console.log(this.UserRoleTable);
+        this.tableData = new MatTableDataSource(
+          this.actionDtoList.actionAttachmentList
+        );
+      }
+      onCreateSelectedDataListAttachment() {
+        this.selectedFileListAttachment.push(this.selectedFiles);
+        this.UserRoleTableAttachment.push({
+          uc0001: null,
+          selectedFileList: this.selectedFilesAttachment,
+          documentName: this.CCRequirementForm.controls['documentName'].value,
+          // categoryTypes: this.CCRequirementForm.controls['categoryTypes'].value,
+          ff0001: this.CCRequirementForm.controls['documentName'].value,
+          ff0005: 'AT',
+          ff0015: 'att',
+          documentAction: 'CREATE',
+        });
+        // this.documentDtoListAttachment.push({
+        //   uc0001:null,
+        //   selectedFileList: this.selectedFilesAttachment,
+        //   ff0001: this.CCRequirementForm.controls['documentName'].value,
+        //   ff0005: this.CCRequirementForm.controls['categoryTypes'].value,
+        //   documentAction:'CREATE'
+        // });
+        console.log(this.UserRoleTableAttachment);
+        this.tableDataAttachment = new MatTableDataSource(
+          this.UserRoleTableAttachment
+        );
+      }
+      onCreateSelectedDataListAssessment() {
+        this.selectedFileListAttachment.push(this.selectedFiles);
+        this.UserRoleTableAssessment.push({
+          uc0001: null,
+          selectedFileList: this.selectedFilesAttachment,
+          documentName: this.CCRequirementForm.controls['documentName'].value,
+          // categoryTypes: this.CCRequirementForm.controls['categoryTypes'].value,
+          ff0001: this.CCRequirementForm.controls['documentName'].value,
+          ff0005: 'RA',
+          ff0015: 'risk',
+          documentAction: 'CREATE',
+          documnetType: 'CREATE'
+        });
+        // this.documentDtoListAttachment.push({
+        //   uc0001:null,
+        //   selectedFileList: this.selectedFilesAttachment,
+        //   ff0001: this.CCRequirementForm.controls['documentName'].value,
+        //   ff0005: this.CCRequirementForm.controls['categoryTypes'].value,
+        //   documentAction:'CREATE'
+        // });
+        console.log(this.UserRoleTableAssessment);
+        this.tableDataAssessment = new MatTableDataSource(
+          this.UserRoleTableAssessment
+        );
+      }
+      removeRowAttachment(row: any) {
+        const index = this.UserRoleTableAttachment.indexOf(row);
+        if (index !== -1) {
+          this.UserRoleTableAttachment.splice(index, 1);
+        }
+        console.log(this.UserRoleTableAttachment);
+        this.tableDataAttachment = new MatTableDataSource(
+          this.UserRoleTableAttachment
+        );
+      }
+      ngOnDestroy(): void {
+        this.destroy$.next(undefined);
+        this.destroy$.complete();
+      }
     }
-  }
-  handleFileInputAttachment(event: any) {
-    this.selectedFilesAttachment = event.target.files[0];
-    if (this.selectedFilesAttachment) {
-      this.uploadedDocfileName = this.selectedFilesAttachment.name;
-    }
-  }
-  selectedFileList: File[] = [];
-  onCreateSelectedDataList(item) {
-    // Ensure actionAttachmentList is properly initialized
-    // if (!item.actionAttachmentList) {
-    // item.actionAttachmentList = [{}];
-    //}
-    console.log(item.actionAttachmentList);
-    // Check if the document name is provided before proceeding
-    if (this.CCRequirementForm.controls['documentName'].value) {
-      // Add new action attachment object
-      item.actionAttachmentList.push({
-        uc0001: null,
-        selectedFileList: this.selectedFiles,
-        // documentName: this.CCRequirementForm.controls['documentName'].value,
-        // categoryTypes: 'A',
-        ff0001: this.CCRequirementForm.controls['documentName'].value,
-        ff0005: 'AT',
-        "ff0013": "string",
-        ff0015: "att",
-        "lc0002": "string",
-        "lc0003": "string",
-        "lc0004": "string",
-        documentAction: 'CREATE',
-        "documnetType": "CREATE"
-      });
-
-      let filteredObjects = this.filterEmptyObjects(item.actionAttachmentList);
-      item.actionAttachmentList = filteredObjects;
-      // this.tableData = new MatTableDataSource(item.actionAttachmentList);
-      this.tableData = item.actionAttachmentList;
-    } else {
-      console.log('Document name is empty, not adding actionAttachmentList');
-    }
-  }
-  filterEmptyObjects(objects: any[]): any[] {
-    return objects.filter((obj) => Object.keys(obj).length > 0);
-  }
-  removeRow(row: any) {
-    const index = this.actionDtoList.actionAttachmentList.indexOf(row);
-    if (index !== -1) {
-      this.actionDtoList.actionAttachmentList.splice(index, 1);
-    }
-    // this.documentDtoList = this.UserRoleTable;
-    console.log(this.UserRoleTable);
-    this.tableData = new MatTableDataSource(
-      this.actionDtoList.actionAttachmentList
-    );
-  }
-  onCreateSelectedDataListAttachment() {
-    this.selectedFileListAttachment.push(this.selectedFiles);
-    this.UserRoleTableAttachment.push({
-      uc0001: null,
-      selectedFileList: this.selectedFilesAttachment,
-      documentName: this.CCRequirementForm.controls['documentName'].value,
-      // categoryTypes: this.CCRequirementForm.controls['categoryTypes'].value,
-      ff0001: this.CCRequirementForm.controls['documentName'].value,
-      ff0005: 'AT',
-      ff0015: 'att',
-      documentAction: 'CREATE',
-    });
-    // this.documentDtoListAttachment.push({
-    //   uc0001:null,
-    //   selectedFileList: this.selectedFilesAttachment,
-    //   ff0001: this.CCRequirementForm.controls['documentName'].value,
-    //   ff0005: this.CCRequirementForm.controls['categoryTypes'].value,
-    //   documentAction:'CREATE'
-    // });
-    console.log(this.UserRoleTableAttachment);
-    this.tableDataAttachment = new MatTableDataSource(
-      this.UserRoleTableAttachment
-    );
-  }
-  onCreateSelectedDataListAssessment() {
-    this.selectedFileListAttachment.push(this.selectedFiles);
-    this.UserRoleTableAssessment.push({
-      uc0001: null,
-      selectedFileList: this.selectedFilesAttachment,
-      documentName: this.CCRequirementForm.controls['documentName'].value,
-      // categoryTypes: this.CCRequirementForm.controls['categoryTypes'].value,
-      ff0001: this.CCRequirementForm.controls['documentName'].value,
-      ff0005: 'RA',
-      ff0015: 'risk',
-      documentAction: 'CREATE',
-      documnetType: 'CREATE'
-    });
-    // this.documentDtoListAttachment.push({
-    //   uc0001:null,
-    //   selectedFileList: this.selectedFilesAttachment,
-    //   ff0001: this.CCRequirementForm.controls['documentName'].value,
-    //   ff0005: this.CCRequirementForm.controls['categoryTypes'].value,
-    //   documentAction:'CREATE'
-    // });
-    console.log(this.UserRoleTableAssessment);
-    this.tableDataAssessment = new MatTableDataSource(
-      this.UserRoleTableAssessment
-    );
-  }
-  removeRowAttachment(row: any) {
-    const index = this.UserRoleTableAttachment.indexOf(row);
-    if (index !== -1) {
-      this.UserRoleTableAttachment.splice(index, 1);
-    }
-    console.log(this.UserRoleTableAttachment);
-    this.tableDataAttachment = new MatTableDataSource(
-      this.UserRoleTableAttachment
-    );
-  }
-  ngOnDestroy(): void {
-    this.destroy$.next(undefined);
-    this.destroy$.complete();
-  }
-}
+    
