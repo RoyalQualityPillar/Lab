@@ -14,6 +14,7 @@ import { MessageService } from 'src/app/service/message.service';
 import { RemoteComponentLoaderService } from 'src/app/service/remote-component-loader.service';
 import { StorageCategoryMasterCreateUpdateComponent } from '../../storage-category-master/storage-category-master-create-update/storage-category-master-create-update.component';
 import { StorageCategoryMasterService } from '../../storage-category-master/storage-category-master.service';
+import { ChambersMasterService } from '../chambers-master.service';
 
 export interface userData {
   userData: any;
@@ -40,11 +41,11 @@ export class ChambersMasterCreateUpdateComponent implements OnInit {
   selectedDialogData: any;
   isStatusSuccess = false;
   isPlantCodeSuccess = false;
-  pmmMaterialList: {
-    materialcode: string;
-    materialname: string;
-    materialnumber: string;
-  }[];
+  // pmmMaterialList: {
+  //   materialcode: string;
+  //   materialname: string;
+  //   materialnumber: string;
+  // }[];
 
   constructor(
     public fb: FormBuilder,
@@ -54,9 +55,9 @@ export class ChambersMasterCreateUpdateComponent implements OnInit {
     private notificationService: NotificationService,
     public buttonLabelService: ButtonLabelService,
     private cookieService: CookieService,
-    private PurityTypeMasterService : StorageCategoryMasterService,
+    private chambersMasterService : ChambersMasterService,
     private apiService: ApiService,
-    public dialogRef: MatDialogRef<StorageCategoryMasterCreateUpdateComponent>,
+    public dialogRef: MatDialogRef<ChambersMasterCreateUpdateComponent>,
     @Inject(MAT_DIALOG_DATA) public userData: userData,
     private remoteLoader: RemoteComponentLoaderService,
   ) {
@@ -124,7 +125,7 @@ export class ChambersMasterCreateUpdateComponent implements OnInit {
     const params = { UC0001 };
 
     this.apiService
-      .sendRequest(apiEndPoints.PurTyLoadUpdatePage, 'POST', params)
+      .sendRequest(apiEndPoints.ChambersLoadUpdatePage, 'POST', params)
       .subscribe((data: any) => {
         if (data.data == null) {
           this.isLoading = false;
@@ -157,7 +158,8 @@ export class ChambersMasterCreateUpdateComponent implements OnInit {
       changeStatusByDescription(this.DepartmentMaster.controls['status'].value)
     );
 
-    this.PurityTypeMasterService
+    this.chambersMasterService 
+
     .onCreate(this.DepartmentMaster.value)
     .subscribe((data: any) => {
         if (data.errorInfo != null) {
@@ -201,7 +203,8 @@ export class ChambersMasterCreateUpdateComponent implements OnInit {
       this.cookieService.get('userId')
     );
 
-    this.PurityTypeMasterService
+    this.chambersMasterService
+    
     .onCreate(this.DepartmentMaster.value)
     .subscribe((data: any) => {
         if (data.errorInfo != null) {

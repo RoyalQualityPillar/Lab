@@ -13,6 +13,8 @@ import { GlobalConstants } from 'src/app/common/global-constants';
 import { PurityTypeMasterCreateUpdateComponent } from 'src/app/rqp-lims-std-module/std-masters/purity-type-master/purity-type-master-create-update/purity-type-master-create-update.component';
 import { MessageDialogComponent } from 'src/app/common/message-dialog/message-dialog.component';
 import { changeStatusByCode } from 'src/app/common/removeEmptyStrings';
+import { ChambersMasterService } from '../chambers-master.service';
+import { ChambersMasterCreateUpdateComponent } from '../chambers-master-create-update/chambers-master-create-update.component';
 
 @Component({
   selector: 'app-chambers-master-home-page',
@@ -38,8 +40,8 @@ export class ChambersMasterHomePageComponent  implements OnInit, AfterViewInit {
   activeUserFilterValueError = false;
   tableData: MatTableDataSource<any>;
   isFilterExpanded = false;
-  allPurTyTabledataUrl: any;
-  activePurTyTabledataUrl: any;
+  allChambersTabledataUrl: any;
+  activeChambersTabledataUrl: any;
   filterApiUrl: any;
   params: any;
   HttpMethod = 'POST';
@@ -49,7 +51,7 @@ export class ChambersMasterHomePageComponent  implements OnInit, AfterViewInit {
 
   constructor(
     private router: Router,
-    private storagecategorymastersterService: StorageCategoryMasterService,
+    private chambersmastersterService: ChambersMasterService,
     public dialog: MatDialog,
     public cookieService: CookieService,
     private apiService: ApiService,
@@ -58,14 +60,14 @@ export class ChambersMasterHomePageComponent  implements OnInit, AfterViewInit {
   filterObject: any;
   activeUserFilterObject: any;
   ngOnInit(): void {
-    this.allPurTyTabledataUrl = apiEndPoints.allPurTyTabledata;
+    this.allChambersTabledataUrl = apiEndPoints.allChambersTabledata;
     this.pageIndex = 0;
     let size = GlobalConstants.size;
     let pageIndex = this.pageIndex;
     let unitCode = this.cookieService.get('buCode');
     this.params = { pageIndex, size, unitCode };
-    this.filterApiUrl = apiEndPoints.purTyUserProfileFilterData;
-    this.activePurTyTabledataUrl = apiEndPoints.activePurTyTabledata;
+    this.filterApiUrl = apiEndPoints.ChambersUserProfileFilterData;
+    this. activeChambersTabledataUrl = apiEndPoints.activeChambersTabledata;
     this.params = { pageIndex, size, unitCode };
     this.loadRoleMasterTableFilter();
     this.loadActiveRoleMasterTableFilter();
@@ -81,7 +83,7 @@ export class ChambersMasterHomePageComponent  implements OnInit, AfterViewInit {
       // Set all required inputs
       compRef.setInput('columnConfig', this.columnConfig);
       compRef.setInput('filterOptions', this.filterOptions);
-      compRef.setInput('apiUrl', this.allPurTyTabledataUrl);
+      compRef.setInput('apiUrl', this.allChambersTabledataUrl);
       compRef.setInput('tableTitle', 'All Chambers Master');
       compRef.setInput('dynamicButtons', this.allButtonConfig);
       compRef.setInput('columnClass', 'rqp-life-cycle-table-columns');
@@ -109,7 +111,7 @@ export class ChambersMasterHomePageComponent  implements OnInit, AfterViewInit {
 
       compRef.setInput('columnConfig', this.columnConfig);
       compRef.setInput('filterOptions', this.filterOptions);
-      compRef.setInput('apiUrl', this.activePurTyTabledataUrl);
+      compRef.setInput('apiUrl', this. activeChambersTabledataUrl);
       compRef.setInput('tableTitle', 'All Chambers Master');
       compRef.setInput('dynamicButtons', this.activeButtonConfig);
       compRef.setInput('columnClass', 'rqp-life-cycle-table-columns');
@@ -136,7 +138,7 @@ export class ChambersMasterHomePageComponent  implements OnInit, AfterViewInit {
   tabChanged(tabChangeEvent: any) { }
  
   onOpenRolePOPUP() {
-    const dialogRef = this.dialog.open(PurityTypeMasterCreateUpdateComponent, {
+    const dialogRef = this.dialog.open(ChambersMasterCreateUpdateComponent, {
       minWidth: '80%',
       data: { tableData: this.selectedRow, type: 'Registration' },
     });
@@ -163,7 +165,7 @@ export class ChambersMasterHomePageComponent  implements OnInit, AfterViewInit {
         },
       });
     } else {
-      const dialogRef = this.dialog.open(PurityTypeMasterCreateUpdateComponent, {
+      const dialogRef = this.dialog.open(ChambersMasterCreateUpdateComponent, {
         minWidth: '80%',
         data: { tableData: this.selectedRow, type: 'Modification' },
       });
@@ -233,7 +235,7 @@ export class ChambersMasterHomePageComponent  implements OnInit, AfterViewInit {
     } else {
       this.isLoading = true;
 
-      this.storagecategorymastersterService
+      this.chambersmastersterService
         .onAllRoleAuditTrail(this.selectedRow.uc0001)
         .subscribe((data: any) => {
           let newFormatData = this.structureResponse(data.data);

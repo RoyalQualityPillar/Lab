@@ -13,6 +13,7 @@ import { PurityTypeMasterCreateUpdateComponent } from 'src/app/rqp-lims-std-modu
 import { MessageDialogComponent } from 'src/app/common/message-dialog/message-dialog.component';
 import { changeStatusByCode } from 'src/app/common/removeEmptyStrings';
 import { Router } from '@angular/router';
+import { StorageCategoryMasterCreateUpdateComponent } from '../storage-category-master-create-update/storage-category-master-create-update.component';
 
 
 @Component({
@@ -39,8 +40,8 @@ export class StorageCategoryMasterHomePageComponent  implements OnInit, AfterVie
   activeUserFilterValueError = false;
   tableData: MatTableDataSource<any>;
   isFilterExpanded = false;
-  allPurTyTabledataUrl: any;
-  activePurTyTabledataUrl: any;
+  allStorageCategoryTabledataUrl: any;
+  activeStorageCategoryTabledataUrl: any;
   filterApiUrl: any;
   params: any;
   HttpMethod = 'POST';
@@ -49,24 +50,25 @@ export class StorageCategoryMasterHomePageComponent  implements OnInit, AfterVie
   // allSamRegTabledataUrl: apiEndPoints;
 
   constructor(
-    private router: Router,
+    // private router: Router,
     private storagecategorymastersterService: StorageCategoryMasterService,
     public dialog: MatDialog,
     public cookieService: CookieService,
-    private apiService: ApiService,
+    //private apiService: ApiService,
     private remoteLoader: RemoteComponentLoaderService
   ) { }
   filterObject: any;
   activeUserFilterObject: any;
   ngOnInit(): void {
-    this.allPurTyTabledataUrl = apiEndPoints.allPurTyTabledata;
+    this.allStorageCategoryTabledataUrl = apiEndPoints.allStorageCategoryTabledata ,
+
     this.pageIndex = 0;
     let size = GlobalConstants.size;
     let pageIndex = this.pageIndex;
     let unitCode = this.cookieService.get('buCode');
     this.params = { pageIndex, size, unitCode };
-    this.filterApiUrl = apiEndPoints.purTyUserProfileFilterData;
-    this.activePurTyTabledataUrl = apiEndPoints.activePurTyTabledata;
+    this.filterApiUrl = apiEndPoints.StorageCategoryUserProfileFilterData;
+    this.activeStorageCategoryTabledataUrl = apiEndPoints.activeStorageCategoryTabledata;
     this.params = { pageIndex, size, unitCode };
     this.loadRoleMasterTableFilter();
     this.loadActiveRoleMasterTableFilter();
@@ -82,7 +84,7 @@ export class StorageCategoryMasterHomePageComponent  implements OnInit, AfterVie
       // Set all required inputs
       compRef.setInput('columnConfig', this.columnConfig);
       compRef.setInput('filterOptions', this.filterOptions);
-      compRef.setInput('apiUrl', this.allPurTyTabledataUrl);
+      compRef.setInput('apiUrl', this.allStorageCategoryTabledataUrl);
       compRef.setInput('tableTitle', 'All Storage Category Master');
       compRef.setInput('dynamicButtons', this.allButtonConfig);
       compRef.setInput('columnClass', 'rqp-life-cycle-table-columns');
@@ -110,7 +112,7 @@ export class StorageCategoryMasterHomePageComponent  implements OnInit, AfterVie
 
       compRef.setInput('columnConfig', this.columnConfig);
       compRef.setInput('filterOptions', this.filterOptions);
-      compRef.setInput('apiUrl', this.activePurTyTabledataUrl);
+      compRef.setInput('apiUrl', this.activeStorageCategoryTabledataUrl);
       compRef.setInput('tableTitle', 'All Storage Category Master');
       compRef.setInput('dynamicButtons', this.activeButtonConfig);
       compRef.setInput('columnClass', 'rqp-life-cycle-table-columns');
@@ -137,7 +139,7 @@ export class StorageCategoryMasterHomePageComponent  implements OnInit, AfterVie
   tabChanged(tabChangeEvent: any) { }
  
   onOpenRolePOPUP() {
-    const dialogRef = this.dialog.open(PurityTypeMasterCreateUpdateComponent, {
+    const dialogRef = this.dialog.open(StorageCategoryMasterCreateUpdateComponent, {
       minWidth: '80%',
       data: { tableData: this.selectedRow, type: 'Registration' },
     });
@@ -164,7 +166,7 @@ export class StorageCategoryMasterHomePageComponent  implements OnInit, AfterVie
         },
       });
     } else {
-      const dialogRef = this.dialog.open(PurityTypeMasterCreateUpdateComponent, {
+      const dialogRef = this.dialog.open(StorageCategoryMasterCreateUpdateComponent, {
         minWidth: '80%',
         data: { tableData: this.selectedRow, type: 'Modification' },
       });

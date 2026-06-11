@@ -40,11 +40,11 @@ export class StorageCategoryMasterCreateUpdateComponent implements OnInit {
   selectedDialogData: any;
   isStatusSuccess = false;
   isPlantCodeSuccess = false;
-  pmmMaterialList: {
-    materialcode: string;
-    materialname: string;
-    materialnumber: string;
-  }[];
+  // pmmMaterialList: {
+  //   materialcode: string;
+  //   materialname: string;
+  //   materialnumber: string;
+  // }[];
 
   constructor(
     public fb: FormBuilder,
@@ -54,7 +54,7 @@ export class StorageCategoryMasterCreateUpdateComponent implements OnInit {
     private notificationService: NotificationService,
     public buttonLabelService: ButtonLabelService,
     private cookieService: CookieService,
-    private PurityTypeMasterService : StorageCategoryMasterService,
+    private storageCategoryMasterService : StorageCategoryMasterService,
     private apiService: ApiService,
     public dialogRef: MatDialogRef<StorageCategoryMasterCreateUpdateComponent>,
     @Inject(MAT_DIALOG_DATA) public userData: userData,
@@ -100,14 +100,14 @@ export class StorageCategoryMasterCreateUpdateComponent implements OnInit {
       this.isUpdate = false;
     }
   }
-  saleProductList: any;
-  buUnitList: any;
-  suUnitList: any;
-  puUnitList: any;
-  stageMasterList: any;
+  // saleProductList: any;
+  // buUnitList: any;
+  // suUnitList: any;
+  // puUnitList: any;
+  // stageMasterList: any;
 
-  mtMasterList: any;
-  utMasterList: any;
+  // mtMasterList: any;
+  // utMasterList: any;
   
   onLoadStatusDropDown() {
     this.isLoading = true;
@@ -122,7 +122,7 @@ export class StorageCategoryMasterCreateUpdateComponent implements OnInit {
     const params = { UC0001 };
 
     this.apiService
-      .sendRequest(apiEndPoints.PurTyLoadUpdatePage, 'POST', params)
+      .sendRequest(apiEndPoints. StorageCategoryLoadUpdatePage, 'POST', params)
       .subscribe((data: any) => {
         if (data.data == null) {
           this.isLoading = false;
@@ -153,7 +153,7 @@ export class StorageCategoryMasterCreateUpdateComponent implements OnInit {
       changeStatusByDescription(this.DepartmentMaster.controls['status'].value)
     );
 
-    this.PurityTypeMasterService
+    this.storageCategoryMasterService
     .onCreate(this.DepartmentMaster.value)
     .subscribe((data: any) => {
         if (data.errorInfo != null) {
@@ -197,7 +197,7 @@ export class StorageCategoryMasterCreateUpdateComponent implements OnInit {
       this.cookieService.get('userId')
     );
 
-    this.PurityTypeMasterService
+    this.storageCategoryMasterService
     .onCreate(this.DepartmentMaster.value)
     .subscribe((data: any) => {
         if (data.errorInfo != null) {
