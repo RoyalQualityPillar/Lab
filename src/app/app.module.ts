@@ -11,8 +11,6 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
 import { LovDialogComponent } from './common/lov-dialog/lov-dialog.component';
 import { MessageDialogComponent } from './common/message-dialog/message-dialog.component';
 import { SharedModule } from './common/shared.module';
-
-
 import { NciReviewDetailComponent } from './rqp-qms-module/nci-review-detail/nci-review-detail.component';
 import { DropdownListComponent } from './rqp-dms-module/sop/dropdown-list/dropdown-list.component';
 import { ActionAttachmentsListComponent } from './rqp-lims-module/ism/action-attachments-list/action-attachments-list.component';
@@ -32,6 +30,7 @@ import { ActionAttachmentsListComponent } from './rqp-lims-module/ism/action-att
     DropdownListComponent,
     ActionAttachmentsListComponent,
     MessageDialogComponent,
+   
   
 
 

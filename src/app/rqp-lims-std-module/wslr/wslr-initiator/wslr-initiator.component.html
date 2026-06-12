@@ -1,0 +1,323 @@
+<div class="adjust">
+    <div class="example-table-container">
+        <app-common-header [pageData]="this.pageData" (headerData)="getHeaderData($event)"></app-common-header>
+    </div>
+</div>
+
+<div class="table-box">
+    <div class="section_header_child_1">
+        <div class="float-start">Working Standard Lot Registration</div>
+    </div>
+</div>
+
+<div class="row no-gutters ms-1 me-1 dense-4" [formGroup]="workingStandardRegistrationForm">
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>WS Lot No</mat-label>
+        <input type="text" matInput formControlName="wSLotNo" placeholder="WS Lot No" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Product Code</mat-label>
+        <input type="text" matInput formControlName="productCode" placeholder="Product Code" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Lot Type</mat-label>
+        <mat-select formControlName="lotTypes">
+            <mat-option value="working Standard">Working Standard</mat-option>
+            <mat-option value="referenace Standard">Referenace Standard</mat-option>
+            <mat-option value="impurity Standard">Impurity Standard</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Sample Ref Number</mat-label>
+        <input type="text" matInput formControlName="sampleRefNumber" placeholder="Sample Ref Number" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Container Type</mat-label>
+        <input type="text" matInput formControlName="containerType" placeholder="Container Type" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Storage Condition</mat-label>
+        <input type="text" matInput formControlName="storageCondition" placeholder="Storage Condition" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Lot Quantity</mat-label>
+        <input type="text" matInput formControlName="lotQuantity" placeholder="Lot Quantity" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Lot Quantity UOM</mat-label>
+        <mat-select formControlName="lotQuantityUOM">
+            <mat-option value="mg">MG</mat-option>
+            <mat-option value="g">G</mat-option>
+            <mat-option value="kg">KG</mat-option>
+            <mat-option value="ml">ML</mat-option>
+            <mat-option value="l">L</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Manufacture Date</mat-label>
+        <input type="text" matInput [matDatepicker]="pickerFrom" formControlName="manufactureDate" />
+        <mat-datepicker-toggle matIconSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+        <mat-datepicker #pickerFrom></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Expiry Date</mat-label>
+        <input type="text" matInput [matDatepicker]="pickerTo" formControlName="expiryDate" />
+        <mat-datepicker-toggle matIconSuffix [for]="pickerTo"></mat-datepicker-toggle>
+        <mat-datepicker #pickerTo></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Batch Number</mat-label>
+        <input type="text" matInput formControlName="batchNumber" placeholder="Batch Number" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Source Batch No</mat-label>
+        <input type="text" matInput formControlName="sourceBatchNo" placeholder="Source Batch No" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>WS Validity On</mat-label>
+        <input type="text" matInput [matDatepicker]="pickerFrom1" formControlName="wSValidityOn" />
+        <mat-datepicker-toggle matIconSuffix [for]="pickerFrom1"></mat-datepicker-toggle>
+        <mat-datepicker #pickerFrom1></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Lot Validity Up To</mat-label>
+        <input type="text" matInput [matDatepicker]="pickerTo1" formControlName="lotValidityUpTo" />
+        <mat-datepicker-toggle matIconSuffix [for]="pickerTo1"></mat-datepicker-toggle>
+        <mat-datepicker #pickerTo1></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Usage Type</mat-label>
+        <mat-select formControlName="usageType">
+            <mat-option value="assay">Assay</mat-option>
+            <mat-option value="impurity">Impurity</mat-option>
+            <mat-option value="dissolution">Dissolution</mat-option>
+            <mat-option value="identification">Identification</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>No of Purities</mat-label>
+        <input type="text" matInput formControlName="noOfPurities" placeholder="No of Purities" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>No of Purities UOM</mat-label>
+        <mat-select formControlName="noOfPuritiesUOM">
+            <mat-option value="%">%</mat-option>
+            <mat-option value="mg">MG</mat-option>
+            <mat-option value="ppm">PPM</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Container Validity Days</mat-label>
+        <input type="text" matInput formControlName="containerValidityDays" placeholder="Container Validity Days" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Container Starting Number</mat-label>
+        <input type="text" matInput formControlName="containerStartingNumber" placeholder="Container Starting Number" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>No Of Container</mat-label>
+        <input type="text" matInput formControlName="noOfContainer" placeholder="No Of Container" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Alert Container Number</mat-label>
+        <input type="text" matInput formControlName="alertContainerNumber" placeholder="Alert Container Number" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Total Container Qty</mat-label>
+        <input type="text" matInput formControlName="totalContainerQty" placeholder="Total Container Qty" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Total Container UOM</mat-label>
+        <mat-select formControlName="totalContainerUOM">
+            <mat-option value="mg">MG</mat-option>
+            <mat-option value="g">G</mat-option>
+            <mat-option value="kg">KG</mat-option>
+            <mat-option value="ml">ML</mat-option>
+            <mat-option value="l">L</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+
+
+<div class="table-box">
+    <div class="section_header_child_1 ">
+        <div class="float-start">
+            <p class="section_header_title">Purity Details</p>
+        </div>
+        <div class="float-end">
+            <button mat-raised-button class="submitButton add-btn me-2" (click)="addPurity()">
+                Add Purity
+            </button>
+        </div>
+    </div>
+</div>
+
+<div *ngFor="let purity of purityDetails; let i = index" class="row no-gutters ms-1 me-1 dense-4 ">
+    <mat-form-field appearance="outline" class="col-2 px-1">
+        <mat-label>Purity Code</mat-label>
+        <input type="text" matInput [(ngModel)]="purity.purityCode" placeholder="Purity Code" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>WS Lot Number</mat-label>
+        <input type="text" matInput [(ngModel)]="purity.wSLotNumber" placeholder="WS Lot Number" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Purity Type</mat-label>
+        <input type="text" matInput [(ngModel)]="purity.purityType" placeholder="Purity Type" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Purity Value (%)</mat-label>
+        <input type="text" matInput [(ngModel)]="purity.purityValue" placeholder="Purity Value (%)" />
+    </mat-form-field>
+    <div class="col-1 d-flex">
+        <!-- <button mat-raised-button class="section-add-remove-record-btn" (click)="removePurity(i)" *ngIf="i > 0">
+            Remove
+        </button> -->
+        <img src="/assets/delete.png" (click)="removePurity(i)" *ngIf="i > 0" class="remove-btn"/>
+
+    </div>
+</div>
+
+
+<div class="table-box">
+    <div class="section_header_child_1 ">
+        <div class="float-start">
+            <p class="section_header_title">Container Details</p>
+        </div>
+        <div class="float-end">
+            <button mat-raised-button class="submitButton add-btn me-2" (click)="addContainer()">
+                Add Container
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- <div *ngFor="let container of containerDetails; let i = index" class="row no-gutters ms-1 me-1 dense-4 ">
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Container Code</mat-label>
+        <input type="text" matInput [(ngModel)]="container.containerCode" placeholder="Container Code" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>WS Lot Number</mat-label>
+        <input type="number" matInput [(ngModel)]="container.wSLotNumber" placeholder="WS Lot Number" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Container Quantity</mat-label>
+        <input type="number" matInput [(ngModel)]="container.containerQty" placeholder="Container Quantity" />
+    </mat-form-field>
+     <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Value UOM</mat-label>
+        <mat-select formControlName="valueUOM" [(ngModel)]="container.valueUOM">
+            <mat-option value="mg">MG</mat-option>
+            <mat-option value="g">G</mat-option>
+            <mat-option value="kg">KG</mat-option>
+            <mat-option value="ml">ML</mat-option>
+            <mat-option value="l">L</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Lot Valid Up To</mat-label>
+        <input type="text" matInput [matDatepicker]="pickerFrom" formControlName="lotValidUpTo"  [(ngModel)]="container.lotValidUpTo"/>
+        <mat-datepicker-toggle matIconSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+        <mat-datepicker #pickerFrom></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Container Valid Up To</mat-label>
+        <input type="text" matInput [matDatepicker]="pickerTo" formControlName="containerValidUpTo" [(ngModel)]="container.containerValidUpTo"/>
+        <mat-datepicker-toggle matIconSuffix [for]="pickerTo"></mat-datepicker-toggle>
+        <mat-datepicker #pickerTo></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Available Quantity</mat-label>
+        <input type="number" matInput [(ngModel)]="container.availableQty" placeholder="Available Quantity" />
+    </mat-form-field>
+    <div class="col-1 d-flex">       
+        <img src="/assets/delete.png" (click)="removeContainer(i)" *ngIf="i > 0" class="remove-btn"/>
+
+    </div>
+
+    
+</div> -->
+
+
+<ng-container *ngFor="let container of containerDetails; let i = index">
+          <div class="table-box">
+            <div class="section_header_child_1">
+              <div class="float-start">
+                <p class="section_header_title">Container - {{ i + 1 }}</p>
+              </div>
+              <div class="float-end">
+                <button mat-raised-button class="section-add-remove-record-btn" (click)="removeContainer(i)" *ngIf="i > 0">
+                  Remove
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row no-gutters ms-1 me-1 dense-4 ">
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Container Code</mat-label>
+        <input type="text" matInput [(ngModel)]="container.containerCode" placeholder="Container Code" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>WS Lot Number</mat-label>
+        <input type="text" matInput [(ngModel)]="container.wSLotNumber" placeholder="WS Lot Number" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Container Quantity</mat-label>
+        <input type="text" matInput [(ngModel)]="container.containerQty" placeholder="Container Quantity" />
+    </mat-form-field>
+     <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Value UOM</mat-label>
+        <mat-select [(ngModel)]="container.valueUOM">
+            <mat-option value="mg">MG</mat-option>
+            <mat-option value="g">G</mat-option>
+            <mat-option value="kg">KG</mat-option>
+            <mat-option value="ml">ML</mat-option>
+            <mat-option value="l">L</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Lot Valid Up To</mat-label>
+        <input type="text" matInput [matDatepicker]="pickerFrom"  [(ngModel)]="container.lotValidUpTo"/>
+        <mat-datepicker-toggle matIconSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+        <mat-datepicker #pickerFrom></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Container Valid Up To</mat-label>
+        <input type="text" matInput [matDatepicker]="pickerTo" [(ngModel)]="container.containerValidUpTo"/>
+        <mat-datepicker-toggle matIconSuffix [for]="pickerTo"></mat-datepicker-toggle>
+        <mat-datepicker #pickerTo></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Available Quantity</mat-label>
+        <input type="text" matInput [(ngModel)]="container.availableQty" placeholder="Available Quantity" />
+    </mat-form-field>
+    </div>
+          </ng-container>
+
+
+
+
+
+<app-common-comments [nextStageListData]="nextStageListData"
+    (commentsData)="handleCommentsForm($event)"></app-common-comments>
+<div class="containerBTN margin-top_2 margin-bottom_35">
+    <div class="d-flex justify-content-center">
+        <button mat-raised-button class="submitButton" (click)="onSaveConfirmation()">
+            Save
+        </button>
+        <button mat-raised-button class="submitButton" (click)="onSubmitConfirmation()">
+            Submit
+        </button>
+    </div>
+</div>
+<mat-spinner *ngIf="isLoading" class="global-loading-spinner" color="primary" mode="indeterminate"></mat-spinner>
+<div class="height_5"></div>
