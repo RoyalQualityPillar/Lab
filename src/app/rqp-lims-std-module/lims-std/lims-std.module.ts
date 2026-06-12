@@ -22,6 +22,14 @@ import { PurityTypeMasterCreateUpdateComponent } from '../std-masters/purity-typ
 import { PurityTypeMasterHomePageComponent } from '../std-masters/purity-type-master/purity-type-master-home-page/purity-type-master-home-page.component';
 import { CreateUpdateWsLotRecordComponent } from '../std-masters/ws-lot-record/create-update-ws-lot-record/create-update-ws-lot-record.component';
 import { HomePageWsLotRecordComponent } from '../std-masters/ws-lot-record/home-page-ws-lot-record/home-page-ws-lot-record.component';
+import { WslrInitiatorComponent } from '../wslr/wslr-initiator/wslr-initiator.component';
+import { WslrUpdateComponent } from '../wslr/wslr-update/wslr-update.component';
+import { WslrUpdateSaveComponent } from '../wslr/wslr-update-save/wslr-update-save.component';
+import { WslrReviewerComponent } from '../wslr/wslr-reviewer/wslr-reviewer.component';
+import { WslrReviewerSaveComponent } from '../wslr/wslr-reviewer-save/wslr-reviewer-save.component';
+import { WslrCompletedComponent } from '../wslr/wslr-completed/wslr-completed.component';
+import { WslrCompletedSaveComponent } from '../wslr/wslr-completed-save/wslr-completed-save.component';
+import { WslrModuleAdminComponent } from '../wslr/wslr-module-admin/wslr-module-admin.component';
 
 
 @NgModule({
@@ -42,7 +50,15 @@ import { HomePageWsLotRecordComponent } from '../std-masters/ws-lot-record/home-
     PurityTypeMasterCreateUpdateComponent,
     PurityTypeMasterHomePageComponent,
     CreateUpdateWsLotRecordComponent,
-    HomePageWsLotRecordComponent
+    HomePageWsLotRecordComponent,
+    WslrInitiatorComponent,
+    WslrUpdateComponent,
+    WslrUpdateSaveComponent,
+    WslrReviewerComponent,
+    WslrReviewerSaveComponent,
+    WslrCompletedComponent,
+    WslrCompletedSaveComponent,
+    WslrModuleAdminComponent,
 
 
 

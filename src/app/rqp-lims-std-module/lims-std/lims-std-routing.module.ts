@@ -9,6 +9,14 @@ import { HomePageWsLotContainersUsageComponent } from '../std-masters/ws-lot-con
 import { UtmHomePageComponent } from '../std-masters/usage-type-master/utm-home-page/utm-home-page.component';
 import { PurityTypeMasterHomePageComponent } from '../std-masters/purity-type-master/purity-type-master-home-page/purity-type-master-home-page.component';
 import { HomePageWsLotRecordComponent } from '../std-masters/ws-lot-record/home-page-ws-lot-record/home-page-ws-lot-record.component';
+import { WslrInitiatorComponent } from '../wslr/wslr-initiator/wslr-initiator.component';
+import { WslrUpdateComponent } from '../wslr/wslr-update/wslr-update.component';
+import { WslrUpdateSaveComponent } from '../wslr/wslr-update-save/wslr-update-save.component';
+import { WslrReviewerComponent } from '../wslr/wslr-reviewer/wslr-reviewer.component';
+import { WslrReviewerSaveComponent } from '../wslr/wslr-reviewer-save/wslr-reviewer-save.component';
+import { WslrCompletedComponent } from '../wslr/wslr-completed/wslr-completed.component';
+import { WslrCompletedSaveComponent } from '../wslr/wslr-completed-save/wslr-completed-save.component';
+import { WslrModuleAdminComponent } from '../wslr/wslr-module-admin/wslr-module-admin.component';
 
 const routes: Routes = [
   {path:'std-module-admin', component:StdModuleAdminComponent},
@@ -21,7 +29,14 @@ const routes: Routes = [
   {path:'purity-type-master-home-page', component:PurityTypeMasterHomePageComponent},
   {path:'home-page-ws-lot-record', component:HomePageWsLotRecordComponent},
   
-  
+   { path: 'wslr-initiator', component: WslrInitiatorComponent },
+  { path: 'wslr-update', component: WslrUpdateComponent },
+  { path: 'wslr-update-save', component: WslrUpdateSaveComponent },
+  { path: 'wslr-reviewer', component: WslrReviewerComponent },
+  { path: 'wslr-reviewer-save', component: WslrReviewerSaveComponent },
+  { path: 'wslr-completed', component: WslrCompletedComponent },
+  { path: 'wslr-completed-save', component: WslrCompletedSaveComponent },
+  { path: 'wslr-module-admin', component: WslrModuleAdminComponent },
   
   
 
