@@ -142,7 +142,7 @@ export class StorageCategoryMasterCreateUpdateComponent implements OnInit {
   setFormValue() {
     this.DepartmentMaster.controls['uc0001'].setValue(this.formData.uc0001);
     this.DepartmentMaster.controls['ff0001'].setValue(this.formData.ff0001);
-      this.DepartmentMaster.controls['ff0002'].setValue(this.formData.ff0002);
+    this.DepartmentMaster.controls['ff0002'].setValue(this.formData.ff0002);
     this.DepartmentMaster.controls['comments'].setValue(this.formData.comments);
     let statusByValue = changeStatusByCode(this.formData.status);
     this.DepartmentMaster.controls['status'].setValue(statusByValue);

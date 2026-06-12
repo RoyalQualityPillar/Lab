@@ -313,12 +313,15 @@
         </ng-container>
       </ng-container>
     </div>
+    
+    <!--document detail start-->
+   
 
     <!--document detail start-->
     <div class="table-box">
       <div class="section_header">
         <div class="float-left">
-          <p class="section_header_title">Document Details</p>
+          <p class="section_header_title">Attachement Details</p>
         </div>
       </div>
     </div>
@@ -414,7 +417,7 @@
       </div>
     </div>
     <!--document detail end-->
-    <div class="table-box">
+    <!-- <div class="table-box">
       <div class="section_header">
         <div class="float-start">
           <p class="section_header_title">Action Items</p>
@@ -429,7 +432,7 @@
           </button>
         </div>
       </div>
-    </div>
+    </div> 
     <div class="p-2">
       <div>
         <ng-container *ngFor="let item of actionDtoList; let i = index">
@@ -606,24 +609,24 @@
                 placeholder="Batch No"
               />
             </mat-form-field>
-            <!-- <mat-form-field appearance="outline" class="col-3 px-1">
+            <<mat-form-field appearance="outline" class="col-3 px-1">
                                         <mat-label>Root Cause Type</mat-label>
                                         <input type="text" [(ngModel)]="item.ff0009" matInput
                                             placeholder="Root Cause Type" />
                                         <img alt="lov img" src="../../../../../../assets/searchfind.svg"
                                             class="icon-size lovSearchButton" color="primary"
                                             (click)="openActionRootCauseTypeLov(i)" />
-                                    </mat-form-field> -->
+                                    </mat-form-field> 
           </div>
           <div class="row no-gutters ms-1 me-1 dense-4 margin-top_5">
-            <!-- <mat-form-field appearance="outline" class="col-3 px-1">
+            <mat-form-field appearance="outline" class="col-3 px-1">
                                         <mat-label>Root Cause</mat-label>
                                         <input type="text" [(ngModel)]="item.ff0010" matInput
                                             placeholder="Root Cause" />
                                         <img alt="lov img" src="../../../../../../assets/searchfind.svg"
                                             class="icon-size lovSearchButton" color="primary"
                                             (click)="openActionRootCauseLov(i)" />
-                                    </mat-form-field> -->
+                                    </mat-form-field>
             <mat-form-field appearance="outline" class="col-3 px-1">
               <mat-label>Action Due date</mat-label>
               <input
@@ -659,7 +662,7 @@
               ></textarea>
             </mat-form-field>
           </div>
-          <!-- File Upload start -->
+        
           <div class="table-box">
             <div class="secondary_section_header">
               <div class="float-left">
@@ -681,14 +684,14 @@
                   />
                 </mat-form-field>
 
-                <!-- <mat-form-field appearance="outline" class="col-3 px-1">
+                <mat-form-field appearance="outline" class="col-3 px-1">
                                                 <mat-label>Document Type</mat-label>
                                                 <mat-select formControlName="categoryTypes">
                                                     <mat-option value="M">M</mat-option>
                                                     <mat-option value="F">F</mat-option>
                                                     <mat-option value="A">A</mat-option>
                                                 </mat-select>
-                                            </mat-form-field> -->
+                                            </mat-form-field>
 
                 <div class="col-5 px-1 margin-top_5">
                   <input
@@ -750,9 +753,9 @@
                         >
                           <mat-icon>open_in_new</mat-icon>
                         </button>
-                        <!-- <button mat-icon-button color="warn" (click)="removeRow(row)"> -->
-                        <!-- <mat-icon>delete</mat-icon> -->
-                        <!-- </button> -->
+                        <button mat-icon-button color="warn" (click)="removeRow(row)"> 
+                        <mat-icon>delete</mat-icon>
+                        </button>
                       </td>
                     </tr>
                   </tbody>
@@ -760,10 +763,10 @@
               </mat-card>
             </div>
           </div>
-          <!-- File Upload End -->
+          File Upload End
         </ng-container>
       </div>
-    </div>
+    </div> -->
 
     <app-as-common-footer
       [pageData]="this.pageData"

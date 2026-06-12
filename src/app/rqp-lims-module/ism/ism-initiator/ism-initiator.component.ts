@@ -1046,7 +1046,7 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
           //     status: 0,
           //     comments: this.comments,
           //   },
-          // ],
+          // // ],
           // "ismAttachmentList": [
           //   {
           //     "uc0001": "string",
@@ -1055,7 +1055,7 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
           //     "documentAction": "CREATE"
           //   }
           // ],
-          ismAttachmentList: [...this.UserRoleTableAttachment],
+         ismAttachmentList: [...this.UserRoleTableAttachment],
           riskAttachmentList: [...this.UserRoleTableAssessment],
         };
         // this.actionDtoList.forEach((action) => {
