@@ -15,6 +15,13 @@ import { NciReviewDetailComponent } from './rqp-qms-module/nci-review-detail/nci
 import { DropdownListComponent } from './rqp-dms-module/sop/dropdown-list/dropdown-list.component';
 import { ActionAttachmentsListComponent } from './rqp-lims-module/ism/action-attachments-list/action-attachments-list.component';
 
+import { IsmUpdateComponent } from './rqp-lims-module/ism/ism-update/ism-update.component';
+import { StorageCategoryMasterHomePageComponent } from './rqp-lims-stm-module/stm-masters/storage-category-master/storage-category-master-home-page/storage-category-master-home-page.component';
+
+import { StorageCategoryMasterCreateUpdateComponent } from './rqp-lims-stm-module/stm-masters/storage-category-master/storage-category-master-create-update/storage-category-master-create-update.component';
+import { ChambersMasterHomePageComponent } from './rqp-lims-stm-module/stm-masters/chambers-master/chambers-master-home-page/chambers-master-home-page.component';
+//import { ChambersMasterUpdateCreateComponent } from './rqp-lims-stm-module/stm-masters/chambers-master/chambers-master-update-create/chambers-master-update-create.component';
+import { ChambersMasterCreateUpdateComponent } from './rqp-lims-stm-module/stm-masters/chambers-master/chambers-master-create-update/chambers-master-create-update.component';
 
 // import { SharedModule } from './common/shared.module';
 
@@ -29,9 +36,10 @@ import { ActionAttachmentsListComponent } from './rqp-lims-module/ism/action-att
     NciReviewDetailComponent,
     DropdownListComponent,
     ActionAttachmentsListComponent,
-    MessageDialogComponent,
+    MessageDialogComponent, 
    
-  
+    
+   
 
 
 

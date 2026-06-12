@@ -1639,6 +1639,24 @@ attachmentHTML ='gm/attachment-html',
  PurTyLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
  PurTyAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
 
+  /*******Storage Category Master  *********/
+  allStorageCategoryTabledata = 'limsws/ptm-master/get-all',
+  activeStorageCategoryTabledata = 'limsws/ptm-master/get-max-all',
+ StorageCategoryUserProfileFilterData = 'limsws/ptm-master/search',
+ StorageCategoryCreateUpdate = 'limsws/ptm-master/save-update',
+ StorageCategoryLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
+ StorageCategoryAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+
+ /*******Chambers Master  *********/
+  allChambersTabledata = 'limsws/ptm-master/get-all',
+activeChambersTabledata = 'limsws/ptm-master/get-max-all',
+ ChambersUserProfileFilterData = 'limsws/ptm-master/search',
+ ChambersCreateUpdate = 'limsws/ptm-master/save-update',
+ ChambersLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
+ ChambersAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+
+
+
 
 
 
