@@ -419,6 +419,15 @@ const routes: Routes = [
    path: 'ism-update-home-page',
     component: IsmUpdateHomePageComponent,
    },
+
+   {
+  path: 'ism-completed',
+  component: IsmCompletedComponent,
+  },
+  {
+  path: 'ism-completed-save',
+    component: IsmCompletedSaveComponent,
+  },
   {
   path: 'home-page-prevnt-main-sche',
     component: HomePagePrevntMainScheComponent,

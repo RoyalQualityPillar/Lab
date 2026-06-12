@@ -232,6 +232,7 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
       // this.tableData = new MatTableDataSource(this.dataSource);
     });
   }
+  
 
   getLoadActionItem(lc0003: any) {
     this.limsService.getEventActionItem(lc0003).subscribe((response: any) => {
@@ -753,6 +754,7 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
   async onSaveUpdate(btnStatus: any) {
     console.log(this.actionDtoList);
     console.log(this.ccLineItemIndexDTOList);
+    console.log(JSON.stringify(this.body1, null, 2));
     if (
       this.FooterForm.controls['nextStage'].value == '' ||
       this.FooterForm.controls['nextStage'].value == undefined
@@ -1452,4 +1454,5 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
     this.destroy$.next(undefined);
     this.destroy$.complete();
   }
+  
 }

@@ -221,7 +221,7 @@ export class StorageCategoryMasterHomePageComponent  implements OnInit, AfterVie
     }
   }
   UC0001: any;
-  UC0002: any;
+ // UC0002: any;
   async onSearchAllAuditTrail() {
     this.selectedRow = this.selectedRow;
     if (this.selectedRow.length == 0) {
