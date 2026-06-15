@@ -52,5 +52,8 @@ export class ImsMasterDataHomePageComponent {
   onPreventiveMaintenanceSchedule(){
     this.router.navigate(['./rqplabui/lims/home-page-prevnt-main-sche'])
   }
+   onCalibraionUOMMaster() {
+    this.router.navigate(['./rqplabui/lims/cum-home-page']);
+  }
 }
 
