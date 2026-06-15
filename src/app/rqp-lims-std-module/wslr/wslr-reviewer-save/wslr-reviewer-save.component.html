@@ -13,133 +13,123 @@
 <div class="row no-gutters ms-1 me-1 dense-4" [formGroup]="workingStandardRegistrationForm">
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>WS Lot No</mat-label>
-        <input type="text" matInput formControlName="wSLotNo" placeholder="WS Lot No" />
+        <input type="text" matInput formControlName="wSLotNo" placeholder="WS Lot No" readonly/>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Product Code</mat-label>
-        <input type="text" matInput formControlName="productCode" placeholder="Product Code" />
+        <input type="text" matInput formControlName="productCode" placeholder="Product Code" readonly/>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Lot Type</mat-label>
-        <mat-select formControlName="lotTypes">
-            <mat-option value="working Standard">Working Standard</mat-option>
-            <mat-option value="referenace Standard">Referenace Standard</mat-option>
-            <mat-option value="impurity Standard">Impurity Standard</mat-option>
-        </mat-select>
+        <input type="text" matInput formControlName="lotTypes" readonly/>        
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Sample Ref Number</mat-label>
-        <input type="text" matInput formControlName="sampleRefNumber" placeholder="Sample Ref Number" />
+        <input type="text" matInput formControlName="sampleRefNumber" placeholder="Sample Ref Number" readonly/>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Container Type</mat-label>
-        <input type="text" matInput formControlName="containerType" placeholder="Container Type" />
+        <input type="text" matInput formControlName="containerType" placeholder="Container Type" readonly/>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Storage Condition</mat-label>
-        <input type="text" matInput formControlName="storageCondition" placeholder="Storage Condition" />
+        <input type="text" matInput formControlName="storageCondition" placeholder="Storage Condition" readonly/>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Lot Quantity</mat-label>
-        <input type="text" matInput formControlName="lotQuantity" placeholder="Lot Quantity" />
+        <input type="text" matInput formControlName="lotQuantity" placeholder="Lot Quantity" readonly/>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Lot Quantity UOM</mat-label>
-        <mat-select formControlName="lotQuantityUOM">
-            <mat-option value="mg">MG</mat-option>
-            <mat-option value="g">G</mat-option>
-            <mat-option value="kg">KG</mat-option>
-            <mat-option value="ml">ML</mat-option>
-            <mat-option value="l">L</mat-option>
-        </mat-select>
+                <input type="text" matInput formControlName="lotQuantityUOM" readonly/>       
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Manufacture Date</mat-label>
+        <input type="text" matInput formControlName="manufactureDate" readonly />
+    </mat-form-field>
+     <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Expiry Date</mat-label>
+        <input type="text" matInput formControlName="expiryDate" readonly />
+    </mat-form-field>
+    <!-- <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Manufacture Date</mat-label>
         <input type="text" matInput [matDatepicker]="pickerFrom" formControlName="manufactureDate" />
         <mat-datepicker-toggle matIconSuffix [for]="pickerFrom"></mat-datepicker-toggle>
         <mat-datepicker #pickerFrom></mat-datepicker>
-    </mat-form-field>
+    </mat-form-field> 
 
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Expiry Date</mat-label>
         <input type="text" matInput [matDatepicker]="pickerTo" formControlName="expiryDate" />
         <mat-datepicker-toggle matIconSuffix [for]="pickerTo"></mat-datepicker-toggle>
         <mat-datepicker #pickerTo></mat-datepicker>
-    </mat-form-field>
+    </mat-form-field>-->
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Batch Number</mat-label>
-        <input type="text" matInput formControlName="batchNumber" placeholder="Batch Number" />
+        <input type="text" matInput formControlName="batchNumber" placeholder="Batch Number" readonly/>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Source Batch No</mat-label>
-        <input type="text" matInput formControlName="sourceBatchNo" placeholder="Source Batch No" />
+        <input type="text" matInput formControlName="sourceBatchNo" placeholder="Source Batch No" readonly/>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>WS Validity On</mat-label>
+        <input type="text" matInput formControlName="wSValidityOn" readonly/>
+    </mat-form-field>
+     <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Lot Validity Up To</mat-label>
+        <input type="text" matInput formControlName="lotValidityUpTo" readonly />
+    </mat-form-field>
+    <!-- <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>WS Validity On</mat-label>
         <input type="text" matInput [matDatepicker]="pickerFrom1" formControlName="wSValidityOn" />
         <mat-datepicker-toggle matIconSuffix [for]="pickerFrom1"></mat-datepicker-toggle>
         <mat-datepicker #pickerFrom1></mat-datepicker>
     </mat-form-field>
-
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Lot Validity Up To</mat-label>
         <input type="text" matInput [matDatepicker]="pickerTo1" formControlName="lotValidityUpTo" />
         <mat-datepicker-toggle matIconSuffix [for]="pickerTo1"></mat-datepicker-toggle>
         <mat-datepicker #pickerTo1></mat-datepicker>
-    </mat-form-field>
+    </mat-form-field> -->
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Usage Type</mat-label>
-        <mat-select formControlName="usageType">
-            <mat-option value="assay">Assay</mat-option>
-            <mat-option value="impurity">Impurity</mat-option>
-            <mat-option value="dissolution">Dissolution</mat-option>
-            <mat-option value="identification">Identification</mat-option>
-        </mat-select>
+         <input type="text" matInput formControlName="usageType" readonly/>       
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>No of Purities</mat-label>
-        <input type="text" matInput formControlName="noOfPurities" placeholder="No of Purities" />
+        <input type="text" matInput formControlName="noOfPurities" placeholder="No of Purities" readonly/>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>No of Purities UOM</mat-label>
-        <mat-select formControlName="noOfPuritiesUOM">
-            <mat-option value="%">%</mat-option>
-            <mat-option value="mg">MG</mat-option>
-            <mat-option value="ppm">PPM</mat-option>
-        </mat-select>
+        <input type="text" matInput formControlName="noOfPuritiesUOM" readonly/>     
     </mat-form-field>
 
 
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Container Validity Days</mat-label>
-        <input type="text" matInput formControlName="containerValidityDays" placeholder="Container Validity Days" />
+        <input type="text" matInput formControlName="containerValidityDays" placeholder="Container Validity Days" readonly/>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Container Starting Number</mat-label>
-        <input type="text" matInput formControlName="containerStartingNumber" placeholder="Container Starting Number" />
+        <input type="text" matInput formControlName="containerStartingNumber" placeholder="Container Starting Number" readonly/>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>No Of Container</mat-label>
-        <input type="text" matInput formControlName="noOfContainer" placeholder="No Of Container" />
+        <input type="text" matInput formControlName="noOfContainer" placeholder="No Of Container" readonly/>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Alert Container Number</mat-label>
-        <input type="text" matInput formControlName="alertContainerNumber" placeholder="Alert Container Number" />
+        <input type="text" matInput formControlName="alertContainerNumber" placeholder="Alert Container Number" readonly/>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Total Container Qty</mat-label>
-        <input type="text" matInput formControlName="totalContainerQty" placeholder="Total Container Qty" />
+        <input type="text" matInput formControlName="totalContainerQty" placeholder="Total Container Qty" readonly/>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Total Container UOM</mat-label>
-        <mat-select formControlName="totalContainerUOM">
-            <mat-option value="mg">MG</mat-option>
-            <mat-option value="g">G</mat-option>
-            <mat-option value="kg">KG</mat-option>
-            <mat-option value="ml">ML</mat-option>
-            <mat-option value="l">L</mat-option>
-        </mat-select>
+        <input type="text" matInput formControlName="totalContainerUOM" readonly/>        
     </mat-form-field>
 </div>
 
@@ -160,19 +150,19 @@
 <div *ngFor="let purity of purityDetails; let i = index" class="row no-gutters ms-1 me-1 dense-4 ">
     <mat-form-field appearance="outline" class="col-2 px-1">
         <mat-label>Purity Code</mat-label>
-        <input type="text" matInput [(ngModel)]="purity.purityCode" placeholder="Purity Code" />
+        <input type="text" matInput [(ngModel)]="purity.purityCode" placeholder="Purity Code" readonly/>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>WS Lot Number</mat-label>
-        <input type="text" matInput [(ngModel)]="purity.wSLotNumber" placeholder="WS Lot Number" />
+        <input type="text" matInput [(ngModel)]="purity.wSLotNumber" placeholder="WS Lot Number" readonly/>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Purity Type</mat-label>
-        <input type="text" matInput [(ngModel)]="purity.purityType" placeholder="Purity Type" />
+        <input type="text" matInput [(ngModel)]="purity.purityType" placeholder="Purity Type" readonly/>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Purity Value (%)</mat-label>
-        <input type="text" matInput [(ngModel)]="purity.purityValue" placeholder="Purity Value (%)" />
+        <input type="text" matInput [(ngModel)]="purity.purityValue" placeholder="Purity Value (%)" readonly/>
     </mat-form-field>
     <!-- <div class="col-1 d-flex">       
         <img src="/assets/delete.png" (click)="removePurity(i)" *ngIf="i > 0" class="remove-btn"/>
@@ -210,42 +200,43 @@
           <div class="row no-gutters ms-1 me-1 dense-4 ">
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Container Code</mat-label>
-        <input type="text" matInput [(ngModel)]="container.containerCode" placeholder="Container Code" />
+        <input type="text" matInput [(ngModel)]="container.containerCode" placeholder="Container Code" readonly/>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>WS Lot Number</mat-label>
-        <input type="text" matInput [(ngModel)]="container.wSLotNumber" placeholder="WS Lot Number" />
+        <input type="text" matInput [(ngModel)]="container.wSLotNumber" placeholder="WS Lot Number" readonly/>
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Container Quantity</mat-label>
-        <input type="text" matInput [(ngModel)]="container.containerQty" placeholder="Container Quantity" />
+        <input type="text" matInput [(ngModel)]="container.containerQty" placeholder="Container Quantity" readonly/>
     </mat-form-field>
      <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Value UOM</mat-label>
-        <mat-select [(ngModel)]="container.valueUOM">
-            <mat-option value="mg">MG</mat-option>
-            <mat-option value="g">G</mat-option>
-            <mat-option value="kg">KG</mat-option>
-            <mat-option value="ml">ML</mat-option>
-            <mat-option value="l">L</mat-option>
-        </mat-select>
+        <input type="text" matInput [(ngModel)]="container.valueUOM" readonly/>        
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Lot Valid Up To</mat-label>
+        <input type="text" matInput [(ngModel)]="container.lotValidUpTo" readonly/>
+    </mat-form-field>
+     <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Container Valid Up To</mat-label>
+        <input type="text" matInput [(ngModel)]="container.containerValidUpTo" readonly />
+    </mat-form-field>
+    <!-- <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Lot Valid Up To</mat-label>
         <input type="text" matInput [matDatepicker]="pickerFrom"  [(ngModel)]="container.lotValidUpTo"/>
         <mat-datepicker-toggle matIconSuffix [for]="pickerFrom"></mat-datepicker-toggle>
         <mat-datepicker #pickerFrom></mat-datepicker>
     </mat-form-field>
-
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Container Valid Up To</mat-label>
         <input type="text" matInput [matDatepicker]="pickerTo" [(ngModel)]="container.containerValidUpTo"/>
         <mat-datepicker-toggle matIconSuffix [for]="pickerTo"></mat-datepicker-toggle>
         <mat-datepicker #pickerTo></mat-datepicker>
-    </mat-form-field>
+    </mat-form-field> -->
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Available Quantity</mat-label>
-        <input type="text" matInput [(ngModel)]="container.availableQty" placeholder="Available Quantity" />
+        <input type="text" matInput [(ngModel)]="container.availableQty" placeholder="Available Quantity" readonly/>
     </mat-form-field>
     </div>
           </ng-container>
