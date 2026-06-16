@@ -32,6 +32,7 @@ export class CumCreateUpdateComponent implements OnInit {
   orgList: any;
   buTypeList: any;
   unitList: any;
+  calperList: any;
   formData: any;
   isLoading = false;
   statusList: any;
@@ -74,6 +75,7 @@ export class CumCreateUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.onLoadStatusDropDown();
+    this.onloadDeptListDropDown();
     this.DepartmentMaster.controls['unitcode'].patchValue(
       this.cookieService.get('buCode')
     );
@@ -101,6 +103,14 @@ export class CumCreateUpdateComponent implements OnInit {
     this.isLoading = true;
     this.adminService.getDropDownList().subscribe((data: any) => {
       this.statusList = data.data.statusInfo;
+      this.isLoading = false;
+    });
+  }
+   onloadDeptListDropDown() {
+    this.isLoading = true;
+    this.cumService.getDropDownDeptList(this.cookieService.get('buCode')).subscribe((data: any) => {
+      console.log(data);
+      this.calperList = data.data.calperList;
       this.isLoading = false;
     });
   }
@@ -298,6 +308,53 @@ export class CumCreateUpdateComponent implements OnInit {
         this.DepartmentMaster.controls['unitcode'].setValue(
           this.selectedDialogData.unitCode
         );
+      }
+    });
+  }
+   onChangeParameterNo() {
+    if (this.DepartmentMaster.controls['ff0003'].value == '') {
+      this.DepartmentMaster.controls['ff0003'].setValue('');
+      this.DepartmentMaster.controls['ff0004'].setValue('');
+      this.isStatusSuccess = false;
+      let statusCurrentValue = this.DepartmentMaster.controls['ff0003'].value;
+      this.calperList.forEach((elements) => {
+        if (elements.productNO == statusCurrentValue) {
+          this.isStatusSuccess = true;
+        }
+      });
+      if (this.isStatusSuccess == false) {
+        this.DepartmentMaster.controls['ff0003'].setErrors({ incorrect: true });
+        this.DepartmentMaster.controls['ff0004'].setErrors({ incorrect: true });
+        this.openCalperListLOV();
+      }
+    }
+  }
+ 
+   openCalperListLOV() {
+    this.displayedColumns = [
+      { field: 'name', title: 'Parameter No' },
+      { field: 'code', title: 'Parameter Code' },
+    ];
+    const dialogRef = this.dialog.open(LovDialogComponent, {
+      height: '500px',
+      width: '600px',
+      data: {
+        dialogTitle: 'Calper List',
+        dialogColumns: this.displayedColumns,
+        dialogData: this.calperList,
+        lovName: 'deptCodeList',
+      },
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.selectedDialogData = result.data;
+        this.DepartmentMaster.controls['ff0004'].setValue(
+          this.selectedDialogData.name
+        );
+        this.DepartmentMaster.controls['ff0003'].setValue(
+          this.selectedDialogData.code
+        );       
       }
     });
   }
