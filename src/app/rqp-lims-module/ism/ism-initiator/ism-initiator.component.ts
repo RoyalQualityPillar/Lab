@@ -922,11 +922,11 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
             .utc()
             .format('YYYY-MM-DDTHH:mm:ss.SSS[Z]')
           : null;
-        // let endDate1 = moment(
-        //   this.UserRequirementForm.controls['ff0003'].value
-        // ).format('DD-MM-YYYY HH:mm:ss.SSS');
+        let endDate1 = moment(
+          this.UserRequirementForm.controls['ff0003'].value
+        ).format('DD-MM-YYYY HH:mm:ss.SSS');
         // const endDate = moment(endDate1, 'DD-MM-YYYY HH:mm:ss.SSS')
-        //   .utc() // Convert to UTC
+          //.utc() // Convert to UTC
         //   .format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
         this.body1 = {
           lcRequest: {
