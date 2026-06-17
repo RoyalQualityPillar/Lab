@@ -29,4 +29,9 @@ export class CumService {
       this.API_URL + 'lbms/cum_master/get-by-code-all' + queryParams;
     return this.http.get(ALLSALEPRODUCTURL);
   }
+    getDropDownDeptList(unitCode: any) {
+   let queryParams = `?unitCode=${unitCode}`;
+    const ALLSALEPRODUCTURL = this.API_URL + 'limsm-im/input' + queryParams;
+    return this.http.get(ALLSALEPRODUCTURL);
+  }
 }
