@@ -17,7 +17,7 @@ import moment from 'moment';
   styleUrl: './wslr-reviewer-save.component.scss'
 })
 export class WslrReviewerSaveComponent implements OnInit {
-  public redirectUrl: string = '/rqpoperationui/lbms/iwr-module-admin';
+  public redirectUrl: string = '/rqplabui/lims-std/wslr-module-admin';
   public workingStandardRegistrationForm: FormGroup;
   public pageData: any;
   public headerData: any;
@@ -35,19 +35,20 @@ export class WslrReviewerSaveComponent implements OnInit {
   public WslcurRecordList: any;
   public WslprRecordList: any;
   public purityDetails: any[] = [{
-    purityCode: '',
-    wSLotNumber: '',
+    // purityCode: '',
+    // wSLotNumber: '',
     purityType: '',
     purityValue: '',
+    noOfPuritiesUOM: ''
   }]
   public containerDetails: any[] = [{
-    containerCode: '',
-    wSLotNumber: '',
+    // containerCode: '',
+    // wSLotNumber: '',
     containerQty: '',
     valueUOM: '',
-    lotValidUpTo: '',
-    containerValidUpTo: '',
-    availableQty: ''
+    // lotValidUpTo: '',
+    // containerValidUpTo: '',
+    // availableQty: ''
   }]
   constructor(
     public dialog: MatDialog,
@@ -61,8 +62,10 @@ export class WslrReviewerSaveComponent implements OnInit {
     private route: Router,
   ) {
     this.workingStandardRegistrationForm = fb.group({
-      wSLotNo: [''],
-      productCode: [''],
+      // wSLotNo: [''],
+      productNo: [''],
+       productName: [''],
+        productCode: [''],
       lotTypes: [''],
       sampleRefNumber: [''],
       containerType: [''],
@@ -75,15 +78,15 @@ export class WslrReviewerSaveComponent implements OnInit {
       sourceBatchNo: [''],
       wSValidityOn: [''],
       lotValidityUpTo: [''],
-      usageType: [''],
+      // usageType: [''],
       noOfPurities: [''],
-      noOfPuritiesUOM: [''],
+      // noOfPuritiesUOM: [''],
       containerValidityDays: [''],
-      containerStartingNumber: [''],
+      // containerStartingNumber: [''],
       noOfContainer: [''],
       alertContainerNumber: [''],
       totalContainerQty: [''],
-      totalContainerUOM: [''],
+      // totalContainerUOM: [''],
     });
   }
   ngOnInit(): void {
@@ -155,8 +158,10 @@ export class WslrReviewerSaveComponent implements OnInit {
     this.wslrService.getWslcrRecordList(lc0003).subscribe((data: any) => {
       this.WslcrRecordList = data.data[0];
       this.workingStandardRegistrationForm.patchValue({
-        wSLotNo: this.WslcrRecordList.ff0001,
+        // wSLotNo: this.WslcrRecordList.ff0001,
+        productNo: this.WslcrRecordList.ff0001,
         productCode: this.WslcrRecordList.ff0002,
+        productName: this.WslcrRecordList.ff0015,
         lotTypes: this.WslcrRecordList.ff0003,
         sampleRefNumber: this.WslcrRecordList.ff0004,
         containerType: this.WslcrRecordList.ff0005,
@@ -169,15 +174,15 @@ export class WslrReviewerSaveComponent implements OnInit {
         expiryDate: this.formatDate(this.WslcrRecordList.ff0012),
         wSValidityOn: this.formatDate(this.WslcrRecordList.ff0013),
         lotValidityUpTo: this.formatDate(this.WslcrRecordList.ff0014),
-        usageType: this.WslcrRecordList.ff0015,
+        // usageType: this.WslcrRecordList.ff0015,
         noOfPurities: this.WslcrRecordList.ff0016,
-        noOfPuritiesUOM: this.WslcrRecordList.ff0017,
+        // noOfPuritiesUOM: this.WslcrRecordList.ff0017,
         containerValidityDays: this.WslcrRecordList.ff0018,
-        containerStartingNumber: this.WslcrRecordList.ff0019,
+        // containerStartingNumber: this.WslcrRecordList.ff0019,
         noOfContainer: this.WslcrRecordList.ff0020,
         alertContainerNumber: this.WslcrRecordList.ff0021,
         totalContainerQty: this.WslcrRecordList.ff0022,
-        totalContainerUOM: this.WslcrRecordList.ff0023,
+        // totalContainerUOM: this.WslcrRecordList.ff0023,
       });
     });
   }
@@ -187,13 +192,13 @@ export class WslrReviewerSaveComponent implements OnInit {
       this.containerDetails = [];
       this.WslcurRecordList.forEach((element: any) => {
         this.containerDetails.push({
-          containerCode: element.ff0001,
-          wSLotNumber: element.ff0002,
+          // containerCode: element.ff0001,
+          // wSLotNumber: element.ff0002,
           containerQty: element.ff0004,
-          lotValidUpTo: this.formatDate(element.ff0005),
-          containerValidUpTo: this.formatDate(element.ff0006),
+          // lotValidUpTo: this.formatDate(element.ff0005),
+          // containerValidUpTo: this.formatDate(element.ff0006),
           valueUOM: element.ff0009,
-          availableQty: element.ff0010
+          // availableQty: element.ff0010
         });
       });
     });
@@ -204,10 +209,11 @@ export class WslrReviewerSaveComponent implements OnInit {
       this.purityDetails = [];
       this.WslprRecordList.forEach((element: any) => {
         this.purityDetails.push({
-          purityCode: element.ff0001,
-          wSLotNumber: element.ff0002,
+          // purityCode: element.ff0001,
+          // wSLotNumber: element.ff0002,
           purityType: element.ff0004,
-          purityValue: element.ff0005
+          purityValue: element.ff0005,
+          noOfPuritiesUOM: element.ff0006
         });
 
       });
