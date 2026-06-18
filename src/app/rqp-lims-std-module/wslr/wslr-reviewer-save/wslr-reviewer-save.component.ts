@@ -64,8 +64,8 @@ export class WslrReviewerSaveComponent implements OnInit {
     this.workingStandardRegistrationForm = fb.group({
       // wSLotNo: [''],
       productNo: [''],
-       productName: [''],
-        productCode: [''],
+      productName: [''],
+      productCode: [''],
       lotTypes: [''],
       sampleRefNumber: [''],
       containerType: [''],
@@ -136,7 +136,7 @@ export class WslrReviewerSaveComponent implements OnInit {
       this.nextStageListData = data.data.nstage;
     });
   }
- formatDate(dateString: string): string {
+  formatDate(dateString: string): string {
     if (!dateString) {
       return '';
     }
@@ -145,7 +145,6 @@ export class WslrReviewerSaveComponent implements OnInit {
   }
   getResquestNoIDForIWSLR() {
     this.wslrService.getResquestNoIDForIWSLR(this.ff0001, this.lc0001).subscribe((data: any) => {
-      console.log(data);
       this.lc0003 = data.data[0].lc0003;
       if (this.lc0003) {
         this.getWslcrRecordList(this.lc0003);
@@ -194,7 +193,7 @@ export class WslrReviewerSaveComponent implements OnInit {
         this.containerDetails.push({
           // containerCode: element.ff0001,
           // wSLotNumber: element.ff0002,
-          containerQty: element.ff0004,
+          containerQty: element.ff0003,
           // lotValidUpTo: this.formatDate(element.ff0005),
           // containerValidUpTo: this.formatDate(element.ff0006),
           valueUOM: element.ff0009,

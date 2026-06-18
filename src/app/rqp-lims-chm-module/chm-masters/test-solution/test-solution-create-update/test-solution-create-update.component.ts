@@ -148,7 +148,6 @@ export class TestSolutionCreateUpdateComponent implements OnInit {
     this.DepartmentMaster.controls['status'].setValue(
       changeStatusByDescription(this.DepartmentMaster.controls['status'].value)
     );
-    // console.log(this.DepartmentMaster.value);
 
     this.testSolutionServiceService
     .onCreate(this.DepartmentMaster.value)
@@ -209,7 +208,6 @@ export class TestSolutionCreateUpdateComponent implements OnInit {
         } else {
           this.isLoading = false;
           this.notificationService.showSuccess(data.status, () => {
-            console.log('Success Snackbar Closed');
           });
           this.dialogRef.close();
         }

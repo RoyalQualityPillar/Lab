@@ -101,13 +101,10 @@ export class WsrUpdateSaveComponent {
   }
 
   public onBlur() {
-    // console.log('Blur');
   }
   public onDelete(file) {
-    // console.log('Delete file', file.url);
   }
   public summernoteInit(event) {
-    console.log(event);
   }
   public onSubmit(draft: boolean) {
     if (this.form.value.html) {

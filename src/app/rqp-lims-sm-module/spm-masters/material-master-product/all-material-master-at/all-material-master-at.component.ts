@@ -33,8 +33,6 @@ export class AllMaterialMasterAtComponent implements OnInit {
   isLoading = false;
   ngOnInit() {
     //this.data=this.userData.userData
-    console.log(this.userData.tableData.uc0001)
-    console.log(this.userData.type)
     //this.setFormValue();
     this.onSearch()
   }
@@ -42,7 +40,6 @@ export class AllMaterialMasterAtComponent implements OnInit {
   onSearch() {
     this.isLoading = true;
     this.materialMasterService.onAllRoleAuditTrail(this.userData.tableData.uc0001).subscribe((data: any) => {
-      console.log(data);
       this.data = data.data;
       this.dataLength = data.data.length;
       this.isLoading = false;

@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './wslr-reviewer.component.scss'
 })
 export class WslrReviewerComponent {
-public reviewerUrl: string = './rqplabui/lims-std/wslr-reviewer-save';
+  public reviewerUrl: string = './rqplabui/lims-std/wslr-reviewer-save';
 
 }

@@ -70,7 +70,6 @@ export class WsrService {
 
   public onSubmit() {
     const inputValues = this.getInputFieldValues();
-    console.log('Submitted values:', inputValues);
   }
 
   // public config: SummernoteOptions = {

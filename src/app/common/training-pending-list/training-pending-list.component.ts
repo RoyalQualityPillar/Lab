@@ -64,7 +64,6 @@ export class TrainingPendingListComponent implements OnChanges, AfterViewInit {
   }
 
   onSelectedRow() {
-    //console.log(this.selection.selected);
     if (this.selection.selected.length < 1) {
       this.dialog.open(MessageDialogComponent, {
         width: '400px',

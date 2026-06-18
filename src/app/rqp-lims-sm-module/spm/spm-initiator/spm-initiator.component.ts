@@ -339,7 +339,6 @@ export class SpmInitiatorComponent implements OnInit {
     let bodyData = this.formatRequestBody();
     let attachmentList: any[] = [];
     this.body1.attachmentList.forEach((obj) => {
-      console.log(obj.selectedFileList);
       if (obj.selectedFileList) {
         attachmentList.push(obj.selectedFileList);
       }
