@@ -317,7 +317,7 @@ export class IpmInitiatorComponent implements OnInit, OnDestroy {
     this.headerData = event;
     this.onLoadInputApi();
     this.ViewDetailForm.controls['orgUnitCode'].setValue(event.unitcode);
-    this.UserRequirementForm.controls['status'].setValue('Open');
+    this.UserRequirementForm.controls['status'].setValue('Category');
 
   }
   addLineItem(item: any): void {

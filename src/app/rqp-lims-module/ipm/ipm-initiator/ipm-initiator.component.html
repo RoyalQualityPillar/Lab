@@ -3,7 +3,7 @@
 <div>
   <div>
     <!--New item-->
-    <app-common-title [title]="'Change Information'"></app-common-title>
+    <app-common-title [title]="'Problem Information'"></app-common-title>
 
     <p class="section_header_title">Issue Detail</p>
   </div>
@@ -21,11 +21,11 @@
           <mat-datepicker #pickerFrom></mat-datepicker>
         </mat-form-field> -->
         <mat-form-field appearance="outline" class="col-3 px-1">
-          <mat-label>Start Date</mat-label>
+          <mat-label>Occured Date</mat-label>
           <input type="text" matInput formControlName="ff0002" [readonly]="true" />
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-3 px-1">
-          <mat-label>End Date</mat-label>
+          <mat-label>Report Date</mat-label>
           <input type="text" matInput formControlName="ff0003" [readonly]="true" />
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-3 px-1">
@@ -33,7 +33,7 @@
           <input type="text" matInput formControlName="status" placeholder="Status" />
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-3 px-1">
-          <mat-label>Market</mat-label>
+          <mat-label>Serverity</mat-label>
           <input type="text" matInput formControlName="market" placeholder="Market" />
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-3 px-1">
@@ -68,14 +68,14 @@
       </div>
       <div class="row no-gutters ms-1 me-1 margin-top_10">
         <mat-form-field appearance="outline" class="width_100">
-          <mat-label>Change Description</mat-label>
+          <mat-label>Problem Brief</mat-label>
           <textarea type="text" matInput placeholder="Change Description" formControlName="ff0001">
           </textarea>
         </mat-form-field>
       </div>
       <div class="row no-gutters ms-1 me-1 margin-top_10">
         <mat-form-field appearance="outline" class="width_100">
-          <mat-label>Title</mat-label>
+          <mat-label>Problem Detail</mat-label>
           <textarea type="text" matInput placeholder="Title" formControlName="title">
           </textarea>
         </mat-form-field>
@@ -140,7 +140,7 @@
           <div class="float-left"></div>
           <div class="float-right">
             <button mat-raised-button class="section-add-new-record-btn" (click)="addNewRow()">
-              Add Source Of Change
+              Add Problem
             </button>
           </div>
         </div>
@@ -150,7 +150,7 @@
           <div class="table-box">
             <div class="section_header_child_1">
               <div class="float-start">
-                <p class="section_header_title">Source Of Changes - {{ i + 1 }}</p>
+                <p class="section_header_title">Problem - {{ i + 1 }}</p>
               </div>
               <div class="float-end">
                 <button mat-raised-button class="section-add-remove-record-btn" (click)="addRemoveEventRow(item)">
@@ -195,9 +195,9 @@
               <thead>
                 <tr>
                   <th></th>
-                  <th>Existing?</th>
-                  <th>Propose</th>
-                  <th>Justification</th>
+                  <th>Root Cause?</th>
+                  <th>Immediate Action</th>
+                  <th>Capa</th>
                 </tr>
               </thead>
               <tbody>

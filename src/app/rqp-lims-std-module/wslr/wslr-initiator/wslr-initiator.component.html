@@ -11,14 +11,29 @@
 </div>
 
 <div class="row no-gutters ms-1 me-1 dense-4" [formGroup]="workingStandardRegistrationForm">
-    <mat-form-field appearance="outline" class="col-3 px-1">
+    <!-- <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>WS Lot No</mat-label>
         <input type="text" matInput formControlName="wSLotNo" placeholder="WS Lot No" />
+    </mat-form-field> -->
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Product Number</mat-label>
+        <input type="text" matInput formControlName="productNo" placeholder="Product Number"
+            (change)="onChangeSubject()" />
+        <img alt="lov img" src="../../../../../../assets/searchfind.svg" class="icon-size lovSearchButton"
+            color="primary" (click)="openStatusLOV()" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Product Name</mat-label>
+        <input type="text" matInput formControlName="productName" placeholder="Product Name" />
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Product Code</mat-label>
         <input type="text" matInput formControlName="productCode" placeholder="Product Code" />
     </mat-form-field>
+    <!-- <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Product Code</mat-label>
+        <input type="text" matInput formControlName="productCode" placeholder="Product Code" />
+    </mat-form-field> -->
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Lot Type</mat-label>
         <mat-select formControlName="lotTypes">
@@ -43,7 +58,7 @@
         <mat-label>Lot Quantity</mat-label>
         <input type="text" matInput formControlName="lotQuantity" placeholder="Lot Quantity" />
     </mat-form-field>
-    <mat-form-field appearance="outline" class="col-3 px-1">
+    <!-- <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Lot Quantity UOM</mat-label>
         <mat-select formControlName="lotQuantityUOM">
             <mat-option value="mg">MG</mat-option>
@@ -52,7 +67,24 @@
             <mat-option value="ml">ML</mat-option>
             <mat-option value="l">L</mat-option>
         </mat-select>
-    </mat-form-field>
+    </mat-form-field> -->
+     <mat-form-field appearance="outline" class="col-3 px-1">
+                <mat-label>Lot Quantity UOM"</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="lotQuantityUOM"
+                  placeholder="Lot Quantity UOM"
+                  (change)="onChangeUOM()"
+                />
+                <img
+                  alt="lov img"
+                  src="../../../../../../assets/searchfind.svg"
+                  class="icon-size lovSearchButton"
+                  color="primary"
+                  (click)="openUOMLOV()"
+                />
+              </mat-form-field> 
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Manufacture Date</mat-label>
         <input type="text" matInput [matDatepicker]="pickerFrom" formControlName="manufactureDate" />
@@ -87,7 +119,7 @@
         <mat-datepicker-toggle matIconSuffix [for]="pickerTo1"></mat-datepicker-toggle>
         <mat-datepicker #pickerTo1></mat-datepicker>
     </mat-form-field>
-    <mat-form-field appearance="outline" class="col-3 px-1">
+    <!-- <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Usage Type</mat-label>
         <mat-select formControlName="usageType">
             <mat-option value="assay">Assay</mat-option>
@@ -95,32 +127,32 @@
             <mat-option value="dissolution">Dissolution</mat-option>
             <mat-option value="identification">Identification</mat-option>
         </mat-select>
-    </mat-form-field>
+    </mat-form-field> -->
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>No of Purities</mat-label>
-        <input type="text" matInput formControlName="noOfPurities" placeholder="No of Purities" />
+        <input type="number" matInput formControlName="noOfPurities" placeholder="No of Purities" />
     </mat-form-field>
-    <mat-form-field appearance="outline" class="col-3 px-1">
+    <!-- <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>No of Purities UOM</mat-label>
         <mat-select formControlName="noOfPuritiesUOM">
             <mat-option value="%">%</mat-option>
             <mat-option value="mg">MG</mat-option>
             <mat-option value="ppm">PPM</mat-option>
         </mat-select>
-    </mat-form-field>
+    </mat-form-field> -->
 
 
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Container Validity Days</mat-label>
         <input type="text" matInput formControlName="containerValidityDays" placeholder="Container Validity Days" />
     </mat-form-field>
-    <mat-form-field appearance="outline" class="col-3 px-1">
+    <!-- <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Container Starting Number</mat-label>
         <input type="text" matInput formControlName="containerStartingNumber" placeholder="Container Starting Number" />
-    </mat-form-field>
+    </mat-form-field> -->
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>No Of Container</mat-label>
-        <input type="text" matInput formControlName="noOfContainer" placeholder="No Of Container" />
+        <input type="number" matInput formControlName="noOfContainer" placeholder="No Of Container" />
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Alert Container Number</mat-label>
@@ -129,9 +161,9 @@
 
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Total Container Qty</mat-label>
-        <input type="text" matInput formControlName="totalContainerQty" placeholder="Total Container Qty" />
+        <input type="number" matInput formControlName="totalContainerQty" placeholder="Total Container Qty" readonly/>
     </mat-form-field>
-    <mat-form-field appearance="outline" class="col-3 px-1">
+    <!-- <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Total Container UOM</mat-label>
         <mat-select formControlName="totalContainerUOM">
             <mat-option value="mg">MG</mat-option>
@@ -140,7 +172,7 @@
             <mat-option value="ml">ML</mat-option>
             <mat-option value="l">L</mat-option>
         </mat-select>
-    </mat-form-field>
+    </mat-form-field> -->
 </div>
 
 
@@ -149,23 +181,23 @@
         <div class="float-start">
             <p class="section_header_title">Purity Details</p>
         </div>
-        <div class="float-end">
+        <!-- <div class="float-end">
             <button mat-raised-button class="submitButton add-btn me-2" (click)="addPurity()">
                 Add Purity
             </button>
-        </div>
+        </div> -->
     </div>
 </div>
 
 <div *ngFor="let purity of purityDetails; let i = index" class="row no-gutters ms-1 me-1 dense-4 ">
-    <mat-form-field appearance="outline" class="col-2 px-1">
+    <!--<mat-form-field appearance="outline" class="col-2 px-1">
         <mat-label>Purity Code</mat-label>
         <input type="text" matInput [(ngModel)]="purity.purityCode" placeholder="Purity Code" />
     </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>WS Lot Number</mat-label>
         <input type="text" matInput [(ngModel)]="purity.wSLotNumber" placeholder="WS Lot Number" />
-    </mat-form-field>
+    </mat-form-field> -->
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Purity Type</mat-label>
         <input type="text" matInput [(ngModel)]="purity.purityType" placeholder="Purity Type" />
@@ -174,11 +206,19 @@
         <mat-label>Purity Value (%)</mat-label>
         <input type="text" matInput [(ngModel)]="purity.purityValue" placeholder="Purity Value (%)" />
     </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>No of Purities UOM</mat-label>
+        <mat-select [(ngModel)]="purity.noOfPuritiesUOM">
+            <mat-option value="%">%</mat-option>
+            <mat-option value="mg">MG</mat-option>
+            <mat-option value="ppm">PPM</mat-option>
+        </mat-select>
+    </mat-form-field>
     <div class="col-1 d-flex">
         <!-- <button mat-raised-button class="section-add-remove-record-btn" (click)="removePurity(i)" *ngIf="i > 0">
             Remove
         </button> -->
-        <img src="/assets/delete.png" (click)="removePurity(i)" *ngIf="i > 0" class="remove-btn"/>
+        <!-- <img src="/assets/delete.png" (click)="removePurity(i)" *ngIf="i > 0" class="remove-btn" /> -->
 
     </div>
 </div>
@@ -189,11 +229,11 @@
         <div class="float-start">
             <p class="section_header_title">Container Details</p>
         </div>
-        <div class="float-end">
+        <!-- <div class="float-end">
             <button mat-raised-button class="submitButton add-btn me-2" (click)="addContainer()">
                 Add Container
             </button>
-        </div>
+        </div> -->
     </div>
 </div>
 
@@ -247,43 +287,44 @@
 
 
 <ng-container *ngFor="let container of containerDetails; let i = index">
-          <div class="table-box">
-            <div class="section_header_child_1">
-              <div class="float-start">
+    <div class="table-box">
+        <div class="section_header_child_1">
+            <div class="float-start">
                 <p class="section_header_title">Container - {{ i + 1 }}</p>
-              </div>
-              <div class="float-end">
-                <button mat-raised-button class="section-add-remove-record-btn" (click)="removeContainer(i)" *ngIf="i > 0">
-                  Remove
-                </button>
-              </div>
             </div>
-          </div>
-          
-          <div class="row no-gutters ms-1 me-1 dense-4 ">
-    <mat-form-field appearance="outline" class="col-3 px-1">
+            <!-- <div class="float-end">
+                <button mat-raised-button class="section-add-remove-record-btn" (click)="removeContainer(i)"
+                    *ngIf="i > 0">
+                    Remove
+                </button>
+            </div> -->
+        </div>
+    </div>
+
+    <div class="row no-gutters ms-1 me-1 dense-4 ">
+        <!--<mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Container Code</mat-label>
         <input type="text" matInput [(ngModel)]="container.containerCode" placeholder="Container Code" />
     </mat-form-field>
-    <mat-form-field appearance="outline" class="col-3 px-1">
+     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>WS Lot Number</mat-label>
         <input type="text" matInput [(ngModel)]="container.wSLotNumber" placeholder="WS Lot Number" />
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="col-3 px-1">
-        <mat-label>Container Quantity</mat-label>
-        <input type="text" matInput [(ngModel)]="container.containerQty" placeholder="Container Quantity" />
-    </mat-form-field>
-     <mat-form-field appearance="outline" class="col-3 px-1">
-        <mat-label>Value UOM</mat-label>
-        <mat-select [(ngModel)]="container.valueUOM">
-            <mat-option value="mg">MG</mat-option>
-            <mat-option value="g">G</mat-option>
-            <mat-option value="kg">KG</mat-option>
-            <mat-option value="ml">ML</mat-option>
-            <mat-option value="l">L</mat-option>
-        </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="col-3 px-1">
+    </mat-form-field> -->
+        <mat-form-field appearance="outline" class="col-3 px-1">
+            <mat-label>Container Quantity</mat-label>
+            <input type="text" matInput [(ngModel)]="container.containerQty" (input)="calculateTotalContainerQty()" placeholder="Container Quantity" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-3 px-1">
+            <mat-label>Value UOM</mat-label>
+            <mat-select [(ngModel)]="container.valueUOM">
+                <mat-option value="mg">MG</mat-option>
+                <mat-option value="g">G</mat-option>
+                <mat-option value="kg">KG</mat-option>
+                <mat-option value="ml">ML</mat-option>
+                <mat-option value="l">L</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <!-- <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Lot Valid Up To</mat-label>
         <input type="text" matInput [matDatepicker]="pickerFrom"  [(ngModel)]="container.lotValidUpTo"/>
         <mat-datepicker-toggle matIconSuffix [for]="pickerFrom"></mat-datepicker-toggle>
@@ -299,9 +340,9 @@
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Available Quantity</mat-label>
         <input type="text" matInput [(ngModel)]="container.availableQty" placeholder="Available Quantity" />
-    </mat-form-field>
+    </mat-form-field> -->
     </div>
-          </ng-container>
+</ng-container>
 
 
 
