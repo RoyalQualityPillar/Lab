@@ -215,9 +215,6 @@ const total = this.containerDetails.reduce(
 
   }
   onSubmit(value: any) {
-    console.log(this.workingStandardRegistrationForm.value);
-    console.log(this.purityDetails);
-    console.log(this.containerDetails);
     this.disableButtons = true;
     let draftValue: boolean;
     if (value == 1) {
@@ -241,10 +238,6 @@ const total = this.containerDetails.reduce(
     const lotValidityUpTo = moment(
       this.workingStandardRegistrationForm.value.lotValidityUpTo
     ).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
-    console.log(manufactureDate);
-
-
-
 
     this.purityDetails.forEach((parameter: any) => {
       purityRecordList.push({

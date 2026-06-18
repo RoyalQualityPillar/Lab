@@ -171,7 +171,6 @@ export class CciMasterCreateUpdateComponent implements OnInit {
     this.DepartmentMaster.controls['status'].setValue(
       changeStatusByDescription(this.DepartmentMaster.controls['status'].value)
     );
-    console.log(this.DepartmentMaster.value);
     let params = {};
     // this.glService
     //   .onGlMasterSaveUpdate(this.DepartmentMaster.value)

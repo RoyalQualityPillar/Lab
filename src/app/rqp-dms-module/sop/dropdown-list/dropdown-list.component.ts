@@ -45,7 +45,6 @@ export class DropdownListComponent implements OnInit {
   }
 
   onSelectedRow() {
-    //console.log(this.selection.selected);
     if (this.selection.selected.length < 1) {
       this.dialog.open(MessageDialogComponent, {
         width: '400px',

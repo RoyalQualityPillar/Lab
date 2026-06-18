@@ -68,23 +68,13 @@
             <mat-option value="l">L</mat-option>
         </mat-select>
     </mat-form-field> -->
-     <mat-form-field appearance="outline" class="col-3 px-1">
-                <mat-label>Lot Quantity UOM"</mat-label>
-                <input
-                  type="text"
-                  matInput
-                  formControlName="lotQuantityUOM"
-                  placeholder="Lot Quantity UOM"
-                  (change)="onChangeUOM()"
-                />
-                <img
-                  alt="lov img"
-                  src="../../../../../../assets/searchfind.svg"
-                  class="icon-size lovSearchButton"
-                  color="primary"
-                  (click)="openUOMLOV()"
-                />
-              </mat-form-field> 
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Lot Quantity UOM"</mat-label>
+        <input type="text" matInput formControlName="lotQuantityUOM" placeholder="Lot Quantity UOM"
+            (change)="onChangeUOM()" />
+        <img alt="lov img" src="../../../../../../assets/searchfind.svg" class="icon-size lovSearchButton"
+            color="primary" (click)="openUOMLOV()" />
+    </mat-form-field>
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Manufacture Date</mat-label>
         <input type="text" matInput [matDatepicker]="pickerFrom" formControlName="manufactureDate" />
@@ -161,7 +151,7 @@
 
     <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Total Container Qty</mat-label>
-        <input type="number" matInput formControlName="totalContainerQty" placeholder="Total Container Qty" readonly/>
+        <input type="number" matInput formControlName="totalContainerQty" placeholder="Total Container Qty" readonly />
     </mat-form-field>
     <!-- <mat-form-field appearance="outline" class="col-3 px-1">
         <mat-label>Total Container UOM</mat-label>
@@ -312,7 +302,8 @@
     </mat-form-field> -->
         <mat-form-field appearance="outline" class="col-3 px-1">
             <mat-label>Container Quantity</mat-label>
-            <input type="text" matInput [(ngModel)]="container.containerQty" (input)="calculateTotalContainerQty()" placeholder="Container Quantity" />
+            <input type="number" matInput [(ngModel)]="container.containerQty" (input)="calculateTotalContainerQty()"
+                placeholder="Container Quantity" />
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-3 px-1">
             <mat-label>Value UOM</mat-label>

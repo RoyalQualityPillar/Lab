@@ -69,7 +69,6 @@ export class ClMasterHomePageComponent {
     this.filterApiUrl = apiEndPoints.ClMasterUserProfileFilterData;
     this.activeColumnLotTableDataUrl = apiEndPoints.activeClMasterTabledata;
     this.params = { pageIndex, size, unitCode };
-    console.log('Bharat');
     this.filterObject = {
       field: 'SELECT',
       value: '',
@@ -111,7 +110,6 @@ export class ClMasterHomePageComponent {
     this.getLatestData = false;
   }
   setSelectedID(row: any) {
-    console.log(row);
     this.selectedAllId = row;
   }
   selectedAllId: any;
@@ -173,7 +171,6 @@ export class ClMasterHomePageComponent {
 
   onSearchAllAuditTrail() {
     this.selectedAllId = this.selectedRow;
-    console.log(this.selectedAllId);
     if (this.selectedAllId.length == 0) {
       this.dialog.open(MessageDialogComponent, {
         data: {
@@ -255,7 +252,6 @@ export class ClMasterHomePageComponent {
   handleButtonAction(event: { action: string; row: any }) {
     const { action, row } = event;
     this.selectedRow = row; // Set the selected row
-    console.log(action);
     switch (action) {
       case 'Audit_Trail':
         this.onSearchAllAuditTrail();
@@ -268,7 +264,6 @@ export class ClMasterHomePageComponent {
   activeHandleButtonAction(event: { action: string; row: any }) {
     const { action, row } = event;
     this.selectedRow = row; // Set the selected row
-    console.log(action);
     switch (action) {
       case 'Audit_Trail':
         this.onActiveSelectAuditRow();
@@ -280,7 +275,6 @@ export class ClMasterHomePageComponent {
   }
 
   handleSubmit(row: any) {
-    console.log(row);
     console.log('submitBtn');
   }
 }
