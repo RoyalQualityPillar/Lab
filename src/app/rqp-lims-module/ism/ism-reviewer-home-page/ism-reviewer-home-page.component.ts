@@ -201,7 +201,6 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
 
     // this.onLoadNextStageData();
     // this.headerRequestBody=this.lifeCycleDataService.getSelectedRowData();
-    // console.log(this.headerRequestBody.lifeCycleCode)
     // if(this.headerRequestBody.lifeCycleCode){
     //   this.onLoadEventClassification(this.headerRequestBody.lifeCycleCode)
     // }
@@ -221,7 +220,6 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
 
   onLoadEventClassification(lc0003: any) {
     this.limsService.getEventClassification(lc0003).subscribe((data: any) => {
-      console.log(data);
       this.dataSource = data.data[0];
       this.EventForm.controls['ff0001'].setValue(this.dataSource.ff0001);
       this.EventForm.controls['ff0002'].setValue(this.dataSource.ff0002);
@@ -248,9 +246,7 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
           });
         }
         this.actionDtoList = response.data.actionDtoList;
-        console.log(this.actionDtoList);
 
-        console.log(this.actionDtoList);
       } else {
         this.actionDtoList = []; // Ensure it's an array if no data is returned
       }
@@ -259,25 +255,21 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
 
   lineItemHeading(lc0003: any) {
     this.limsService.getCCLineItemHeader(lc0003).subscribe((data: any) => {
-      console.log(data);
       this.lineItemData = data.data;
     });
   }
 
   IssueDetails(lc0003: any) {
     this.limsService.getCCIssueDetails(lc0003).subscribe((data: any) => {
-      console.log(data);
       this.issueDetailData = data.data[0];
       this.UserRequirementForm.controls['ff0001'].setValue(
         this.issueDetailData.ff0001
       );
-      console.log(this.issueDetailData.ff0002);
       let ff0002Data = moment(
         this.issueDetailData.ff0002,
         'DD-MM-YYYY HH:mm:ss.SSS'
       ).toISOString();
       this.UserRequirementForm.controls['ff0002'].setValue(ff0002Data);
-      console.log(this.UserRequirementForm.controls['ff0002'].value);
       let ff0003Data = moment(
         this.issueDetailData.ff0003,
         'DD-MM-YYYY HH:mm:ss.SSS'
@@ -291,7 +283,6 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
     this.limsService
       .documentList(this.lc0003, moduleCode)
       .subscribe((data: any) => {
-        console.log(data);
         if (data.data) {
           data.data.forEach((element: any) => {
             if (
@@ -335,7 +326,6 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
           uint8Array[i] = binaryData.charCodeAt(i);
         }
         let blob: any;
-        console.log(fileExtension);
         if (fileExtension == 'pdf' || fileExtension == 'PDF') {
           blob = new Blob([uint8Array], { type: 'application/pdf' });
         } else {
@@ -352,8 +342,6 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
       });
   }
   previewDocument(row, type) {
-    console.log(row);
-    console.log(type);
     let fileExtension;
     let selectedFile;
     if (type == 'document') {
@@ -376,7 +364,6 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
         }
         let blob: any;
 
-        console.log(fileExtension);
         if (fileExtension === 'pdf' || fileExtension === 'PDF') {
           blob = new Blob([uint8Array], { type: 'application/pdf' });
           this.url = window.URL.createObjectURL(blob);
@@ -404,12 +391,10 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
     return fileExtension;
   }
   onGetQMSRequestNo() {
-    console.log('Bharat');
 
     this.limsService
       .getResquestNoIDForQMS(this.ff0001)
       .subscribe((data: any) => {
-        console.log(data);
         this.lc0003 = data.data[0].lc0003;
         if (this.lc0003) {
           // this.onLoadEventClassification(this.lc0003);
@@ -421,9 +406,7 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
       });
   }
   onGetCCRequestNo() {
-    console.log('Bharat');
     this.limsService.getResquestNoIDForCC(this.ff0001).subscribe((data: any) => {
-      console.log(data);
       this.lc0003 = data.data[0].lc0003;
       if (this.lc0003) {
         this.onLoadEventClassification(this.lc0003);
@@ -444,12 +427,10 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
     this.limsService.getNextStageList(body).subscribe((data: any) => {
       this.nextStageListData = data.data.nstage;
       this.previousStageListData = data.data.pstage;
-      console.log(this.nextStageListData);
     });
   }
 
   getHeaderData(event: any) {
-    console.log(event);
     this.headerData = event;
     this.dmsService
       .managerRights(this.headerData.lcnum)
@@ -465,7 +446,6 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
   }
   public getCommentsData(event: any): void {
     this.userCurrentComments = event;
-    console.log(event);
   }
   // selectionChange(): void {
   //   if (this.selectedValue === 'specific') {
@@ -481,7 +461,6 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
       value4: '',
       value5: '',
     });
-    console.log(this.ccLineItemIndexDTOList);
   }
   addNewliRow() {
     this.lineItemData.push({
@@ -573,7 +552,6 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
   }
 
   onCallSubmitApi() {
-    console.log(this.headerData);
     let body = {
       lcNumber: this.headerData?.lcnum,
       lcrqNumber: this.pageData?.requestNo,
@@ -636,12 +614,10 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
         this.createUpdateDocumentList = result;
         if (this.createUpdateDocumentList.result) {
           this.documentListData = this.createUpdateDocumentList.result;
-          console.log(this.documentListData);
           this.documentListTableData = new MatTableDataSource(
             this.documentListData
           );
         }
-        console.log(this.createUpdateDocumentList);
       }
     });
   }
@@ -704,7 +680,6 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
     // if (!item.actionAttachmentList) {
     //////////// item.actionAttachmentList = [{}];
     //}
-    console.log(item.actionAttachmentList);
     // Check if the document name is provided before proceeding
     if (this.CCRequirementForm.controls['documentName'].value) {
       // Add new action attachment object
@@ -729,10 +704,6 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
     return objects.filter((obj) => Object.keys(obj).length > 0);
   }
   async onSaveConfirmation(btnStatus: any) {
-    console.log(this.lineItemData);
-    console.log(this.documentListData);
-    console.log(this.actionDtoList);
-    console.log(btnStatus);
     const component = await this.remoteLoader.loadComponentByKey(
       'CommonESignatureComponent'
     );
@@ -752,9 +723,6 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
     });
   }
   async onSaveUpdate(btnStatus: any) {
-    console.log(this.actionDtoList);
-    console.log(this.ccLineItemIndexDTOList);
-    console.log(JSON.stringify(this.body1, null, 2));
     if (
       this.FooterForm.controls['nextStage'].value == '' ||
       this.FooterForm.controls['nextStage'].value == undefined
@@ -771,9 +739,7 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     let actionAttachmentList: any[] = [];
     let bodyData = await this.formatRequestBody();
-    console.log(this.body1);
     //this.body1.actionDtoList.
-    console.log(this.body1.actionDtoList);
     const rowWiseActionAttachmentList = [];
     this.body1.actionDtoList.forEach((obj) => {
       if (obj.actionAttachmentList) {
@@ -796,26 +762,18 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
         rowWiseActionAttachmentList.push(currentRowAttachments);
       }
     });
-    console.log(rowWiseActionAttachmentList);
 
-    console.log(actionAttachmentList);
     let attachmentList: any[] = [];
-    console.log(this.body1.ccAttachmentList);
     if (this.body1.ccAttachmentList) {
       this.body1.ccAttachmentList.forEach((obj) => {
-        console.log(obj.selectedFileList);
         if (obj.selectedFileList) {
           attachmentList.push(obj.selectedFileList);
         }
       });
     }
-    console.log(attachmentList);
-    console.log(actionAttachmentList);
     this.limsService
       .onISMSaveUpdate(rowWiseActionAttachmentList, attachmentList, this.body1)
       .subscribe((data: any) => {
-        // console.log(data)
-        console.log(this.body1);
         if (data.errorInfo != null) {
           this.dialog.open(MessageDialogComponent, {
             data: {
@@ -825,7 +783,6 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
           });
         } else {
           this.notificationService.showSuccess(data.status, () => {
-            console.log('Success Snackbar Closed');
           });
         }
         this.isLoading = false;
@@ -833,7 +790,6 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
   }
 
   formatRequestBody() {
-    console.log(this.ccLineItemIndexDTOList);
     let startDate1 = moment(
       this.UserRequirementForm.controls['ff0002'].value
     ).format('DD-MM-YYYY HH:mm:ss.SSS');
@@ -959,7 +915,6 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
       // "ccAttachmentList": [...this.UserRoleTableAttachment]
       ccAttachmentList: [...this.documentListData],
     };
-    console.log(this.actionDtoList);
     this.actionDtoList.forEach((action) => {
       if (
         !action.ccLineItemIndexDTOList ||
@@ -970,13 +925,8 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
         action.ccLineItemIndexDTOList = [];
       }
     });
-    console.log(this.actionDtoList);
-    console.log(this.body1.ccLineItemDtoList);
-    console.log(this.body1.ccLineItemDtoList[0].ccLineItemIndexDTOList);
-    console.log(this.body1);
   }
   async onSubmit(btnStatus: any) {
-    console.log(btnStatus);
     const component = await this.remoteLoader.loadComponentByKey(
       'CommonESignatureComponent'
     );
@@ -1030,7 +980,6 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
         this.EventForm.controls['ff0001'].value *
         this.EventForm.controls['ff0002'].value *
         this.EventForm.controls['ff0003'].value;
-      console.log(rpnValue);
       this.EventForm.controls['ff0004'].setValue(rpnValue);
       if (rpnValue <= 6) {
         this.isRiskFlag = false;
@@ -1057,7 +1006,6 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
       this.EventForm.controls['ff0004'].setValue('');
       this.EventForm.controls['ff0005'].setValue('');
       this.isRiskFlag = false;
-      console.log('else block');
     }
   }
   checkFieldValue(value: any) {
@@ -1117,14 +1065,12 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
   }
 
   onLoadInputApi() {
-    console.log(this.headerData);
     let businessunit = this.headerData.unitcode;
     let module = 'ISMA';
     let mainModule = 'ISM';
     this.limsService
       .onLoadInputNewAPI(businessunit, module, mainModule)
       .subscribe((data: any) => {
-        console.log(data);
         this.sList = data.data.slist;
         this.oList = data.data.olist;
         this.dList = data.data.dlist;
@@ -1429,7 +1375,6 @@ export class IsmReviewerHomePageComponent implements OnInit, OnDestroy {
         moduleCode
       )
       .subscribe((data: any) => {
-        console.log(data);
         let fileExtension = 'pdf';
         const binaryData = atob(data.data);
         const arrayBuffer = new ArrayBuffer(binaryData.length);

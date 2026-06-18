@@ -154,8 +154,6 @@ export class CmrCreateUpdateComponent implements OnInit {
     this.DepartmentMaster.controls['status'].setValue(
       changeStatusByDescription(this.DepartmentMaster.controls['status'].value)
     );
-    // console.log(this.DepartmentMaster.value);
-
     this.cmrServiceService
     .onCreate(this.DepartmentMaster.value)
     .subscribe((data: any) => {
@@ -215,7 +213,6 @@ export class CmrCreateUpdateComponent implements OnInit {
         } else {
           this.isLoading = false;
           this.notificationService.showSuccess(data.status, () => {
-            console.log('Success Snackbar Closed');
           });
           this.dialogRef.close();
         }

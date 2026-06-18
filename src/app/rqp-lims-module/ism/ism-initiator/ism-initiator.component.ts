@@ -222,7 +222,6 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
       .getInput(this.cookieService.get('buCode'))
       .subscribe(({ data }: any) => {
         this.courseList = data.crList;
-        console.log(data);
       });
 
   }
@@ -243,7 +242,6 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
 
     this.limsService.getNextStageList(body).subscribe((data: any) => {
       this.nextStageListData = data.data.nstage;
-      console.log(this.nextStageListData);
     });
   }
 
@@ -254,7 +252,6 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
   }
 
   public addCourseList(index: number) {
-    console.log(this.headerData);
     this.displayedColumns = [
       { field: 'crName', title: 'Name' },
       { field: 'crCode', title: 'Code' },
@@ -286,14 +283,12 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
   }
 
   onLoadInputApi() {
-    console.log(this.headerData);
     let unitCode = this.headerData.unitcode;
     let module = 'ISMA';
     let mainModule = 'ISM';
     this.limsService
       .onLoadInputNewAPI(unitCode, module, mainModule)
       .subscribe((data: any) => {
-        console.log(data);
         this.sList = data.data.slist;
         this.oList = data.data.olist;
         this.dList = data.data.dlist;
@@ -313,7 +308,6 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
   }
 
   getHeaderData(event: any) {
-    console.log(event);
     this.headerData = event;
     this.onLoadInputApi();
     this.ViewDetailForm.controls['orgUnitCode'].setValue(event.unitcode);
@@ -325,7 +319,6 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
       value4: '',
       value5: '',
     });
-    console.log(this.ccLineItemIndexDTOList);
   }
   addNewRow() {
     this.ccLineItemIndexDTOList.push({
@@ -485,7 +478,6 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
         this.EventForm.controls['ff0001'].value *
         this.EventForm.controls['ff0002'].value *
         this.EventForm.controls['ff0003'].value;
-      console.log(rpnValue);
       this.EventForm.controls['ff0004'].setValue(rpnValue);
       if (rpnValue <= 6) {
         this.isRiskFlag = false;
@@ -513,7 +505,6 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
       this.EventForm.controls['ff0004'].setValue('');
       this.EventForm.controls['ff0005'].setValue('');
       this.isRiskFlag = false;
-      console.log('else block');
     }
   }
   calculateEndDate() {
@@ -1071,8 +1062,6 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
       }
     
       onSaveUpdate(btnStatus: any) {
-        console.log(this.actionDtoList);
-        console.log(this.ccLineItemIndexDTOList);
         if (
           this.EventForm.controls['nextStage'].value == '' ||
           this.EventForm.controls['nextStage'].value == undefined
@@ -1089,9 +1078,7 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
         this.isLoading = true;
         let actionAttachmentList: any[] = [];
         let bodyData = this.formatRequestBody();
-        console.log(this.body1);
         //this.body1.actionDtoList.
-        console.log(this.body1.actionDtoList);
         this.body1.actionDtoList.forEach(obj => {
           // Check if actionAttachmentList exists in the current object
           if (obj.actionAttachmentList) {
@@ -1111,32 +1098,24 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
             rowWiseActionAttachmentList.push(currentRowAttachments);
           }
         });
-        console.log(rowWiseActionAttachmentList);
     
-        console.log(actionAttachmentList);
         let attachmentList: any[] = [];
-        console.log(this.body1.ismAttachmentList);
         this.body1.ismAttachmentList.forEach((obj) => {
-          console.log(obj.selectedFileList);
           if (obj.selectedFileList) {
             attachmentList.push(obj.selectedFileList);
           }
         });
         let riskAttachment: any[] = [];
         this.body1.riskAttachmentList.forEach((obj) => {
-          console.log(obj.selectedFileList);
           if (obj.selectedFileList) {
             riskAttachment.push(obj.selectedFileList);
           }
         });
-        console.log(attachmentList);
-        console.log(actionAttachmentList);
-        console.log(riskAttachment);
+       
         this.limsService
           .onISMSaveUpdate(rowWiseActionAttachmentList, attachmentList, this.body1)
           .subscribe((data: any) => {
-            // console.log(data)
-            console.log(this.body1);
+      
             if (data.errorInfo != null) {
               this.dialog.open(MessageDialogComponent, {
                 data: {
@@ -1146,7 +1125,6 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
               });
             } else {
               this.notificationService.showSuccess(data.status, () => {
-                console.log('Success Snackbar Closed');
               });
               timer(2000)
                 .pipe(takeUntil(this.destroy$))
@@ -1178,7 +1156,6 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
         // if (!item.actionAttachmentList) {
         // item.actionAttachmentList = [{}];
         //}
-        console.log(item.actionAttachmentList);
         // Check if the document name is provided before proceeding
         if (this.CCRequirementForm.controls['documentName'].value) {
           // Add new action attachment object
@@ -1215,7 +1192,6 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
           this.actionDtoList.actionAttachmentList.splice(index, 1);
         }
         // this.documentDtoList = this.UserRoleTable;
-        console.log(this.UserRoleTable);
         this.tableData = new MatTableDataSource(
           this.actionDtoList.actionAttachmentList
         );
@@ -1239,7 +1215,6 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
         //   ff0005: this.CCRequirementForm.controls['categoryTypes'].value,
         //   documentAction:'CREATE'
         // });
-        console.log(this.UserRoleTableAttachment);
         this.tableDataAttachment = new MatTableDataSource(
           this.UserRoleTableAttachment
         );
@@ -1264,7 +1239,6 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
         //   ff0005: this.CCRequirementForm.controls['categoryTypes'].value,
         //   documentAction:'CREATE'
         // });
-        console.log(this.UserRoleTableAssessment);
         this.tableDataAssessment = new MatTableDataSource(
           this.UserRoleTableAssessment
         );
@@ -1274,7 +1248,6 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
         if (index !== -1) {
           this.UserRoleTableAttachment.splice(index, 1);
         }
-        console.log(this.UserRoleTableAttachment);
         this.tableDataAttachment = new MatTableDataSource(
           this.UserRoleTableAttachment
         );

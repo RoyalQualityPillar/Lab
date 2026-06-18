@@ -112,7 +112,6 @@ export class DmproductCreateUpdateComponent implements OnInit, OnDestroy {
     );
     this.onloadDropDown();
     this.onLoadStatusDropDown();
-    console.log(this.userData.type);
     if (this.userData.type == 'Modification') {
       this.isReadOnly = true;
       this.isUpdate = true;
@@ -145,7 +144,6 @@ export class DmproductCreateUpdateComponent implements OnInit, OnDestroy {
     });
   }
   onLoadFormValue() {
-    console.log(this.userData);
     this.isLoading = true;
     // this.organizationService
     //   .onLoadUpdatePage(this.userData.tableData.uc0001)

@@ -203,7 +203,6 @@ export class CreateUpdateSampleTextPlanComponent implements OnInit {
         } else {
           this.isLoading = false;
           this.notificationService.showSuccess(data.status, () => {
-            console.log('Success Snackbar Closed');
           });
           this.dialogRef.close();
         }

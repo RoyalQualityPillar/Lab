@@ -243,7 +243,6 @@ ngOnInit(): void {
     //     lcrnumber
     //   )
     //   .subscribe((data: any) => {
-    //     console.log(data);
     //     let fileExtension = 'pdf';
     //     const binaryData = atob(data.data);
     //     const arrayBuffer = new ArrayBuffer(binaryData.length);
@@ -278,7 +277,6 @@ ngOnInit(): void {
     //     lcrnumber
     //   )
     //   .subscribe((data: any) => {
-    //     console.log(data);
     //     let fileExtension = 'pdf';
     //     const binaryData = atob(data.data);
     //     const arrayBuffer = new ArrayBuffer(binaryData.length);
@@ -317,7 +315,6 @@ ngOnInit(): void {
         moduleCode
       )
       .subscribe((data: any) => {
-        console.log(data);
         let fileExtension = 'pdf';
         const binaryData = atob(data.data);
         const arrayBuffer = new ArrayBuffer(binaryData.length);

@@ -12,7 +12,6 @@ export class WsMasterService {
             constructor(private http: HttpClient, private cookieService: CookieService) {}
           
             onCreate(body: any) {
-              console.log(body);
               let token = this.cookieService.get('token');
               let createUserURL = this.API_URL + 'limspc/ws_fields/save-update';
               const httpOptions = {
