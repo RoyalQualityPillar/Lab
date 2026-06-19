@@ -55,6 +55,9 @@ export class ImsMasterDataHomePageComponent {
    onCalibraionUOMMaster() {
     this.router.navigate(['./rqplabui/lims/cum-home-page']);
   }
+   onProblemCategoryMaster() {
+    this.router.navigate(['./rqplabui/lims/pcm-home-page']);
+   }
   onCalibrationScheduleMaster() {
     this.router.navigate(['./rqplabui/lims/calibration-schedule-master-page']);
   }
