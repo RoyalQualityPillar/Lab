@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { LimsStdRoutingModule } from './lims-std-routing.module';
 import { StdModuleAdminComponent } from '../std-module-admin/std-module-admin.component';
 import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module';
@@ -30,11 +29,15 @@ import { WslrReviewerSaveComponent } from '../wslr/wslr-reviewer-save/wslr-revie
 import { WslrCompletedComponent } from '../wslr/wslr-completed/wslr-completed.component';
 import { WslrCompletedSaveComponent } from '../wslr/wslr-completed-save/wslr-completed-save.component';
 import { WslrModuleAdminComponent } from '../wslr/wslr-module-admin/wslr-module-admin.component';
+import { WslotContainersListComponent } from '../std-masters/wslot-containers-list/wslot-containers-list.component';
+import { WslotConsumptionComponent } from '../std-masters/wslot-consumption/wslot-consumption.component';
 
 
 @NgModule({
   declarations: [
     StdModuleAdminComponent,
+    WslotContainersListComponent,
+    WslotConsumptionComponent,
     CreateUpdateSampleRegestrationComponent,
     HomePageSampleRegestrationComponent,
     HomePageSampleTextPlanComponent,
