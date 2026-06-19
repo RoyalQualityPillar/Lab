@@ -86,10 +86,12 @@ export class IpmReviewerSaveComponent implements OnInit, OnDestroy {
   UserRoleTableAttachment: any;
   isRiskFlag = false;
   public userCurrentComments: any;
+  selectedFileListAttachment: File[] = [];
   mediumRisk = false;
   noRisk = false;
   destroy$ = new Subject<void>();
   actionTypeList: any;
+  tableDataAttachment: any;
   documentList: any[];
   isStatusSuccess: boolean;
   selectedFileList: File[] = [];
@@ -118,6 +120,11 @@ export class IpmReviewerSaveComponent implements OnInit, OnDestroy {
     'ff0005',
     'removeRow',
   ];
+  AddedUserdisplayedColumnsAttachment: string[] = [
+    'documentName',
+    'categoryTypes',
+     'removeRow',
+  ];
   constructor(
     public router: ActivatedRoute,
     private limsService: LimsService,
@@ -136,6 +143,16 @@ export class IpmReviewerSaveComponent implements OnInit, OnDestroy {
       ff0001: [''],
       ff0002: [''],
       ff0003: [''],
+       status: [''],
+      title: [''],
+      market: [''],
+      customerName: [''],
+      productImpact: [''],
+      batchImpact: [''],
+      validationImpact: [''],
+      dataIntegrityImpact: [''],
+      regulatoryImpact: [''],
+      investigationRequired: [''],
     });
     this.FooterForm = this.fb.group({
       nextStage: [''],
@@ -198,28 +215,10 @@ export class IpmReviewerSaveComponent implements OnInit, OnDestroy {
     }
     this.headerRequestBody = this.lifeCycleDataService.getSelectedRowData();
     this.onLoadNextStageData();
-
-    // this.onLoadNextStageData();
-    // this.headerRequestBody=this.lifeCycleDataService.getSelectedRowData();
-    // console.log(this.headerRequestBody.lifeCycleCode)
-    // if(this.headerRequestBody.lifeCycleCode){
-    //   this.onLoadEventClassification(this.headerRequestBody.lifeCycleCode)
-    // }
-  }
+}
   ngAfterViewInit(): void { }
 
-  // onReviewData() {
-  //   this.qmsService
-  //     .onCommentsData(this.ff0001, this.headerData.lcnum,this.ff0005)
-  //     .subscribe((data: any) => {
-  //       this.reviewCommentsData = data.data;
-  //       this.commentsDataSource = new MatTableDataSource(
-  //         this.reviewCommentsData
-  //       );
-  //     });
-  // }
-
-  onLoadEventClassification(lc0003: any) {
+ onLoadEventClassification(lc0003: any) {
     this.limsService.getEventClassification(lc0003).subscribe((data: any) => {
       console.log(data);
       this.dataSource = data.data[0];
@@ -514,6 +513,29 @@ export class IpmReviewerSaveComponent implements OnInit, OnDestroy {
       this.lineItemData.splice(lineIndex, 1);
     }
   }
+   addRemoveEventRow(row: any) {
+    const index = this.ccLineItemIndexDTOList.indexOf(row);
+    if (index !== -1) {
+      this.ccLineItemIndexDTOList.splice(index, 1);
+    }
+  }
+     onCreateSelectedDataListAttachment() {
+    this.selectedFileListAttachment.push(this.selectedFiles);
+    this.UserRoleTableAttachment.push({
+      uc0001: null,
+      selectedFileList: this.selectedFilesAttachment,
+      documentName: this.CCRequirementForm.controls['documentName'].value,
+      // categoryTypes: this.CCRequirementForm.controls['categoryTypes'].value,
+      ff0001: this.CCRequirementForm.controls['documentName'].value,
+      ff0005: 'AT',
+      ff0015: 'att',
+      documentAction: 'CREATE',
+    });
+    console.log(this.UserRoleTableAttachment);
+    this.tableDataAttachment = new MatTableDataSource(
+      this.UserRoleTableAttachment
+    );
+  }
   /********************************LOV LIST ***************************************** */
 
   /********************************************************************** */
@@ -666,6 +688,11 @@ export class IpmReviewerSaveComponent implements OnInit, OnDestroy {
       ff0014: '',
       ff0015: '',
       ff0016: '',
+      ff0017: '',
+      ff0018: '',
+      ff0019: '',
+      ff0020: '',
+      ff0021: '',
       lc0001: '',
       lc0002: '',
       lc0003: '',
@@ -896,6 +923,16 @@ export class IpmReviewerSaveComponent implements OnInit, OnDestroy {
           ff0009: '2025-01-30T08:21:36.531Z',
           ff0010: '2025-01-30T08:21:36.531Z',
           ff0011: 'string',
+          ff0012: this.UserRequirementForm.controls['title'].value,
+          ff0013: this.UserRequirementForm.controls['status'].value,
+          ff0014: this.UserRequirementForm.controls['market'].value,
+          ff0015: this.UserRequirementForm.controls['customerName'].value,
+          ff0016: this.UserRequirementForm.controls['productImpact'].value,
+          ff0017: this.UserRequirementForm.controls['batchImpact'].value,
+          ff0018: this.UserRequirementForm.controls['validationImpact'].value,
+          ff0019: this.UserRequirementForm.controls['dataIntegrityImpact'].value,
+          ff0020: this.UserRequirementForm.controls['regulatoryImpact'].value,
+          ff0021: this.UserRequirementForm.controls['investigationRequired'].value,
           lc0001: 'string',
           lc0002: 'string',
           lc0003: 'string',
@@ -1348,6 +1385,16 @@ export class IpmReviewerSaveComponent implements OnInit, OnDestroy {
       }
     });
   }
+    removeRowAttachment(row: any) {
+      const index = this.UserRoleTableAttachment.indexOf(row);
+      if (index !== -1) {
+        this.UserRoleTableAttachment.splice(index, 1);
+      }
+      console.log(this.UserRoleTableAttachment);
+      this.tableDataAttachment = new MatTableDataSource(
+        this.UserRoleTableAttachment
+      );
+    }
   addNewRow() {
     const dialogRef = this.dialog.open(DropdownListComponent, {
       minWidth: '80%',
@@ -1448,6 +1495,52 @@ export class IpmReviewerSaveComponent implements OnInit, OnDestroy {
       });
     this.isLoading = false;
   }
+     openItemSubCategoryLov(index: any) {
+    this.displayedColumns = [
+      { field: 'icsCode', title: 'Item Subcategory Name' },
+      { field: 'icsName', title: 'Item Subcategory Code' },
+    ];
+    const dialogRef = this.dialog.open(LovDialogComponent, {
+      height: '500px',
+      width: '600px',
+      data: {
+        dialogTitle: 'Item Subcategory',
+        dialogColumns: this.displayedColumns,
+        dialogData: this.icsMasterList,
+        lovName: 'businessUnitList',
+      },
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.selectedDialogData = result.data;
+        this.ccLineItemIndexDTOList[index].ff0002 = result.data.icsCode;
+      }
+    });
+  }
+ openItemCategoryLov(index: any) {
+      this.displayedColumns = [
+        { field: 'itemCode', title: 'Item Name' },
+        { field: 'itemName', title: 'Item Code' },
+      ];
+      const dialogRef = this.dialog.open(LovDialogComponent, {
+        height: '500px',
+        width: '600px',
+        data: {
+          dialogTitle: 'Item Category',
+          dialogColumns: this.displayedColumns,
+          dialogData: this.itemCategoryList,
+          lovName: 'businessUnitList',
+        },
+        disableClose: true,
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          this.selectedDialogData = result.data;
+          this.ccLineItemIndexDTOList[index].ff0001 = result.data.itemCode;
+        }
+      });
+    }
   ngOnDestroy(): void {
     this.destroy$.next(undefined);
     this.destroy$.complete();
