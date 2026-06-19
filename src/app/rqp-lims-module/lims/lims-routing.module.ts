@@ -46,6 +46,9 @@ import { IpmCompletedSaveComponent } from '../ipm/ipm-completed-save/ipm-complet
 import { IsmUpdateComponent } from '../ism/ism-update/ism-update.component';
 import { CumHomePageComponent } from '../masterdata/ims-masterdata/calibraion-uom-master/cum-home-page/cum-home-page.component';
 
+import { PcmHomePageComponent } from '../masterdata/ims-masterdata/problem-category-master/pcm-home-page/pcm-home-page.component';
+import { CalibrationScheduleMasterComponent } from '../masterdata/ims-masterdata/calibration-schedule-master/calibration-schedule-master.component';
+
 const routes: Routes = [
   // {
   //   path: 'lims-module-home-page',
@@ -448,6 +451,14 @@ const routes: Routes = [
   {
   path: 'cum-home-page',
     component: CumHomePageComponent,
+  },
+  {
+  path: 'pcm-home-page',
+    component: PcmHomePageComponent,
+  },
+  {
+    path: 'calibration-schedule-master-page',
+    component: CalibrationScheduleMasterComponent,
   },
 
 

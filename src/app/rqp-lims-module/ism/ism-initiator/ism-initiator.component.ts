@@ -149,6 +149,12 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
       title: [''],
       market: [''],
       customerName: [''],
+      productImpact: [''],
+      batchImpact: [''],
+      validationImpact: [''],
+      dataIntegrityImpact: [''],
+      regulatoryImpact: [''],
+      investigationRequired: [''],
       // changeClassification: [''],
     });
     this.CCRequirementForm = this.fb.group({
@@ -182,6 +188,10 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
       ff0015: '',
       ff0016: '',
       ff0017: '',
+       ff0018: '',
+      ff0019: '',
+      ff0020: '',
+      ff0021: '',
       lc0001: '',
       lc0002: '',
       lc0003: '',
@@ -311,7 +321,7 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
     this.headerData = event;
     this.onLoadInputApi();
     this.ViewDetailForm.controls['orgUnitCode'].setValue(event.unitcode);
-    this.UserRequirementForm.controls['status'].setValue('Open');
+    this.UserRequirementForm.controls['status'].setValue('Category');
 
   }
   addLineItem(item: any): void {
@@ -614,6 +624,10 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
       ff0015: '',
       ff0016: '',
       ff0017: '',
+      ff0018: '',
+      ff0019: '',
+      ff0020: '',
+      ff0021: '',
       lc0001: '',
       lc0002: '',
       lc0003: '',
@@ -981,6 +995,12 @@ export class IsmInitiatorComponent implements OnInit, OnDestroy {
               ff0013: this.UserRequirementForm.controls['status'].value,
               ff0014: this.UserRequirementForm.controls['market'].value,
               ff0015: this.UserRequirementForm.controls['customerName'].value,
+              ff0016: this.UserRequirementForm.controls['productImpact'].value,
+          ff0017: this.UserRequirementForm.controls['batchImpact'].value,
+          ff0018: this.UserRequirementForm.controls['validationImpact'].value,
+          ff0019: this.UserRequirementForm.controls['dataIntegrityImpact'].value,
+          ff0020: this.UserRequirementForm.controls['regulatoryImpact'].value,
+          ff0021: this.UserRequirementForm.controls['investigationRequired'].value,
               lc0001: 'string',
               lc0002: 'string',
               lc0003: 'string',

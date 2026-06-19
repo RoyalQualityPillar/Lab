@@ -40,6 +40,30 @@
           <mat-label>Customer Name</mat-label>
           <input type="text" matInput formControlName="customerName" placeholder="Customer Name" />
         </mat-form-field>
+         <mat-form-field appearance="outline" class="col-3 px-1">
+          <mat-label>Product Impact</mat-label>
+          <input type="text" matInput formControlName="productImpact" placeholder="Product Impact" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-3 px-1">
+          <mat-label>Batch Impact</mat-label>
+          <input type="text" matInput formControlName="batchImpact" placeholder="Batch Impact" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-3 px-1">
+          <mat-label>Validation Impact</mat-label>
+          <input type="text" matInput formControlName="validationImpact" placeholder="Validation Impact" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-3 px-1">
+          <mat-label>Data Integrity Impact</mat-label>
+          <input type="text" matInput formControlName="dataIntegrityImpact" placeholder="Data Integrity Impact" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-3 px-1">
+          <mat-label>Regulatory Impact</mat-label>
+          <input type="text" matInput formControlName="regulatoryImpact" placeholder="Regulatory Impact" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-3 px-1">
+          <mat-label>Investigation Required</mat-label>
+          <input type="text" matInput formControlName="investigationRequired" placeholder="Investigation Required" />
+        </mat-form-field>
         <!-- <mat-form-field appearance="outline" class="col-3 px-1">
           <mat-label>Change Classification</mat-label>
           <input type="text" matInput formControlName="changeClassification" placeholder="Change Classification" />
@@ -69,7 +93,7 @@
       <div class="row no-gutters ms-1 me-1 margin-top_10">
         <mat-form-field appearance="outline" class="width_100">
           <mat-label>Problem Brief</mat-label>
-          <textarea type="text" matInput placeholder="Change Description" formControlName="ff0001">
+          <textarea type="text" matInput placeholder="Problem Brief" formControlName="ff0001">
           </textarea>
         </mat-form-field>
       </div>
@@ -197,7 +221,7 @@
                   <th></th>
                   <th>Root Cause?</th>
                   <th>Immediate Action</th>
-                  <th>Capa</th>
+                  <th>CAPA</th>
                 </tr>
               </thead>
               <tbody>
