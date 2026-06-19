@@ -31,7 +31,6 @@ public bmrInput(unitCode: string): Observable<any> {
     spAttachments: any[],
     body: any
   ) {
-    console.log(spAttachments);
     let token = this.cookieService.get('token');
     let formData: FormData = new FormData();
     
@@ -43,8 +42,6 @@ public bmrInput(unitCode: string): Observable<any> {
       type: 'application/json',
     });
     formData.append('spdto', jsonBlob, 'data.json');
-
-    console.log(formData); // Check the FormData structure in the browser's console
 
     let createUserURL = this.API_URL + 'limsm/specification-request';
 

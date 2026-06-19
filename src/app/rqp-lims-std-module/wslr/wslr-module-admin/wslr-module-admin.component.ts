@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrl: './wslr-module-admin.component.scss'
 })
 export class WslrModuleAdminComponent {
-constructor(private router: Router) { }
+  constructor(private router: Router) { }
   WSLRCompletedRecordslist(): void {
     this.router.navigate(['./rqplabui/lims-std/wslr-completed']);
   }

@@ -153,7 +153,6 @@ export class TsmCreateUpdateComponent implements OnInit {
     this.DepartmentMaster.controls['status'].setValue(
       changeStatusByDescription(this.DepartmentMaster.controls['status'].value)
     );
-    // console.log(this.DepartmentMaster.value);
 
     this.tsmServiceService
     .onCreate(this.DepartmentMaster.value)
@@ -214,7 +213,6 @@ export class TsmCreateUpdateComponent implements OnInit {
         } else {
           this.isLoading = false;
           this.notificationService.showSuccess(data.status, () => {
-            console.log('Success Snackbar Closed');
           });
           this.dialogRef.close();
         }

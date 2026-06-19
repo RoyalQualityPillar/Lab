@@ -39,7 +39,7 @@ export class WslrCompletedSaveComponent implements OnInit {
     // wSLotNumber: '',
     purityType: '',
     purityValue: '',
-     noOfPuritiesUOM: ''
+    noOfPuritiesUOM: ''
   }]
   public containerDetails: any[] = [{
     // containerCode: '',
@@ -63,9 +63,9 @@ export class WslrCompletedSaveComponent implements OnInit {
   ) {
     this.workingStandardRegistrationForm = fb.group({
       // wSLotNo: [''],
-       productNo: [''],
-       productName: [''],
-        productCode: [''],
+      productNo: [''],
+      productName: [''],
+      productCode: [''],
       lotTypes: [''],
       sampleRefNumber: [''],
       containerType: [''],
@@ -90,7 +90,7 @@ export class WslrCompletedSaveComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-   this.pageData = {
+    this.pageData = {
       pageName: 'homePage',
     };
     const reviewData = sessionStorage.getItem('selectedRow');
@@ -136,7 +136,7 @@ export class WslrCompletedSaveComponent implements OnInit {
       this.nextStageListData = data.data.nstage;
     });
   }
- formatDate(dateString: string): string {
+  formatDate(dateString: string): string {
     if (!dateString) {
       return '';
     }
@@ -145,7 +145,6 @@ export class WslrCompletedSaveComponent implements OnInit {
   }
   getResquestNoIDForIWSLR() {
     this.wslrService.getResquestNoIDForIWSLR(this.ff0001, this.lc0001).subscribe((data: any) => {
-      console.log(data);
       this.lc0003 = data.data[0].lc0003;
       if (this.lc0003) {
         this.getWslcrRecordList(this.lc0003);
@@ -159,7 +158,7 @@ export class WslrCompletedSaveComponent implements OnInit {
       this.WslcrRecordList = data.data[0];
       this.workingStandardRegistrationForm.patchValue({
         // wSLotNo: this.WslcrRecordList.ff0001,
-         productNo: this.WslcrRecordList.ff0001,
+        productNo: this.WslcrRecordList.ff0001,
         productCode: this.WslcrRecordList.ff0002,
         productName: this.WslcrRecordList.ff0015,
         lotTypes: this.WslcrRecordList.ff0003,
@@ -194,7 +193,7 @@ export class WslrCompletedSaveComponent implements OnInit {
         this.containerDetails.push({
           // containerCode: element.ff0001,
           // wSLotNumber: element.ff0002,
-          containerQty: element.ff0004,
+          containerQty: element.ff0003,
           // lotValidUpTo: this.formatDate(element.ff0005),
           // containerValidUpTo: this.formatDate(element.ff0006),
           valueUOM: element.ff0009,
@@ -219,7 +218,7 @@ export class WslrCompletedSaveComponent implements OnInit {
       });
     });
   }
- public downloadWSLRReport() {
+  public downloadWSLRReport() {
     // const lcNumber = this.headerData?.lcnum;
     // const templateName = 'cc.html';
     // const moduleCode = this.headerData?.modulecode;
@@ -235,7 +234,6 @@ export class WslrCompletedSaveComponent implements OnInit {
     //     lcrnumber
     //   )
     //   .subscribe((data: any) => {
-    //     console.log(data);
     //     let fileExtension = 'pdf';
     //     const binaryData = atob(data.data);
     //     const arrayBuffer = new ArrayBuffer(binaryData.length);
@@ -270,7 +268,6 @@ export class WslrCompletedSaveComponent implements OnInit {
     //     lcrnumber
     //   )
     //   .subscribe((data: any) => {
-    //     console.log(data);
     //     let fileExtension = 'pdf';
     //     const binaryData = atob(data.data);
     //     const arrayBuffer = new ArrayBuffer(binaryData.length);
@@ -308,7 +305,6 @@ export class WslrCompletedSaveComponent implements OnInit {
         moduleCode
       )
       .subscribe((data: any) => {
-        console.log(data);
         let fileExtension = 'pdf';
         const binaryData = atob(data.data);
         const arrayBuffer = new ArrayBuffer(binaryData.length);

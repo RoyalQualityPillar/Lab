@@ -160,8 +160,6 @@ export class TspicCreateUpdateComponent implements OnInit {
     this.DepartmentMaster.controls['status'].setValue(
       changeStatusByDescription(this.DepartmentMaster.controls['status'].value)
     );
-    // console.log(this.DepartmentMaster.value);
-
     this.tspicServiceService
     .onCreate(this.DepartmentMaster.value)
     .subscribe((data: any) => {
@@ -221,7 +219,6 @@ export class TspicCreateUpdateComponent implements OnInit {
         } else {
           this.isLoading = false;
           this.notificationService.showSuccess(data.status, () => {
-            console.log('Success Snackbar Closed');
           });
           this.dialogRef.close();
         }

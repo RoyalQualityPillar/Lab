@@ -1442,6 +1442,9 @@ WsmasterLoadUpdatePage = 'limspc/ws_fields/get-by-max-code',
   CpmLoadUpdatePage = 'lbms/calper-master/get-by-max-code',
   CpmAllAuditTrail = 'lbms/calper-master/get-by-code-all',
 
+  /***Master Calibration Schedule***/
+  equipmentScheduleList = 'limsm-im/equipment-schedule-list',
+
    /*******cum master -Calibraion UOM Master *********/
   allCumTabledata = 'lbms/cum_master/get-all',
   activeCumTabledata = 'lbms/cum_master/get-max-all',

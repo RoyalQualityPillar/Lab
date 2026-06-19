@@ -12,7 +12,6 @@ export class TestSolutionServiceService {
   constructor(private http: HttpClient, private cookieService: CookieService) {}
   
     onCreate(body: any) {
-        console.log(body);
         let token = this.cookieService.get('token');
         let createUserURL = this.API_URL + 'limschm/chts_record/save-update';
         const httpOptions = {

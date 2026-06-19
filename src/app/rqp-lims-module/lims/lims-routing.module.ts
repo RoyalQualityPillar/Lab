@@ -45,6 +45,7 @@ import { IpmCompletedComponent } from '../ipm/ipm-completed/ipm-completed.compon
 import { IpmCompletedSaveComponent } from '../ipm/ipm-completed-save/ipm-completed-save.component';
 import { IsmUpdateComponent } from '../ism/ism-update/ism-update.component';
 import { CumHomePageComponent } from '../masterdata/ims-masterdata/calibraion-uom-master/cum-home-page/cum-home-page.component';
+import { CalibrationScheduleMasterComponent } from '../masterdata/ims-masterdata/calibration-schedule-master/calibration-schedule-master.component';
 
 const routes: Routes = [
   // {
@@ -448,6 +449,10 @@ const routes: Routes = [
   {
   path: 'cum-home-page',
     component: CumHomePageComponent,
+  },
+  {
+    path: 'calibration-schedule-master-page',
+    component: CalibrationScheduleMasterComponent,
   },
 
 

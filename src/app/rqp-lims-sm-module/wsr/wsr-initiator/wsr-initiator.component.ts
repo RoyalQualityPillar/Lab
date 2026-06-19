@@ -500,10 +500,8 @@ export class WsrInitiatorComponent implements OnInit, AfterViewInit {
   public getHeaderData(event: any) {
     this.apiService.getInput(this.cookieService.get('buCode')).subscribe(({ data }) => {
       this.dropdownList = data.fiUnitList;
-      console.log(data);
     });
     this.dmsService.bmrInput(event.unitcode).subscribe(({ data }) => {
-      console.log(data);
       this.psmList = data.pmsList;
     });
     return (this.headerData = this.wsrService.getHeaderData(event));
@@ -565,8 +563,6 @@ export class WsrInitiatorComponent implements OnInit, AfterViewInit {
     console.log(event);
   }
   public onSubmit(draft: boolean) {
-    console.log(this.form.value);
-    console.log(this.form.value.html);
     if (this.form.value.html) {
       const {
         productName,
@@ -792,12 +788,9 @@ export class WsrInitiatorComponent implements OnInit, AfterViewInit {
       if (result) {
         this.selectedData = result.data.productNO;
         let productNumber = result.data.productNO;
-        console.log(this.selectedData)
-        console.log(this.selectedData)
         this.pmsList.controls['productNo'].setValue(
           productNumber
         );
-
         this.dmsService
           .productList(productNumber)
           .subscribe(({ data }) => {
@@ -821,7 +814,6 @@ export class WsrInitiatorComponent implements OnInit, AfterViewInit {
   // onChangeOrgCode(): void {}
  
   openDialog() {
-    console.log('like');
     this.zone.run(() => {
       this.dialog.open(LovDialogComponent, {
         width: '250px',

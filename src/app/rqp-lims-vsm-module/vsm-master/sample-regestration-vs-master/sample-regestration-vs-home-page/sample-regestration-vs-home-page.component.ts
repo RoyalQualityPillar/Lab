@@ -68,7 +68,6 @@ export class SampleRegestrationVsHomePageComponent  implements OnInit, AfterView
     this.filterApiUrl = apiEndPoints.SamRegUserProfileFilterData;
     this.activeSamRegVsTabledataUrl = apiEndPoints.activeSamRegVsTabledata;
     this.params = { pageIndex, size, unitCode };
-    console.log('Bharat');
     this.loadRoleMasterTableFilter();
     this.loadActiveRoleMasterTableFilter();
   }
@@ -152,7 +151,6 @@ export class SampleRegestrationVsHomePageComponent  implements OnInit, AfterView
     this.getLatestData = false;
   }
   setSelectedID(row: any) {
-    console.log(row);
     this.setSelectedID = row;
   }
   selectedAllId: any;
@@ -231,7 +229,6 @@ export class SampleRegestrationVsHomePageComponent  implements OnInit, AfterView
   UC0002: any;
   async onSearchAllAuditTrail() {
     this.selectedRow = this.selectedRow;
-    console.log(this.selectedRow);
     if (this.selectedRow.length == 0) {
       this.dialog.open(MessageDialogComponent, {
         data: {
@@ -323,7 +320,6 @@ export class SampleRegestrationVsHomePageComponent  implements OnInit, AfterView
   handleButtonAction(event: { action: string; row: any }) {
     const { action, row } = event;
     this.selectedRow = row; // Set the selected row
-    console.log(action);
     switch (action) {
       case 'Audit_Trail':
         this.onSearchAllAuditTrail();
@@ -336,7 +332,6 @@ export class SampleRegestrationVsHomePageComponent  implements OnInit, AfterView
   activeHandleButtonAction(event: { action: string; row: any }) {
     const { action, row } = event;
     this.selectedRow = row; // Set the selected row
-    console.log(action);
     switch (action) {
       case 'Audit_Trail':
         this.onActiveSelectAuditRow();
@@ -348,7 +343,6 @@ export class SampleRegestrationVsHomePageComponent  implements OnInit, AfterView
   }
 
   handleSubmit(row: any) {
-    console.log(row);
     console.log('submitBtn');
   }
 }
