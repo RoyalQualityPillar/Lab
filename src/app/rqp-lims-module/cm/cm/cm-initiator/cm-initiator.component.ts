@@ -267,7 +267,6 @@ export class CmInitiatorComponent implements OnInit, OnDestroy {
       // ff0006:this.uploadedAttachmentfileName,
       //  ff0011:this.headerData.stage
     });
-    console.log(this.UserRoleAttachmentTable);
     this.tableAttachmentData = new MatTableDataSource(
       this.UserRoleAttachmentTable
     );
@@ -280,7 +279,6 @@ export class CmInitiatorComponent implements OnInit, OnDestroy {
       this.UserRoleTable.splice(index, 1);
     }
     this.documentDtoList = this.UserRoleTable;
-    console.log(this.UserRoleTable);
     this.tableData = new MatTableDataSource(this.UserRoleTable);
     this.tableData.paginator = this.paginator;
     this.tableData.sort = this.sort;
@@ -290,7 +288,6 @@ export class CmInitiatorComponent implements OnInit, OnDestroy {
   onCreateSelectedDataList() {
     let mTypeValidation = true;
     if (this.isValidFileType == false) {
-      console.log('invalid file');
     } else {
       if (this.UserRequirementForm.controls['categoryTypes'].value == 'M') {
         this.UserRoleTable.forEach((element: any) => {
@@ -311,7 +308,6 @@ export class CmInitiatorComponent implements OnInit, OnDestroy {
         mTypeValidation = true;
       }
       if (mTypeValidation) {
-        console.log(this.UserRequirementForm.controls['categoryTypes'].value);
         this.selectedFileList.push(this.selectedFiles);
         this.UserRoleTable.push({
           uc0001: null,
@@ -337,7 +333,6 @@ export class CmInitiatorComponent implements OnInit, OnDestroy {
           // ff0011:this.headerData.stage
           documentAction: 'CREATE',
         });
-        console.log(this.UserRoleTable);
         this.tableData = new MatTableDataSource(this.UserRoleTable);
         this.tableData.paginator = this.paginator;
         this.tableData.sort = this.sort;
@@ -349,15 +344,12 @@ export class CmInitiatorComponent implements OnInit, OnDestroy {
   }
   headerData: any;
   getHeaderData(event: any) {
-    console.log(event);
     if (event) {
       this.headerData = event;
-      console.log(event);
       let uc0001 = this.headerData.unitcode;
       this.ViewDetailForm.controls['orgUnitCode'].setValue(event.unitcode);
 
       this.cmService.cmInput(uc0001).subscribe(({ data }) => {
-        console.log(data);
         this.psmList = data.pmsList;
       });
     }
@@ -515,8 +507,6 @@ export class CmInitiatorComponent implements OnInit, OnDestroy {
           this.attachmentDtoList.length === 0 ? null : this.attachmentDtoList,
       },
     };
-    console.log(body);
-    console.log(this.documentDtoList);
     let selectedFile: any[] = [];
     this.documentDtoList.forEach((elements: any) => {
       selectedFile.push(elements.selectedFileList);
@@ -558,7 +548,6 @@ export class CmInitiatorComponent implements OnInit, OnDestroy {
       //lcStage:this.headerRequestBody.stage
       lcStage: this.toolbarService.currentStage,
     };
-    console.log(body);
     this.cmService.getNextStageList(body).subscribe((data: any) => {
       this.nextStageListData = data.data.nstage;
     });

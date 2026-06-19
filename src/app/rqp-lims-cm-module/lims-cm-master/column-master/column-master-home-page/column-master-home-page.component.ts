@@ -70,7 +70,6 @@ export class ColumnMasterHomePageComponent {
     this.activeColumnMasterTableDataUrl =
       apiEndPoints.activeColumnMasterTabledata;
     this.params = { pageIndex, size, unitCode };
-    console.log('Bharat');
     this.filterObject = {
       field: 'SELECT',
       value: '',
@@ -112,7 +111,6 @@ export class ColumnMasterHomePageComponent {
     this.getLatestData = false;
   }
   setSelectedID(row: any) {
-    console.log(row);
     this.selectedAllId = row;
   }
   selectedAllId: any;
@@ -180,7 +178,6 @@ export class ColumnMasterHomePageComponent {
 
   onSearchAllAuditTrail() {
     this.selectedAllId = this.selectedRow;
-    console.log(this.selectedAllId);
     if (this.selectedAllId.length == 0) {
       this.dialog.open(MessageDialogComponent, {
         data: {
@@ -274,7 +271,6 @@ export class ColumnMasterHomePageComponent {
   handleButtonAction(event: { action: string; row: any }) {
     const { action, row } = event;
     this.selectedRow = row; // Set the selected row
-    console.log(action);
     switch (action) {
       case 'Audit_Trail':
         this.onSearchAllAuditTrail();
@@ -287,7 +283,6 @@ export class ColumnMasterHomePageComponent {
   activeHandleButtonAction(event: { action: string; row: any }) {
     const { action, row } = event;
     this.selectedRow = row; // Set the selected row
-    console.log(action);
     switch (action) {
       case 'Audit_Trail':
         this.onActiveSelectAuditRow();
@@ -299,7 +294,6 @@ export class ColumnMasterHomePageComponent {
   }
 
   handleSubmit(row: any) {
-    console.log(row);
     console.log('submitBtn');
   }
 }
