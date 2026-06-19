@@ -17,19 +17,23 @@ import { WslrReviewerSaveComponent } from '../wslr/wslr-reviewer-save/wslr-revie
 import { WslrCompletedComponent } from '../wslr/wslr-completed/wslr-completed.component';
 import { WslrCompletedSaveComponent } from '../wslr/wslr-completed-save/wslr-completed-save.component';
 import { WslrModuleAdminComponent } from '../wslr/wslr-module-admin/wslr-module-admin.component';
+import { WslotContainersListComponent } from '../std-masters/wslot-containers-list/wslot-containers-list.component';
+import { WslotConsumptionComponent } from '../std-masters/wslot-consumption/wslot-consumption.component';
 
 const routes: Routes = [
-  {path:'std-module-admin', component:StdModuleAdminComponent},
-  {path:'home-page-sample-regestration', component:HomePageSampleRegestrationComponent},
-  {path:'home-page-sample-text-plan', component:HomePageSampleTextPlanComponent},
-  {path:'home-page-ws-lot-purities-record', component:HomePageWsLotPuritiesRecordComponent},
-  {path:'home-page-ws-lot-containers-record', component:HomePageWsLotContainersRecordComponent},
-  {path:'home-page-ws-lot-containers-usage', component:HomePageWsLotContainersUsageComponent},
-  {path:'utm-home-page', component:UtmHomePageComponent},
-  {path:'purity-type-master-home-page', component:PurityTypeMasterHomePageComponent},
-  {path:'home-page-ws-lot-record', component:HomePageWsLotRecordComponent},
-  
-   { path: 'wslr-initiator', component: WslrInitiatorComponent },
+  { path: 'std-module-admin', component: StdModuleAdminComponent },
+  { path: 'wslot-containers-list', component: WslotContainersListComponent },
+  { path: 'wslot-consumption', component: WslotConsumptionComponent },
+  { path: 'home-page-sample-regestration', component: HomePageSampleRegestrationComponent },
+  { path: 'home-page-sample-text-plan', component: HomePageSampleTextPlanComponent },
+  { path: 'home-page-ws-lot-purities-record', component: HomePageWsLotPuritiesRecordComponent },
+  { path: 'home-page-ws-lot-containers-record', component: HomePageWsLotContainersRecordComponent },
+  { path: 'home-page-ws-lot-containers-usage', component: HomePageWsLotContainersUsageComponent },
+  { path: 'utm-home-page', component: UtmHomePageComponent },
+  { path: 'purity-type-master-home-page', component: PurityTypeMasterHomePageComponent },
+  { path: 'home-page-ws-lot-record', component: HomePageWsLotRecordComponent },
+
+  { path: 'wslr-initiator', component: WslrInitiatorComponent },
   { path: 'wslr-update', component: WslrUpdateComponent },
   { path: 'wslr-update-save', component: WslrUpdateSaveComponent },
   { path: 'wslr-reviewer', component: WslrReviewerComponent },
@@ -37,11 +41,11 @@ const routes: Routes = [
   { path: 'wslr-completed', component: WslrCompletedComponent },
   { path: 'wslr-completed-save', component: WslrCompletedSaveComponent },
   { path: 'wslr-module-admin', component: WslrModuleAdminComponent },
-  
-  
 
 
-  
+
+
+
 ];
 
 @NgModule({
