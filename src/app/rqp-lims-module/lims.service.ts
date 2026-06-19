@@ -45,7 +45,6 @@ export class LimsService {
     });
     formData.append('ipmDTO', jsonBlob, 'data.json');
 
-    console.log(formData); // Check the FormData structure in the browser's console
 
     let createUserURL = this.API_URL + 'limsm-im/ipm-save-update';
 
@@ -169,7 +168,6 @@ export class LimsService {
     });
     formData.append('ipmDTO', jsonBlob, 'data.json');
 
-    console.log(formData); // Check the FormData structure in the browser's console
 
     let createUserURL = this.API_URL + 'limsm-im/ism-save-update';
 
@@ -194,7 +192,6 @@ export class LimsService {
   );
 
   formData.append('ipmDTO', jsonBlob, 'jsonBlob.json');
-console.log(JSON.stringify(body));
   return this.http.post(
     this.API_URL + 'limsm-im/ism-save-update',
     formData,

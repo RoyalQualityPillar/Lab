@@ -28,7 +28,6 @@ export class CmService {
     });
     formData.append('cmDTO', jsonBlob, 'data.json');
     //formData.append('ursDTO', JSON.stringify(body.ursDTO));
-    console.log(formData);
      let createUserURL = this.API_URL + 'cm/cm/save-update';
 
     const httpOptions = {
