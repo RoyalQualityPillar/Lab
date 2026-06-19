@@ -106,6 +106,7 @@ import { IpmCompletedComponent } from '../ipm/ipm-completed/ipm-completed.compon
 import { IsmUpdateComponent } from '../ism/ism-update/ism-update.component';
 import { CumCreateUpdateComponent } from '../masterdata/ims-masterdata/calibraion-uom-master/cum-create-update/cum-create-update.component';
 import { CumHomePageComponent } from '../masterdata/ims-masterdata/calibraion-uom-master/cum-home-page/cum-home-page.component';
+import { CalibrationScheduleMasterComponent } from '../masterdata/ims-masterdata/calibration-schedule-master/calibration-schedule-master.component';
 
 
 
@@ -207,9 +208,8 @@ import { CumHomePageComponent } from '../masterdata/ims-masterdata/calibraion-uo
     IpmCompletedSaveComponent,
      IsmUpdateComponent,
     CumCreateUpdateComponent,
-    CumHomePageComponent, 
-    
-  
+    CumHomePageComponent,
+    CalibrationScheduleMasterComponent,
 
 
   ],
