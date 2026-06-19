@@ -72,7 +72,7 @@ export class LimsService {
   formData.append('ipmDTO', jsonBlob);
 
   return this.http.post(
-    this.API_URL + 'limsm-im/ism-save-update',
+    this.API_URL + 'limsm-im/ipm-save-update',
     formData,
     {
       headers: new HttpHeaders({
