@@ -35,5 +35,8 @@ export class StdModuleAdminComponent {
    onPurityTypeMaster() {
     this.router.navigate(['./rqplabui/lims-std/purity-type-master-home-page'])
   }
+   onWSLotContainersList() {
+    this.router.navigate(['./rqplabui/lims-std/wslot-containers-list'])
+  }
 }
    

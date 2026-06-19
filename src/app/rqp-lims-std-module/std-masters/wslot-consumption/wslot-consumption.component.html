@@ -1,0 +1,27 @@
+<div class="row gx-0 create-update-dialog-header-section">
+    <div class="col-10 d-flex justify-content-start">
+        <h1 class="daialog-title-name p-2">Working Standard Lot Consumption</h1>
+    </div>
+    <div class="col-2 d-flex justify-content-end">
+        <button mat-icon-button class="close-button" [mat-dialog-close]="true">
+            <mat-icon class="close-icon" color="warn">close</mat-icon>
+        </button>
+    </div>
+</div>
+
+<div class="row no-gutters ms-1 me-1 dense-4" style="margin-top: 5px;">
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>ARM No</mat-label>
+        <input type="text" matInput [(ngModel)]="armNo" placeholder="ARM No" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Grams</mat-label>
+        <input type="number" matInput [(ngModel)]="grams" placeholder="Grams" />
+    </mat-form-field>
+
+</div>
+<div>
+    <button mat-raised-button class="submitButton" (click)="onSubmit()">
+        Submit
+    </button>
+</div>
