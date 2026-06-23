@@ -23,7 +23,7 @@ export enum apiEndPoints {
   soloMaterialTypeList = 'solo/input',
   materialTypeList = 'imp/input',
   topicDropDownInputList = 'lmsr/topic-list',
-   actionUpdateReviewList = 'qms/review-nci-ai_list',
+  actionUpdateReviewList = 'qms/review-nci-ai_list',
 
   //clv input
   clvInput = 'clv/input',
@@ -99,7 +99,7 @@ export enum apiEndPoints {
   businessUnitUserProfileFilterData = 'gm/bu-master/search',
   businessUnitLoadUpdatePage = 'gm/bu-master/get-by-max-code',
   businessUnitCreateUpdate = 'gm/bu-master/save-update',
-  activatedBuSearch='gm/bu-master/active-search',
+  activatedBuSearch = 'gm/bu-master/active-search',
 
   /*******Business Unit Type*********/
   allBusinessUnitTypeTabledata = 'gm/but-master/get-all',
@@ -238,7 +238,7 @@ export enum apiEndPoints {
   utMasterCreateUpdate = 'gm/ut-master/save-update',
   utMasterLoadUpdatePage = 'gm/ut-master/get-by-max-code',
   utMasterAllAuditTrail = 'gm/ut-master/get-by-code-all',
-  activatedUtSearch='gm/ut-master/active-search',
+  activatedUtSearch = 'gm/ut-master/active-search',
 
   /*******VendorList*********/
   allVendorListTabledata = 'gm/vendor-master/get-all',
@@ -384,7 +384,7 @@ export enum apiEndPoints {
   scmUserProfileFilterData = 'sd/vendor-master/search',
   scmLoadUpdatePage = 'sd/vendor-master/get-by-max-code',
   scmCreateUpdate = 'sd/vendor-master/save-update',
-  
+
   /********************MmModule**********/
 
   /*********MaterialMaster******/
@@ -427,7 +427,7 @@ export enum apiEndPoints {
   StockledgerLoadUpdatePage = 'pmm/psl_master/get-by-max-code',
   StockledgerAllAuditTrail = 'pmm/psl_master/get-by-code-all',
 
-   /*******supply chain management *********/
+  /*******supply chain management *********/
   allScmmTabledata = 'pmm/vendor-master/get-all',
   activeScmmTabledata = 'pmm/vendor-master/get-max-all',
   scmmAllAuditTrail = 'pmm/vendor-master/get-by-code-all',
@@ -1258,82 +1258,82 @@ export enum apiEndPoints {
   linesAllAuditTrail = 'clv/lines/get-by-code-all',
 
   /***************SD Dashboard ***************/
-  yearWiseData ='sdsi/sdsi-index-fta-Year',
-  monthWiseData ='sdsi/sdsi-index-fta-Month',
-  weekWiseData ='sdsi/sdsi-index-fta-Week',
-  dayWiseData ='sdsi/sdsi-index-fta-Day',
+  yearWiseData = 'sdsi/sdsi-index-fta-Year',
+  monthWiseData = 'sdsi/sdsi-index-fta-Month',
+  weekWiseData = 'sdsi/sdsi-index-fta-Week',
+  dayWiseData = 'sdsi/sdsi-index-fta-Day',
 
-            /******* sdq ********/
-  dqYearWiseData ='sddq/sddq-index-fta-Year',
-  dqMonthWiseData ='sddq/sddq-index-fta-week',
-  dqWeekWiseData ='sddq/sddq-index-fta-month',
-  dqDayWiseData ='sddq/sddq-index-fta-day',
-
-
-    /***************MM Dashboard ***************/
-    
-           /******* pdq ********/
-  pdqYearWiseData ='pmmpdq/pdq-index-fta-Year',
-  pdqMonthWiseData ='pmmpdq/pdq-index-fta-Month',
-  pdqWeekWiseData ='pmmpdq/pdq-index-fta-Week',
-  pdqDayWiseData ='pmmpdq/pdq-index-fta-Day',
-
-             /******* pfq ********/
-  pfqYearWiseData ='pmmpfqt/pfqt-index-fta-Year',
-  pfqMonthWiseData ='pmmpfqt/pfqt-index-fta-Month',
-  pfqWeekWiseData ='pmmpfqt/pfqt-index-fta-Week',
-  pfqDayWiseData ='pmmpfqt/pfqt-index-fta-Day',
-
-             /******* ppo ********/
-  ppoYearWiseData ='pmmpfqt/pfqt-index-fta-Year',
-  ppoMonthWiseData ='pmmpfqt/pfqt-index-fta-Month',
-  ppoWeekWiseData ='pmmpfqt/pfqt-index-fta-Week',
-  ppoDayWiseData ='pmmpfqt/pfqt-index-fta-Day',
-
-             /******* pqt ********/
-  pqtYearWiseData ='pmmpqt/pqt-index-fta-Year',
-  pqtMonthWiseData ='pmmpqt/pqt-index-fta-Month',
-  pqtWeekWiseData ='pmmpqt/pqt-index-fta-Week',
-  pqtDayWiseData ='pmmpqt/pqt-index-fta-Day',
-
-             /******* pso ********/
-  psoYearWiseData ='pmmpso/pso-index-fta-Year',
-  psoMonthWiseData ='pmmpso/pso-index-fta-Month',
-  psoWeekWiseData ='pmmpso/pso-index-fta-Week',
-  psoDayWiseData ='pmmpso/pso-index-fta-Day',
-
-             /******* pdo ********/
-  pdoYearWiseData ='pmmpdo/pdo-index-fta-Year',
-  pdoMonthWiseData ='pmmpdo/pdo-index-fta-Month',
-  pdoWeekWiseData ='pmmpdo/pdo-index-fta-Week',
-  pdoDayWiseData ='pmmpdo/pdo-index-fta-Day',
-
-           /******* psi ********/
-  psiYearWiseData ='pmmpsi/psi-index-fta-Year',
-  psiMonthWiseData ='pmmpsi/psi-index-fta-Month',
-  psiWeekWiseData ='pmmpsi/psi-index-fta-Week',
-  psiDayWiseData ='pmmpsi/psi-index-fta-Day',
+  /******* sdq ********/
+  dqYearWiseData = 'sddq/sddq-index-fta-Year',
+  dqMonthWiseData = 'sddq/sddq-index-fta-week',
+  dqWeekWiseData = 'sddq/sddq-index-fta-month',
+  dqDayWiseData = 'sddq/sddq-index-fta-day',
 
 
-    /********************************Lims-spc Module ***********************************************/
+  /***************MM Dashboard ***************/
 
-      /***Field Master***/
+  /******* pdq ********/
+  pdqYearWiseData = 'pmmpdq/pdq-index-fta-Year',
+  pdqMonthWiseData = 'pmmpdq/pdq-index-fta-Month',
+  pdqWeekWiseData = 'pmmpdq/pdq-index-fta-Week',
+  pdqDayWiseData = 'pmmpdq/pdq-index-fta-Day',
+
+  /******* pfq ********/
+  pfqYearWiseData = 'pmmpfqt/pfqt-index-fta-Year',
+  pfqMonthWiseData = 'pmmpfqt/pfqt-index-fta-Month',
+  pfqWeekWiseData = 'pmmpfqt/pfqt-index-fta-Week',
+  pfqDayWiseData = 'pmmpfqt/pfqt-index-fta-Day',
+
+  /******* ppo ********/
+  ppoYearWiseData = 'pmmpfqt/pfqt-index-fta-Year',
+  ppoMonthWiseData = 'pmmpfqt/pfqt-index-fta-Month',
+  ppoWeekWiseData = 'pmmpfqt/pfqt-index-fta-Week',
+  ppoDayWiseData = 'pmmpfqt/pfqt-index-fta-Day',
+
+  /******* pqt ********/
+  pqtYearWiseData = 'pmmpqt/pqt-index-fta-Year',
+  pqtMonthWiseData = 'pmmpqt/pqt-index-fta-Month',
+  pqtWeekWiseData = 'pmmpqt/pqt-index-fta-Week',
+  pqtDayWiseData = 'pmmpqt/pqt-index-fta-Day',
+
+  /******* pso ********/
+  psoYearWiseData = 'pmmpso/pso-index-fta-Year',
+  psoMonthWiseData = 'pmmpso/pso-index-fta-Month',
+  psoWeekWiseData = 'pmmpso/pso-index-fta-Week',
+  psoDayWiseData = 'pmmpso/pso-index-fta-Day',
+
+  /******* pdo ********/
+  pdoYearWiseData = 'pmmpdo/pdo-index-fta-Year',
+  pdoMonthWiseData = 'pmmpdo/pdo-index-fta-Month',
+  pdoWeekWiseData = 'pmmpdo/pdo-index-fta-Week',
+  pdoDayWiseData = 'pmmpdo/pdo-index-fta-Day',
+
+  /******* psi ********/
+  psiYearWiseData = 'pmmpsi/psi-index-fta-Year',
+  psiMonthWiseData = 'pmmpsi/psi-index-fta-Month',
+  psiWeekWiseData = 'pmmpsi/psi-index-fta-Week',
+  psiDayWiseData = 'pmmpsi/psi-index-fta-Day',
+
+
+  /********************************Lims-spc Module ***********************************************/
+
+  /***Field Master***/
   allFieldmasterTabledata = 'limspc/field_master/get-all',
   activeFieldmasterTabledata = 'limspc/field_master/get-max-all',
   FieldmasterUserProfileFilterData = 'limspc/field_master/search',
   FieldmasterCreateUpdate = 'limspc/field_master/save-update',
-FieldmasterLoadUpdatePage = 'limspc/field_master/get-by-max-code',
+  FieldmasterLoadUpdatePage = 'limspc/field_master/get-by-max-code',
   FieldmasterAllAuditTrail = 'limspc/field_master/get-by-code-all',
 
-   /***Ws Master***/
+  /***Ws Master***/
   allWsmasterTabledata = 'limspc/ws_fields/get-all',
   activeWsmasterTabledata = 'limspc/ws_fields/get-max-all',
   WsmasterUserProfileFilterData = 'limspc/ws_fields/search',
   WsmasterCreateUpdate = 'limspc/ws_fields/save-update',
-WsmasterLoadUpdatePage = 'limspc/ws_fields/get-by-max-code',
+  WsmasterLoadUpdatePage = 'limspc/ws_fields/get-by-max-code',
   WsmasterAllAuditTrail = 'limspc/ws_fields/get-by-code-all',
 
-   /********************************Lims-im Module ***********************************************/
+  /********************************Lims-im Module ***********************************************/
 
   /***Instrument Category  Master***/
   allinstrumentcatMasterTabledata = 'limsm-im/ic-master/get-all',
@@ -1426,7 +1426,7 @@ WsmasterLoadUpdatePage = 'limspc/ws_fields/get-by-max-code',
   EvenLogAllAuditTrail = 'at/evenlog-master/get-by-code-all',
 
 
-   /*********Instrument Status Master******/
+  /*********Instrument Status Master******/
   allIuMasterTabledata = 'limsm-im/iu-status/get-all',
   activeIuMasterTabledata = 'limsm-im/iu-status/get-max-all',
   IuMasterUserProfileFilterData = 'limsm-im/iu-status/search',
@@ -1434,7 +1434,7 @@ WsmasterLoadUpdatePage = 'limspc/ws_fields/get-by-max-code',
   IuMasterLoadUpdatePage = 'limsm-im/iu-status/get-by-max-code',
   IuMasterAllAuditTrail = 'limsm-im/iu-status/get-by-code-all',
 
-   /******* Calibraion Perameter Master*********/
+  /******* Calibraion Perameter Master*********/
   allCpmTabledata = 'lbms/calper-master/get-all',
   activeCpmTabledata = 'lbms/calper-master/get-all',
   CpmUserProfileFilterData = 'lbms/calper-master/search',
@@ -1444,8 +1444,8 @@ WsmasterLoadUpdatePage = 'limspc/ws_fields/get-by-max-code',
 
   /***Master Calibration Schedule***/
   equipmentScheduleList = 'limsm-im/equipment-schedule-list',
-
-   /*******cum master -Calibraion UOM Master *********/
+  pmmEquipmentScheduleList = 'limsm-im/pmm-equipment-schedule-list',
+  /*******cum master -Calibraion UOM Master *********/
   allCumTabledata = 'lbms/cum_master/get-all',
   activeCumTabledata = 'lbms/cum_master/get-max-all',
   cumAllAuditTrail = 'lbms/cum_master/get-by-code-all',
@@ -1454,10 +1454,10 @@ WsmasterLoadUpdatePage = 'limspc/ws_fields/get-by-max-code',
   cumCreateUpdate = 'lbms/cum_master/save-update',
 
 
-             /****************Cleaningcategory*********************/
+  /****************Cleaningcategory*********************/
 
 
-              /******* Sample Text Plan*********/
+  /******* Sample Text Plan*********/
   allStpTabledata = 'limsws/stpws-record/get-all',
   activeStpTabledata = 'limsws/stpws-record/get-max-all',
   StpUserProfileFilterData = 'limsws/stpws-record/search',
@@ -1465,7 +1465,7 @@ WsmasterLoadUpdatePage = 'limspc/ws_fields/get-by-max-code',
   StpLoadUpdatePage = 'limsws/stpws-record/get-by-max-code',
   StpAllAuditTrail = 'limsws/stpws-record/get-by-code-all',
 
-   /******* Sample Regestration*********/
+  /******* Sample Regestration*********/
   allSamRegTabledata = 'limsws/srws-record/get-all',
   activeSamRegTabledata = 'limsws/srws-record/get-max-all',
   SamRegUserProfileFilterData = 'limsws/srws-record/search',
@@ -1473,7 +1473,7 @@ WsmasterLoadUpdatePage = 'limspc/ws_fields/get-by-max-code',
   SamRegLoadUpdatePage = 'limsws/srws-record/get-by-max-code',
   SamRegAllAuditTrail = 'limsws/srws-record/get-by-code-all',
 
-     /******* Chemical Master Regestration*********/
+  /******* Chemical Master Regestration*********/
   allCmrTabledata = 'limssm/ch-master/get-all',
   activeCmrTabledata = 'limssm/ch-master/get-max-all',
   CmrUserProfileFilterData = 'limssm/ch-master/search',
@@ -1483,7 +1483,7 @@ WsmasterLoadUpdatePage = 'limspc/ws_fields/get-by-max-code',
 
 
 
-       /******* CHM Lot  Regestration*********/
+  /******* CHM Lot  Regestration*********/
   allClrTabledata = 'limschm/chlr_record/get-all',
   activeClrTabledata = 'limschm/chlr_record/get-max-all',
   ClrUserProfileFilterData = 'limschm/chlr_record/search',
@@ -1492,7 +1492,7 @@ WsmasterLoadUpdatePage = 'limspc/ws_fields/get-by-max-code',
   ClrAllAuditTrail = 'limschm/chlr_record/get-by-code-all',
 
 
-         /******* CHM Lot  Usage*********/
+  /******* CHM Lot  Usage*********/
   allCluTabledata = 'limschm/chlur_record/get-all',
   activeCluTabledata = 'limschm/chlur_record/get-max-all',
   CluUserProfileFilterData = 'limschm/chlur_record/search',
@@ -1501,7 +1501,7 @@ WsmasterLoadUpdatePage = 'limspc/ws_fields/get-by-max-code',
   CluAllAuditTrail = 'limschm/chlur_record/get-by-code-all',
 
 
-           /******* Test Solution Master*********/
+  /******* Test Solution Master*********/
   allTsmTabledata = 'limschm/chts_master/get-all',
   activeTsmTabledata = 'limschm/chts_master/get-max-all',
   TsmUserProfileFilterData = 'limschm/chts_master/search',
@@ -1511,8 +1511,8 @@ WsmasterLoadUpdatePage = 'limspc/ws_fields/get-by-max-code',
 
 
 
-   /******* Test Solution Preaparation Input Chemical Master*********/
-   allTspicmTabledata = 'limschm/chtsim_master/get-all',
+  /******* Test Solution Preaparation Input Chemical Master*********/
+  allTspicmTabledata = 'limschm/chtsim_master/get-all',
   activeTspicmTabledata = 'limschm/chtsim_master/get-max-all',
   TspicmUserProfileFilterData = '/limschm/chtsim_master/search',
   TspicmCreateUpdate = 'limschm/chtsim_master/save-update',
@@ -1520,8 +1520,8 @@ WsmasterLoadUpdatePage = 'limspc/ws_fields/get-by-max-code',
   TspicmllAuditTrail = 'limschm/chtsim_master/get-by-code-all',
 
 
-      
-           /******* Test Solution Record*********/
+
+  /******* Test Solution Record*********/
   allTsrTabledata = 'limschm/chts_record/get-all',
   activeTsrTabledata = 'limschm/chts_record/get-max-all',
   TsrUserProfileFilterData = 'limschm/chts_record/search',
@@ -1530,16 +1530,16 @@ WsmasterLoadUpdatePage = 'limspc/ws_fields/get-by-max-code',
   TsrAllAuditTrail = 'limschm/chts_record/get-by-code-all',
 
 
-             /******* Test Solution Preparation Input Chemical Record*********/
+  /******* Test Solution Preparation Input Chemical Record*********/
   allTspicTabledata = 'limschm/chtsir_record/get-all',
   activeTspicTabledata = 'limschm/chtsir_record/get-max-all',
   TspicUserProfileFilterData = 'limschm/chtsir_record/search',
   TspicCreateUpdate = 'limschm/chtsir_record/save-update',
   TspicLoadUpdatePage = 'limschm/chtsir_record/get-all',
   TspicAllAuditTrail = 'limschm/chtsir_record/get-by-code-all',
-  
 
-     /******* WS Lot Record*********/
+
+  /******* WS Lot Record*********/
   allWlrTabledata = 'limsws/wstr-record/get-all',
   activeWlrTabledata = 'limsws/wstr-record/get-max-all',
   WlrUserProfileFilterData = 'limsws/wstr-record/search',
@@ -1547,7 +1547,7 @@ WsmasterLoadUpdatePage = 'limspc/ws_fields/get-by-max-code',
   WlrLoadUpdatePage = 'limsws/wstr-record/get-by-max-code',
   WlrAllAuditTrail = 'limsws/wstr-record/get-by-code-all',
 
-       /******* WS Lot Purities Record*********/
+  /******* WS Lot Purities Record*********/
   allWlprTabledata = 'limsws/wslpr-record/get-all',
   activeWlprTabledata = 'limsws/wslpr-record/get-max-all',
   WlprUserProfileFilterData = 'limsws/wslpr-record/search',
@@ -1555,7 +1555,7 @@ WsmasterLoadUpdatePage = 'limspc/ws_fields/get-by-max-code',
   WlprLoadUpdatePage = 'limsws/wslpr-record/get-by-max-code',
   WlprAllAuditTrail = 'limsws/wslpr-record/get-by-code-all',
 
-      /******* WS Lot Containers Record *********/
+  /******* WS Lot Containers Record *********/
   allWlcrTabledata = 'limsws/wslcr-record/get-all',
   activeWlcrTabledata = 'limsws/wslcr-record/get-max-all',
   WlcrUserProfileFilterData = 'limsws/wslcr-record/search',
@@ -1563,108 +1563,108 @@ WsmasterLoadUpdatePage = 'limspc/ws_fields/get-by-max-code',
   WlcrLoadUpdatePage = 'limsws/wslcr-record/get-by-max-code',
   WlcrAllAuditTrail = 'limsws/wslcr-record/get-by-code-all',
 
-      /******* WS Lot Containers Usage *********/
+  /******* WS Lot Containers Usage *********/
   allWlcuTabledata = 'limsws/wslcur-record/get-all',
   activeWlcuTabledata = 'limsws/wslcur-record/get-max-all',
   WlcuUserProfileFilterData = 'limsws/wslcur-record/search',
   WlcuCreateUpdate = 'limsws/wslcur-record/save-update',
   WlcuLoadUpdatePage = 'limsws/wslcur-record/get-by-max-code',
   WlcuAllAuditTrail = 'limsws/wslcur-record/get-by-code-all',
-  
- 
-   /******* volumetric solution usage *********/
+
+
+  /******* volumetric solution usage *********/
   allvolsolTabledata = 'limscs/visr_record/get-all',
   activevolsolTabledata = 'limscs/visr_record/get-max-all',
- volsolUserProfileFilterData = 'limscs/visr_record/search',
- volsolCreateUpdate = 'limscs/visr_record/save-update',
- volsolLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
- volsolAllAuditTrail = 'limscs/visr_record/get-by-code-all',
+  volsolUserProfileFilterData = 'limscs/visr_record/search',
+  volsolCreateUpdate = 'limscs/visr_record/save-update',
+  volsolLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+  volsolAllAuditTrail = 'limscs/visr_record/get-by-code-all',
 
 
 
-   /*******Solution Name Master  *********/
+  /*******Solution Name Master  *********/
   allSolNaTabledata = 'limscs/visr_record/get-all',
   activeSolNaTabledata = 'limscs/visr_record/get-max-all',
- SolNaUserProfileFilterData = 'limscs/visr_record/search',
- SolNaCreateUpdate = 'limscs/visr_record/save-update',
- SolNaLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
- SolNaAllAuditTrail = 'limscs/visr_record/get-by-code-all',
-  
+  SolNaUserProfileFilterData = 'limscs/visr_record/search',
+  SolNaCreateUpdate = 'limscs/visr_record/save-update',
+  SolNaLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+  SolNaAllAuditTrail = 'limscs/visr_record/get-by-code-all',
 
-   /*******Solution Templet Master  *********/
+
+  /*******Solution Templet Master  *********/
   allSolTeTabledata = 'limscs/visr_record/get-all',
   activeSolTeTabledata = 'limscs/visr_record/get-max-all',
- SolTeUserProfileFilterData = 'limscs/visr_record/search',
- SolTeCreateUpdate = 'limscs/visr_record/save-update',
- SolTeLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
- SolTeAllAuditTrail = 'limscs/visr_record/get-by-code-all',
+  SolTeUserProfileFilterData = 'limscs/visr_record/search',
+  SolTeCreateUpdate = 'limscs/visr_record/save-update',
+  SolTeLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+  SolTeAllAuditTrail = 'limscs/visr_record/get-by-code-all',
 
 
- 
-   /*******Solution Preparation  Master  *********/
+
+  /*******Solution Preparation  Master  *********/
   allSolPreTabledata = 'limscs/visr_record/get-all',
   activeSolPreTabledata = 'limscs/visr_record/get-max-all',
- SolPreUserProfileFilterData = 'limscs/visr_record/search',
- SolPreCreateUpdate = 'limscs/visr_record/save-update',
- SolPreLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
- SolPreAllAuditTrail = 'limscs/visr_record/get-by-code-all',
+  SolPreUserProfileFilterData = 'limscs/visr_record/search',
+  SolPreCreateUpdate = 'limscs/visr_record/save-update',
+  SolPreLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+  SolPreAllAuditTrail = 'limscs/visr_record/get-by-code-all',
 
 
- /*******Sample Regestration Vs Master  *********/
+  /*******Sample Regestration Vs Master  *********/
   allSamRegVsTabledata = 'limscs/visr_record/get-all',
   activeSamRegVsTabledata = 'limscs/visr_record/get-max-all',
- SamRegVsUserProfileFilterData = 'limscs/visr_record/search',
-SamRegVsCreateUpdate = 'limscs/visr_record/save-update',
- SamRegVsLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
- SamRegVsAllAuditTrail = 'limscs/visr_record/get-by-code-all',
+  SamRegVsUserProfileFilterData = 'limscs/visr_record/search',
+  SamRegVsCreateUpdate = 'limscs/visr_record/save-update',
+  SamRegVsLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+  SamRegVsAllAuditTrail = 'limscs/visr_record/get-by-code-all',
 
 
- /*******Sample Test Plan Vs Master  *********/
+  /*******Sample Test Plan Vs Master  *********/
   allSamTpVsTabledata = 'limscs/visr_record/get-all',
   activeSamTpVsTabledata = 'limscs/visr_record/get-max-all',
- SamTpVsUserProfileFilterData = 'limscs/visr_record/search',
-SamTpVsCreateUpdate = 'limscs/visr_record/save-update',
- SamTpVsLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
- SamTpVsAllAuditTrail = 'limscs/visr_record/get-by-code-all',
+  SamTpVsUserProfileFilterData = 'limscs/visr_record/search',
+  SamTpVsCreateUpdate = 'limscs/visr_record/save-update',
+  SamTpVsLoadUpdatePage = 'limscs/visr_record/get-by-max-code',
+  SamTpVsAllAuditTrail = 'limscs/visr_record/get-by-code-all',
 
 
   /*******WSR*********/
-attachmentPDF = 'gm/attachment-pdf',
-attachmentHTML ='gm/attachment-html',
+  attachmentPDF = 'gm/attachment-pdf',
+  attachmentHTML = 'gm/attachment-html',
 
 
- /*******Usage Type Master  *********/
+  /*******Usage Type Master  *********/
   allUtmTabledata = 'limsws/utm-master/get-all',
   activeUtmTabledata = 'limsws/utm-master/get-max-all',
- UtmUserProfileFilterData = 'limsws/utm-master/search',
- UtmCreateUpdate = 'limsws/utm-master/save-update',
- UtmLoadUpdatePage = 'limsws/utm-master/get-by-max-code',
- UtmAllAuditTrail = 'limsws/utm-master/get-by-code-all',
+  UtmUserProfileFilterData = 'limsws/utm-master/search',
+  UtmCreateUpdate = 'limsws/utm-master/save-update',
+  UtmLoadUpdatePage = 'limsws/utm-master/get-by-max-code',
+  UtmAllAuditTrail = 'limsws/utm-master/get-by-code-all',
 
 
-   /******* Purity type Master  *********/
+  /******* Purity type Master  *********/
   allPurTyTabledata = 'limsws/ptm-master/get-all',
   activePurTyTabledata = 'limsws/ptm-master/get-max-all',
- purTyUserProfileFilterData = 'limsws/ptm-master/search',
- PurTyCreateUpdate = 'limsws/ptm-master/save-update',
- PurTyLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
- PurTyAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+  purTyUserProfileFilterData = 'limsws/ptm-master/search',
+  PurTyCreateUpdate = 'limsws/ptm-master/save-update',
+  PurTyLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
+  PurTyAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
 
   /*******Storage Category Master  *********/
   allStorageCategoryTabledata = 'limsws/ptm-master/get-all',
   activeStorageCategoryTabledata = 'limsws/ptm-master/get-max-all',
- StorageCategoryUserProfileFilterData = 'limsws/ptm-master/search',
- StorageCategoryCreateUpdate = 'limsws/ptm-master/save-update',
- StorageCategoryLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
- StorageCategoryAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+  StorageCategoryUserProfileFilterData = 'limsws/ptm-master/search',
+  StorageCategoryCreateUpdate = 'limsws/ptm-master/save-update',
+  StorageCategoryLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
+  StorageCategoryAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
 
- /*******Chambers Master  *********/
+  /*******Chambers Master  *********/
   allChambersTabledata = 'limsws/ptm-master/get-all',
-activeChambersTabledata = 'limsws/ptm-master/get-max-all',
- ChambersUserProfileFilterData = 'limsws/ptm-master/search',
- ChambersCreateUpdate = 'limsws/ptm-master/save-update',
- ChambersLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
- ChambersAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+  activeChambersTabledata = 'limsws/ptm-master/get-max-all',
+  ChambersUserProfileFilterData = 'limsws/ptm-master/search',
+  ChambersCreateUpdate = 'limsws/ptm-master/save-update',
+  ChambersLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
+  ChambersAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
 
 
 

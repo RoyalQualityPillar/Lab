@@ -22,7 +22,7 @@ export class ImsMasterDataHomePageComponent {
   }
   onCalibrationFrequency() {
     this.router.navigate(['./rqplabui/lims/calibration-freq-home-page'])
- }
+  }
 
   onCalibrationRecordSchedule() {
     this.router.navigate(['./rqplabui/lims/calibration-rec-sch-home-page'])
@@ -46,20 +46,23 @@ export class ImsMasterDataHomePageComponent {
   onInstrumentStatusMaster() {
     this.router.navigate(['./rqplabui/lims/home-page-instrument-status'])
   }
-  onCalibraionPerameterMaster(){
+  onCalibraionPerameterMaster() {
     this.router.navigate(['./rqplabui/lims/cpm-home-page'])
   }
-  onPreventiveMaintenanceSchedule(){
+  onPreventiveMaintenanceSchedule() {
     this.router.navigate(['./rqplabui/lims/home-page-prevnt-main-sche'])
   }
-   onCalibraionUOMMaster() {
+  onCalibraionUOMMaster() {
     this.router.navigate(['./rqplabui/lims/cum-home-page']);
   }
-   onProblemCategoryMaster() {
+  onProblemCategoryMaster() {
     this.router.navigate(['./rqplabui/lims/pcm-home-page']);
-   }
+  }
   onCalibrationScheduleMaster() {
     this.router.navigate(['./rqplabui/lims/calibration-schedule-master-page']);
+  }
+  onPreventiveMaintananceScheduleMaster() {
+    this.router.navigate(['./rqplabui/lims/preventive-maintanance-schedule-master']);
   }
 }
 

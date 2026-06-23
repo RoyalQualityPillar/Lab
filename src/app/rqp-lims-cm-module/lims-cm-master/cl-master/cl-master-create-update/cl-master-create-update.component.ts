@@ -249,12 +249,7 @@ export class ClMasterCreateUpdateComponent implements OnInit {
             },
           });
         } else {
-           this.notificationService.showSuccess(
- data.data.uc0001 + data.status,
-  () => {
-    console.log('Success Snackbar Closed');
-  }
-);
+           this.notificationService.showSuccess(data.status, () => {});
           this.dialogRef.close();
         }
       });

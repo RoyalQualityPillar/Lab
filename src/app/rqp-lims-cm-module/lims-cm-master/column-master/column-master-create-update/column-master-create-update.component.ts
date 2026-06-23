@@ -185,7 +185,6 @@ export class ColumnMasterCreateUpdateComponent implements OnInit {
     this.DepartmentMaster.controls['status'].setValue(
       changeStatusByDescription(this.DepartmentMaster.controls['status'].value)
     );
-    console.log(this.DepartmentMaster.value);
     let params = {};
     // this.glService
     //   .onGlMasterSaveUpdate(this.DepartmentMaster.value)
@@ -269,12 +268,7 @@ export class ColumnMasterCreateUpdateComponent implements OnInit {
           });
         } else {
           this.isLoading = false;
-          this.notificationService.showSuccess(
- data.data.uc0001 + data.status,
-  () => {
-    console.log('Success Snackbar Closed');
-  }
-);
+                     this.notificationService.showSuccess(data.status, () => {});
           this.dialogRef.close();
         }
       });

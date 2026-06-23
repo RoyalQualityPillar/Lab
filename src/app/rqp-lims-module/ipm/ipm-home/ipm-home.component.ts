@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 export class IpmHomeComponent {
  constructor(private router: Router) {}
   onAllPaAssignmentDashBord() {
-    console.log('paaa');
     this.router.navigate(['./qms/cc-pa-dash-bord']);
   }
   allCompletedRecords() {

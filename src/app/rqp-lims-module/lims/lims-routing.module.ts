@@ -48,6 +48,7 @@ import { CumHomePageComponent } from '../masterdata/ims-masterdata/calibraion-uo
 
 import { PcmHomePageComponent } from '../masterdata/ims-masterdata/problem-category-master/pcm-home-page/pcm-home-page.component';
 import { CalibrationScheduleMasterComponent } from '../masterdata/ims-masterdata/calibration-schedule-master/calibration-schedule-master.component';
+import { PreventiveMaintananceScheduleMasterComponent } from '../masterdata/ims-masterdata/preventive-maintanance-schedule-master/preventive-maintanance-schedule-master.component';
 
 const routes: Routes = [
   // {
@@ -459,6 +460,10 @@ const routes: Routes = [
   {
     path: 'calibration-schedule-master-page',
     component: CalibrationScheduleMasterComponent,
+  },
+  {
+    path: 'preventive-maintanance-schedule-master',
+    component: PreventiveMaintananceScheduleMasterComponent,
   },
 
 
