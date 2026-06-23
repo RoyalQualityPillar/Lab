@@ -71,7 +71,6 @@ export class ActionAttachmentsListComponent implements OnInit {
     this.apiService
       .sendRequest(apiEndPoints.actionUpdateReviewList, 'GET', params)
       .subscribe((data: any) => {
-        console.log(data)
         this.actionList = data.data.actionDtoList;
         this.tableData = new MatTableDataSource(this.actionList);
         this.tableData.paginator = this.paginator;

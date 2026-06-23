@@ -183,7 +183,6 @@ export class IpmUpdateSaveComponent implements OnInit {
     };
 
     this.router.queryParams.subscribe((params: any) => {
-      console.log(params);
       this.ff0003 = params.ff0003;
       this.pageData = {
         pageName: 'qtUpdateDetail',
@@ -199,7 +198,6 @@ export class IpmUpdateSaveComponent implements OnInit {
       };
       this.ff0001 = params.uc0001;
       this.ff0005 = params.ff0007;
-      console.log(this.pageData);
     });
     if (this.ff0001) {
       this.onGetQMSRequestNo();
@@ -208,7 +206,11 @@ export class IpmUpdateSaveComponent implements OnInit {
     this.headerRequestBody = this.lifeCycleDataService.getSelectedRowData();
     this.onLoadNextStageData();
 
-   
+    // this.onLoadNextStageData();
+    // this.headerRequestBody=this.lifeCycleDataService.getSelectedRowData();
+    // if(this.headerRequestBody.lifeCycleCode){
+    //   this.onLoadEventClassification(this.headerRequestBody.lifeCycleCode)
+    // }
   }
   ngAfterViewInit(): void {}
 
@@ -223,11 +225,9 @@ export class IpmUpdateSaveComponent implements OnInit {
   }
   public handleCommentsForm(event: any) {
     this.comments = event.comments;
-    console.log(event);
   }
   onLoadEventClassification(lc0003: any) {
     this.limsService.getEventClassification(lc0003).subscribe((data: any) => {
-      console.log(data);
       this.dataSource = data.data[0];
       this.EventForm.controls['ff0001'].setValue(this.dataSource.ff0001);
       this.EventForm.controls['ff0002'].setValue(this.dataSource.ff0002);
@@ -253,9 +253,7 @@ export class IpmUpdateSaveComponent implements OnInit {
           });
         }
         this.actionDtoList = response.data.actionDtoList;
-        console.log(this.actionDtoList);
 
-        console.log(this.actionDtoList);
       } else {
         this.actionDtoList = []; // Ensure it's an array if no data is returned
       }
@@ -264,25 +262,21 @@ export class IpmUpdateSaveComponent implements OnInit {
 
   lineItemHeading(lc0003: any) {
     this.limsService.getCCLineItemHeader(lc0003).subscribe((data: any) => {
-      console.log(data);
       this.lineItemData = data.data;
     });
   }
 
   IssueDetails(lc0003: any) {
     this.limsService.getCCIssueDetails(lc0003).subscribe((data: any) => {
-      console.log(data);
       this.issueDetailData = data.data[0];
       this.UserRequirementForm.controls['ff0001'].setValue(
         this.issueDetailData.ff0001
       );
-      console.log(this.issueDetailData.ff0002);
       let ff0002Data = moment(
         this.issueDetailData.ff0002,
         'DD-MM-YYYY HH:mm:ss.SSS'
       ).toISOString();
       this.UserRequirementForm.controls['ff0002'].setValue(ff0002Data);
-      console.log(this.UserRequirementForm.controls['ff0002'].value);
       let ff0003Data = moment(
         this.issueDetailData.ff0003,
         'DD-MM-YYYY HH:mm:ss.SSS'
@@ -296,7 +290,6 @@ export class IpmUpdateSaveComponent implements OnInit {
     this.limsService
       .documentList(this.lc0003, moduleCode)
       .subscribe((data: any) => {
-        console.log(data);
         if (data.data) {
           data.data.forEach((element: any) => {
             if (
@@ -340,7 +333,6 @@ export class IpmUpdateSaveComponent implements OnInit {
           uint8Array[i] = binaryData.charCodeAt(i);
         }
         let blob: any;
-        console.log(fileExtension);
         if (fileExtension == 'pdf' || fileExtension == 'PDF') {
           blob = new Blob([uint8Array], { type: 'application/pdf' });
         } else {
@@ -357,8 +349,6 @@ export class IpmUpdateSaveComponent implements OnInit {
       });
   }
   previewDocument(row, type) {
-    console.log(row);
-    console.log(type);
     let fileExtension;
     let selectedFile;
     if (type == 'document') {
@@ -381,7 +371,6 @@ export class IpmUpdateSaveComponent implements OnInit {
         }
         let blob: any;
 
-        console.log(fileExtension);
         if (fileExtension === 'pdf' || fileExtension === 'PDF') {
           blob = new Blob([uint8Array], { type: 'application/pdf' });
           this.url = window.URL.createObjectURL(blob);
@@ -409,12 +398,9 @@ export class IpmUpdateSaveComponent implements OnInit {
     return fileExtension;
   }
   onGetRequestNo() {
-    console.log('Bharat');
-
     this.limsService
       .getResquestNoIDForURS(this.ff0001)
       .subscribe((data: any) => {
-        console.log(data);
         this.lc0003 = data.data[0].lc0003;
         if (this.lc0003) {
           this.onLoadEventClassification(this.lc0003);
@@ -426,11 +412,9 @@ export class IpmUpdateSaveComponent implements OnInit {
       });
   }
   onGetQMSRequestNo() {
-    console.log('Bharat');
     this.limsService
       .getResquestNoIDForQMS(this.ff0001)
       .subscribe((data: any) => {
-        console.log(data);
         this.lc0003 = data.data[0].lc0003;
         if (this.lc0003) {
           // this.onLoadEventClassification(this.lc0003);
@@ -442,9 +426,7 @@ export class IpmUpdateSaveComponent implements OnInit {
       });
   }
   onGetCCRequestNo() {
-    console.log('Bharat');
     this.limsService.getResquestNoIDForCC(this.ff0001).subscribe((data: any) => {
-      console.log(data);
       this.lc0003 = data.data[0].lc0003;
       if (this.lc0003) {
         this.onLoadEventClassification(this.lc0003);
@@ -465,12 +447,10 @@ export class IpmUpdateSaveComponent implements OnInit {
     this.limsService.getNextStageList(body).subscribe((data: any) => {
       this.nextStageListData = data.data.nstage;
       this.previousStageListData = data.data.pstage;
-      console.log(this.nextStageListData);
     });
   }
 
   getHeaderData(event: any) {
-    console.log(event);
     this.headerData = event;
     this.onReviewData();
     if (this.headerData) {
@@ -483,7 +463,6 @@ export class IpmUpdateSaveComponent implements OnInit {
       value4: '',
       value5: '',
     });
-    console.log(this.ccLineItemIndexDTOList);
   }
   addNewRow() {
     this.lineItemData.push({
@@ -606,7 +585,6 @@ export class IpmUpdateSaveComponent implements OnInit {
   }
 
   onCallSubmitApi() {
-    console.log(this.headerData);
     let body = {
       lcNumber: this.headerData?.lcnum,
       lcrqNumber: this.pageData?.requestNo,
@@ -669,12 +647,10 @@ export class IpmUpdateSaveComponent implements OnInit {
         this.createUpdateDocumentList = result;
         if (this.createUpdateDocumentList.result) {
           this.documentListData = this.createUpdateDocumentList.result;
-          console.log(this.documentListData);
           this.documentListTableData = new MatTableDataSource(
             this.documentListData
           );
         }
-        console.log(this.createUpdateDocumentList);
       }
     });
   }
@@ -743,7 +719,6 @@ export class IpmUpdateSaveComponent implements OnInit {
     // if (!item.actionAttachmentList) {
     //////////// item.actionAttachmentList = [{}];
     //}
-    console.log(item.actionAttachmentList);
     // Check if the document name is provided before proceeding
     if (this.CCRequirementForm.controls['documentName'].value) {
       // Add new action attachment object
@@ -768,10 +743,6 @@ export class IpmUpdateSaveComponent implements OnInit {
     return objects.filter((obj) => Object.keys(obj).length > 0);
   }
   async onSaveConfirmation(btnStatus: any) {
-    console.log(this.lineItemData);
-    console.log(this.documentListData);
-    console.log(this.actionDtoList);
-    console.log(btnStatus);
     const component = await this.remoteLoader.loadComponentByKey(
       'CommonESignatureComponent'
     );
@@ -791,8 +762,6 @@ export class IpmUpdateSaveComponent implements OnInit {
     });
   }
   async onSaveUpdate(btnStatus: any) {
-    console.log(this.actionDtoList);
-    console.log(this.ccLineItemIndexDTOList);
     if (
       this.FooterForm.controls['nextStage'].value == '' ||
       this.FooterForm.controls['nextStage'].value == undefined
@@ -809,10 +778,7 @@ export class IpmUpdateSaveComponent implements OnInit {
     this.isLoading = true;
     let actionAttachmentList: any[] = [];
     let bodyData = await this.formatRequestBody();
-    console.log(this.body1);
     //this.body1.actionDtoList.
-    console.log(this.body1.actionDtoList);
-
     const rowWiseActionAttachmentList = [];
     this.body1.actionDtoList.forEach((obj) => {
       if (obj.actionAttachmentList) {
@@ -835,26 +801,17 @@ export class IpmUpdateSaveComponent implements OnInit {
         rowWiseActionAttachmentList.push(currentRowAttachments);
       }
     });
-    console.log(rowWiseActionAttachmentList);
-
-    console.log(actionAttachmentList);
     let attachmentList: any[] = [];
-    console.log(this.body1.ccAttachmentList);
     if (this.body1.ccAttachmentList) {
       this.body1.ccAttachmentList.forEach((obj) => {
-        console.log(obj.selectedFileList);
         if (obj.selectedFileList) {
           attachmentList.push(obj.selectedFileList);
         }
       });
     }
-    console.log(attachmentList);
-    console.log(actionAttachmentList);
     this.limsService
       .onIPMSaveUpdate(rowWiseActionAttachmentList, attachmentList, this.body1)
       .subscribe((data: any) => {
-        // console.log(data)
-        console.log(this.body1);
         if (data.errorInfo != null) {
           this.dialog.open(MessageDialogComponent, {
             data: {
@@ -864,7 +821,6 @@ export class IpmUpdateSaveComponent implements OnInit {
           });
         } else {
           this.notificationService.showSuccess(data.status, () => {
-            console.log('Success Snackbar Closed');
           });
           timer(2000)
             .pipe(takeUntil(this.destroy$))
@@ -877,7 +833,6 @@ export class IpmUpdateSaveComponent implements OnInit {
   }
 
   formatRequestBody() {
-    console.log(this.ccLineItemIndexDTOList);
     let startDate1 = moment(
       this.UserRequirementForm.controls['ff0002'].value
     ).format('DD-MM-YYYY HH:mm:ss.SSS');
@@ -1017,7 +972,6 @@ export class IpmUpdateSaveComponent implements OnInit {
       // "ccAttachmentList": [...this.UserRoleTableAttachment]
       ccAttachmentList: [...this.documentListData],
     };
-    console.log(this.actionDtoList);
     this.actionDtoList.forEach((action) => {
       if (
         !action.ccLineItemIndexDTOList ||
@@ -1028,13 +982,8 @@ export class IpmUpdateSaveComponent implements OnInit {
         action.ccLineItemIndexDTOList = [];
       }
     });
-    console.log(this.actionDtoList);
-    console.log(this.body1.ccLineItemDtoList);
-    console.log(this.body1.ccLineItemDtoList[0].ccLineItemIndexDTOList);
-    console.log(this.body1);
   }
   async onSubmit(btnStatus: any) {
-    console.log(btnStatus);
     const component = await this.remoteLoader.loadComponentByKey(
       'CommonESignatureComponent'
     );
@@ -1088,7 +1037,6 @@ export class IpmUpdateSaveComponent implements OnInit {
         this.EventForm.controls['ff0001'].value *
         this.EventForm.controls['ff0002'].value *
         this.EventForm.controls['ff0003'].value;
-      console.log(rpnValue);
       this.EventForm.controls['ff0004'].setValue(rpnValue);
       if (rpnValue <= 6) {
         this.isRiskFlag = false;
@@ -1115,7 +1063,6 @@ export class IpmUpdateSaveComponent implements OnInit {
       this.EventForm.controls['ff0004'].setValue('');
       this.EventForm.controls['ff0005'].setValue('');
       this.isRiskFlag = false;
-      console.log('else block');
     }
   }
   checkFieldValue(value: any) {
@@ -1175,14 +1122,12 @@ export class IpmUpdateSaveComponent implements OnInit {
   }
 
   onLoadInputApi() {
-    console.log(this.headerData);
     let businessunit = this.headerData.unitcode;
     let module = 'IPMA';
     let mainModule = 'IPM';
     this.limsService
       .onLoadInputNewAPI(businessunit, module, mainModule)
       .subscribe((data: any) => {
-        console.log(data);
         this.sList = data.data.slist;
         this.oList = data.data.olist;
         this.dList = data.data.dlist;
