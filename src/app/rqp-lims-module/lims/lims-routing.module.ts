@@ -353,108 +353,108 @@ const routes: Routes = [
     path: 'cq-home',
     component: CqHomeComponent,
   },
-   {
+  {
     path: 'cu-home',
     component: CuHomeComponent,
   },
-   {
+  {
     path: 'home-page-instrument-status',
     component: HomePageInstrumentStatusComponent,
   },
-   {
+  {
     path: 'cpm-home-page',
     component: CpmHomePageComponent,
   },
-   {
+  {
     path: 'ipm-initiator',
     component: IpmInitiatorComponent,
   },
-   {
+  {
     path: 'ipm-update',
     component: IpmUpdateComponent,
   },
-   {
+  {
     path: 'ipm-update-save',
     component: IpmUpdateSaveComponent,
   },
-   {
+  {
     path: 'ipm-reviewer',
     component: IpmReviewerComponent,
   },
-   {
+  {
     path: 'ipm-reviewer-save',
     component: IpmReviewerSaveComponent,
   },
- 
+
   {
-   path: 'ism-home',
+    path: 'ism-home',
     component: IsmHomeComponent,
   },
- 
-  
-    {
+
+
+  {
     path: 'ism-initiator',
     component: IsmInitiatorComponent,
   },
-   {
+  {
     path: 'ism-update',
     component: IsmUpdateComponent,
   },
-   {
+  {
     path: 'ism-update-home-page',
     component: IsmUpdateHomePageComponent,
   },
-   {
+  {
     path: 'ism-reviewer',
     component: IsmReviewerComponent,
   },
-   {
+  {
     path: 'ism-reviewer-home-page',
     component: IsmReviewerHomePageComponent,
   },
- 
-  
-   
-  
+
+
+
+
   //  {
   //  path: 'ism-update',
   //   component: IsmUpdateComponent,
   // },
-   {
-   path: 'ism-update-home-page',
+  {
+    path: 'ism-update-home-page',
     component: IsmUpdateHomePageComponent,
-   },
+  },
 
-   {
-  path: 'ism-completed',
-  component: IsmCompletedComponent,
+  {
+    path: 'ism-completed',
+    component: IsmCompletedComponent,
   },
   {
-  path: 'ism-completed-save',
+    path: 'ism-completed-save',
     component: IsmCompletedSaveComponent,
   },
   {
-  path: 'home-page-prevnt-main-sche',
+    path: 'home-page-prevnt-main-sche',
     component: HomePagePrevntMainScheComponent,
   },
   {
-  path: 'ipm-home',
+    path: 'ipm-home',
     component: IpmHomeComponent,
   },
   {
-  path: 'ipm-completed',
+    path: 'ipm-completed',
     component: IpmCompletedComponent,
   },
   {
-  path: 'ipm-completed-save',
+    path: 'ipm-completed-save',
     component: IpmCompletedSaveComponent,
   },
   {
-  path: 'cum-home-page',
+    path: 'cum-home-page',
     component: CumHomePageComponent,
   },
   {
-  path: 'pcm-home-page',
+    path: 'pcm-home-page',
     component: PcmHomePageComponent,
   },
   {
