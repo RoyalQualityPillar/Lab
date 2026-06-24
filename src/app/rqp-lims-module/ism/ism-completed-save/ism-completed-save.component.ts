@@ -41,6 +41,8 @@ export class IsmCompletedSaveComponent implements OnInit {
   rctMasterList: any;
   public ff0005: number;
   ctMasterList: any;
+  tableDataAttachment: any;
+  selectedFileListAttachment: any;
   actionDtoList: any = [{}];
   nextStageListData: any;
   headerRequestBody: any;
@@ -106,6 +108,11 @@ export class IsmCompletedSaveComponent implements OnInit {
     'ff0005',
     'removeRow',
   ];
+  AddedUserdisplayedColumnsAttachment: string[] = [
+    'documentName',
+    'categoryTypes',
+    'removeRow',
+  ];
   constructor(
     public router: ActivatedRoute,
     private limsService: LimsService,
@@ -161,6 +168,8 @@ export class IsmCompletedSaveComponent implements OnInit {
       pageName: 'lims',
     };
 
+
+
     this.router.queryParams.subscribe((params: any) => {
       this.ff0003 = params.ff0003;
       this.pageData = {
@@ -185,27 +194,14 @@ export class IsmCompletedSaveComponent implements OnInit {
     this.headerRequestBody = this.lifeCycleDataService.getSelectedRowData();
     this.onLoadNextStageData();
 
-    // this.onLoadNextStageData();
-    // this.headerRequestBody=this.lifeCycleDataService.getSelectedRowData();
-    // if(this.headerRequestBody.lifeCycleCode){
-    //   this.onLoadEventClassification(this.headerRequestBody.lifeCycleCode)
-    // }
+
+
+   
   }
   ngAfterViewInit(): void {}
-
-  // onReviewData() {
-  //   this.qmsService
-  //     .onCommentsData(this.ff0001, this.headerData.lcnum,this.ff0005)
-  //     .subscribe((data: any) => {
-  //       this.reviewCommentsData = data.data;
-  //       this.commentsDataSource = new MatTableDataSource(
-  //         this.reviewCommentsData
-  //       );
-  //     });
-  // }
-
   onLoadEventClassification(lc0003: any) {
     this.limsService.getEventClassification(lc0003).subscribe((data: any) => {
+      console.log(data);
       this.dataSource = data.data[0];
       this.EventForm.controls['ff0001'].setValue(this.dataSource.ff0001);
       this.EventForm.controls['ff0002'].setValue(this.dataSource.ff0002);
@@ -216,7 +212,6 @@ export class IsmCompletedSaveComponent implements OnInit {
       // this.tableData = new MatTableDataSource(this.dataSource);
     });
   }
-
   getLoadActionItem(lc0003: any) {
     this.limsService.getEventActionItem(lc0003).subscribe((response: any) => {
       if (response && response.data && response.data.actionDtoList) {
@@ -231,7 +226,7 @@ export class IsmCompletedSaveComponent implements OnInit {
           });
         }
         this.actionDtoList = response.data.actionDtoList;
-
+       
       } else {
         this.actionDtoList = []; // Ensure it's an array if no data is returned
       }
@@ -243,7 +238,6 @@ export class IsmCompletedSaveComponent implements OnInit {
       this.lineItemData = data.data;
     });
   }
-
   IssueDetails(lc0003: any) {
     this.limsService.getCCIssueDetails(lc0003).subscribe((data: any) => {
       this.issueDetailData = data.data[0];
@@ -255,6 +249,7 @@ export class IsmCompletedSaveComponent implements OnInit {
         'DD-MM-YYYY HH:mm:ss.SSS'
       ).toISOString();
       this.UserRequirementForm.controls['ff0002'].setValue(ff0002Data);
+      console.log(this.UserRequirementForm.controls['ff0002'].value);
       let ff0003Data = moment(
         this.issueDetailData.ff0003,
         'DD-MM-YYYY HH:mm:ss.SSS'
@@ -326,7 +321,7 @@ export class IsmCompletedSaveComponent implements OnInit {
         window.URL.revokeObjectURL(url);
       });
   }
-  previewDocument(row, type) {   
+  previewDocument(row, type) {
     let fileExtension;
     let selectedFile;
     if (type == 'document') {
@@ -376,7 +371,6 @@ export class IsmCompletedSaveComponent implements OnInit {
     return fileExtension;
   }
   onGetQMSRequestNo() {
-
     this.limsService
       .getResquestNoIDForQMS(this.ff0001)
       .subscribe((data: any) => {
@@ -464,10 +458,40 @@ export class IsmCompletedSaveComponent implements OnInit {
       this.lineItemData.splice(lineIndex, 1);
     }
   }
+   addRemoveEventRow(row: any) {
+    const index = this.ccLineItemIndexDTOList.indexOf(row);
+    if (index !== -1) {
+      this.ccLineItemIndexDTOList.splice(index, 1);
+    }
+  }
+   onCreateSelectedDataListAttachment() {
+    this.selectedFileListAttachment.push(this.selectedFiles);
+    this.UserRoleTableAttachment.push({
+      uc0001: null,
+      selectedFileList: this.selectedFilesAttachment,
+      documentName: this.CCRequirementForm.controls['documentName'].value,
+      // categoryTypes: this.CCRequirementForm.controls['categoryTypes'].value,
+      ff0001: this.CCRequirementForm.controls['documentName'].value,
+      ff0005: 'AT',
+      ff0015: 'att',
+      documentAction: 'CREATE',
+    });
+    // this.documentDtoListAttachment.push({
+    //   uc0001:null,
+    //   selectedFileList: this.selectedFilesAttachment,
+    //   ff0001: this.CCRequirementForm.controls['documentName'].value,
+    //   ff0005: this.CCRequirementForm.controls['categoryTypes'].value,
+    //   documentAction:'CREATE'
+    // });
+    this.tableDataAttachment = new MatTableDataSource(
+      this.UserRoleTableAttachment
+    );
+  }
   /********************************LOV LIST ***************************************** */
 
   /********************************************************************** */
 
+  
   openNextStageLov() {
     this.displayedColumns = [
       { field: 'stage', title: 'Code' },
@@ -565,7 +589,6 @@ export class IsmCompletedSaveComponent implements OnInit {
   }
 
   /************************************************************************************ */
-
   addNewDocumentDetailRow(title: any) {
     const dialogRef = this.dialog.open(CommonFileUploadComponent, {
       height: '300px',
@@ -584,6 +607,7 @@ export class IsmCompletedSaveComponent implements OnInit {
         this.createUpdateDocumentList = result;
         if (this.createUpdateDocumentList.result) {
           this.documentListData = this.createUpdateDocumentList.result;
+          console.log(this.documentListData);
           this.documentListTableData = new MatTableDataSource(
             this.documentListData
           );
@@ -613,6 +637,11 @@ export class IsmCompletedSaveComponent implements OnInit {
       ff0014: '',
       ff0015: '',
       ff0016: '',
+      ff0017: '',
+      ff0018: '',
+      ff0019: '',
+      ff0020: '',
+      ff0021: '',
       lc0001: '',
       lc0002: '',
       lc0003: '',
@@ -673,7 +702,7 @@ export class IsmCompletedSaveComponent implements OnInit {
   filterEmptyObjects(objects: any[]): any[] {
     return objects.filter((obj) => Object.keys(obj).length > 0);
   }
-  // onSaveConfirmation(btnStatus: any) { 
+  // onSaveConfirmation(btnStatus: any) {
   //   const dialogRef = this.dialog.open(QMSESignatureComponent, {
   //     height: '300px',
   //     width: '600px',
@@ -731,7 +760,7 @@ export class IsmCompletedSaveComponent implements OnInit {
       error: (err) => console.log(err),
     });
   }
-  async onSaveUpdate(btnStatus: any) {  
+  async onSaveUpdate(btnStatus: any) {
     if (
       this.FooterForm.controls['nextStage'].value == '' ||
       this.FooterForm.controls['nextStage'].value == undefined
@@ -748,8 +777,7 @@ export class IsmCompletedSaveComponent implements OnInit {
     this.isLoading = true;
     let actionAttachmentList: any[] = [];
     let bodyData = await this.formatRequestBody();
-    //this.body1.actionDtoList.
-
+    
     const rowWiseActionAttachmentList = [];
     this.body1.actionDtoList.forEach((obj) => {
       if (obj.actionAttachmentList) {
@@ -772,7 +800,7 @@ export class IsmCompletedSaveComponent implements OnInit {
         rowWiseActionAttachmentList.push(currentRowAttachments);
       }
     });
-
+    
     let attachmentList: any[] = [];
     if (this.body1.ccAttachmentList) {
       this.body1.ccAttachmentList.forEach((obj) => {
@@ -781,7 +809,6 @@ export class IsmCompletedSaveComponent implements OnInit {
         }
       });
     }
-
     this.limsService
       .onISMSaveUpdate(rowWiseActionAttachmentList, attachmentList, this.body1)
       .subscribe((data: any) => {
@@ -868,6 +895,16 @@ export class IsmCompletedSaveComponent implements OnInit {
           ff0009: '2025-01-30T08:21:36.531Z',
           ff0010: '2025-01-30T08:21:36.531Z',
           ff0011: 'string',
+           ff0012: this.UserRequirementForm.controls['title'].value,
+          ff0013: this.UserRequirementForm.controls['status'].value,
+          ff0014: this.UserRequirementForm.controls['market'].value,
+          ff0015: this.UserRequirementForm.controls['customerName'].value,
+          ff0016: this.UserRequirementForm.controls['productImpact'].value,
+          ff0017: this.UserRequirementForm.controls['batchImpact'].value,
+          ff0018: this.UserRequirementForm.controls['validationImpact'].value,
+          ff0019: this.UserRequirementForm.controls['dataIntegrityImpact'].value,
+          ff0020: this.UserRequirementForm.controls['regulatoryImpact'].value,
+          ff0021: this.UserRequirementForm.controls['investigationRequired'].value,
           lc0001: 'string',
           lc0002: 'string',
           lc0003: 'string',
@@ -938,7 +975,7 @@ export class IsmCompletedSaveComponent implements OnInit {
       ) {
         action.ccLineItemIndexDTOList = [];
       }
-    });   
+    });
   }
   async onSubmit(btnStatus: any) {
     const component = await this.remoteLoader.loadComponentByKey(
@@ -1085,6 +1122,7 @@ export class IsmCompletedSaveComponent implements OnInit {
     this.limsService
       .onLoadInputNewAPI(businessunit, module, mainModule)
       .subscribe((data: any) => {
+        console.log(data);
         this.sList = data.data.slist;
         this.oList = data.data.olist;
         this.dList = data.data.dlist;
@@ -1310,6 +1348,62 @@ export class IsmCompletedSaveComponent implements OnInit {
       }
     });
   }
+    removeRowAttachment(row: any) {
+      const index = this.UserRoleTableAttachment.indexOf(row);
+      if (index !== -1) {
+        this.UserRoleTableAttachment.splice(index, 1);
+      }
+      console.log(this.UserRoleTableAttachment);
+      this.tableDataAttachment = new MatTableDataSource(
+        this.UserRoleTableAttachment
+      );
+    }
+      openItemSubCategoryLov(index: any) {
+      this.displayedColumns = [
+        { field: 'icsCode', title: 'Item Subcategory Name' },
+        { field: 'icsName', title: 'Item Subcategory Code' },
+      ];
+      const dialogRef = this.dialog.open(LovDialogComponent, {
+        height: '500px',
+        width: '600px',
+        data: {
+          dialogTitle: 'Item Subcategory',
+          dialogColumns: this.displayedColumns,
+          dialogData: this.icsMasterList,
+          lovName: 'businessUnitList',
+        },
+        disableClose: true,
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          this.selectedDialogData = result.data;
+          this.ccLineItemIndexDTOList[index].ff0002 = result.data.icsCode;
+        }
+      });
+    }
+     openItemCategoryLov(index: any) {
+        this.displayedColumns = [
+          { field: 'itemCode', title: 'Item Name' },
+          { field: 'itemName', title: 'Item Code' },
+        ];
+        const dialogRef = this.dialog.open(LovDialogComponent, {
+          height: '500px',
+          width: '600px',
+          data: {
+            dialogTitle: 'Item Category',
+            dialogColumns: this.displayedColumns,
+            dialogData: this.itemCategoryList,
+            lovName: 'businessUnitList',
+          },
+          disableClose: true,
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+          if (result) {
+            this.selectedDialogData = result.data;
+            this.ccLineItemIndexDTOList[index].ff0001 = result.data.itemCode;
+          }
+        });
+      }
   buttonConfig = [
     { label: 'Return', getPayload: () => this.calculateReturnPayload() },
     { label: 'Submit', getPayload: () => this.calculateReturnPayload() },

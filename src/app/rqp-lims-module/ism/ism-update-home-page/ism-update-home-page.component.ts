@@ -20,11 +20,7 @@ import { CommonFileUploadComponent } from 'src/app/common/common-file-upload/com
 //import { IpmReviewerComponent } from '../ipm-reviewer/ipm-reviewer.component';
 import { DmsService } from 'src/app/service/dms.service';
 import { NciReviewDetailComponent } from 'src/app/rqp-qms-module/nci-review-detail/nci-review-detail.component';
-import { MatPaginator } from '@angular/material/paginator';
 
-interface Row {
-  files: File[];
-}
 @Component({
   selector: 'app-ism-update-home-apge',
   standalone: false,
@@ -32,7 +28,6 @@ interface Row {
   styleUrl: './ism-update-home-page.component.scss'
 })
 export class IsmUpdateHomePageComponent implements OnInit {
-  @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   EventForm: FormGroup;
   isReadonly = true;
@@ -50,8 +45,7 @@ export class IsmUpdateHomePageComponent implements OnInit {
   rctMasterList: any;
   private ff0005: number;
   ctMasterList: any;
-  //actionDtoList: any = [{}];
-   actionDtoList: any[] = [];
+  actionDtoList: any = [{}];
   nextStageListData: any;
   headerRequestBody: any;
   previousStageListData: any;
@@ -64,16 +58,17 @@ export class IsmUpdateHomePageComponent implements OnInit {
   documentListData: any;
   reviewCommentsData: any;
   commentsDataSource: any;
+  tableDataAttachment: any;
   dataSource: any;
   copiedData: any;
   tableData: any;
   dataSourceActionItem: any;
   tableDataActionItem: any;
   documentListTableData: any;
+  selectedFileListAttachment: File[] = [];
   lineItemData: any;
   issueDetailData: any;
   fileType: any;
-  public dataValue: any;
   url: any;
   headerData: any;
   displayedColumns: any;
@@ -117,6 +112,11 @@ export class IsmUpdateHomePageComponent implements OnInit {
     'ff0005',
     'removeRow',
   ];
+  AddedUserdisplayedColumnsAttachment: string[] = [
+    'documentName',
+    'categoryTypes',
+    'removeRow',
+  ];
   constructor(
     public router: ActivatedRoute,
     private limsService: LimsService,
@@ -136,10 +136,16 @@ export class IsmUpdateHomePageComponent implements OnInit {
       ff0001: [''],
       ff0002: [''],
       ff0003: [''],
-      departmentCode: [''],
+      status: [''],
+      title: [''],
       market: [''],
       customerName: [''],
-       changeClassification: [''],
+      productImpact: [''],
+      batchImpact: [''],
+      validationImpact: [''],
+      dataIntegrityImpact: [''],
+      regulatoryImpact: [''],
+      investigationRequired: [''],
     });
     this.FooterForm = this.fb.group({
       nextStage: [''],
@@ -176,10 +182,7 @@ export class IsmUpdateHomePageComponent implements OnInit {
       pageName: 'lims',
     };
 
-   const updateData = sessionStorage.getItem('selectedRow');
-    let params: any = null;
-    if (updateData) {
-      params = JSON.parse(updateData);
+    this.router.queryParams.subscribe((params: any) => {
       this.ff0003 = params.ff0003;
       this.pageData = {
         pageName: 'qtUpdateDetail',
@@ -195,10 +198,10 @@ export class IsmUpdateHomePageComponent implements OnInit {
       };
       this.ff0001 = params.uc0001;
       this.ff0005 = params.ff0007;
-    }
+    });
     if (this.ff0001) {
       this.onGetQMSRequestNo();
-      this.onGetISMRequestNo();
+      this.onGetCCRequestNo();
     }
     this.headerRequestBody = this.lifeCycleDataService.getSelectedRowData();
     this.onLoadNextStageData();
@@ -269,18 +272,6 @@ export class IsmUpdateHomePageComponent implements OnInit {
       this.UserRequirementForm.controls['ff0001'].setValue(
         this.issueDetailData.ff0001
       );
-      this.UserRequirementForm.controls['departmentCode'].setValue(
-        this.issueDetailData.ff0012
-      );
-      this.UserRequirementForm.controls['market'].setValue(
-        this.issueDetailData.ff0013
-      );
-      this.UserRequirementForm.controls['customerName'].setValue(
-        this.issueDetailData.ff0014
-      );
-       this.UserRequirementForm.controls['changeClassification'].setValue(
-        this.issueDetailData.ff0015
-      );
       let ff0002Data = moment(
         this.issueDetailData.ff0002,
         'DD-MM-YYYY HH:mm:ss.SSS'
@@ -295,7 +286,7 @@ export class IsmUpdateHomePageComponent implements OnInit {
   }
 
   getDocumentList() {
-    let moduleCode = 'ISM'
+    let moduleCode = 'ISM';
     this.limsService
       .documentList(this.lc0003, moduleCode)
       .subscribe((data: any) => {
@@ -407,14 +398,10 @@ export class IsmUpdateHomePageComponent implements OnInit {
     return fileExtension;
   }
   onGetRequestNo() {
-
     this.limsService
       .getResquestNoIDForURS(this.ff0001)
       .subscribe((data: any) => {
-         const lc0004 = data.data[0].lc0004;
-        const lc0005 = data.data[0].lc0002;
         this.lc0003 = data.data[0].lc0003;
-        const ff0001 = data.data[0].ff0001;
         if (this.lc0003) {
           this.onLoadEventClassification(this.lc0003);
           // this.getLoadActionItem(this.lc0003);
@@ -438,7 +425,7 @@ export class IsmUpdateHomePageComponent implements OnInit {
         }
       });
   }
-  onGetISMRequestNo() {
+  onGetCCRequestNo() {
     this.limsService.getResquestNoIDForCC(this.ff0001).subscribe((data: any) => {
       this.lc0003 = data.data[0].lc0003;
       if (this.lc0003) {
@@ -508,6 +495,36 @@ export class IsmUpdateHomePageComponent implements OnInit {
     if (this.lineItemData[lineIndex].ccLineItemIndexDTOList.length === 0) {
       this.lineItemData.splice(lineIndex, 1);
     }
+  }
+  addRemoveEventRow(row: any) {
+    const index = this.ccLineItemIndexDTOList.indexOf(row);
+    if (index !== -1) {
+      this.ccLineItemIndexDTOList.splice(index, 1);
+    }
+  }
+
+   onCreateSelectedDataListAttachment() {
+    this.selectedFileListAttachment.push(this.selectedFiles);
+    this.UserRoleTableAttachment.push({
+      uc0001: null,
+      selectedFileList: this.selectedFilesAttachment,
+      documentName: this.CCRequirementForm.controls['documentName'].value,
+      // categoryTypes: this.CCRequirementForm.controls['categoryTypes'].value,
+      ff0001: this.CCRequirementForm.controls['documentName'].value,
+      ff0005: 'AT',
+      ff0015: 'att',
+      documentAction: 'CREATE',
+    });
+    // this.documentDtoListAttachment.push({
+    //   uc0001:null,
+    //   selectedFileList: this.selectedFilesAttachment,
+    //   ff0001: this.CCRequirementForm.controls['documentName'].value,
+    //   ff0005: this.CCRequirementForm.controls['categoryTypes'].value,
+    //   documentAction:'CREATE'
+    // });
+    this.tableDataAttachment = new MatTableDataSource(
+      this.UserRoleTableAttachment
+    );
   }
   /********************************LOV LIST ***************************************** */
 
@@ -636,6 +653,7 @@ export class IsmUpdateHomePageComponent implements OnInit {
       }
     });
   }
+  
   addActionItemRow() {
     // this.actionDtoList.push({
 
@@ -658,6 +676,11 @@ export class IsmUpdateHomePageComponent implements OnInit {
       ff0014: '',
       ff0015: '',
       ff0016: '',
+      ff0017: '',
+      ff0018: '',
+      ff0019: '',
+      ff0020: '',
+      ff0021: '',
       lc0001: '',
       lc0002: '',
       lc0003: '',
@@ -719,7 +742,6 @@ export class IsmUpdateHomePageComponent implements OnInit {
     return objects.filter((obj) => Object.keys(obj).length > 0);
   }
   async onSaveConfirmation(btnStatus: any) {
-    
     const component = await this.remoteLoader.loadComponentByKey(
       'CommonESignatureComponent'
     );
@@ -738,7 +760,7 @@ export class IsmUpdateHomePageComponent implements OnInit {
       }
     });
   }
-  async onSaveUpdate(btnStatus: any) {   
+  async onSaveUpdate(btnStatus: any) {
     if (
       this.FooterForm.controls['nextStage'].value == '' ||
       this.FooterForm.controls['nextStage'].value == undefined
@@ -756,7 +778,6 @@ export class IsmUpdateHomePageComponent implements OnInit {
     let actionAttachmentList: any[] = [];
     let bodyData = await this.formatRequestBody();
     //this.body1.actionDtoList.
-
     const rowWiseActionAttachmentList = [];
     this.body1.actionDtoList.forEach((obj) => {
       if (obj.actionAttachmentList) {
@@ -767,19 +788,18 @@ export class IsmUpdateHomePageComponent implements OnInit {
         rowWiseActionAttachmentList.push(currentRowAttachments);
       }
     });
-   // this.body1.actionDtoList.forEach((obj) => {
-     // const actionAttachmentList = obj.actionAttachmentList || [];
-      //const currentRowAttachments = [];
-      //actionAttachmentList.forEach((attachment) => {
-        //if (attachment.selectedFileList) {
-          //currentRowAttachments.push(attachment.selectedFileList);
-        //}
-      //});
-      //if (currentRowAttachments) {
-        //rowWiseActionAttachmentList.push(currentRowAttachments);
-      //}
-    //});
-
+    this.body1.actionDtoList.forEach((obj) => {
+      const actionAttachmentList = obj.actionAttachmentList || [];
+      const currentRowAttachments = [];
+      actionAttachmentList.forEach((attachment) => {
+        if (attachment.selectedFileList) {
+          currentRowAttachments.push(attachment.selectedFileList);
+        }
+      });
+      if (currentRowAttachments) {
+        rowWiseActionAttachmentList.push(currentRowAttachments);
+      }
+    });
     let attachmentList: any[] = [];
     if (this.body1.ccAttachmentList) {
       this.body1.ccAttachmentList.forEach((obj) => {
@@ -788,11 +808,9 @@ export class IsmUpdateHomePageComponent implements OnInit {
         }
       });
     }
-  
     this.limsService
       .onISMSaveUpdate(rowWiseActionAttachmentList, attachmentList, this.body1)
       .subscribe((data: any) => {
-  
         if (data.errorInfo != null) {
           this.dialog.open(MessageDialogComponent, {
             data: {
@@ -849,7 +867,7 @@ export class IsmUpdateHomePageComponent implements OnInit {
       eventClasificationDtoList: [
         {
           uc0001: this.dataSource.uc0001,
-          ff0001:this.EventForm.controls['ff0001'].value,
+          ff0001: this.EventForm.controls['ff0001'].value,
           ff0002: this.EventForm.controls['ff0002'].value,
           ff0003: this.EventForm.controls['ff0003'].value,
           ff0004: this.EventForm.controls['ff0004'].value,
@@ -871,7 +889,6 @@ export class IsmUpdateHomePageComponent implements OnInit {
       ccCommonDataDtoList: [
         {
           uc0001: this.dataSource.uc0001,
-           unitcode: this.headerData.unitcode,
           ff0001: this.UserRequirementForm.controls['ff0001'].value, //description
           ff0002: startDate, //start date
           ff0003: endDate, //end date
@@ -883,6 +900,16 @@ export class IsmUpdateHomePageComponent implements OnInit {
           ff0009: '2025-01-30T08:21:36.531Z',
           ff0010: '2025-01-30T08:21:36.531Z',
           ff0011: 'string',
+          ff0012: this.UserRequirementForm.controls['title'].value,
+          ff0013: this.UserRequirementForm.controls['status'].value,
+          ff0014: this.UserRequirementForm.controls['market'].value,
+          ff0015: this.UserRequirementForm.controls['customerName'].value,
+          ff0016: this.UserRequirementForm.controls['productImpact'].value,
+          ff0017: this.UserRequirementForm.controls['batchImpact'].value,
+          ff0018: this.UserRequirementForm.controls['validationImpact'].value,
+          ff0019: this.UserRequirementForm.controls['dataIntegrityImpact'].value,
+          ff0020: this.UserRequirementForm.controls['regulatoryImpact'].value,
+          ff0021: this.UserRequirementForm.controls['investigationRequired'].value,
           lc0001: 'string',
           lc0002: 'string',
           lc0003: 'string',
@@ -954,7 +981,6 @@ export class IsmUpdateHomePageComponent implements OnInit {
         action.ccLineItemIndexDTOList = [];
       }
     });
-
   }
   async onSubmit(btnStatus: any) {
     const component = await this.remoteLoader.loadComponentByKey(
@@ -1326,4 +1352,60 @@ export class IsmUpdateHomePageComponent implements OnInit {
       }
     });
   }
+   removeRowAttachment(row: any) {
+    const index = this.UserRoleTableAttachment.indexOf(row);
+    if (index !== -1) {
+      this.UserRoleTableAttachment.splice(index, 1);
+    }
+    console.log(this.UserRoleTableAttachment);
+    this.tableDataAttachment = new MatTableDataSource(
+      this.UserRoleTableAttachment
+    );
+  }
+    openItemSubCategoryLov(index: any) {
+    this.displayedColumns = [
+      { field: 'icsCode', title: 'Item Subcategory Name' },
+      { field: 'icsName', title: 'Item Subcategory Code' },
+    ];
+    const dialogRef = this.dialog.open(LovDialogComponent, {
+      height: '500px',
+      width: '600px',
+      data: {
+        dialogTitle: 'Item Subcategory',
+        dialogColumns: this.displayedColumns,
+        dialogData: this.icsMasterList,
+        lovName: 'businessUnitList',
+      },
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.selectedDialogData = result.data;
+        this.ccLineItemIndexDTOList[index].ff0002 = result.data.icsCode;
+      }
+    });
+  }
+   openItemCategoryLov(index: any) {
+      this.displayedColumns = [
+        { field: 'itemCode', title: 'Item Name' },
+        { field: 'itemName', title: 'Item Code' },
+      ];
+      const dialogRef = this.dialog.open(LovDialogComponent, {
+        height: '500px',
+        width: '600px',
+        data: {
+          dialogTitle: 'Item Category',
+          dialogColumns: this.displayedColumns,
+          dialogData: this.itemCategoryList,
+          lovName: 'businessUnitList',
+        },
+        disableClose: true,
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          this.selectedDialogData = result.data;
+          this.ccLineItemIndexDTOList[index].ff0001 = result.data.itemCode;
+        }
+      });
+    }
 }
