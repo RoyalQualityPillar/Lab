@@ -10,11 +10,9 @@ import { Router } from '@angular/router';
 export class IsmHomeComponent {
    constructor(private router: Router) {}
   onAllPaAssignmentDashBord() {
-    console.log('paaa');
     this.router.navigate(['./qms/cc-pa-dash-bord']);
   }
   allCompletedRecords() {
     this.router.navigate(['./rqplabui/lims/ism-completed']);
   }
-
 }

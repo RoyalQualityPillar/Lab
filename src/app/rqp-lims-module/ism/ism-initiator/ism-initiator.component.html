@@ -34,7 +34,7 @@
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-3 px-1">
           <mat-label>Serverity</mat-label>
-          <input type="text" matInput formControlName="market" placeholder="Market" />
+          <input type="text" matInput formControlName="ff0014" placeholder="Market" />
         </mat-form-field>
         <mat-form-field appearance="outline" class="col-3 px-1">
           <mat-label>Customer Name</mat-label>
@@ -164,7 +164,7 @@
           <div class="float-left"></div>
           <div class="float-right">
             <button mat-raised-button class="section-add-new-record-btn" (click)="addNewRow()">
-              Add Service
+              Add Problem
             </button>
           </div>
         </div>
@@ -319,6 +319,10 @@
     </mat-card>
   </div>
 </div>
+
+
+
+
 <app-common-comments [nextStageListData]="nextStageListData"
   (commentsData)="handleCommentsForm($event)"></app-common-comments>
 <div class="containerBTN">

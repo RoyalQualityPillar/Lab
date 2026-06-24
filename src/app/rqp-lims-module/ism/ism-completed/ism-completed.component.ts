@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './ism-completed.component.scss'
 })
 export class IsmCompletedComponent  {
-  public reviewerUrl: string = './rqplabui/lims/ism-completed';
+  public reviewerUrl: string = './rqplabui/lims/ism-completed-save';
   public isCompleted: string = 'completed';
 }
