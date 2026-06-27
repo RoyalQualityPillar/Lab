@@ -19,7 +19,8 @@
         Add New Record
       </button>
     </div>
-    <app-common-table-filter
+        <ng-template #commonTableContainer></ng-template>
+    <!-- <app-common-table-filter
       [columnConfig]="columnConfig"
       [filterOptions]="filterOptions"
       [apiUrl]="allColumnCodeIndexTableDataUrl"
@@ -31,7 +32,7 @@
       [HttpMethod]="HttpMethod"
       [params]="params"
       downloadFileName="  Column Code Index "
-    ></app-common-table-filter> 
+    ></app-common-table-filter>  -->
 
     <div style="height: 50px"></div>
   </mat-tab>
@@ -50,7 +51,8 @@
         Add New Record
       </button>
     </div>
-    <app-common-table-filter
+        <ng-template #activeRoleMasterContainer></ng-template>
+    <!-- <app-common-table-filter
       [columnConfig]="columnConfig"
       [filterOptions]="filterOptions"
       [apiUrl]="activeColumnCodeIndexTableDataUrl"
@@ -62,7 +64,7 @@
       [HttpMethod]="HttpMethod"
       [params]="params"
       downloadFileName="  Column Code Index "
-    ></app-common-table-filter>
+    ></app-common-table-filter> -->
   </mat-tab>
 </mat-tab-group>
 
