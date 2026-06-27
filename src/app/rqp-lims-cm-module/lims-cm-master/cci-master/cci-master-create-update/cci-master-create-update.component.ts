@@ -82,7 +82,7 @@ export class CciMasterCreateUpdateComponent implements OnInit {
     // this.onloadDropDown();
     this.onLoadFiDropdown();
     // this.onLoadAsgDropdown();
-    if (this.userData.type == 'Update') {
+    if (this.userData.type == 'Modification') {
       this.isReadOnly = true;
       this.isUpdate = true;
       this.onLoadFormValue();
