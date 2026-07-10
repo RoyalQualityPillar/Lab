@@ -1,0 +1,616 @@
+<div class="adjust">
+    <div class="example-table-container">
+      <app-common-header
+        [pageData]="this.pageData"
+        (headerData)="getHeaderData($event)"
+      ></app-common-header>
+    </div>
+  </div>
+  
+  <div class="table-box">
+    <div class="section_header">
+      <div class="float-left">
+        <p class="section_header_title">Product Information</p>
+      </div>
+    </div>
+  </div>
+  
+  <ng-container [formGroup]="productInformation">
+    <div class="row no-gutters ms-1 me-1 dense-4">
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Product Name</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please enter product name"
+          formControlName="productName"
+        />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Protocol No</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please enter protocol no"
+          formControlName="protocolNo"
+          readonly
+        />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Sample Description</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please enter sample description"
+          formControlName="sampleDes"
+        />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Test Parameter</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please enter text parameter"
+          formControlName="testParameter"
+        />
+      </mat-form-field>
+    </div>
+  
+    <div class="row no-gutters ms-1 me-1 dense-4">
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Standard Number</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please enter Standard Number"
+          formControlName="standardnumber"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Standard Name</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please enter Standard Name"
+          formControlName="standardname"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Analyst Name</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please enter analyst name"
+          formControlName="analystName"
+        />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Batch No</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please enter batch no"
+          formControlName="batchNo"
+        />
+      </mat-form-field>
+    </div>
+    <div class="row no-gutters ms-1 me-1 dense-4">
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>AR No</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please enter ar no"
+          formControlName="arNo"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Specification</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please enter specification"
+          formControlName="specification"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Result</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please enter result"
+          formControlName="result"
+          [ngStyle]="{ color: result ? 'green' : 'red' }"
+        />
+      </mat-form-field>
+    </div>
+  </ng-container>
+  
+  <div class="table-box">
+    <div class="section_header">
+      <div class="float-left">
+        <p class="section_header_title">Assay Calculation</p>
+      </div>
+    </div>
+  </div>
+  <ng-container [formGroup]="assayCalculationForm">
+    <div class="row no-gutters ms-1 me-1 dense-4">
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Standard Purity(%)</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please Enter Standard Purity value"
+          formControlName="standardPurity"
+        />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Component Name</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please Enter Component Name"
+          formControlName="componentName"
+        />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Component Slope</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please Enter Component Name"
+          formControlName="componentSlope"
+        />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Standard Slope</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please Enter Label Claim"
+          formControlName="standardSlope"
+        />
+      </mat-form-field>
+    </div>
+  </ng-container>
+  
+  <div class="table-box">
+    <div class="section_header">
+      <div class="float-left">
+        <p class="section_header_title">Standard Dilution</p>
+      </div>
+    </div>
+  </div>
+  <ng-container [formGroup]="standardDilutionForm">
+    <div class="row no-gutters ms-1 me-1 dense-4">
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Mg to</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please Enter Mg to value"
+          formControlName="mgToOne"
+        />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Ml</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please Enter Ml value"
+          formControlName="mlOne"
+        />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Ml to</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please Enter Ml to value"
+          formControlName="mlToTwo"
+        />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Ml</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please Enter Ml value"
+          formControlName="mlTwo"
+        />
+      </mat-form-field>
+    </div>
+  
+    <div class="row no-gutters ms-1 me-1 dense-4">
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Ml to</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please Enter Ml to value"
+          formControlName="mlToThree"
+        />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Ml</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please Enter Ml value"
+          value="1"
+          formControlName="mlThree"
+        />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Ml to</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please Enter Ml to value"
+          formControlName="mlToFour"
+        />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Ml</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please Enter Ml value"
+          formControlName="mlFour"
+        />
+      </mat-form-field>
+    </div>
+  
+    <div class="row no-gutters ms-1 me-1 dense-4">
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Ml to</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please Enter Ml to value"
+          formControlName="mlToFive"
+        />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Ml</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please Enter Ml value"
+          formControlName="mlFive"
+        />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Ml to</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please Enter Ml to value"
+          formControlName="mlToSix"
+        />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Ml</mat-label>
+        <input
+          type="text"
+          matInput
+          readonly
+          placeholder="Please Enter Ml value"
+          formControlName="mlSix"
+        />
+      </mat-form-field>
+    </div>
+  </ng-container>
+  
+  <div class="table-box">
+    <div class="section_header">
+      <div class="float-left">
+        <p class="section_header_title">Sample Information</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="ms-1 me-1">
+    <button
+      mat-raised-button
+      class="section-add-new-record-btn"
+      (click)="addFields()"
+    >
+      Add
+    </button>
+  </div>
+  
+  <!-- <div class="row no-gutters dense-4 margin-left_15_per display justify-content-center" [formGroup]="roundUpValues">
+    <mat-form-field appearance="outline" class="col-2 px-1 primary">
+      <mat-label>Select a value for Content</mat-label>
+      <mat-select formControlName="dropdownContent" (selectionChange)="forms($event)">
+        <mat-option *ngFor="let number of numbers" [value]="number.number">
+          {{ number.number }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div> -->
+  
+  <ng-container [formGroup]="sampleInformation">
+    <ng-container formArrayName="sampleInfo">
+      <ng-container *ngFor="let array of getFormArray().controls; let i = index">
+        <ng-container [formGroupName]="i">
+          <img src="/assets/delete.png" (click)="removeFields(i)" />
+          <div class="row no-gutters ms-1 me-1 dense-4">
+            <mat-form-field appearance="outline" class="col-1 px-1">
+              <mat-label>Level</mat-label>
+              <input
+                type="text"
+                matInput
+                readonly
+                placeholder="Please Enter Ml to value"
+                formControlName="level"
+              />
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline" class="col-1 px-1">
+              <mat-label>Vol.Taken (ml)</mat-label>
+              <input
+                type="text"
+                matInput
+                readonly
+                placeholder="Please Enter Ml value"
+                formControlName="volume"
+              />
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline" class="col-1 px-1">
+              <mat-label>Dilution (mL)</mat-label>
+              <input
+                type="text"
+                matInput
+                readonly
+                placeholder="Please Enter Ml to value"
+                formControlName="dilution"
+              />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-2 px-1">
+              <mat-label>Concentration (µg/mL)</mat-label>
+              <input
+                type="text"
+                matInput
+                readonly
+                placeholder="Please Enter Ml value"
+                formControlName="concentration"
+                readonly
+              />
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline" class="col-1 px-1">
+              <mat-label>Area</mat-label>
+              <input
+                type="text"
+                matInput
+                readonly
+                placeholder="Please Enter Ml value"
+                formControlName="area"
+              />
+            </mat-form-field>
+          </div>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+  
+  <div class="row no-gutters dense-4 display-end" [formGroup]="aveargeCalculate">
+    <mat-form-field appearance="outline" class="col-2 px-1 primary">
+      <mat-label>Slope</mat-label>
+      <input
+        type="text"
+        matInput
+        readonly
+        placeholder="Please Enter Ml to value"
+        formControlName="slope"
+      />
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline" class="col-2 px-1 secondary">
+      <mat-label>Intercept</mat-label>
+      <input
+        type="text"
+        matInput
+        readonly
+        placeholder="Please Enter Ml value"
+        formControlName="intercept"
+      />
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline" class="col-2 px-1 third">
+      <mat-label>Correlation coefficient</mat-label>
+      <input
+        type="text"
+        matInput
+        readonly
+        placeholder="Please Enter Ml value"
+        formControlName="correlation"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-2 px-1 third">
+      <mat-label>RRF</mat-label>
+      <input
+        type="text"
+        matInput
+        readonly
+        placeholder="Please Enter Ml value"
+        formControlName="rrf"
+      />
+    </mat-form-field>
+  </div>
+  <div class="chart-container">
+    <apx-chart
+      *ngIf="isPieChartDataAvailable"
+      [series]="linechartOptions.series"
+      [chart]="linechartOptions.chart"
+      [xaxis]="linechartOptions.xaxis"
+      [dataLabels]="linechartOptions.dataLabels"
+      [grid]="linechartOptions.grid"
+      [stroke]="linechartOptions.stroke"
+      [title]="linechartOptions.title"
+    ></apx-chart>
+  </div>
+  
+  <app-as-common-footer
+    [pageData]="this.pageData"
+    (comments)="getCommentsData($event)"
+  >
+    <!-- <div class="table-box margin-left_10 margin-right_10 margin-top_4">
+      <mat-table
+        [dataSource]="dataSource"
+        id="datTable"
+        matTableExporter
+        #exporter="matTableExporter"
+        matSort
+        class="bg-color_ghost_White"
+      >
+        <ng-container matColumnDef="createdby">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >User Id</mat-header-cell
+          >
+          <mat-cell *matCellDef="let row"> {{ row.createdby }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="ff0003">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Role Name</mat-header-cell
+          >
+          <mat-cell *matCellDef="let row"> {{ row.ff0003 }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="ff0005">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Version</mat-header-cell
+          >
+          <mat-cell *matCellDef="let row">
+            {{ onRequestVersion(row) }}
+          </mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="comments">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >Comments</mat-header-cell
+          >
+          <mat-cell *matCellDef="let row"> {{ row.comments }} </mat-cell>
+        </ng-container>
+  
+        <mat-header-row
+          *matHeaderRowDef="resviewCommentsDisplayColumn"
+        ></mat-header-row>
+        <mat-row
+          *matRowDef="let row; columns: resviewCommentsDisplayColumn"
+        ></mat-row>
+      </mat-table> 
+    </div>-->
+  </app-as-common-footer>
+  <form [formGroup]="commentForm">
+    <div class="row no-gutters me-1 dense-4">
+      <mat-form-field appearance="outline" class="col-4 px-1">
+        <mat-label>Next stage</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="nextStage"
+          placeholder="Next Stage"
+        />
+        <img
+          alt="lov img"
+          src="../../../../../../assets/searchfind.svg"
+          class="icon-size lovSearchButton"
+          color="primary"
+          (click)="openNextStageLov()"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col-4 px-1">
+        <mat-label>Previous stage</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="previousStage"
+          placeholder="Previous Stage"
+        />
+        <img
+          alt="lov img"
+          src="../../../../../../assets/searchfind.svg"
+          class="icon-size lovSearchButton"
+          color="primary"
+          (click)="openPreviousStageLov()"
+        />
+      </mat-form-field>
+    </div>
+  </form>
+  
+  <div class="containerBTN margin-top_2 margin-bottom_35">
+    <div class="d-flex justify-content-center">
+      <button
+        mat-raised-button
+        color="primary"
+        class="font_size_smaller bg-color_295ea3 height_25" 
+        (click)="downloadmrsles()"    
+      >
+       Download
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        class="font_size_smaller bg-color_295ea3 height_25 margin-left_5"      
+        (click)="downloadmrslea()">
+  
+      Download
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        class="font_size_smaller bg-color_295ea3 height_25 margin-left_5"
+        (click)="downloadmrsle()">
+  
+      Download
+      </button>
+    </div>
+  </div>
+  
+  <div class="height_50"></div>
+  

@@ -1,0 +1,29 @@
+.example-table-container {
+  min-width: 99%;
+  /* overflow-x: scroll; */
+}
+
+.mat-column-ff0001 {
+  flex: 0 0 7%;
+}
+.unit-code-container {
+  min-width: 49%;
+}
+
+.sales-code-container {
+  min-width: 49%;
+}
+
+.height_50 {
+  height: 50px;
+}
+
+.display-flex {
+  display: flex;
+  justify-content: center;
+}
+
+.display-end {
+  display: flex;
+  justify-content: end;
+}

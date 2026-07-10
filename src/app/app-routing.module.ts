@@ -40,7 +40,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./rqp-lims-spc-module/lims-spc/lims-spc.module').then((m) => m.LimsSpcModule),
   },
-   {
+  {
     path: 'lims-sm',
     loadChildren: () =>
       import('./rqp-lims-sm-module/lims-sm/lims-sm.module').then((m) => m.LimsSmModule),
@@ -59,6 +59,11 @@ const routes: Routes = [
     path: 'lims-vsm',
     loadChildren: () =>
       import('./rqp-lims-vsm-module/lims-vsm/lims-vsm.module').then((m) => m.LimsVsmModule),
+  },
+  {
+    path: 'excel',
+    loadChildren: () =>
+      import('./rqp-excel-module/excel/excel.module').then((m) => m.ExcelModule),
   },
 
 
