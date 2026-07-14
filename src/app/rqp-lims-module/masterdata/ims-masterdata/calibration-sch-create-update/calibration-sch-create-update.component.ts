@@ -333,8 +333,8 @@ export class CalibrationSchCreateUpdateComponent
         }
       });
       if (this.isStatusSuccess == false) {
-        this.DepartmentMaster.controls['ff0006'].setErrors({ incorrect: true });
         this.DepartmentMaster.controls['ff0003'].setErrors({ incorrect: true });
+        this.DepartmentMaster.controls['ff0006'].setErrors({ incorrect: true });
         this.DepartmentMaster.controls['ff0007'].setErrors({ incorrect: true });
         this.openFrequencyListLOV();
       }
@@ -383,10 +383,10 @@ export class CalibrationSchCreateUpdateComponent
       if (result) {
         this.selectedDialogData = result.data;
 
-        this.DepartmentMaster.controls['ff0003'].setValue(
+        this.DepartmentMaster.controls['ff0006'].setValue(
           this.selectedDialogData.ff0002
         );
-        this.DepartmentMaster.controls['ff0006'].setValue(
+        this.DepartmentMaster.controls['ff0003'].setValue(
           this.selectedDialogData.ff0001
         );
         this.DepartmentMaster.controls['ff0007'].setValue(
