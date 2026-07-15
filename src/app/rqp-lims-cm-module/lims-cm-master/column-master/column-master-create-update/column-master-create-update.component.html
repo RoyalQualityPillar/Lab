@@ -14,7 +14,7 @@
     </button>
   </div>
 </div>
-<div class="dmProductMasterY">
+<div class="screenOverFlowY">
   <form [formGroup]="DepartmentMaster" class="margin-top_7">
     <mat-card>
       <div class="p-2">
@@ -52,6 +52,14 @@
                   matInput
                   formControlName="ff0001"
                   placeholder="Column Type"
+                  (change)="onChangeColumnType()"
+                />
+                <img
+                  alt="lov img"
+                  src="../../../../../../assets/searchfind.svg"
+                  class="icon-size lovSearchButton"
+                  color="primary"
+                  (click)="openColumnTypeListLOV()"
                 />
               </mat-form-field>
               <mat-form-field appearance="outline" class="col-6 px-1">

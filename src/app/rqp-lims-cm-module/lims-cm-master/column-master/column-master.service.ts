@@ -9,4 +9,11 @@ import { environment } from 'src/environments/environment';
 export class ColumnMasterService {
   private API_URL = environment.apiBaseURL;
   constructor(private http: HttpClient, private cookieService: CookieService) {}
+
+bmrInput(unitCode: any) {
+   let queryParams = `?unitCode=${unitCode}`;
+    const ALLSALEPRODUCTURL = this.API_URL + 'limscm/cm-input' + queryParams;
+    return this.http.get(ALLSALEPRODUCTURL);
+  }
 }
+ 
