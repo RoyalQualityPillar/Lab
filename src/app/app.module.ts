@@ -14,8 +14,6 @@ import { SharedModule } from './common/shared.module';
 import { NciReviewDetailComponent } from './rqp-qms-module/nci-review-detail/nci-review-detail.component';
 import { DropdownListComponent } from './rqp-dms-module/sop/dropdown-list/dropdown-list.component';
 import { ActionAttachmentsListComponent } from './rqp-lims-module/ism/action-attachments-list/action-attachments-list.component';
-import { PcmCreateUpdateComponent } from './rqp-lims-module/masterdata/ims-masterdata/problem-category-master/pcm-create-update/pcm-create-update.component';
-import { PcmHomePageComponent } from './rqp-lims-module/masterdata/ims-masterdata/problem-category-master/pcm-home-page/pcm-home-page.component';
 
 // import { SharedModule } from './common/shared.module';
 
@@ -31,7 +29,7 @@ import { PcmHomePageComponent } from './rqp-lims-module/masterdata/ims-masterdat
     DropdownListComponent,
     ActionAttachmentsListComponent,
     MessageDialogComponent,
-
+    
 
 
 

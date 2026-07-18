@@ -21,11 +21,11 @@ const routes: Routes = [
       import('./rqp-lims-cm-module/lims-cm/lims-cm.module').then((m) => m.LimsCmModule),
   },
   {
-    path: 'lims-aqm',
-    loadChildren: () =>
-      import('./rqp-lims-aqm-module/lims-aqm/lims-aqm.module').then((m) => m.LimsAqmModule),
-  },
-  {
+  path: 'lims-aq',
+  loadChildren: () =>
+    import('./rqp-lims-aqm-module/aq/aq.module').then(m => m.AqModule)
+},
+ {
     path: 'lims-chm',
     loadChildren: () =>
       import('./rqp-lims-chm-module/lims-chm/lims-chm.module').then((m) => m.LimsChmModule),
@@ -65,6 +65,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./rqp-excel-module/excel/excel.module').then((m) => m.ExcelModule),
   },
+  //  {
+  //   path: 'lims-aq',
+  //   loadChildren: () =>
+  //     import('./rqp-lims-aq-module/lims-aq/lims-aq.module').then((m) => m.LimsAqmModule),
+  // },
 
 
 ];
