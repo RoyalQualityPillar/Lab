@@ -110,6 +110,9 @@ import { PcmCreateUpdateComponent } from '../masterdata/ims-masterdata/problem-c
 import { PcmHomePageComponent } from '../masterdata/ims-masterdata/problem-category-master/pcm-home-page/pcm-home-page.component';
 import { CalibrationScheduleMasterComponent } from '../masterdata/ims-masterdata/calibration-schedule-master/calibration-schedule-master.component';
 import { PreventiveMaintananceScheduleMasterComponent } from '../masterdata/ims-masterdata/preventive-maintanance-schedule-master/preventive-maintanance-schedule-master.component';
+// import { AqNominationCreateUpdateComponent } from 'src/app/rqp-lims-aqm-module/aq-master/aq-nomination/aq-nomination-create-update/aq-nomination-create-update.component';
+// import { AqNominationHomePageComponent } from 'src/app/rqp-lims-aqm-module/aq-master/aq-nomination/aq-nomination-home-page/aq-nomination-home-page.component';
+
 
 
 
@@ -217,6 +220,13 @@ import { PreventiveMaintananceScheduleMasterComponent } from '../masterdata/ims-
     CumHomePageComponent,
     CalibrationScheduleMasterComponent,
     PreventiveMaintananceScheduleMasterComponent,
+      //  AqNominationCreateUpdateComponent,
+      //  AqNominationHomePageComponent,
+     
+    
+   
+
+  
 
 
   ],

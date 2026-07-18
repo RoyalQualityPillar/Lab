@@ -1667,6 +1667,16 @@ export enum apiEndPoints {
   ChambersAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
 
 
+   /******* Aq Nomination *********/
+  allAqnominationTabledata = 'limsaq/aq_nomination/get-all',
+  activeAqnominationTabledata = 'limsaq/aq_nomination/get-max-all',
+  AqnominationUserProfileFilterData = 'limsaq/aq_nomination/search',
+  AqnominationCreateUpdate = 'limsaq/aq_nomination/save-update/',
+  AqnominationLoadUpdatePage = 'limsaq/aq_nomination/get-by-max-code',
+  AqnominationAllAuditTrail = 'limsaq/aq_nomination/get-by-code-all',
+
+
+
 
 
 

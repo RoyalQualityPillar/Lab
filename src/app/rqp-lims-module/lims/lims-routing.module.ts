@@ -50,6 +50,8 @@ import { PcmHomePageComponent } from '../masterdata/ims-masterdata/problem-categ
 import { CalibrationScheduleMasterComponent } from '../masterdata/ims-masterdata/calibration-schedule-master/calibration-schedule-master.component';
 import { PreventiveMaintananceScheduleMasterComponent } from '../masterdata/ims-masterdata/preventive-maintanance-schedule-master/preventive-maintanance-schedule-master.component';
 
+// import { AqNominationHomePageComponent } from 'src/app/rqp-lims-aqm-module/aq-master/aq-nomination/aq-nomination-home-page/aq-nomination-home-page.component';
+
 const routes: Routes = [
   // {
   //   path: 'lims-module-home-page',
@@ -464,7 +466,14 @@ const routes: Routes = [
   {
     path: 'preventive-maintanance-schedule-master',
     component: PreventiveMaintananceScheduleMasterComponent,
+
   },
+  //  {
+  //   path: 'app-aq-nomination-home-page',
+  //   component:  AqNominationHomePageComponent,
+    
+  // },
+
 
 
 
