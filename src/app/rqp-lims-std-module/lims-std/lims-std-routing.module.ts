@@ -19,10 +19,14 @@ import { WslrCompletedSaveComponent } from '../wslr/wslr-completed-save/wslr-com
 import { WslrModuleAdminComponent } from '../wslr/wslr-module-admin/wslr-module-admin.component';
 import { WslotContainersListComponent } from '../std-masters/wslot-containers-list/wslot-containers-list.component';
 import { WslotConsumptionComponent } from '../std-masters/wslot-consumption/wslot-consumption.component';
+import { PurityListComponent } from '../std-masters/purity-list/purity-list.component';
+import { ContainersListComponent } from '../std-masters/containers-list/containers-list.component';
 
 const routes: Routes = [
   { path: 'std-module-admin', component: StdModuleAdminComponent },
   { path: 'wslot-containers-list', component: WslotContainersListComponent },
+  { path: 'purity-list', component: PurityListComponent },
+  { path: 'containers-list', component: ContainersListComponent },
   { path: 'wslot-consumption', component: WslotConsumptionComponent },
   { path: 'home-page-sample-regestration', component: HomePageSampleRegestrationComponent },
   { path: 'home-page-sample-text-plan', component: HomePageSampleTextPlanComponent },
