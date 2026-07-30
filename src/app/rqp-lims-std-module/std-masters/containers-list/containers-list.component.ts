@@ -35,7 +35,7 @@ export class ContainersListComponent implements OnInit {
     'ff0012',
     'createdon',
     'createdby',
-    'action',
+    // 'action',
   ];
   constructor(
     private stdService: StdService,
