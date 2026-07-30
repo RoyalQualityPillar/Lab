@@ -12,10 +12,16 @@ export class StdService {
   private API_URL = environment.apiBaseURL;
   constructor(private http: HttpClient, private cookieService: CookieService) { }
 
-   public getWSPackList(unitCode: string): Observable<any> {
+  public getWSPackList(unitCode: string): Observable<any> {
     return this.http.get(this.API_URL + `limsws/ws-pack-list?unitCode=${unitCode} `);
   }
-   public saveWSConsumptionList(ff0001: string, grams:any, arNo:any) {
+  public getPurityList(unitcode: string): Observable<any> {
+    return this.http.get(this.API_URL + `limsws/purity-list?unitcode=${unitcode} `);
+  }
+  public getContainerList(unitcode: string): Observable<any> {
+    return this.http.get(this.API_URL + `limsws/container-list?unitcode=${unitcode} `);
+  }
+  public saveWSConsumptionList(ff0001: string, grams: any, arNo: any) {
     const queryParams = `?ff0001=${ff0001}&grams=${grams}&arNo=${arNo}`;
     const samplingURL = this.API_URL + 'limsws/ws-consumption-save' + queryParams;
     return this.http.post(samplingURL, '');
