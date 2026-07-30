@@ -31,7 +31,7 @@ export class PurityListComponent implements OnInit {
     'ff0008',
     'createdon',
     'createdby',
-    'action',
+    // 'action',
   ];
   constructor(
     private stdService: StdService,
