@@ -44,5 +44,14 @@ export class StdModuleAdminComponent {
   onContainersList() {
     this.router.navigate(['./rqplabui/lims-std/containers-list'])
   }
+  onIssuanceContainersList() {
+    this.router.navigate(['./rqplabui/lims-std/issuance-container-list'])
+  }
+  onConsumptionList() {
+    this.router.navigate(['./rqplabui/lims-std/consumption-list'])
+  }
+  onConsumptionCompletedList() {
+    this.router.navigate(['./rqplabui/lims-std/consumption-completed-list'])
+  }
 }
 

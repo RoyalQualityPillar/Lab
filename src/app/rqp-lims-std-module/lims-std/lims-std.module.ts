@@ -33,6 +33,10 @@ import { WslotContainersListComponent } from '../std-masters/wslot-containers-li
 import { WslotConsumptionComponent } from '../std-masters/wslot-consumption/wslot-consumption.component';
 import { PurityListComponent } from '../std-masters/purity-list/purity-list.component';
 import { ContainersListComponent } from '../std-masters/containers-list/containers-list.component';
+import { IssuanceContainerListComponent } from '../std-masters/issuance-container-list/issuance-container-list.component';
+import { ShowIssuanceContainerListComponent } from '../std-masters/show-issuance-container-list/show-issuance-container-list.component';
+import { ConsumptionListComponent } from '../std-masters/consumption-list/consumption-list.component';
+import { ConsumptionCompletedListComponent } from '../std-masters/consumption-completed-list/consumption-completed-list.component';
 
 
 @NgModule({
@@ -66,7 +70,10 @@ import { ContainersListComponent } from '../std-masters/containers-list/containe
     WslrModuleAdminComponent,
     PurityListComponent,
     ContainersListComponent,
-
+    IssuanceContainerListComponent,
+    ShowIssuanceContainerListComponent,
+    ConsumptionListComponent,
+    ConsumptionCompletedListComponent,
 
 
 

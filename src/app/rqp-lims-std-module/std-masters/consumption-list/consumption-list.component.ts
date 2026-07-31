@@ -3,24 +3,24 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { StdService } from '../../std.service';
 import { CookieService } from 'ngx-cookie-service';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
+import { ApiService } from 'src/app/service/api-service/api.service';
 import { NotificationService } from 'src/app/common/notification.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { GlobalConstants } from 'src/app/common/global-constants';
 import { apiEndPoints } from 'src/app/service/api-service/api-endpoints.constant';
-import { ApiService } from 'src/app/service/api-service/api.service';
 import { MessageDialogComponent } from 'src/app/common/message-dialog/message-dialog.component';
 
 @Component({
-  selector: 'app-containers-list',
+  selector: 'app-consumption-list',
   standalone: false,
-  templateUrl: './containers-list.component.html',
-  styleUrl: './containers-list.component.scss'
+  templateUrl: './consumption-list.component.html',
+  styleUrl: './consumption-list.component.scss'
 })
-export class ContainersListComponent implements OnInit {
+export class ConsumptionListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
-  public containersListData: any;
+  public consumptionListData: any;
   public dataSource: any;
   public isLoading = false;
   displayedColumns = [
@@ -38,7 +38,7 @@ export class ContainersListComponent implements OnInit {
     'ff0012',
     'createdon',
     'createdby',
-    'action',
+    // 'action',
   ];
   constructor(
     private stdService: StdService,
@@ -50,15 +50,15 @@ export class ContainersListComponent implements OnInit {
   ) { }
   ngOnInit(): void {
     let unitCode = this.cookieService.get('buCode');
-    this.stdService.getContainerList(unitCode).subscribe((data: any) => {
+    this.stdService.getConsumptionList(unitCode).subscribe((data: any) => {
       this.dataSource = data.data;
-      this.containersListData = new MatTableDataSource(this.dataSource);
-      this.containersListData.sort = this.sort;
-      this.containersListData.paginator = this.paginator;
+      this.consumptionListData = new MatTableDataSource(this.dataSource);
+      this.consumptionListData.sort = this.sort;
+      this.consumptionListData.paginator = this.paginator;
     });
   }
   public pageChanged(event): void {
-    if (this.containersListData.length == GlobalConstants.size) {
+    if (this.consumptionListData.length == GlobalConstants.size) {
       if (
         event.length - (event.pageIndex + 1) * event.pageSize == 0 ||
         event.length < event.pageSize
@@ -73,27 +73,27 @@ export class ContainersListComponent implements OnInit {
   }
 
   public submit(value: any) {
-    let tableData = value;
-    let Uc0001 = tableData.uc0001;
-    let params = { Uc0001 }
-    this.apiService
-      .sendRequest(
-        apiEndPoints.issuanceContainersList,
-        'POST',
-        params,
-      )
-      .subscribe((data: any) => {
-        if (data.errorInfo != null) {
-          this.dialog.open(MessageDialogComponent, {
-            data: {
-              message: data.errorInfo.message,
-              heading: 'Error Information',
-            },
-          });
-        } else {
-          this.notificationService.showSuccess(data.status, () => { });
-        }
-      });
+    // let tableData = value;
+    // let Uc0001 = tableData.uc0001;
+    // let params = { Uc0001 }
+    // this.apiService
+    //   .sendRequest(
+    //     apiEndPoints.issuanceContainersList,
+    //     'POST',
+    //     params,
+    //   )
+    //   .subscribe((data: any) => {
+    //     if (data.errorInfo != null) {
+    //       this.dialog.open(MessageDialogComponent, {
+    //         data: {
+    //           message: data.errorInfo.message,
+    //           heading: 'Error Information',
+    //         },
+    //       });
+    //     } else {
+    //       this.notificationService.showSuccess(data.status, () => { });
+    //     }
+    //   });
     // const dialogRef = this.dialog.open(WslotConsumptionComponent, {
     //   minWidth: '80%',
     //   data: { tableData: tableData, pageTitle: 'Document Type Master' },

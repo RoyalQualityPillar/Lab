@@ -21,13 +21,20 @@ import { WslotContainersListComponent } from '../std-masters/wslot-containers-li
 import { WslotConsumptionComponent } from '../std-masters/wslot-consumption/wslot-consumption.component';
 import { PurityListComponent } from '../std-masters/purity-list/purity-list.component';
 import { ContainersListComponent } from '../std-masters/containers-list/containers-list.component';
+import { IssuanceContainerListComponent } from '../std-masters/issuance-container-list/issuance-container-list.component';
+import { ConsumptionListComponent } from '../std-masters/consumption-list/consumption-list.component';
+import { ConsumptionCompletedListComponent } from '../std-masters/consumption-completed-list/consumption-completed-list.component';
 
 const routes: Routes = [
   { path: 'std-module-admin', component: StdModuleAdminComponent },
   { path: 'wslot-containers-list', component: WslotContainersListComponent },
   { path: 'purity-list', component: PurityListComponent },
   { path: 'containers-list', component: ContainersListComponent },
+  { path: 'issuance-container-list', component: IssuanceContainerListComponent, },
   { path: 'wslot-consumption', component: WslotConsumptionComponent },
+  { path: 'consumption-list', component: ConsumptionListComponent },
+  { path: 'consumption-completed-list', component: ConsumptionCompletedListComponent },
+  { path: 'issuance-container-list', component: IssuanceContainerListComponent, },
   { path: 'home-page-sample-regestration', component: HomePageSampleRegestrationComponent },
   { path: 'home-page-sample-text-plan', component: HomePageSampleTextPlanComponent },
   { path: 'home-page-ws-lot-purities-record', component: HomePageWsLotPuritiesRecordComponent },

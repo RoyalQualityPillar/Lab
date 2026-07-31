@@ -28,6 +28,10 @@ export enum apiEndPoints {
   //limsws input
   purityList = 'limsws/purity-list',
   containersList = 'limsws/container-list',
+  issuanceContainersList = 'limsws/issuance-container-save',
+  conjumptionContainersList = 'limsws/conjumption-container-save',
+  consumptionList = 'limsws/conjumption-container-list',
+  consumptionCompletedList = 'limsws/conjumption-container-Completed-list',
   //clv input
   clvInput = 'clv/input',
 

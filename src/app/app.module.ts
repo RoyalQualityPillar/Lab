@@ -37,8 +37,6 @@ import { ActionAttachmentsListComponent } from './rqp-lims-module/ism/action-att
 
 
 
-
-
   ],
   imports: [
     CommonModule,

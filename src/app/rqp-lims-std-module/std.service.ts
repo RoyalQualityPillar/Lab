@@ -21,6 +21,15 @@ export class StdService {
   public getContainerList(unitcode: string): Observable<any> {
     return this.http.get(this.API_URL + `limsws/container-list?unitcode=${unitcode} `);
   }
+  public getIssuanceContainerList(unitcode: string): Observable<any> {
+    return this.http.get(this.API_URL + `limsws/issuance-container-list?unitcode=${unitcode} `);
+  }
+  public getConsumptionList(unitcode: string): Observable<any> {
+    return this.http.get(this.API_URL + `limsws/conjumption-container-list?unitcode=${unitcode} `);
+  }
+  public getConsumptionCompletedList(unitcode: string): Observable<any> {
+    return this.http.get(this.API_URL + `limsws/conjumption-container-Completed-list?unitcode=${unitcode} `);
+  }
   public saveWSConsumptionList(ff0001: string, grams: any, arNo: any) {
     const queryParams = `?ff0001=${ff0001}&grams=${grams}&arNo=${arNo}`;
     const samplingURL = this.API_URL + 'limsws/ws-consumption-save' + queryParams;
