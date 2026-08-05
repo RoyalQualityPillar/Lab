@@ -62,7 +62,7 @@
         <ng-container matColumnDef="ff0010">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Retest / Expiry Date
             </mat-header-cell>
-            <mat-cell *matCellDef="let row">{{ row.cr_ff0013 }}</mat-cell>
+            <mat-cell *matCellDef="let row">{{ row.cr_ff0013 | date:"YYYY-MM-dd" }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="ff0011">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Storage Condition
