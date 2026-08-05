@@ -4,50 +4,60 @@
             <mat-header-cell *matHeaderCellDef mat-sort-header>
                 Container Number
             </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{ row.wlcr_ff0001 }} </mat-cell>
+            <mat-cell *matCellDef="let row"> {{ row.uc0001 }} </mat-cell>
         </ng-container>
         <ng-container matColumnDef="ff0002">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Quantity
             </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{ row.wlcr_ff0003 }} </mat-cell>
+            <mat-cell *matCellDef="let row"> {{ row.ff0003 }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="ff0003">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Consumption Quantity
             </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{ row.wlcr_ff0008 }} </mat-cell>
+            <mat-cell *matCellDef="let row"> {{ row.ff0008 }} </mat-cell>
         </ng-container>
-
         <ng-container matColumnDef="ff0004">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Material Number
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Available Quantity
             </mat-header-cell>
-            <mat-cell *matCellDef="let row"> {{ row.ff0001 }} </mat-cell>
+            <mat-cell *matCellDef="let row"> {{ row.ff0007 }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="ff0005">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Material Number
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.wslcr_ff0001 }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ff0006">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Material Code
             </mat-header-cell>
-            <mat-cell *matCellDef="let row">{{ row.ff0002 }}</mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="ff0006">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Material Name
-            </mat-header-cell>
-            <mat-cell *matCellDef="let row">{{ row.ff0003 }}</mat-cell>
+            <mat-cell *matCellDef="let row">{{ row.wslcr_ff0002 }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="ff0007">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Pack
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Material Name
             </mat-header-cell>
-            <mat-cell *matCellDef="let row">{{ row.ff0005 }}</mat-cell>
+            <mat-cell *matCellDef="let row">{{ row.wslcr_ff0015 }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="ff0008">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Storage Condition
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Pack
             </mat-header-cell>
-            <mat-cell *matCellDef="let row">{{ row.ff0006 }}</mat-cell>
+            <mat-cell *matCellDef="let row">{{ row.wslcr_ff0005 }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="ff0009">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Storage Condition
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.wslcr_ff0006 }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="ff0010">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Total Quantity
             </mat-header-cell>
-            <mat-cell *matCellDef="let row">{{ row.ff0007 }}</mat-cell>
+            <mat-cell *matCellDef="let row">{{ row.wslcr_ff0020 }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="ff0011">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Total Available Quantity
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.wslcr_ff0022 }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="createdon">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Created Date

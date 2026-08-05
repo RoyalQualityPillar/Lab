@@ -10,6 +10,8 @@ import { GlobalConstants } from 'src/app/common/global-constants';
 import { apiEndPoints } from 'src/app/service/api-service/api-endpoints.constant';
 import { ApiService } from 'src/app/service/api-service/api.service';
 import { MessageDialogComponent } from 'src/app/common/message-dialog/message-dialog.component';
+import { Subject, takeUntil, timer } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-containers-list',
@@ -23,6 +25,7 @@ export class ContainersListComponent implements OnInit {
   public containersListData: any;
   public dataSource: any;
   public isLoading = false;
+  public destroy$ = new Subject<void>();
   displayedColumns = [
     'ff0001',
     'ff0002',
@@ -46,6 +49,7 @@ export class ContainersListComponent implements OnInit {
     public dialog: MatDialog,
     private apiService: ApiService,
     private notificationService: NotificationService,
+    private route: Router,
 
   ) { }
   ngOnInit(): void {
@@ -92,6 +96,11 @@ export class ContainersListComponent implements OnInit {
           });
         } else {
           this.notificationService.showSuccess(data.status, () => { });
+          timer(2000)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(() => {
+              this.route.navigateByUrl('/rqplabui/lims-std/std-module-admin');
+            });
         }
       });
     // const dialogRef = this.dialog.open(WslotConsumptionComponent, {

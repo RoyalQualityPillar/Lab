@@ -32,6 +32,8 @@ export class WslotContainersListComponent implements OnInit {
     'ff0007',
     'ff0008',
     'ff0009',
+    'ff0010',
+    'ff0011',
     'createdon',
     'createdby',
     'action',

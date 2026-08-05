@@ -39,7 +39,8 @@ export class ShowIssuanceContainerListComponent implements OnInit {
     this.ContainerIssuanceForm = fb.group({
       nareWeight: [''],
       grossWeight: [''],
-      netWeight: ['']
+      netWeight: [''],
+      arNo: ['']
     });
   }
 
@@ -72,7 +73,8 @@ export class ShowIssuanceContainerListComponent implements OnInit {
     let ff0016 = materialweights.nareWeight;
     let ff0017 = materialweights.grossWeight;
     let ff0018 = materialweights.netWeight;
-    let params = { Uc0001, ff0016, ff0017, ff0018 }
+    let arno = materialweights.arNo;
+    let params = { Uc0001, ff0016, ff0017, ff0018, arno }
     this.apiService
       .sendRequest(
         apiEndPoints.conjumptionContainersList,
