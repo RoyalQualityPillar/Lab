@@ -12,6 +12,7 @@ import { ApiService } from 'src/app/service/api-service/api.service';
 import { MessageDialogComponent } from 'src/app/common/message-dialog/message-dialog.component';
 import { Subject, takeUntil, timer } from 'rxjs';
 import { Router } from '@angular/router';
+import { RemoteComponentLoaderService } from 'src/app/service/remote-component-loader.service';
 
 @Component({
   selector: 'app-containers-list',
@@ -50,7 +51,7 @@ export class ContainersListComponent implements OnInit {
     private apiService: ApiService,
     private notificationService: NotificationService,
     private route: Router,
-
+ private remoteLoader: RemoteComponentLoaderService,
   ) { }
   ngOnInit(): void {
     let unitCode = this.cookieService.get('buCode');
@@ -76,10 +77,26 @@ export class ContainersListComponent implements OnInit {
     //todo
   }
 
-  public submit(value: any) {
+  public async submit(value: any) {
     let tableData = value;
     let Uc0001 = tableData.uc0001;
     let params = { Uc0001 }
+      const component = await this.remoteLoader.loadComponentByKey(
+        'CommonESignatureComponent'
+      );
+
+  const dialogRef = this.dialog.open(component, {
+    height: '300px',
+    width: '600px',
+    data: {},
+    disableClose: true,
+  });
+
+  dialogRef.afterClosed().subscribe((result) => {
+
+    if (result && result.data) {
+
+      this.isLoading = true;
     this.apiService
       .sendRequest(
         apiEndPoints.issuanceContainersList,
@@ -95,14 +112,21 @@ export class ContainersListComponent implements OnInit {
             },
           });
         } else {
+           this.isLoading = false;
           this.notificationService.showSuccess(data.status, () => { });
           timer(2000)
             .pipe(takeUntil(this.destroy$))
             .subscribe(() => {
               this.route.navigateByUrl('/rqplabui/lims-std/std-module-admin');
             });
+            
+                                 // });
         }
       });
+
+    }
+
+  });
     // const dialogRef = this.dialog.open(WslotConsumptionComponent, {
     //   minWidth: '80%',
     //   data: { tableData: tableData, pageTitle: 'Document Type Master' },
