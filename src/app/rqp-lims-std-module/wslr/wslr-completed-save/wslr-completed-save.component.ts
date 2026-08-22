@@ -219,74 +219,73 @@ export class WslrCompletedSaveComponent implements OnInit {
     });
   }
   public downloadWSLRReport() {
-    // const lcNumber = this.headerData?.lcnum;
-    // const templateName = 'cc.html';
-    // const moduleCode = this.headerData?.modulecode;
-    // const ccno = this.headerData.requestNo;
-    // const lcrnumber = this.headerData.requestNo;
-    // this.isLoading = true;
-    // this.qmsService
-    //   .downloadSPMReport(
-    //     lcNumber,
-    //     templateName,
-    //     ccno,
-    //     moduleCode,
-    //     lcrnumber
-    //   )
-    //   .subscribe((data: any) => {
-    //     let fileExtension = 'pdf';
-    //     const binaryData = atob(data.data);
-    //     const arrayBuffer = new ArrayBuffer(binaryData.length);
-    //     const uint8Array = new Uint8Array(arrayBuffer);
-    //     for (let i = 0; i < binaryData.length; i++) {
-    //       uint8Array[i] = binaryData.charCodeAt(i);
-    //     }
-    //     let blob: any;
-    //     blob = new Blob([uint8Array], { type: 'application/pdf' });
-    //     const url = window.URL.createObjectURL(blob);
-    //     const link = document.createElement('a');
-    //     link.href = url;
-    //     link.download = ccno + '.' + fileExtension;
-    //     document.body.appendChild(link);
-    //     link.click();
-    //     document.body.removeChild(link);
-    //     window.URL.revokeObjectURL(url);
-    //   });
-    // this.isLoading = false;
+    const lc0001 = this.headerData?.lcnum;
+    const templateName = 'wslr.html';
+    const moduleCode = this.headerData?.modulecode;
+    const ccno = this.headerData.requestNo;
+    const lc0002 = this.headerData.requestNo;
+    this.isLoading = true;
+    this.wslrService
+      .downloadWSLRReport(
+        lc0001,
+        lc0002,
+        moduleCode,
+        templateName,
+      )
+      .subscribe((data: any) => {
+        let fileExtension = 'pdf';
+        const binaryData = atob(data.data);
+        const arrayBuffer = new ArrayBuffer(binaryData.length);
+        const uint8Array = new Uint8Array(arrayBuffer);
+        for (let i = 0; i < binaryData.length; i++) {
+          uint8Array[i] = binaryData.charCodeAt(i);
+        }
+        let blob: any;
+        blob = new Blob([uint8Array], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = ccno + '.' + fileExtension;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      });
+    this.isLoading = false;
   }
   public downloadWSLRAttachedReport() {
-    // const lcNumber = this.headerData?.lcnum;
-    // const templateName = 'cc.html';
-    // const moduleCode = this.headerData?.modulecode;
-    // const lcrnumber = this.headerData.requestNo;
-    // this.isLoading = true;
-    // this.qmsService
-    //   .downloadSPMAttachedReport(
-    //     lcNumber,
-    //     templateName,
-    //     moduleCode,
-    //     lcrnumber
-    //   )
-    //   .subscribe((data: any) => {
-    //     let fileExtension = 'pdf';
-    //     const binaryData = atob(data.data);
-    //     const arrayBuffer = new ArrayBuffer(binaryData.length);
-    //     const uint8Array = new Uint8Array(arrayBuffer);
-    //     for (let i = 0; i < binaryData.length; i++) {
-    //       uint8Array[i] = binaryData.charCodeAt(i);
-    //     }
-    //     let blob: any;
-    //     blob = new Blob([uint8Array], { type: 'application/pdf' });
-    //     const url = window.URL.createObjectURL(blob);
-    //     const link = document.createElement('a');
-    //     link.href = url;
-    //     link.download = lcrnumber + '.' + fileExtension;
-    //     document.body.appendChild(link);
-    //     link.click();
-    //     document.body.removeChild(link);
-    //     window.URL.revokeObjectURL(url);
-    //   });
-    // this.isLoading = false;
+    const lcNumber = this.headerData?.lcnum;
+    const templateName = 'cc.html';
+    const moduleCode = this.headerData?.modulecode;
+    const lcrnumber = this.headerData.requestNo;
+    this.isLoading = true;
+    this.wslrService
+      .downloadWSLRAttachedReport(
+        lcNumber,
+        templateName,
+        moduleCode,
+        lcrnumber
+      )
+      .subscribe((data: any) => {
+        let fileExtension = 'pdf';
+        const binaryData = atob(data.data);
+        const arrayBuffer = new ArrayBuffer(binaryData.length);
+        const uint8Array = new Uint8Array(arrayBuffer);
+        for (let i = 0; i < binaryData.length; i++) {
+          uint8Array[i] = binaryData.charCodeAt(i);
+        }
+        let blob: any;
+        blob = new Blob([uint8Array], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = lcrnumber + '.' + fileExtension;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      });
+    this.isLoading = false;
   }
   getComments() {
     const lcRequestnumber = this.headerData.requestNo;
