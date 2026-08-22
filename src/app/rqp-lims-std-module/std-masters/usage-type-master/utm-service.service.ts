@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -28,5 +29,16 @@ export class UtmServiceService {
       this.API_URL + 'limsws/utm-master/get-by-code-all' + queryParams;
     return this.http.get(ALLSALEPRODUCTURL);
   }
+    generateReport(
+      uc0001: any,
+      templateName: string,
+      moduleCode: string
+    ): Observable<any> {
+      return this.http.post(
+        this.API_URL +
+          `limsws/utm-master-report?templateName=${templateName}&uc0001=${uc0001}&moduleCode=${moduleCode}`,
+        ''
+      );
+    }
 }
 

@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +43,16 @@ export class WsLotRecordService {
     const ALLSALEPRODUCTURL =
       this.API_URL + 'limsws/wstr-record/get-by-code-all' + queryParams;
     return this.http.get(ALLSALEPRODUCTURL);
+  }
+  generateReport(
+    uc0001: any,
+    templateName: string,
+    moduleCode: string
+  ): Observable<any> {
+    return this.http.post(
+      this.API_URL +
+        `limsws/wstr-record-report?templateName=${templateName}&uc0001=${uc0001}&moduleCode=${moduleCode}`,
+      ''
+    );
   }
 }
