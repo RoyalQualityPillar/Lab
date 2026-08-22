@@ -4,22 +4,23 @@ import { MatSort } from '@angular/material/sort';
 import { StdService } from '../../std.service';
 import { CookieService } from 'ngx-cookie-service';
 import { MatDialog } from '@angular/material/dialog';
+import { ApiService } from 'src/app/service/api-service/api.service';
 import { NotificationService } from 'src/app/common/notification.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { GlobalConstants } from 'src/app/common/global-constants';
+import { apiEndPoints } from 'src/app/service/api-service/api-endpoints.constant';
 import { MessageDialogComponent } from 'src/app/common/message-dialog/message-dialog.component';
-import { WslotConsumptionComponent } from '../wslot-consumption/wslot-consumption.component';
 
 @Component({
-  selector: 'app-wslot-containers-list',
+  selector: 'app-consumption-list',
   standalone: false,
-  templateUrl: './wslot-containers-list.component.html',
-  styleUrl: './wslot-containers-list.component.scss'
+  templateUrl: './consumption-list.component.html',
+  styleUrl: './consumption-list.component.scss'
 })
-export class WslotContainersListComponent implements OnInit {
+export class ConsumptionListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
-  public sfgUnderTestListData: any;
+  public consumptionListData: any;
   public dataSource: any;
   public isLoading = false;
   displayedColumns = [
@@ -34,27 +35,30 @@ export class WslotContainersListComponent implements OnInit {
     'ff0009',
     'ff0010',
     'ff0011',
+    'ff0012',
     'createdon',
     'createdby',
-    'action',
+    // 'action',
   ];
   constructor(
     private stdService: StdService,
     private cookieService: CookieService,
     public dialog: MatDialog,
+    private apiService: ApiService,
     private notificationService: NotificationService,
+
   ) { }
   ngOnInit(): void {
     let unitCode = this.cookieService.get('buCode');
-    this.stdService.getWSPackList(unitCode).subscribe((data: any) => {
+    this.stdService.getConsumptionList(unitCode).subscribe((data: any) => {
       this.dataSource = data.data;
-      this.sfgUnderTestListData = new MatTableDataSource(this.dataSource);
-      this.sfgUnderTestListData.sort = this.sort;
-      this.sfgUnderTestListData.paginator = this.paginator;
+      this.consumptionListData = new MatTableDataSource(this.dataSource);
+      this.consumptionListData.sort = this.sort;
+      this.consumptionListData.paginator = this.paginator;
     });
   }
   public pageChanged(event): void {
-    if (this.sfgUnderTestListData.length == GlobalConstants.size) {
+    if (this.consumptionListData.length == GlobalConstants.size) {
       if (
         event.length - (event.pageIndex + 1) * event.pageSize == 0 ||
         event.length < event.pageSize
@@ -69,13 +73,33 @@ export class WslotContainersListComponent implements OnInit {
   }
 
   public submit(value: any) {
-    let tableData = value;
-    console.log(tableData);
-    const dialogRef = this.dialog.open(WslotConsumptionComponent, {
-      minWidth: '80%',
-      data: { tableData: tableData, pageTitle: 'Document Type Master' },
-    });
+    // let tableData = value;
+    // let Uc0001 = tableData.uc0001;
+    // let params = { Uc0001 }
+    // this.apiService
+    //   .sendRequest(
+    //     apiEndPoints.issuanceContainersList,
+    //     'POST',
+    //     params,
+    //   )
+    //   .subscribe((data: any) => {
+    //     if (data.errorInfo != null) {
+    //       this.dialog.open(MessageDialogComponent, {
+    //         data: {
+    //           message: data.errorInfo.message,
+    //           heading: 'Error Information',
+    //         },
+    //       });
+    //     } else {
+    //       this.notificationService.showSuccess(data.status, () => { });
+    //     }
+    //   });
+    // const dialogRef = this.dialog.open(WslotConsumptionComponent, {
+    //   minWidth: '80%',
+    //   data: { tableData: tableData, pageTitle: 'Document Type Master' },
+    // });
   }
 
 }
+
 

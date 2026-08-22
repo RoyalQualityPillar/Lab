@@ -25,6 +25,13 @@ export enum apiEndPoints {
   topicDropDownInputList = 'lmsr/topic-list',
   actionUpdateReviewList = 'qms/review-nci-ai_list',
 
+  //limsws input
+  purityList = 'limsws/purity-list',
+  containersList = 'limsws/container-list',
+  issuanceContainersList = 'limsws/issuance-container-save',
+  conjumptionContainersList = 'limsws/conjumption-container-save',
+  consumptionList = 'limsws/conjumption-container-list',
+  consumptionCompletedList = 'limsws/conjumption-container-Completed-list',
   //clv input
   clvInput = 'clv/input',
 
@@ -1667,7 +1674,7 @@ export enum apiEndPoints {
   ChambersAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
 
 
-   /******* Aq Nomination *********/
+  /******* Aq Nomination *********/
   allAqnominationTabledata = 'limsaq/aq_nomination/get-all',
   activeAqnominationTabledata = 'limsaq/aq_nomination/get-max-all',
   AqnominationUserProfileFilterData = 'limsaq/aq_nomination/search',

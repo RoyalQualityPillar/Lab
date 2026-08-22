@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class StdModuleAdminComponent {
 
-   constructor(private router: Router) { }
+  constructor(private router: Router) { }
 
   onSampleRegestration() {
     this.router.navigate(['./rqplabui/lims-std/home-page-sample-regestration'])
@@ -32,11 +32,26 @@ export class StdModuleAdminComponent {
   onUsageTypeMaster() {
     this.router.navigate(['./rqplabui/lims-std/utm-home-page'])
   }
-   onPurityTypeMaster() {
+  onPurityTypeMaster() {
     this.router.navigate(['./rqplabui/lims-std/purity-type-master-home-page'])
   }
-   onWSLotContainersList() {
+  onWSLotContainersList() {
     this.router.navigate(['./rqplabui/lims-std/wslot-containers-list'])
   }
+  onPurityList() {
+    this.router.navigate(['./rqplabui/lims-std/purity-list'])
+  }
+  onContainersList() {
+    this.router.navigate(['./rqplabui/lims-std/containers-list'])
+  }
+  onIssuanceContainersList() {
+    this.router.navigate(['./rqplabui/lims-std/issuance-container-list'])
+  }
+  onConsumptionList() {
+    this.router.navigate(['./rqplabui/lims-std/consumption-list'])
+  }
+  onConsumptionCompletedList() {
+    this.router.navigate(['./rqplabui/lims-std/consumption-completed-list'])
+  }
 }
-   
+

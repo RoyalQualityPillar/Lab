@@ -7,19 +7,17 @@ import { MatDialog } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/common/notification.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { GlobalConstants } from 'src/app/common/global-constants';
-import { MessageDialogComponent } from 'src/app/common/message-dialog/message-dialog.component';
-import { WslotConsumptionComponent } from '../wslot-consumption/wslot-consumption.component';
 
 @Component({
-  selector: 'app-wslot-containers-list',
+  selector: 'app-purity-list',
   standalone: false,
-  templateUrl: './wslot-containers-list.component.html',
-  styleUrl: './wslot-containers-list.component.scss'
+  templateUrl: './purity-list.component.html',
+  styleUrl: './purity-list.component.scss'
 })
-export class WslotContainersListComponent implements OnInit {
+export class PurityListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
-  public sfgUnderTestListData: any;
+  public purityListData: any;
   public dataSource: any;
   public isLoading = false;
   displayedColumns = [
@@ -31,12 +29,9 @@ export class WslotContainersListComponent implements OnInit {
     'ff0006',
     'ff0007',
     'ff0008',
-    'ff0009',
-    'ff0010',
-    'ff0011',
     'createdon',
     'createdby',
-    'action',
+    // 'action',
   ];
   constructor(
     private stdService: StdService,
@@ -46,15 +41,15 @@ export class WslotContainersListComponent implements OnInit {
   ) { }
   ngOnInit(): void {
     let unitCode = this.cookieService.get('buCode');
-    this.stdService.getWSPackList(unitCode).subscribe((data: any) => {
+    this.stdService.getPurityList(unitCode).subscribe((data: any) => {
       this.dataSource = data.data;
-      this.sfgUnderTestListData = new MatTableDataSource(this.dataSource);
-      this.sfgUnderTestListData.sort = this.sort;
-      this.sfgUnderTestListData.paginator = this.paginator;
+      this.purityListData = new MatTableDataSource(this.dataSource);
+      this.purityListData.sort = this.sort;
+      this.purityListData.paginator = this.paginator;
     });
   }
   public pageChanged(event): void {
-    if (this.sfgUnderTestListData.length == GlobalConstants.size) {
+    if (this.purityListData.length == GlobalConstants.size) {
       if (
         event.length - (event.pageIndex + 1) * event.pageSize == 0 ||
         event.length < event.pageSize
@@ -69,13 +64,14 @@ export class WslotContainersListComponent implements OnInit {
   }
 
   public submit(value: any) {
-    let tableData = value;
-    console.log(tableData);
-    const dialogRef = this.dialog.open(WslotConsumptionComponent, {
-      minWidth: '80%',
-      data: { tableData: tableData, pageTitle: 'Document Type Master' },
-    });
+    // let tableData = value;
+    // console.log(tableData);
+    // const dialogRef = this.dialog.open(WslotConsumptionComponent, {
+    //   minWidth: '80%',
+    //   data: { tableData: tableData, pageTitle: 'Document Type Master' },
+    // });
   }
 
 }
+
 
