@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -36,4 +37,16 @@ export class SampleRunMasterService {
   
       return this.http.get(fetchAllBusinessUnitInfoApiUrl);
     }
+     generateReport(
+              uc0001: any,
+              templateName: string,
+              moduleCode: string
+            ): Observable<any> {
+              return this.http.post(
+                this.API_URL +
+                  `at/samplerun-master-report?templateName=${templateName}&uc0001=${uc0001}&moduleCode=${moduleCode}`,
+                ''
+              );
+            
+              }
         }
