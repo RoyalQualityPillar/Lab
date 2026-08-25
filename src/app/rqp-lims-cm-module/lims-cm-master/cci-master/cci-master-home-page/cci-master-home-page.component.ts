@@ -1,9 +1,12 @@
 import {
+  AfterViewInit,
   Component,
   ElementRef,
+  OnInit,
   QueryList,
   ViewChild,
   ViewChildren,
+  ViewContainerRef,
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -20,6 +23,7 @@ import { MessageDialogComponent } from 'src/app/common/message-dialog/message-di
 import { changeStatusByCode } from 'src/app/common/removeEmptyStrings';
 import { CommonActiveAuditTrailComponent } from 'src/app/common/common-active-audit-trail/common-active-audit-trail.component';
 import { CommonAllAuditTrailComponent } from 'src/app/common/common-all-audit-trail/common-all-audit-trail.component';
+import { RemoteComponentLoaderService } from 'src/app/service/remote-component-loader.service';
 
 @Component({
   selector: 'app-cci-master-home-page',
@@ -27,8 +31,11 @@ import { CommonAllAuditTrailComponent } from 'src/app/common/common-all-audit-tr
   styleUrls: ['./cci-master-home-page.component.scss'],
   standalone: false,
 })
-export class CciMasterHomePageComponent {
-  [x: string]: any;
+export class CciMasterHomePageComponent implements OnInit, AfterViewInit {
+  @ViewChild('commonTableContainer', { read: ViewContainerRef, static: true })
+  commonTableContainer!: ViewContainerRef;
+  @ViewChild('activeRoleMasterContainer', { read: ViewContainerRef })
+  activeRoleMasterContainer!: ViewContainerRef;
   @ViewChild('tableWrapper', { static: true }) tableWrapper: ElementRef;
   @ViewChild('filter', { static: true }) filter: ElementRef;
   @ViewChildren(MatPaginator) paginator = new QueryList<MatPaginator>();
@@ -55,7 +62,9 @@ export class CciMasterHomePageComponent {
     private cciMasterService: CciMasterService,
     public dialog: MatDialog,
     private cookieService: CookieService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private remoteLoader: RemoteComponentLoaderService
+    
   ) {}
   filterObject: any;
   activeUserFilterObject: any;
@@ -70,7 +79,6 @@ export class CciMasterHomePageComponent {
     this.activeColumnCodeIndexTableDataUrl =
       apiEndPoints.activeCciMasterTabledata;
     this.params = { pageIndex, size, unitCode };
-    console.log('Bharat');
     this.filterObject = {
       field: 'SELECT',
       value: '',
@@ -85,7 +93,67 @@ export class CciMasterHomePageComponent {
       DateFieldvalue1: '',
       DateFieldvalue2: '',
     };
+     this.loadRoleMasterTableFilter();
+    this.loadActiveRoleMasterTableFilter();
   }
+  async loadRoleMasterTableFilter() {
+    try {
+      const component = await this.remoteLoader.loadComponentByKey(
+        'CommonTableFilterComponent'
+      );
+
+      const compRef = this.commonTableContainer.createComponent(component);
+
+      // Set all required inputs
+      compRef.setInput('columnConfig', this.columnConfig);
+      compRef.setInput('filterOptions', this.filterOptions);
+      compRef.setInput('apiUrl', this.allColumnCodeIndexTableDataUrl);
+      compRef.setInput('tableTitle', 'All Column Code Index');
+      compRef.setInput('dynamicButtons', this.allButtonConfig);
+      compRef.setInput('columnClass', 'rqp-life-cycle-table-columns');
+      compRef.setInput('filterApiUrl', this.filterApiUrl);
+      compRef.setInput('HttpMethod', this.HttpMethod);
+      compRef.setInput('params', this.params);
+      compRef.setInput('getLatestData', this.getLatestData);
+      compRef.setInput('downloadFileName', 'Column Code Index');
+
+      // Subscribe to output
+      (compRef.instance as any).buttonClick.subscribe((event: any) => {
+        this.handleButtonAction(event);
+      });
+    } catch (error) {
+      console.error('Failed to load CommonTableFilterComponent:', error);
+    }
+  }
+  async loadActiveRoleMasterTableFilter() {
+    try {
+      const component = await this.remoteLoader.loadComponentByKey(
+        'CommonTableFilterComponent'
+      );
+
+      const compRef = this.activeRoleMasterContainer.createComponent(component);
+
+      compRef.setInput('columnConfig', this.columnConfig);
+      compRef.setInput('filterOptions', this.filterOptions);
+      compRef.setInput('apiUrl', this.activeColumnCodeIndexTableDataUrl);
+      compRef.setInput('tableTitle', 'Active Column Code Index');
+      compRef.setInput('dynamicButtons', this.activeButtonConfig);
+      compRef.setInput('columnClass', 'rqp-life-cycle-table-columns');
+      compRef.setInput('filterApiUrl', this.filterApiUrl);
+      compRef.setInput('HttpMethod', this.HttpMethod);
+      compRef.setInput('params', this.params);
+      compRef.setInput('getLatestData', this.getLatestData);
+      compRef.setInput('downloadFileName', 'Column Code Index');
+
+      // 🔧 Safely subscribe to output
+      (compRef.instance as any).buttonClick.subscribe((event: any) => {
+        this.activeHandleButtonAction(event);
+      });
+    } catch (error) {
+      console.error('Error loading Active Even Log Master table filter:', error);
+    }
+  }
+
   ngAfterViewInit(): void {}
   toggleFilter() {
     this.isFilterExpanded = !this.isFilterExpanded;
@@ -104,16 +172,16 @@ export class CciMasterHomePageComponent {
   onOpenRolePOPUP() {
     const dialogRef = this.dialog.open(CciMasterCreateUpdateComponent, {
       minWidth: '80%',
-      data: { tableData: this.selectedRow, type: 'Create' },
+      data: { tableData: this.selectedRow, type: 'Registration' },
     });
     dialogRef.afterClosed().subscribe((result) => {
       this.getLatestData = true;
+      this.refreshData();
     });
     this.getLatestData = false;
   }
 
   setSelectedID(row: any) {
-    console.log(row);
     this.selectedAllId = row;
   }
   selectedAllId: any;
@@ -131,10 +199,21 @@ export class CciMasterHomePageComponent {
     } else {
       const dialogRef = this.dialog.open(CciMasterCreateUpdateComponent, {
         minWidth: '80%',
-        data: { tableData: this.selectedRow, type: 'Update' },
+        data: { tableData: this.selectedRow, type: 'Modification' },
       });
-      dialogRef.afterClosed().subscribe((result) => {});
+      dialogRef.afterClosed().subscribe((result) => {
+         this.getLatestData = true;
+        this.refreshData();
+      });
+      this.getLatestData = false;
     }
+  }
+   refreshData() {
+    this.loadRoleMasterTableFilter();
+    this.loadActiveRoleMasterTableFilter();
+     this.commonTableContainer.clear()
+     this.activeRoleMasterContainer.clear()
+
   }
   onChangeStatus(data: any) {
     return changeStatusByCode(data);
@@ -173,7 +252,6 @@ export class CciMasterHomePageComponent {
 
   onSearchAllAuditTrail() {
     this.selectedAllId = this.selectedRow;
-    console.log(this.selectedAllId);
     if (this.selectedAllId.length == 0) {
       this.dialog.open(MessageDialogComponent, {
         data: {
@@ -251,7 +329,6 @@ export class CciMasterHomePageComponent {
   handleButtonAction(event: { action: string; row: any }) {
     const { action, row } = event;
     this.selectedRow = row; // Set the selected row
-    console.log(action);
     switch (action) {
       case 'Audit_Trail':
         this.onSearchAllAuditTrail();
@@ -264,7 +341,6 @@ export class CciMasterHomePageComponent {
   activeHandleButtonAction(event: { action: string; row: any }) {
     const { action, row } = event;
     this.selectedRow = row; // Set the selected row
-    console.log(action);
     switch (action) {
       case 'Audit_Trail':
         this.onActiveSelectAuditRow();
@@ -276,7 +352,6 @@ export class CciMasterHomePageComponent {
   }
 
   handleSubmit(row: any) {
-    console.log(row);
     console.log('submitBtn');
   }
 }

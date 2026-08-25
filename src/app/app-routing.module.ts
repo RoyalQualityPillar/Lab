@@ -21,11 +21,11 @@ const routes: Routes = [
       import('./rqp-lims-cm-module/lims-cm/lims-cm.module').then((m) => m.LimsCmModule),
   },
   {
-    path: 'lims-aqm',
-    loadChildren: () =>
-      import('./rqp-lims-aqm-module/lims-aqm/lims-aqm.module').then((m) => m.LimsAqmModule),
-  },
-  {
+  path: 'lims-aq',
+  loadChildren: () =>
+    import('./rqp-lims-aqm-module/aq/aq.module').then(m => m.AqModule)
+},
+ {
     path: 'lims-chm',
     loadChildren: () =>
       import('./rqp-lims-chm-module/lims-chm/lims-chm.module').then((m) => m.LimsChmModule),
@@ -35,7 +35,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./rqp-lims-rsm-module/lims-rsm/lims-rsm.module').then((m) => m.LimsRsmModule),
   },
-   {
+  {
+    path: 'lims-spc',
+    loadChildren: () =>
+      import('./rqp-lims-spc-module/lims-spc/lims-spc.module').then((m) => m.LimsSpcModule),
+  },
+  {
     path: 'lims-sm',
     loadChildren: () =>
       import('./rqp-lims-sm-module/lims-sm/lims-sm.module').then((m) => m.LimsSmModule),
@@ -55,6 +60,16 @@ const routes: Routes = [
     loadChildren: () =>
       import('./rqp-lims-vsm-module/lims-vsm/lims-vsm.module').then((m) => m.LimsVsmModule),
   },
+  {
+    path: 'excel',
+    loadChildren: () =>
+      import('./rqp-excel-module/excel/excel.module').then((m) => m.ExcelModule),
+  },
+  //  {
+  //   path: 'lims-aq',
+  //   loadChildren: () =>
+  //     import('./rqp-lims-aq-module/lims-aq/lims-aq.module').then((m) => m.LimsAqmModule),
+  // },
 
 
 ];

@@ -39,7 +39,6 @@ export class MaterialMasterService {
   // }
   
   onCreate(body: any) {
-      console.log(body);
       let token = this.cookieService.get('token');
       let createUserURL = this.API_URL + 'pmm/pmm_master/save-update';
       const httpOptions = {

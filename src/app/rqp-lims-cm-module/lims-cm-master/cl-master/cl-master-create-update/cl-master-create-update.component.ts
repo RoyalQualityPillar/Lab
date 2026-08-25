@@ -137,7 +137,7 @@ export class ClMasterCreateUpdateComponent implements OnInit {
     const params = { UC0001 };
 
     this.apiService
-      .sendRequest(apiEndPoints.ColumnMasterLoadUpdatePage, 'POST', params)
+      .sendRequest(apiEndPoints.ClMasterLoadUpdatePage, 'POST', params)
       .subscribe((data: any) => {
         if (data.data == null) {
           this.isLoading = false;
@@ -171,7 +171,6 @@ export class ClMasterCreateUpdateComponent implements OnInit {
     this.DepartmentMaster.controls['status'].setValue(
       changeStatusByDescription(this.DepartmentMaster.controls['status'].value)
     );
-    console.log(this.DepartmentMaster.value);
     let params = {};
 
     this.apiService
@@ -235,7 +234,7 @@ export class ClMasterCreateUpdateComponent implements OnInit {
 
     this.apiService
       .sendRequest(
-        apiEndPoints.ColumnMasterCreateUpdate,
+        apiEndPoints.ClMasterCreateUpdate,
         'POST',
         params,
         this.DepartmentMaster.value
@@ -250,12 +249,7 @@ export class ClMasterCreateUpdateComponent implements OnInit {
             },
           });
         } else {
-           this.notificationService.showSuccess(
- data.data.uc0001 + data.status,
-  () => {
-    console.log('Success Snackbar Closed');
-  }
-);
+           this.notificationService.showSuccess(data.status, () => {});
           this.dialogRef.close();
         }
       });

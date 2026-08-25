@@ -272,7 +272,6 @@ export class WsrReviewerSaveComponent {
     let lc0002 = value.uc0001;
     let param = {lc0002}
     this.apiService.sendRequest(apiEndPoints.attachmentHTML,'POST', param).subscribe((data:any) => {
-      console.log(data)
        if (data?.data) {
         this.showPdfPreview = false;
         // Decode base64 HTML string

@@ -10,15 +10,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { LovDialogComponent } from './common/lov-dialog/lov-dialog.component';
 import { MessageDialogComponent } from './common/message-dialog/message-dialog.component';
-import { CaInitiatorComponent } from './rqp-lims-module/cm/ca/ca-initiator/ca-initiator.component';
-import { CaHomeComponent } from './rqp-lims-module/cm/ca/ca-home/ca-home.component';
-import { CqHomeComponent } from './rqp-lims-module/cm/cq/cq-home/cq-home.component';
-import { CuHomeComponent } from './rqp-lims-module/cm/cu/cu-home/cu-home.component';
-import { CmInitiatorComponent } from './rqp-lims-module/cm/cm/cm-initiator/cm-initiator.component';
-//import { CaHomeComponent } from './rqp-lims-module/cm/cm/ca-home/ca-home.component';
-//import { CaUpdateComponent } from './rqp-lims-module/cm/ca/ca-update/ca-update.component';
 import { SharedModule } from './common/shared.module';
-
+import { NciReviewDetailComponent } from './rqp-qms-module/nci-review-detail/nci-review-detail.component';
+import { DropdownListComponent } from './rqp-dms-module/sop/dropdown-list/dropdown-list.component';
+import { ActionAttachmentsListComponent } from './rqp-lims-module/ism/action-attachments-list/action-attachments-list.component';
 
 // import { SharedModule } from './common/shared.module';
 
@@ -28,23 +23,29 @@ import { SharedModule } from './common/shared.module';
   declarations: [
     AppComponent,
     DashboardComponent,
-    //CustomSnackBarComponent,
     LovDialogComponent,
     MessageDialogComponent,
-   
-    
-    
-    
-    
+    NciReviewDetailComponent,
+    DropdownListComponent,
+    ActionAttachmentsListComponent,
+    MessageDialogComponent,
+
+
+
+
+
+
+
+
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
     AngularMaterialModule,
-   SharedModule
-   
+    SharedModule
+
     //MatDialogModule,
-    
+
   ],
   providers: [
     provideClientHydration(withEventReplay())

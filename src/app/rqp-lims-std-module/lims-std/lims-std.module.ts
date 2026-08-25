@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { LimsStdRoutingModule } from './lims-std-routing.module';
 import { StdModuleAdminComponent } from '../std-module-admin/std-module-admin.component';
 import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module';
@@ -22,11 +21,29 @@ import { PurityTypeMasterCreateUpdateComponent } from '../std-masters/purity-typ
 import { PurityTypeMasterHomePageComponent } from '../std-masters/purity-type-master/purity-type-master-home-page/purity-type-master-home-page.component';
 import { CreateUpdateWsLotRecordComponent } from '../std-masters/ws-lot-record/create-update-ws-lot-record/create-update-ws-lot-record.component';
 import { HomePageWsLotRecordComponent } from '../std-masters/ws-lot-record/home-page-ws-lot-record/home-page-ws-lot-record.component';
+import { WslrInitiatorComponent } from '../wslr/wslr-initiator/wslr-initiator.component';
+import { WslrUpdateComponent } from '../wslr/wslr-update/wslr-update.component';
+import { WslrUpdateSaveComponent } from '../wslr/wslr-update-save/wslr-update-save.component';
+import { WslrReviewerComponent } from '../wslr/wslr-reviewer/wslr-reviewer.component';
+import { WslrReviewerSaveComponent } from '../wslr/wslr-reviewer-save/wslr-reviewer-save.component';
+import { WslrCompletedComponent } from '../wslr/wslr-completed/wslr-completed.component';
+import { WslrCompletedSaveComponent } from '../wslr/wslr-completed-save/wslr-completed-save.component';
+import { WslrModuleAdminComponent } from '../wslr/wslr-module-admin/wslr-module-admin.component';
+import { WslotContainersListComponent } from '../std-masters/wslot-containers-list/wslot-containers-list.component';
+import { WslotConsumptionComponent } from '../std-masters/wslot-consumption/wslot-consumption.component';
+import { PurityListComponent } from '../std-masters/purity-list/purity-list.component';
+import { ContainersListComponent } from '../std-masters/containers-list/containers-list.component';
+import { IssuanceContainerListComponent } from '../std-masters/issuance-container-list/issuance-container-list.component';
+import { ShowIssuanceContainerListComponent } from '../std-masters/show-issuance-container-list/show-issuance-container-list.component';
+import { ConsumptionListComponent } from '../std-masters/consumption-list/consumption-list.component';
+import { ConsumptionCompletedListComponent } from '../std-masters/consumption-completed-list/consumption-completed-list.component';
 
 
 @NgModule({
   declarations: [
     StdModuleAdminComponent,
+    WslotContainersListComponent,
+    WslotConsumptionComponent,
     CreateUpdateSampleRegestrationComponent,
     HomePageSampleRegestrationComponent,
     HomePageSampleTextPlanComponent,
@@ -42,9 +59,21 @@ import { HomePageWsLotRecordComponent } from '../std-masters/ws-lot-record/home-
     PurityTypeMasterCreateUpdateComponent,
     PurityTypeMasterHomePageComponent,
     CreateUpdateWsLotRecordComponent,
-    HomePageWsLotRecordComponent
-
-
+    HomePageWsLotRecordComponent,
+    WslrInitiatorComponent,
+    WslrUpdateComponent,
+    WslrUpdateSaveComponent,
+    WslrReviewerComponent,
+    WslrReviewerSaveComponent,
+    WslrCompletedComponent,
+    WslrCompletedSaveComponent,
+    WslrModuleAdminComponent,
+    PurityListComponent,
+    ContainersListComponent,
+    IssuanceContainerListComponent,
+    ShowIssuanceContainerListComponent,
+    ConsumptionListComponent,
+    ConsumptionCompletedListComponent,
 
 
 

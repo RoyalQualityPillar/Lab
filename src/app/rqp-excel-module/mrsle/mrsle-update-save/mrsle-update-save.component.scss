@@ -1,0 +1,54 @@
+.example-table-container {
+  min-width: 100%;
+  /* overflow-x: scroll; */
+}
+
+.unit-code-container {
+  min-width: 49%;
+}
+
+.sales-code-container {
+  min-width: 49%;
+}
+
+.height_50 {
+  height: 50px;
+}
+
+.display-flex {
+  display: flex;
+  justify-content: center;
+}
+
+.display-end {
+  display: flex;
+  justify-content: end;
+  margin-right: 107px;
+  & .primary,
+  & .third {
+    flex: 0 0 214px;
+  }
+  & .secondary {
+    flex: 0 0 207px;
+  }
+}
+
+.margin-left_12_px {
+  margin-left: 12px;
+}
+
+.margin-right_210_px {
+  margin-right: 210px;
+}
+
+.margin-left_15_per {
+  margin-left: 15%;
+}
+
+.display {
+  display: flex;
+}
+
+.justify-content-center {
+  justify-content: center;
+}

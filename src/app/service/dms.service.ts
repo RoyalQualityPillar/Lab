@@ -51,7 +51,6 @@ export class DmsService {
     });
     formData.append('stpDTO', jsonBlob, 'data.json');
     //formData.append('ursDTO', JSON.stringify(body.ursDTO));
-    console.log(formData);
 
     let createUserURL = this.API_URL + 'dms/stp/save-update';
 

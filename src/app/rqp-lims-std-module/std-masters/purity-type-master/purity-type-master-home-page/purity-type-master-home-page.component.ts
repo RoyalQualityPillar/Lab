@@ -68,7 +68,6 @@ export class PurityTypeMasterHomePageComponent   implements OnInit, AfterViewIni
     this.filterApiUrl = apiEndPoints.purTyUserProfileFilterData;
     this.activePurTyTabledataUrl = apiEndPoints.activePurTyTabledata;
     this.params = { pageIndex, size, unitCode };
-    console.log('Bharat');
     this.loadRoleMasterTableFilter();
     this.loadActiveRoleMasterTableFilter();
   }
@@ -137,6 +136,36 @@ export class PurityTypeMasterHomePageComponent   implements OnInit, AfterViewIni
   }
 
   tabChanged(tabChangeEvent: any) { }
+  public downloadOrgDocument(row:any) {
+    const templateName = 'ptm.html';
+    const moduleCode = 'STD';
+    this. PurityTypeMasterService.generateReport(
+      row.uc0001,
+      templateName,
+      moduleCode
+    )
+      .subscribe((data: any) => {
+        let fileExtension = 'pdf';
+        const binaryData = atob(data.data);
+        const arrayBuffer = new ArrayBuffer(binaryData.length);
+        const uint8Array = new Uint8Array(arrayBuffer);
+        for (let i = 0; i < binaryData.length; i++) {
+          uint8Array[i] = binaryData.charCodeAt(i);
+        }
+        let blob: any;
+        blob = new Blob([uint8Array], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = templateName + '.' + fileExtension;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      });
+    this.isLoading = false;
+  }
+
 
   selectedRow: any;
   onOpenRolePOPUP() {
@@ -152,7 +181,6 @@ export class PurityTypeMasterHomePageComponent   implements OnInit, AfterViewIni
     this.getLatestData = false;
   }
   setSelectedID(row: any) {
-    console.log(row);
     this.setSelectedID = row;
   }
   selectedAllId: any;
@@ -225,7 +253,6 @@ export class PurityTypeMasterHomePageComponent   implements OnInit, AfterViewIni
   UC0002: any;
   async onSearchAllAuditTrail() {
     this.selectedRow = this.selectedRow;
-    console.log(this.selectedRow);
     if (this.selectedRow.length == 0) {
       this.dialog.open(MessageDialogComponent, {
         data: {
@@ -298,6 +325,8 @@ export class PurityTypeMasterHomePageComponent   implements OnInit, AfterViewIni
   tableTitle: string = 'All purity Type Master';
   allButtonConfig = [
     { label: ' Audit Trail', action: 'Audit_Trail', color: 'primary' },
+    { label: ' DownLoad', action: 'Down_Load', color: 'primary' },
+
     // { label: 'Save', action: 'save', color: 'accent' }
     // Add more button configurations as needed
   ];
@@ -311,7 +340,6 @@ export class PurityTypeMasterHomePageComponent   implements OnInit, AfterViewIni
   handleButtonAction(event: { action: string; row: any }) {
     const { action, row } = event;
     this.selectedRow = row; // Set the selected row
-    console.log(action);
     switch (action) {
       case 'Audit_Trail':
         this.onSearchAllAuditTrail();
@@ -319,12 +347,14 @@ export class PurityTypeMasterHomePageComponent   implements OnInit, AfterViewIni
       // case 'save':
       //   this.handleSave(row);
       //   break;
+      case 'Down_Load':
+          this.downloadOrgDocument(row);
+          break;
     }
   }
   activeHandleButtonAction(event: { action: string; row: any }) {
     const { action, row } = event;
     this.selectedRow = row; // Set the selected row
-    console.log(action);
     switch (action) {
       case 'Audit_Trail':
         this.onActiveSelectAuditRow();
@@ -336,7 +366,6 @@ export class PurityTypeMasterHomePageComponent   implements OnInit, AfterViewIni
   }
 
   handleSubmit(row: any) {
-    console.log(row);
     console.log('submitBtn');
   }
 }

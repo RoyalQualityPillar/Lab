@@ -1,0 +1,90 @@
+<div class="row gx-0 create-update-dialog-header-section">
+  <div class="col-10 d-flex justify-content-start">
+    <h1 class="daialog-title-name p-2">Course List</h1>
+  </div>
+  <div class="col-2 d-flex justify-content-end">
+    <button mat-icon-button class="close-button" [mat-dialog-close]="true">
+      <mat-icon class="close-icon" color="warn">close</mat-icon>
+    </button>
+  </div>
+</div>
+<div class="action-toolbar">
+  <div class="table-filter action-toolbar-right">
+    <input
+      type="text"
+      (keyup)="applyFilter(searchField.value)"
+      #searchField
+      placeholder="Table Keyword search"
+    />
+  </div>
+</div>
+
+<div class="container-fluid tabOverFlowY">
+  <div class="table-box">
+    <mat-card [hidden]="groupList.data?.length == 0">
+      <mat-table
+        [dataSource]="groupList"
+        matTableExporter
+        class="table_background_color"
+        matSort
+        id="dataTable"
+      >
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef>
+            <mat-checkbox
+              (change)="$event ? masterToggle() : null"
+              [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()"
+            >
+            </mat-checkbox>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <mat-checkbox
+              class="margin-left_7_7_rem"
+              (click)="$event.stopPropagation()"
+              (change)="$event ? selection.toggle(row) : null"
+              [checked]="selection.isSelected(row)"
+            >
+            </mat-checkbox>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="uc0001">
+          <mat-header-cell *matHeaderCellDef mat-sort-header
+            >User Id
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{ row.uc0001 }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ff0001">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Course Code
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{ row.ff0001 }} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayColumns"></mat-row>
+      </mat-table>
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 15, 20, 25]"
+        showFirstLastButtons
+        aria-label="Select page of periodic rows"
+      >
+      </mat-paginator>
+      <div class="stock-list-button-container">
+        <button
+          mat-raised-button
+          class="submitButton"
+          (click)="onSelectedRow()"
+        >
+          Submit
+        </button>
+      </div>
+    </mat-card>
+    <div *ngIf="groupList.data?.length == 0">
+      <span style="color: red; font-weight: 700">No Record Found</span>
+    </div>
+  </div>
+</div>

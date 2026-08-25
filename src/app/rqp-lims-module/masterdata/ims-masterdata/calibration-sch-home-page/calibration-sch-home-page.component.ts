@@ -13,6 +13,8 @@ import { CalibrationSchCreateUpdateComponent } from '../calibration-sch-create-u
 import { changeStatusByCode } from 'src/app/common/removeEmptyStrings';
 import { CalibrationSchService } from '../calibration-sch.service';
 import { GlobalConstants } from 'src/app/common/global-constants';
+import { MessageService } from 'src/app/service/message.service';
+import { NotificationService } from 'src/app/common/notification.service';
 
 @Component({
   selector: 'app-calibration-sch-home-page',
@@ -20,9 +22,9 @@ import { GlobalConstants } from 'src/app/common/global-constants';
   templateUrl: './calibration-sch-home-page.component.html',
   styleUrl: './calibration-sch-home-page.component.scss'
 })
-export class CalibrationSchHomePageComponent 
+export class CalibrationSchHomePageComponent
 
- implements OnInit, AfterViewInit {
+  implements OnInit, AfterViewInit {
   @ViewChild('commonTableContainer', { read: ViewContainerRef, static: true })
   commonTableContainer!: ViewContainerRef;
   @ViewChild('activeRoleMasterContainer', { read: ViewContainerRef })
@@ -41,8 +43,8 @@ export class CalibrationSchHomePageComponent
   activeUserFilterValueError = false;
   tableData: MatTableDataSource<any>;
   isFilterExpanded = false;
-   activecalibrationschMasterTabledataUrl: any;
-   allcalibrationschMasterTabledataUrl: any;
+  activecalibrationschMasterTabledataUrl: any;
+  allcalibrationschMasterTabledataUrl: any;
   filterApiUrl: any;
   params: any;
   HttpMethod = 'POST';
@@ -50,11 +52,14 @@ export class CalibrationSchHomePageComponent
 
   constructor(
     private router: Router,
-     private calibrationSchService: CalibrationSchService,
+    private calibrationSchService: CalibrationSchService,
+    private notificationService: NotificationService,
     public dialog: MatDialog,
     public cookieService: CookieService,
     private apiService: ApiService,
-    private remoteLoader: RemoteComponentLoaderService
+    public messageService: MessageService,
+    private remoteLoader: RemoteComponentLoaderService,
+
 
   ) { }
   filterObject: any;
@@ -75,7 +80,22 @@ export class CalibrationSchHomePageComponent
     this.loadRoleMasterTableFilter();
     this.loadActiveRoleMasterTableFilter();
   }
-
+  public manualSchedule(row: any) {
+    this.isLoading = true;
+    this.calibrationSchService.onManualSchedulTrail(row.uc0001).subscribe((data: any) => {
+      if (data.errorInfo != null) {
+        this.dialog.open(MessageDialogComponent, {
+          data: {
+            message: data.errorInfo.message,
+            heading: 'Error Information',
+          },
+        });
+      }
+      else {
+        this.notificationService.showSuccess(data.status, () => { });
+      }
+    });
+  }
   async loadRoleMasterTableFilter() {
     try {
       const component = await this.remoteLoader.loadComponentByKey(
@@ -173,7 +193,7 @@ export class CalibrationSchHomePageComponent
   }
 selectedRow: any;
   onOpenRolePOPUP() {
-    const dialogRef = this.dialog.open(CalibrationSchCreateUpdateComponent , {
+    const dialogRef = this.dialog.open(CalibrationSchCreateUpdateComponent, {
       minWidth: '80%',
       data: { tableData: this.selectedRow, type: 'Registration' },
     });
@@ -201,7 +221,7 @@ selectedRow: any;
       });
     } else {
       const dialogRef = this.dialog.open(
-        CalibrationSchCreateUpdateComponent ,
+        CalibrationSchCreateUpdateComponent,
         {
           minWidth: '80%',
           data: { tableData: this.selectedRow, type: 'Modification' },
@@ -218,8 +238,8 @@ selectedRow: any;
   refreshData() {
     this.loadRoleMasterTableFilter();
     this.loadActiveRoleMasterTableFilter();
-     this.commonTableContainer.clear()
-     this.activeRoleMasterContainer.clear()
+    this.commonTableContainer.clear()
+    this.activeRoleMasterContainer.clear()
 
   }
   onChangeStatus(data: any) {
@@ -286,6 +306,7 @@ selectedRow: any;
         });
     }
   }
+
   formatedData: any;
   async structureResponse(apiResponse: any) {
     const rows = apiResponse.map((item) => {
@@ -344,6 +365,8 @@ selectedRow: any;
   activeButtonConfig = [
     { label: ' Audit Trail', action: 'Audit_Trail', color: 'primary' },
     { label: 'Update', action: 'Update', color: 'accent' },
+    { label: ' Manual Schedule', action: 'Manual_Schedule', color: 'primary' },
+
     // Add more button configurations as needed
   ];
   // selectedRow:any;
@@ -355,15 +378,20 @@ selectedRow: any;
       case 'Audit_Trail':
         this.onSearchAllAuditTrail();
         break;
+<<<<<<< HEAD
         case 'Down_Load':
           this.downloadOrgDocument(row);  
           break;
     }
       
+=======
+    }
+>>>>>>> 203e81c8cf3306c72feea64c87cacc2c56d8385d
   }
   activeHandleButtonAction(event: { action: string; row: any }) {
     const { action, row } = event;
     this.selectedRow = row; // Set the selected row
+    console.log(row);
     console.log(action);
     switch (action) {
       case 'Audit_Trail':
@@ -372,9 +400,19 @@ selectedRow: any;
       case 'Update':
         this.onActiveSelectRow();
         break;
+      case 'Manual_Schedule':
+        this.manualSchedule(row);
+        break;
     }
   }
 
+  buttonAction(action: string) {
+
+    // if (action === 'Manual_Schedule') {
+    //   this.manualSchedule();
+    // }
+
+  }
   handleSubmit(row: any) {
     console.log(row);
     console.log('submitBtn');

@@ -12,6 +12,20 @@ export class InstrumentMasterService {
    private API_URL = environment.apiBaseURL;
           constructor(private http: HttpClient, private cookieService: CookieService) {}
         
+ getDropDownList() {
+    let token = this.cookieService.get('token');
+    let listURL =
+      this.API_URL +
+      `admin/userprofile/input?unitCode=${this.cookieService.get('buCode')}`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
+      }),
+    };
+    return this.http.get(listURL, httpOptions);
+  }
+
           onCreate(body: any) {
             console.log(body);
             let token = this.cookieService.get('token');
@@ -31,6 +45,7 @@ export class InstrumentMasterService {
   
       return this.http.get(fetchAllBusinessUnitInfoApiUrl);
     }
+<<<<<<< HEAD
      getDropDownList(unitCode: any) {
       let queryParams = `?unitCode=${unitCode}`;
       let fetchAllBusinessUnitInfoApiUrl = this.API_URL + 'sd/input' + queryParams;
@@ -49,6 +64,13 @@ export class InstrumentMasterService {
           );
         
           }
+=======
+     getDropDownDeptList(unitCode: any) {
+   let queryParams = `?unitCode=${unitCode}`;
+    const ALLSALEPRODUCTURL = this.API_URL + 'limsm-im/input' + queryParams;
+    return this.http.get(ALLSALEPRODUCTURL);
+  }
+>>>>>>> 203e81c8cf3306c72feea64c87cacc2c56d8385d
         }
     
     

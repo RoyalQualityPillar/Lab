@@ -81,6 +81,39 @@ import { CuHomeComponent } from '../cm/cu/cu-home/cu-home.component';
 import { CmInitiatorComponent } from '../cm/cm/cm-initiator/cm-initiator.component';
 //import { CaUpdateComponent } from '../cm/ca/ca-update/ca-update.component';
 import { PmsListComponent } from '../pms-list/pms-list.component';
+import { CreateUpdateInstrumentStatusComponent } from '../masterdata/ims-masterdata/instrument-status-master/create-update-instrument-status/create-update-instrument-status.component';
+import { HomePageInstrumentStatusComponent } from '../masterdata/ims-masterdata/instrument-status-master/home-page-instrument-status/home-page-instrument-status.component';
+import { IpmInitiatorComponent } from '../ipm/ipm-initiator/ipm-initiator.component';
+import { IpmUpdateComponent } from '../ipm/ipm-update/ipm-update.component';
+import { IpmUpdateSaveComponent } from '../ipm/ipm-update-save/ipm-update-save.component';
+import { IpmReviewerSaveComponent } from '../ipm/ipm-reviewer-save/ipm-reviewer-save.component';
+import { IpmReviewerComponent } from '../ipm/ipm-reviewer/ipm-reviewer.component';
+import { CpmCreateUpdateComponent } from '../masterdata/ims-masterdata/calibraion-perameter-master/cpm-create-update/cpm-create-update.component';
+import { CpmHomePageComponent } from '../masterdata/ims-masterdata/calibraion-perameter-master/cpm-home-page/cpm-home-page.component';
+import { IsmHomeComponent } from '../ism/ism-home/ism-home.component';
+import { IsmInitiatorComponent } from '../ism/ism-initiator/ism-initiator.component';
+import { IsmCompletedComponent } from '../ism/ism-completed/ism-completed.component';
+import { IsmReviewerHomePageComponent } from '../ism/ism-reviewer-home-page/ism-reviewer-home-page.component';
+import { IsmReviewerComponent } from '../ism/ism-reviewer/ism-reviewer.component';
+import { IsmUpdateHomePageComponent } from '../ism/ism-update-home-page/ism-update-home-page.component';
+
+import { CreateUpdatePrevntMainScheComponent } from '../masterdata/ims-masterdata/preventive-maintenance-schedule/create-update-prevnt-main-sche/create-update-prevnt-main-sche.component';
+import { HomePagePrevntMainScheComponent } from '../masterdata/ims-masterdata/preventive-maintenance-schedule/home-page-prevnt-main-sche/home-page-prevnt-main-sche.component';
+import { IsmCompletedSaveComponent } from '../ism/ism-completed-save/ism-completed-save.component';
+import { IpmHomeComponent } from '../ipm/ipm-home/ipm-home.component';
+import { IpmCompletedSaveComponent } from '../ipm/ipm-completed-save/ipm-completed-save.component';
+import { IpmCompletedComponent } from '../ipm/ipm-completed/ipm-completed.component';
+import { IsmUpdateComponent } from '../ism/ism-update/ism-update.component';
+import { CumCreateUpdateComponent } from '../masterdata/ims-masterdata/calibraion-uom-master/cum-create-update/cum-create-update.component';
+import { CumHomePageComponent } from '../masterdata/ims-masterdata/calibraion-uom-master/cum-home-page/cum-home-page.component';
+import { PcmCreateUpdateComponent } from '../masterdata/ims-masterdata/problem-category-master/pcm-create-update/pcm-create-update.component';
+import { PcmHomePageComponent } from '../masterdata/ims-masterdata/problem-category-master/pcm-home-page/pcm-home-page.component';
+import { CalibrationScheduleMasterComponent } from '../masterdata/ims-masterdata/calibration-schedule-master/calibration-schedule-master.component';
+import { PreventiveMaintananceScheduleMasterComponent } from '../masterdata/ims-masterdata/preventive-maintanance-schedule-master/preventive-maintanance-schedule-master.component';
+// import { AqNominationCreateUpdateComponent } from 'src/app/rqp-lims-aqm-module/aq-master/aq-nomination/aq-nomination-create-update/aq-nomination-create-update.component';
+// import { AqNominationHomePageComponent } from 'src/app/rqp-lims-aqm-module/aq-master/aq-nomination/aq-nomination-home-page/aq-nomination-home-page.component';
+
+
 
 
 @NgModule({
@@ -156,8 +189,45 @@ import { PmsListComponent } from '../pms-list/pms-list.component';
     CaInitiatorComponent,
     CqHomeComponent,
     CuHomeComponent,
-    EvenLogMasterHomePageComponent,   
+    EvenLogMasterHomePageComponent,
     PmsListComponent,
+    CreateUpdateInstrumentStatusComponent,
+    HomePageInstrumentStatusComponent,
+    IpmInitiatorComponent,
+    IpmUpdateComponent,
+    IpmUpdateSaveComponent,
+    IpmReviewerComponent,
+    IpmReviewerSaveComponent,
+    CpmCreateUpdateComponent,
+    CpmHomePageComponent,
+    IsmHomeComponent,
+    IsmInitiatorComponent,
+    IsmCompletedComponent,
+    IsmCompletedSaveComponent,
+    IsmReviewerComponent,
+    IsmReviewerHomePageComponent,
+    IsmUpdateHomePageComponent,
+    CreateUpdatePrevntMainScheComponent,
+    HomePagePrevntMainScheComponent,
+    IpmHomeComponent,
+    IpmCompletedComponent,
+    IpmCompletedSaveComponent,
+    IsmUpdateComponent,
+    CumCreateUpdateComponent,
+    CumHomePageComponent,
+    PcmCreateUpdateComponent,
+    PcmHomePageComponent,
+    CumHomePageComponent,
+    CalibrationScheduleMasterComponent,
+    PreventiveMaintananceScheduleMasterComponent,
+      //  AqNominationCreateUpdateComponent,
+      //  AqNominationHomePageComponent,
+     
+    
+   
+
+  
+
 
   ],
   imports: [

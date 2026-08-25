@@ -1,0 +1,112 @@
+<div class="table-box">
+    <mat-table [dataSource]="issuanceContainersListData" matSort id="dataTable" class="table_background_color">
+        <ng-container matColumnDef="ff0001">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+                Working Standard Code
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.cr_ff0002 }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="ff0002">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Material / API Name
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.cr_ff0015 }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ff0003">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Container No.
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.uc0001 }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ff0004">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Container Type
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.cr_ff0005 }} </mat-cell>
+        </ng-container>
+
+        <!-- <ng-container matColumnDef="ff0005">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Container Size
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.ff0002 }}</mat-cell>
+        </ng-container> -->
+        <ng-container matColumnDef="ff0005">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Material Batch / Lot No.
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.cr_ff0009 }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="ff0006">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Workind Standard Lot No.
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.cr_lc0003 }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="ff0007">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Total Quantity Received
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.cr_ff0022 }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="ff0008">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Quantity Received per Pack
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.ff0003 }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="ff0009">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Quantity Available per Pack
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.ff0007 }}</mat-cell>
+        </ng-container>
+        <!-- <ng-container matColumnDef="ff0009">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Date of Receipt
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.ff0007 }}</mat-cell>
+        </ng-container> -->
+        <ng-container matColumnDef="ff0010">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Retest / Expiry Date
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.cr_ff0013 | date:"YYYY-MM-dd" }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="ff0011">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Storage Condition
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.cr_ff0006 }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="ff0012">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Status
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.status }}</mat-cell>
+        </ng-container>
+        <!-- <ng-container matColumnDef="ff0013">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Remarks
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.ff0007 }}</mat-cell>
+        </ng-container> -->
+        <ng-container matColumnDef="createdon">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Created Date
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                {{ row.createdon | date:"YYYY-MM-dd" }}
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="createdby">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Created By
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                {{ row.createdby }}
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Batch
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <mat-icon class="cursor" (click)="submit(row)"> toggle_on </mat-icon>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[10, 15, 20, 25]" (page)="pageChanged($event)" showFirstLastButtons
+        aria-label="Select page of periodic rows">
+    </mat-paginator>
+</div>

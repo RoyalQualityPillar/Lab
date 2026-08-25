@@ -23,32 +23,34 @@ import { CaInitiatorComponent } from '../cm/ca/ca-initiator/ca-initiator.compone
 import { CqHomeComponent } from '../cm/cq/cq-home/cq-home.component';
 import { CuHomeComponent } from '../cm/cu/cu-home/cu-home.component';
 import { CmInitiatorComponent } from '../cm/cm/cm-initiator/cm-initiator.component';
-//import { CmHomeComponent } from '../cm/cm/cm-home/cm-home.component';
-//import { CaUpdateComponent } from '../cm/ca/ca-update/ca-update.component';
-// import { LimsModuleHomePageComponent } from '../lims-module-home-page/lims-module-home-page.component';
-// import { LimsMasterHomePageComponent } from '../lims-master/lims-master-home-page/lims-master-home-page.component';
-// import { FieldActiveComponent } from '../lims-master/field-master/field-active/field-active.component';
-// import { FieldHomePageComponent } from '../lims-master/field-master/field-home-page/field-home-page.component';
-// import { GtpHomeComponent } from '../gtp/gtp-home/gtp-home.component';
-// import { GtpInitComponent } from '../gtp/gtp-init/gtp-init.component';
-// import { GtpUpdateComponent } from '../gtp/gtp-update/gtp-update.component';
-// import { GtpUpdateSaveComponent } from '../gtp/gtp-update-save/gtp-update-save.component';
-// import { GtpReviewerComponent } from '../gtp/gtp-reviewer/gtp-reviewer.component';
-// import { GtpReviewerSaveComponent } from '../gtp/gtp-reviewer-save/gtp-reviewer-save.component';
-// import { CourseSessionHomeComponent } from '../course-session/course-session-home/course-session-home.component';
-// import { CourseSessionInitiatorComponent } from '../course-session/course-session-initiator/course-session-initiator.component';
-// import { CourseSessionUpdateComponent } from '../course-session/course-session-update/course-session-update.component';
-// import { CourseSessionUpdateSaveComponent } from '../course-session/course-session-update-save/course-session-update-save.component';
-// import { CourseSessionReviewerComponent } from '../course-session/course-session-reviewer/course-session-reviewer.component';
-// import { CourseSessionReviewerSaveComponent } from '../course-session/course-session-reviewer-save/course-session-reviewer-save.component';
-// import { CourseHomeComponent } from '../course/course-home/course-home.component';
-// import { CourseInitiatorComponent } from '../course/course-initiator/course-initiator.component';
-// import { CourseUpdateComponent } from '../course/course-update/course-update.component';
-// import { CourseUpdateSaveComponent } from '../course/course-update-save/course-update-save.component';
-// import { CourseReviewerComponent } from '../course/course-reviewer/course-reviewer.component';
-// import { CourseReviewerSaveComponent } from '../course/course-reviewer-save/course-reviewer-save.component';
-// import { TopicRegistrationCompletedSaveComponent } from '../topic-registration/topic-registration-completed-save/topic-registration-completed-save.component';
-// import { TopicRegistrationCompletedComponent } from '../topic-registration/topic-registration-completed/topic-registration-completed.component';
+import { HomePageInstrumentStatusComponent } from '../masterdata/ims-masterdata/instrument-status-master/home-page-instrument-status/home-page-instrument-status.component';
+import { IpmInitiatorComponent } from '../ipm/ipm-initiator/ipm-initiator.component';
+import { IpmUpdateComponent } from '../ipm/ipm-update/ipm-update.component';
+import { IpmUpdateSaveComponent } from '../ipm/ipm-update-save/ipm-update-save.component';
+import { IpmReviewerComponent } from '../ipm/ipm-reviewer/ipm-reviewer.component';
+import { IpmReviewerSaveComponent } from '../ipm/ipm-reviewer-save/ipm-reviewer-save.component';
+import { CpmHomePageComponent } from '../masterdata/ims-masterdata/calibraion-perameter-master/cpm-home-page/cpm-home-page.component';
+import { IsmHomeComponent } from '../ism/ism-home/ism-home.component';
+import { IsmInitiatorComponent } from '../ism/ism-initiator/ism-initiator.component';
+import { IsmCompletedComponent } from '../ism/ism-completed/ism-completed.component';
+// import { IsmCompletedSaveComponent } from '../ism/ism-completed-save/ism-completed-save.component';
+import { IsmReviewerComponent } from '../ism/ism-reviewer/ism-reviewer.component';
+import { IsmReviewerHomePageComponent } from '../ism/ism-reviewer-home-page/ism-reviewer-home-page.component';
+//import { IsmUpdateComponent } from '../ism/ism-update/ism-update.component';
+import { IsmUpdateHomePageComponent } from '../ism/ism-update-home-page/ism-update-home-page.component';
+import { IsmCompletedSaveComponent } from '../ism/ism-completed-save/ism-completed-save.component';
+import { HomePagePrevntMainScheComponent } from '../masterdata/ims-masterdata/preventive-maintenance-schedule/home-page-prevnt-main-sche/home-page-prevnt-main-sche.component';
+import { IpmHomeComponent } from '../ipm/ipm-home/ipm-home.component';
+import { IpmCompletedComponent } from '../ipm/ipm-completed/ipm-completed.component';
+import { IpmCompletedSaveComponent } from '../ipm/ipm-completed-save/ipm-completed-save.component';
+import { IsmUpdateComponent } from '../ism/ism-update/ism-update.component';
+import { CumHomePageComponent } from '../masterdata/ims-masterdata/calibraion-uom-master/cum-home-page/cum-home-page.component';
+
+import { PcmHomePageComponent } from '../masterdata/ims-masterdata/problem-category-master/pcm-home-page/pcm-home-page.component';
+import { CalibrationScheduleMasterComponent } from '../masterdata/ims-masterdata/calibration-schedule-master/calibration-schedule-master.component';
+import { PreventiveMaintananceScheduleMasterComponent } from '../masterdata/ims-masterdata/preventive-maintanance-schedule-master/preventive-maintanance-schedule-master.component';
+
+// import { AqNominationHomePageComponent } from 'src/app/rqp-lims-aqm-module/aq-master/aq-nomination/aq-nomination-home-page/aq-nomination-home-page.component';
 
 const routes: Routes = [
   // {
@@ -353,11 +355,125 @@ const routes: Routes = [
     path: 'cq-home',
     component: CqHomeComponent,
   },
-   {
+  {
     path: 'cu-home',
     component: CuHomeComponent,
   },
- 
+  {
+    path: 'home-page-instrument-status',
+    component: HomePageInstrumentStatusComponent,
+  },
+  {
+    path: 'cpm-home-page',
+    component: CpmHomePageComponent,
+  },
+  {
+    path: 'ipm-initiator',
+    component: IpmInitiatorComponent,
+  },
+  {
+    path: 'ipm-update',
+    component: IpmUpdateComponent,
+  },
+  {
+    path: 'ipm-update-save',
+    component: IpmUpdateSaveComponent,
+  },
+  {
+    path: 'ipm-reviewer',
+    component: IpmReviewerComponent,
+  },
+  {
+    path: 'ipm-reviewer-save',
+    component: IpmReviewerSaveComponent,
+  },
+
+  {
+    path: 'ism-home',
+    component: IsmHomeComponent,
+  },
+
+
+  {
+    path: 'ism-initiator',
+    component: IsmInitiatorComponent,
+  },
+  {
+    path: 'ism-update',
+    component: IsmUpdateComponent,
+  },
+  {
+    path: 'ism-update-home-page',
+    component: IsmUpdateHomePageComponent,
+  },
+  {
+    path: 'ism-reviewer',
+    component: IsmReviewerComponent,
+  },
+  {
+    path: 'ism-reviewer-home-page',
+    component: IsmReviewerHomePageComponent,
+  },
+
+
+
+
+  //  {
+  //  path: 'ism-update',
+  //   component: IsmUpdateComponent,
+  // },
+  {
+    path: 'ism-update-home-page',
+    component: IsmUpdateHomePageComponent,
+  },
+
+  {
+    path: 'ism-completed',
+    component: IsmCompletedComponent,
+  },
+  {
+    path: 'ism-completed-save',
+    component: IsmCompletedSaveComponent,
+  },
+  {
+    path: 'home-page-prevnt-main-sche',
+    component: HomePagePrevntMainScheComponent,
+  },
+  {
+    path: 'ipm-home',
+    component: IpmHomeComponent,
+  },
+  {
+    path: 'ipm-completed',
+    component: IpmCompletedComponent,
+  },
+  {
+    path: 'ipm-completed-save',
+    component: IpmCompletedSaveComponent,
+  },
+  {
+    path: 'cum-home-page',
+    component: CumHomePageComponent,
+  },
+  {
+    path: 'pcm-home-page',
+    component: PcmHomePageComponent,
+  },
+  {
+    path: 'calibration-schedule-master-page',
+    component: CalibrationScheduleMasterComponent,
+  },
+  {
+    path: 'preventive-maintanance-schedule-master',
+    component: PreventiveMaintananceScheduleMasterComponent,
+
+  },
+  //  {
+  //   path: 'app-aq-nomination-home-page',
+  //   component:  AqNominationHomePageComponent,
+    
+  // },
+
 
 
 

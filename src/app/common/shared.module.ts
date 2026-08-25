@@ -26,6 +26,10 @@ import { LcWeekDataComponent } from './lc-week-data/lc-week-data.component';
 import { CommonESignatureComponent } from './common-e-signature/common-e-signature.component';
 import { AsCommonFooterComponent } from './as-common-footer/as-common-footer.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { ItemNameNoComponent } from './item-name-no/item-name-no.component';
+import { TrainingPendingListComponent } from './training-pending-list/training-pending-list.component';
+import { PreviewFileComponent } from '../toolbar/preview-file/preview-file.component';
+import { CommonFileUploadComponent } from './common-file-upload/common-file-upload.component';
 
 
 @NgModule({
@@ -44,7 +48,11 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     CommonTableFilterComponent,
     CommonActiveAuditTrailComponent,
     CommonAllAuditTrailComponent,
-    LcWeekDataComponent
+    LcWeekDataComponent,
+    TrainingPendingListComponent,
+    ItemNameNoComponent,
+    PreviewFileComponent,
+    CommonFileUploadComponent
 
   ],
   exports: [
@@ -64,7 +72,10 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     CommonActiveAuditTrailComponent,
     CommonAllAuditTrailComponent,
     LcWeekDataComponent,
-
+    TrainingPendingListComponent,
+    ItemNameNoComponent,
+    PreviewFileComponent,
+   CommonFileUploadComponent
 
   ],
   imports: [

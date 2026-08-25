@@ -41,6 +41,7 @@ export class ColumnMasterCreateUpdateComponent implements OnInit {
   buTypeList: any;
   unitList: any;
   formData: any;
+  cciCmList: any
   isLoading = false;
   statusList: any;
   displayedColumns: any;
@@ -86,10 +87,11 @@ export class ColumnMasterCreateUpdateComponent implements OnInit {
       this.cookieService.get('buCode')
     );
     this.onLoadStatusDropDown();
+    this.onloadDropDown2();
     // this.onloadDropDown();
     this.onLoadFiDropdown();
     this.onLoadAsgDropdown();
-    if (this.userData.type == 'Update') {
+    if (this.userData.type == 'Modification') {
       this.isReadOnly = true;
       this.isUpdate = true;
       this.onLoadFormValue();
@@ -107,6 +109,14 @@ export class ColumnMasterCreateUpdateComponent implements OnInit {
       this.orgList = data.data.orgList;
       this.buTypeList = data.data.buTypeList;
       this.unitList = data.data.unitList;
+      this.isLoading = false;
+    });
+  }
+   onloadDropDown2() {
+    this.isLoading = true;
+    this.columnMasterService.bmrInput(this.cookieService.get('buCode')).subscribe((data: any) => {
+      console.log(data);
+        this.cciCmList = data.data.cciCmList;
       this.isLoading = false;
     });
   }
@@ -185,7 +195,6 @@ export class ColumnMasterCreateUpdateComponent implements OnInit {
     this.DepartmentMaster.controls['status'].setValue(
       changeStatusByDescription(this.DepartmentMaster.controls['status'].value)
     );
-    console.log(this.DepartmentMaster.value);
     let params = {};
     // this.glService
     //   .onGlMasterSaveUpdate(this.DepartmentMaster.value)
@@ -269,12 +278,7 @@ export class ColumnMasterCreateUpdateComponent implements OnInit {
           });
         } else {
           this.isLoading = false;
-          this.notificationService.showSuccess(
- data.data.uc0001 + data.status,
-  () => {
-    console.log('Success Snackbar Closed');
-  }
-);
+                     this.notificationService.showSuccess(data.status, () => {});
           this.dialogRef.close();
         }
       });
@@ -451,6 +455,51 @@ export class ColumnMasterCreateUpdateComponent implements OnInit {
       if (this.isStatusSuccess == false) {
         this.DepartmentMaster.controls['ff0009'].setErrors({ incorrect: true });
         this.openAccountGroupCodeLOV();
+      }
+    }
+  }
+  openColumnTypeListLOV() {
+    this.displayedColumns = [
+      { field: 'columnnumber', title: 'Column Type No' },
+      { field: 'columnname', title: 'Column Type Code' },
+      { field: 'columncode', title: 'Column Type Name' },
+
+    ];
+    const dialogRef = this.dialog.open(LovDialogComponent, {
+      height: '500px',
+      width: '600px',
+      data: {
+        dialogTitle: 'Column List ',
+        dialogColumns: this.displayedColumns,
+        dialogData: this.cciCmList,
+        lovName: 'businessUnitList',
+      },
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.selectedDialogData = result.data;
+        this.DepartmentMaster.controls['ff0001'].setValue(
+          this.selectedDialogData.columnname
+        );
+      }
+    });
+  }
+    onChangeColumnType() {
+    if (this.DepartmentMaster.controls['ff0001'].value == '') {
+      this.DepartmentMaster.controls['ff0001'].setValue('');
+      
+    } else {
+      this.isStatusSuccess = false;
+      let statusCurrentValue = this.DepartmentMaster.controls['ff0001'].value;
+      this.cciCmList.forEach((elements) => {
+        if (elements.productNO == statusCurrentValue) {
+          this.isStatusSuccess = true;
+        }
+      });
+      if (this.isStatusSuccess == false) {
+        this.DepartmentMaster.controls['ff0001'].setErrors({ incorrect: true });
+        this.openColumnTypeListLOV();
       }
     }
   }

@@ -1,0 +1,341 @@
+<app-common-header [pageData]="this.pageData" (headerData)="getHeaderData($event)"></app-common-header>
+
+<div>
+  <div>
+    <!--New item-->
+    <app-common-title [title]="'Problem Information'"></app-common-title>
+
+    <p class="section_header_title">Issue Detail</p>
+  </div>
+  <div class="float-right"></div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <form [formGroup]="UserRequirementForm">
+      <div class="row no-gutters ms-1 me-1 dense-4 margin-top_5 m-1">
+        <!-- <mat-form-field appearance="outline" class="col-3 px-1">
+          <mat-label>Start Date</mat-label>
+          <input type="text" matInput [matDatepicker]="pickerFrom" formControlName="ff0002" />
+          <mat-datepicker-toggle matIconSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+          <mat-datepicker #pickerFrom></mat-datepicker>
+        </mat-form-field> -->
+        <mat-form-field appearance="outline" class="col-3 px-1">
+          <mat-label>Occured Date</mat-label>
+          <input type="text" matInput formControlName="ff0002" [readonly]="true" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-3 px-1">
+          <mat-label>Report Date</mat-label>
+          <input type="text" matInput formControlName="ff0003" [readonly]="true" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-3 px-1">
+          <mat-label>Status</mat-label>
+          <input type="text" matInput formControlName="status" placeholder="Status" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-3 px-1">
+          <mat-label>Serverity</mat-label>
+          <input type="text" matInput formControlName="market" placeholder="Market" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-3 px-1">
+          <mat-label>Customer Name</mat-label>
+          <input type="text" matInput formControlName="customerName" placeholder="Customer Name" />
+        </mat-form-field>
+         <mat-form-field appearance="outline" class="col-3 px-1">
+          <mat-label>Product Impact</mat-label>
+          <input type="text" matInput formControlName="productImpact" placeholder="Product Impact" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-3 px-1">
+          <mat-label>Batch Impact</mat-label>
+          <input type="text" matInput formControlName="batchImpact" placeholder="Batch Impact" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-3 px-1">
+          <mat-label>Validation Impact</mat-label>
+          <input type="text" matInput formControlName="validationImpact" placeholder="Validation Impact" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-3 px-1">
+          <mat-label>Data Integrity Impact</mat-label>
+          <input type="text" matInput formControlName="dataIntegrityImpact" placeholder="Data Integrity Impact" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-3 px-1">
+          <mat-label>Regulatory Impact</mat-label>
+          <input type="text" matInput formControlName="regulatoryImpact" placeholder="Regulatory Impact" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-3 px-1">
+          <mat-label>Investigation Required</mat-label>
+          <input type="text" matInput formControlName="investigationRequired" placeholder="Investigation Required" />
+        </mat-form-field>
+        <!-- <mat-form-field appearance="outline" class="col-3 px-1">
+          <mat-label>Change Classification</mat-label>
+          <input type="text" matInput formControlName="changeClassification" placeholder="Change Classification" />
+        </mat-form-field> -->
+        <!-- <input
+            type="text"
+            matInput
+            formControlName="ff0003"
+            [readonly]="true"
+          />
+        </mat-form-field> -->
+        <!-- <mat-form-field appearance="outline" class="col-3 px-1">
+          <mat-label>End Date</mat-label>
+          <input
+            type="text"
+            matInput
+            [matDatepicker]="pickerTo"
+            formControlName="ff0003"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="pickerTo"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #pickerTo></mat-datepicker>
+        </mat-form-field> -->
+      </div>
+      <div class="row no-gutters ms-1 me-1 margin-top_10">
+        <mat-form-field appearance="outline" class="width_100">
+          <mat-label>Problem Brief</mat-label>
+          <textarea type="text" matInput placeholder="Problem Brief" formControlName="ff0001">
+          </textarea>
+        </mat-form-field>
+      </div>
+      <div class="row no-gutters ms-1 me-1 margin-top_10">
+        <mat-form-field appearance="outline" class="width_100">
+          <mat-label>Problem Detail</mat-label>
+          <textarea type="text" matInput placeholder="Title" formControlName="title">
+          </textarea>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- <div class="table-box">
+  <div class="section_header">
+    <div class="float-left">
+      <p class="section_header_title">Event Classification</p>
+    </div>
+  </div>
+</div> -->
+<!-- <div>
+  <div>
+    <div>
+      <form [formGroup]="EventForm">
+        <div class="row no-gutters ms-1 me-1 dense-4">
+          <mat-form-field appearance="outline" class="col-4 px-1">
+            <mat-label>Severity of the Event</mat-label>
+            <input type="text" matInput formControlName="ff0001" placeholder="Severity of the Event" />
+            <img alt="lov img" src="../../../../../../assets/searchfind.svg" class="icon-size lovSearchButton"
+              color="primary" (click)="openSeverityEventLov()" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-4 px-1">
+            <mat-label>Probability of Occurrence</mat-label>
+            <input type="text" matInput formControlName="ff0002" placeholder="Probability of Occurrence" />
+            <img alt="lov img" src="../../../../../../assets/searchfind.svg" class="icon-size lovSearchButton" 444444
+              color="primary" (click)="openOccurenceLov()" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-4 px-1">
+            <mat-label>Detection Mechanism</mat-label>
+            <input type="text" matInput formControlName="ff0003" placeholder="Detection Mechanism" />
+            <img alt="lov img" src="../../../../../../assets/searchfind.svg" class="icon-size lovSearchButton"
+              color="primary" (click)="openDetectionLov()" />
+          </mat-form-field>
+        </div>
+        <div class="row no-gutters ms-1 me-1 dense-4">
+          <mat-form-field appearance="outline" class="col-4 px-1">
+            <mat-label>Risk Priority Number (RPN)</mat-label>
+            <input type="text" matInput formControlName="ff0004" placeholder="Risk Priority Number (RPN)"
+              [readonly]="isReadonly" [class.isReadonlyFieldForQuotation]="isReadonly"
+              [class.isReadonlyFieldForQuotationWithRisk]="isRiskFlag"
+              [class.isReadonlyFieldForQuotationMediumRisk]="mediumRisk"
+              [class.isReadonlyFieldForQuotationNoRisk]="noRisk" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-4 px-1">
+            <mat-label>Category Event Classification</mat-label>
+            <input type="text" matInput formControlName="ff0005" placeholder="Category Event Classification"
+              [readonly]="isReadonly" [class.isReadonlyFieldForQuotationWithRisk]="isRiskFlag"
+              [class.isReadonlyFieldForQuotationMediumRisk]="mediumRisk"
+              [class.isReadonlyFieldForQuotationNoRisk]="noRisk" [class.isReadonlyFieldForQuotation]="isReadonly" />
+          </mat-form-field>
+        </div>
+      </form> -->
+
+      <!--line item-->
+      <div class="table-box">
+        <div class="section_header_child_1">
+          <div class="float-left"></div>
+          <div class="float-right">
+            <button mat-raised-button class="section-add-new-record-btn" (click)="addNewRow()">
+              Add Problem
+            </button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <ng-container *ngFor="let item of ccLineItemIndexDTOList; let i = index">
+          <div class="table-box">
+            <div class="section_header_child_1">
+              <div class="float-start">
+                <p class="section_header_title">Problem - {{ i + 1 }}</p>
+              </div>
+              <div class="float-end">
+                <button mat-raised-button class="section-add-remove-record-btn" (click)="addRemoveEventRow(item)">
+                  Remove
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row no-gutters ms-1 me-1 dense-4">
+            <mat-form-field appearance="outline" class="col-3 px-1">
+              <mat-label>Item Category</mat-label>
+              <input type="text" [(ngModel)]="item.ff0001" matInput placeholder="Item Category" />
+              <img alt="lov img" src="../../../../../../assets/searchfind.svg" class="icon-size lovSearchButton"
+                color="primary" (click)="openItemCategoryLov(i)" />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-3 px-1">
+              <mat-label>Item Subcategory</mat-label>
+              <input type="text" [(ngModel)]="item.ff0002" matInput placeholder="Item Subcategory" />
+              <img alt="lov img" src="../../../../../../assets/searchfind.svg" class="icon-size lovSearchButton"
+                color="primary" (click)="openItemSubCategoryLov(i)" />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-3 px-1">
+              <mat-label>Item Name</mat-label>
+              <input type="text" [(ngModel)]="item.ff0003" matInput placeholder="Item Name" />
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-3 px-1">
+              <mat-label>Item No</mat-label>
+              <input type="text" [(ngModel)]="item.ff0004" matInput placeholder="Item No" />
+            </mat-form-field>
+          </div>
+
+          <!--Table start-->
+          <div class="tabOverFlowX" *ngIf="item.ccLineDesDTOList.length > 0">
+
+            <button mat-raised-button class="add-new-record-btn" (click)="addLineItem(item)">
+              Add Row
+            </button>
+
+
+            <table class="display-table" id="dataTable">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Root Cause?</th>
+                  <th>Immediate Action</th>
+                  <th>CAPA</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let element of item.ccLineDesDTOList; let idx = index">
+                  <td class="">
+                    <img src="/assets/delete.png" (click)="deleteTodo(i, idx)" />
+                  </td>
+                  <td class="text-align_right">
+                    <textarea type="text" class="form-control form-control-sm" [(ngModel)]="element.ff0005" rows="3">
+                    </textarea>
+                  </td>
+                  <td class="">
+                    <textarea type="text" class="form-control form-control-sm" [(ngModel)]="element.ff0006" rows="3">
+                    </textarea>
+                  </td>
+                  <td class="">
+                    <textarea type="text" class="form-control form-control-sm" [(ngModel)]="element.ff0007" rows="3">
+                    </textarea>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </ng-container>
+        <!--Table end-->
+      </div>
+    
+ 
+
+
+<!---->
+<!--Attachment Section-->
+<div class="table-box">
+  <div class="section_header">
+    <div class="float-left">
+      <p class="section_header_title">Attachment Detail</p>
+    </div>
+    <div class="float-right"></div>
+  </div>
+</div>
+<!--File Upload start-->
+<div class="adjust">
+  <div class="example-input-container">
+    <form [formGroup]="CCRequirementForm">
+      <div class="row no-gutters ms-1 me-1 dense-4 padding-top_5">
+        <mat-form-field appearance="outline" class="col-4 px-1">
+          <mat-label>Document Name</mat-label>
+          <input type="text" matInput formControlName="documentName" placeholder="Document Name" />
+        </mat-form-field>
+
+        <!-- <mat-form-field appearance="outline" class="col-3 px-1">
+          <mat-label>Document Type</mat-label>
+          <mat-select formControlName="categoryTypes">
+            <mat-option value="M">M</mat-option>
+            <mat-option value="F">F</mat-option>
+            <mat-option value="A">A</mat-option>
+          </mat-select>
+        </mat-form-field> -->
+
+        <div class="col-5 px-1">
+          <input type="file" id="file" (change)="handleFileInputAttachment($event)" accept=".doc, .docx, .pdf" />
+        </div>
+      </div>
+    </form>
+    <div class="add-btn-container">
+      <button mat-raised-button class="submitButton" (click)="onCreateSelectedDataListAttachment()">
+        Add Row
+      </button>
+    </div>
+  </div>
+  <div class="example-input-container">
+    <mat-card *ngIf="this.tableDataAttachment">
+      <mat-table [dataSource]="tableDataAttachment" matSort id="dataTable">
+        <ng-container matColumnDef="documentName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Document Name</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row.documentName }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="categoryTypes">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Category Types
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{ row.ff0005 }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="removeRow">
+          <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <button mat-icon-button color="warn" (click)="removeRowAttachment(row)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="AddedUserdisplayedColumnsAttachment"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: AddedUserdisplayedColumnsAttachment"></mat-row>
+      </mat-table>
+    </mat-card>
+  </div>
+</div>
+
+
+
+
+<app-common-comments [nextStageListData]="nextStageListData"
+  (commentsData)="handleCommentsForm($event)"></app-common-comments>
+<div class="containerBTN">
+  <div class="d-flex justify-content-center">
+    <button mat-raised-button class="submitButton" (click)="onSaveConfirmation('0')">
+      {{ buttonLabelService.getLabel("save") }}
+    </button>
+    <button mat-raised-button color="primary" class="submitButton" (click)="onSubmit('1')">
+      {{ buttonLabelService.getLabel("submit") }}
+    </button>
+    <button mat-raised-button color="primary" class="submitButton">
+      {{ buttonLabelService.getLabel("clear") }}
+    </button>
+  </div>
+</div>
+<div class="margin_button"></div> 

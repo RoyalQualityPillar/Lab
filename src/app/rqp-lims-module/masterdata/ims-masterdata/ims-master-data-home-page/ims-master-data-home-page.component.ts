@@ -20,10 +20,8 @@ export class ImsMasterDataHomePageComponent {
   onCalibrationSchedule() {
     this.router.navigate(['./rqplabui/lims/calibration-sch-home-page'])
   }
-
   onCalibrationFrequency() {
     this.router.navigate(['./rqplabui/lims/calibration-freq-home-page'])
-
   }
 
   onCalibrationRecordSchedule() {
@@ -44,6 +42,27 @@ export class ImsMasterDataHomePageComponent {
   }
   onEvenLogMaster() {
     this.router.navigate(['./rqplabui/lims/even-log-master-home-page'])
+  }
+  onInstrumentStatusMaster() {
+    this.router.navigate(['./rqplabui/lims/home-page-instrument-status'])
+  }
+  onCalibraionPerameterMaster() {
+    this.router.navigate(['./rqplabui/lims/cpm-home-page'])
+  }
+  onPreventiveMaintenanceSchedule() {
+    this.router.navigate(['./rqplabui/lims/home-page-prevnt-main-sche'])
+  }
+  onCalibraionUOMMaster() {
+    this.router.navigate(['./rqplabui/lims/cum-home-page']);
+  }
+  onProblemCategoryMaster() {
+    this.router.navigate(['./rqplabui/lims/pcm-home-page']);
+  }
+  onCalibrationScheduleMaster() {
+    this.router.navigate(['./rqplabui/lims/calibration-schedule-master-page']);
+  }
+  onPreventiveMaintananceScheduleMaster() {
+    this.router.navigate(['./rqplabui/lims/preventive-maintanance-schedule-master']);
   }
 }
 
