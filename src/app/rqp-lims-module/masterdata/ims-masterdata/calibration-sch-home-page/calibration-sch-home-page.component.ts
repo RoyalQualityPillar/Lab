@@ -378,15 +378,10 @@ selectedRow: any;
       case 'Audit_Trail':
         this.onSearchAllAuditTrail();
         break;
-<<<<<<< HEAD
         case 'Down_Load':
           this.downloadOrgDocument(row);  
           break;
     }
-      
-=======
-    }
->>>>>>> 203e81c8cf3306c72feea64c87cacc2c56d8385d
   }
   activeHandleButtonAction(event: { action: string; row: any }) {
     const { action, row } = event;
