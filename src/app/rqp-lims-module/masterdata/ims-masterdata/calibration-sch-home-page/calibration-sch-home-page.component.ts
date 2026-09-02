@@ -378,6 +378,9 @@ selectedRow: any;
       case 'Audit_Trail':
         this.onSearchAllAuditTrail();
         break;
+        case 'Down_Load':
+          this.downloadOrgDocument(row);  
+          break;
     }
   }
   activeHandleButtonAction(event: { action: string; row: any }) {

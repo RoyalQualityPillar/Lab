@@ -49,20 +49,19 @@ export class InstrumentMasterService {
    let queryParams = `?unitCode=${unitCode}`;
     const ALLSALEPRODUCTURL = this.API_URL + 'limsm-im/input' + queryParams;
     return this.http.get(ALLSALEPRODUCTURL);
-
-    
   }
-  generateReport(
-      uc0001: any,
-      templateName: string,
-      moduleCode: string
-    ): Observable<any> {
-      return this.http.post(
-        this.API_URL +
-      `limsm-im/cls-master-report?uc0001=${uc0001}&templateName=${templateName}&moduleCode=${moduleCode}`,
-      ''
-      );
-    }
+   generateReport(
+          uc0001: any,
+          templateName: string,
+          moduleCode: string
+        ): Observable<any> {
+          return this.http.post(
+            this.API_URL +
+              `limsm-im/im-master-report?templateName=${templateName}&uc0001=${uc0001}&moduleCode=${moduleCode}`,
+            ''
+          );
+        
+          }
         }
     
     

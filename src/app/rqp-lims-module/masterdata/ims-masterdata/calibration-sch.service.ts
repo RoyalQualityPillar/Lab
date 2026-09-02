@@ -4,7 +4,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -45,18 +44,19 @@ export class CalibrationSchService {
     const ALLSALEPRODUCTURL = this.API_URL + 'limsm-im/input' + queryParams;
     return this.http.get(ALLSALEPRODUCTURL);
   }
-
-  generateReport(
-      uc0001: any,
-      templateName: string,
-      moduleCode: string
-    ): Observable<any> {
-      return this.http.post(
-        this.API_URL +
-      `limsm-im/docr-master-report?uc0001=${uc0001}&templateName=${templateName}&moduleCode=${moduleCode}`,
-      ''
-      );
-    }
+  
+		   generateReport(
+              uc0001: any,
+              templateName: string,
+              moduleCode: string
+            ): Observable<any> {
+              return this.http.post(
+                this.API_URL +
+                  `limsm-im/cls-master-report?templateName=${templateName}&uc0001=${uc0001}&moduleCode=${moduleCode}`,
+                ''
+              );
+            
+              }
 }
 
 
