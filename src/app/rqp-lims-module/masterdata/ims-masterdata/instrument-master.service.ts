@@ -45,32 +45,24 @@ export class InstrumentMasterService {
   
       return this.http.get(fetchAllBusinessUnitInfoApiUrl);
     }
-<<<<<<< HEAD
-     getDropDownList(unitCode: any) {
-      let queryParams = `?unitCode=${unitCode}`;
-      let fetchAllBusinessUnitInfoApiUrl = this.API_URL + 'sd/input' + queryParams;
-  
-      return this.http.get(fetchAllBusinessUnitInfoApiUrl);
-    }
-      generateReport(
-          uc0001: any,
-          templateName: string,
-          moduleCode: string
-        ): Observable<any> {
-          return this.http.post(
-            this.API_URL +
-              `limsm-im/im-master-report?templateName=${templateName}&uc0001=${uc0001}&moduleCode=${moduleCode}`,
-            ''
-          );
-        
-          }
-=======
      getDropDownDeptList(unitCode: any) {
    let queryParams = `?unitCode=${unitCode}`;
     const ALLSALEPRODUCTURL = this.API_URL + 'limsm-im/input' + queryParams;
     return this.http.get(ALLSALEPRODUCTURL);
+
+    
   }
->>>>>>> 203e81c8cf3306c72feea64c87cacc2c56d8385d
+  generateReport(
+      uc0001: any,
+      templateName: string,
+      moduleCode: string
+    ): Observable<any> {
+      return this.http.post(
+        this.API_URL +
+      `limsm-im/cls-master-report?uc0001=${uc0001}&templateName=${templateName}&moduleCode=${moduleCode}`,
+      ''
+      );
+    }
         }
     
     
