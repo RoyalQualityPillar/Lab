@@ -21,6 +21,7 @@ import { DmsService } from 'src/app/service/dms.service';
 import { WsrService } from 'src/app/service/wsr.service';
 import { PmsListComponent } from 'src/app/rqp-lims-module/pms-list/pms-list.component';
 import { ApiService } from 'src/app/service/api.service';
+import { CommonEditorComponent } from 'src/app/common/common-editor/common-editor.component';
 // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 declare var $: any;
@@ -33,6 +34,64 @@ declare var $: any;
   standalone: false,
 })
 export class WsrInitiatorComponent implements OnInit, AfterViewInit {
+  // --- TinyMCE Editor ---
+  @ViewChild('tinymceEditor') tinymceEditor!: CommonEditorComponent;
+  private tinymceInstance: any = null;
+  private activeEditor: 'word' | 'tinymce' = 'word';
+  showTinymcePreview: boolean = false;
+  tinymcePreviewHtml: SafeHtml = '';
+
+  onTinymceReady(editor: any): void {
+    this.tinymceInstance = editor;
+  }
+
+  onTinymceDblclick(): void {
+    this.activeEditor = 'tinymce';
+    this.openWordEditorLOV();
+  }
+
+  saveTinymceTemplate(): void {
+    const html = this.tinymceInstance?.getContent() || '';
+    if (!html.trim() || html === '<p></p>') {
+      this.messageService.sendSnackbar('error', 'Please add content in TinyMCE Editor');
+      return;
+    }
+    this.messageService.sendSnackbar('success', 'TinyMCE template saved');
+  }
+
+  previewTinymceTemplate(): void {
+    const html = this.tinymceInstance?.getContent() || '';
+    if (!html.trim() || html === '<p></p>') {
+      this.messageService.sendSnackbar('error', 'Please add content in TinyMCE Editor');
+      return;
+    }
+    this.tinymcePreviewHtml = this.sanitizer.bypassSecurityTrustHtml(
+      this.buildPreviewFromHtml(html)
+    );
+    this.showTinymcePreview = true;
+  }
+
+  private buildPreviewFromHtml(html: string): string {
+    // Replace configured fields with validated number inputs
+    Object.keys(this.wordFields).forEach(field => {
+      const cfg = this.wordFields[field];
+      const input = `<input type="number" class="word-preview-inline-input"
+        placeholder="${field} (${cfg.min}-${cfg.max})"
+        min="${cfg.min}" max="${cfg.max}"
+        oninput="this.style.borderColor = (this.value < ${cfg.min} || this.value > ${cfg.max}) ? 'red' : '#ceb98d'"
+        style="width:140px;padding:4px 8px;border:1px solid #ceb98d;border-radius:6px;" />
+        <small style="color:#8a6a2d;">(${cfg.min} - ${cfg.max})</small>`;
+      html = html.replace(new RegExp(`\\{\\{${field}\\}\\}`, 'g'), input);
+    });
+    // Replace any remaining {{anything}} with a plain text input
+    html = html.replace(/\{\{([^}]+)\}\}/g, (_, name) => {
+      return `<input type="text" class="word-preview-inline-input"
+        placeholder="${name}"
+        style="width:140px;padding:4px 8px;border:1px solid #ceb98d;border-radius:6px;" />`;
+    });
+    return html;
+  }
+
   // --- Word Editor logic ---
   @ViewChild('wordEditor') wordEditor!: ElementRef;
 
@@ -82,6 +141,7 @@ export class WsrInitiatorComponent implements OnInit, AfterViewInit {
   }
 
   onWordEditorDoubleClick(event: MouseEvent) {
+    this.activeEditor = 'word';
     const sel = window.getSelection();
     if (sel && sel.rangeCount > 0) {
       this._savedRange = sel.getRangeAt(0).cloneRange();
@@ -134,16 +194,27 @@ export class WsrInitiatorComponent implements OnInit, AfterViewInit {
     }
 
     const placeholder = `{{${this.currentWordField}}}`;
-    const el = this.wordEditor?.nativeElement as HTMLElement;
 
-    if (el && this._savedRange) {
-      el.focus();
-      const sel = window.getSelection();
-      sel?.removeAllRanges();
-      sel?.addRange(this._savedRange);
-      document.execCommand('insertText', false, placeholder);
-      this.wordHtml = el.innerHTML;
-      this.wordText = el.innerText;
+    if (this.activeEditor === 'tinymce') {
+      // Insert placeholder into TinyMCE editor
+      if (this.tinymceInstance) {
+        this.tinymceInstance.focus();
+        this.tinymceInstance.insertContent(
+          `<span class="mce-field-placeholder" style="background:#e8f0fe;padding:2px 6px;border-radius:4px;color:#1a73e8;font-weight:500;">${placeholder}</span>&nbsp;`
+        );
+      }
+    } else {
+      // Insert placeholder into Word Editor
+      const el = this.wordEditor?.nativeElement as HTMLElement;
+      if (el && this._savedRange) {
+        el.focus();
+        const sel = window.getSelection();
+        sel?.removeAllRanges();
+        sel?.addRange(this._savedRange);
+        document.execCommand('insertText', false, placeholder);
+        this.wordHtml = el.innerHTML;
+        this.wordText = el.innerText;
+      }
     }
 
     this._doubleClickCount++;
@@ -155,7 +226,10 @@ export class WsrInitiatorComponent implements OnInit, AfterViewInit {
     };
     this.wordFields[this.currentWordField] = { min: minNum, max: maxNum };
     this.showWordConfigPopup = false;
-    this.syncWordTemplate();
+
+    if (this.activeEditor === 'word') {
+      this.syncWordTemplate();
+    }
   }
 
   saveWordTemplate() {

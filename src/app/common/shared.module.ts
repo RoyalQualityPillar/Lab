@@ -7,9 +7,12 @@ import {
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
+import { environment } from 'src/environments/environment';
 
 // ✅ Components & Pipes
 import { CommonHeaderComponent } from './common-header/common-header.component';
+import { CommonEditorComponent } from './common-editor/common-editor.component';
 import { CommonCommentsComponent } from './common-comments/common-comments.component';
 import { CommonTitleComponent } from './common-title/common-title.component';
 import { CustomSnackBarComponent } from './custom-snack-bar/custom-snack-bar.component';
@@ -52,7 +55,8 @@ import { CommonFileUploadComponent } from './common-file-upload/common-file-uplo
     TrainingPendingListComponent,
     ItemNameNoComponent,
     PreviewFileComponent,
-    CommonFileUploadComponent
+    CommonFileUploadComponent,
+    CommonEditorComponent,
 
   ],
   exports: [
@@ -75,7 +79,8 @@ import { CommonFileUploadComponent } from './common-file-upload/common-file-uplo
     TrainingPendingListComponent,
     ItemNameNoComponent,
     PreviewFileComponent,
-   CommonFileUploadComponent
+   CommonFileUploadComponent,
+   CommonEditorComponent,
 
   ],
   imports: [
@@ -86,8 +91,12 @@ import { CommonFileUploadComponent } from './common-file-upload/common-file-uplo
     ReactiveFormsModule,
     BkTableModule,
     // CustomDatePipe,
-    NgxExtendedPdfViewerModule
+    NgxExtendedPdfViewerModule,
+    EditorModule,
   ],
-  providers: [provideHttpClient(withInterceptorsFromDi())],
+  providers: [
+    provideHttpClient(withInterceptorsFromDi()),
+    { provide: TINYMCE_SCRIPT_SRC, useValue: `${environment.publicHost}/tinymce/tinymce.min.js` },
+  ],
 })
 export class SharedModule { }
