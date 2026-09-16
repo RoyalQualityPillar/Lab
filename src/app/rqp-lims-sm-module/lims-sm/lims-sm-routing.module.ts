@@ -25,6 +25,8 @@ import { MaterialMasterHomePageComponent } from '../spm-masters/material-master-
 import { WsrModuleAdminComponent } from '../wsr/wsr-module-admin/wsr-module-admin.component';
 import { WsrCompletedSaveComponent } from '../wsr/wsr-completed-save/wsr-completed-save.component';
 import { WsrCompletedComponent } from '../wsr/wsr-completed/wsr-completed.component';
+import { MaterialTypeHomePageComponent } from '../spm-masters/material-type/material-type-home-page/material-type-home-page.component';
+import { UtMasterHomePageComponent } from '../spm-masters/ut-master/ut-master-home-page/ut-master-home-page.component';
 
 const routes: Routes = [
   {
@@ -127,6 +129,15 @@ const routes: Routes = [
     path: 'material-master-home-page',
     component: MaterialMasterHomePageComponent,
   },
+  {
+    path: 'material-type-home-page',
+    component: MaterialTypeHomePageComponent,
+  },
+  {
+    path: 'ut-master-home-page',
+    component: UtMasterHomePageComponent,
+  },
+
 ];
 
 @NgModule({

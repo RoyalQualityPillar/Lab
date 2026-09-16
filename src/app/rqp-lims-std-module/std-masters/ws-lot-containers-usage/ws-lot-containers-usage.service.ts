@@ -50,7 +50,7 @@ export class WsLotContainersUsageService {
         ): Observable<any> {
           return this.http.post(
             this.API_URL +
-              `limsws/wslcr-record-report?templateName=${templateName}&uc0001=${uc0001}&moduleCode=${moduleCode}`,
+              `limsws/wslcur-record-report?templateName=${templateName}&uc0001=${uc0001}&moduleCode=${moduleCode}`,
             ''
           );
         }

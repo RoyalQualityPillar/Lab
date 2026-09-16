@@ -15,6 +15,9 @@ export class StmModuleAdminComponent {
   onChambersMaster() {
     this.router.navigate(['./rqplabui/lims-stm/chambers-master-home-page'])
   }
+  onStudyTypeMaster() {
+    this.router.navigate(['./rqplabui/lims-stm/study-type-master-home-page'])
+  }
 
 
 }

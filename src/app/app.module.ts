@@ -14,6 +14,8 @@ import { SharedModule } from './common/shared.module';
 import { NciReviewDetailComponent } from './rqp-qms-module/nci-review-detail/nci-review-detail.component';
 import { DropdownListComponent } from './rqp-dms-module/sop/dropdown-list/dropdown-list.component';
 import { ActionAttachmentsListComponent } from './rqp-lims-module/ism/action-attachments-list/action-attachments-list.component';
+import { StudyTypeMasterCreateUpdateComponent } from './rqp-lims-stm-module/stm-masters/study-type-master/study-type-master-create-update/study-type-master-create-update.component';
+import { StudyTypeMasterHomePageComponent } from './rqp-lims-stm-module/stm-masters/study-type-master/study-type-master-home-page/study-type-master-home-page.component';
 
 // import { SharedModule } from './common/shared.module';
 
@@ -29,6 +31,7 @@ import { ActionAttachmentsListComponent } from './rqp-lims-module/ism/action-att
     DropdownListComponent,
     ActionAttachmentsListComponent,
     MessageDialogComponent,
+   
 
 
 
