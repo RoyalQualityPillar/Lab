@@ -43,6 +43,18 @@ export class PrevntMainScheService {
      const ALLSALEPRODUCTURL = this.API_URL + 'limsm-im/input' + queryParams;
      return this.http.get(ALLSALEPRODUCTURL);
    }
+      generateReport(
+            uc0001: any,
+            templateName: string,
+            moduleCode: string
+          ): Observable<any> {
+            return this.http.post(
+              this.API_URL +
+                `limsm-im/pmm-cls-master-report?templateName=${templateName}&uc0001=${uc0001}&moduleCode=${moduleCode}`,
+              ''
+            );
+          
+            }
  }
  
  
