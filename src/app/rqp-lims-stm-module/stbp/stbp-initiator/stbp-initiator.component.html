@@ -77,6 +77,12 @@
 
 <div class="table-box">
     <div class="section_header_child_1">
+        <div class="float-start">Storage Conditions</div>
+    </div>
+</div>
+
+<div class="table-box">
+    <div class="section_header_child_1">
         <div class="float-start">Sample Information</div>
     </div>
 </div>
@@ -86,8 +92,133 @@
         <input matInput formControlName="storageCondition">
         <img src="assets/searchfind.svg" class="lovSearchButton" (click)="openStatusLOV()">
     </mat-form-field>
+
+    <div>
+        <h5>Sample Requirement by Storage Condition & Time Point</h5>
+    </div>
+    <div class="col-12 px-1 table-responsive">
+        <table class="sampleTable">
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Time Point</th>
+                    <th>Planned Pull</th>
+                    <th>Test Sample</th>
+                    <th>Reserve</th>
+                    <th>Retest</th>
+                    <th>Total</th>
+                    <th>Unit</th>
+                    <th>Sample ID</th>
+                    <th>Grace Period</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of sampleRequirementList">
+                    <td>{{row.sno}}</td>
+                    <td>{{row.timePoint}}</td>
+                    <td>{{row.plannedPull}}</td>
+                    <td>
+                        <input 
+                        type="number"
+                        min="0"
+                        [(ngModel)]="row.testSample"
+                          [ngModelOptions]="{ standalone: true }"
+                        (ngModelChange)="calculateTotal(row)"
+                        />
+                    </td>
+                    <td>
+                         <input 
+                        type="number"
+                        min="0"
+                        [(ngModel)]="row.reserve"
+                          [ngModelOptions]="{ standalone: true }"
+                        (ngModelChange)="calculateTotal(row)"
+                        />
+                    </td>
+                    <td>
+                         <input 
+                        type="number"
+                        min="0"
+                        [(ngModel)]="row.retest"
+                          [ngModelOptions]="{ standalone: true }"
+                        (ngModelChange)="calculateTotal(row)"
+                        />
+                    </td>
+                    <td>{{row.total}}</td>
+                    <td>{{row.unit}}</td>
+                    <td>{{row.sampleId}}</td>
+                    <td>{{row.gracePeriod}}</td>
+                    <td>{{row.status}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
+<div class="table-box">
+    <div class="section_header_child_1">
+        <div class="float-start">Time Point × Test Assignment Matrix</div>
+    </div>
+</div>
+<div class="col-12 px-1 table-responsive">
+        <table class="sampleTable">
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Time Point</th>
+                    <th>Planned Pull</th>
+                    <th>Test Sample</th>
+                    <th>Reserve</th>
+                    <th>Retest</th>
+                    <th>Total</th>
+                    <th>Unit</th>
+                    <th>Sample ID</th>
+                    <th>Grace Period</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of sampleRequirementList">
+                    <td>{{row.sno}}</td>
+                    <td>{{row.timePoint}}</td>
+                    <td>{{row.plannedPull}}</td>
+                    <td>
+                        <input 
+                        type="number"
+                        min="0"
+                        [(ngModel)]="row.testSample"
+                          [ngModelOptions]="{ standalone: true }"
+                        (ngModelChange)="calculateTotal(row)"
+                        />
+                    </td>
+                    <td>
+                         <input 
+                        type="number"
+                        min="0"
+                        [(ngModel)]="row.reserve"
+                          [ngModelOptions]="{ standalone: true }"
+                        (ngModelChange)="calculateTotal(row)"
+                        />
+                    </td>
+                    <td>
+                         <input 
+                        type="number"
+                        min="0"
+                        [(ngModel)]="row.retest"
+                          [ngModelOptions]="{ standalone: true }"
+                        (ngModelChange)="calculateTotal(row)"
+                        />
+                    </td>
+                    <td>{{row.total}}</td>
+                    <td>{{row.unit}}</td>
+                    <td>{{row.sampleId}}</td>
+                    <td>{{row.gracePeriod}}</td>
+                    <td>{{row.status}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 
 
