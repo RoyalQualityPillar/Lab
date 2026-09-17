@@ -30,46 +30,46 @@ export class StbpInitiatorComponent implements OnInit {
   public draftValue: any;
   public psmList: any[] = [];
   public sampleRequirementList: any[] = [
-  {
-    sno: 1,
-    timePoint: 'Initial',
-    plannedPull: 10,
-    testSample: 0,
-    reserve: 0,
-    retest: 0,
-    total: 0,
-    unit: 'Nos',
-    sampleId: '',
-    gracePeriod: '',
-    status: 'ACTIVE'
-  },
-  {
-    sno: 2,
-    timePoint: '1 Month',
-    plannedPull: 10,
-    testSample: 0,
-    reserve: 0,
-    retest: 0,
-    total: 0,
-    unit: 'Nos',
-    sampleId: '',
-    gracePeriod: '',
-    status: 'ACTIVE'
-  },
-  {
-    sno: 3,
-    timePoint: '3 Months',
-    plannedPull: 10,
-    testSample: 0,
-    reserve: 0,
-    retest: 0,
-    total: 0,
-    unit: 'Nos',
-    sampleId: '',
-    gracePeriod: '',
-    status: 'ACTIVE'
-  }
-];
+    {
+      sno: 1,
+      timePoint: 'Initial',
+      plannedPull: 10,
+      testSample: 0,
+      reserve: 0,
+      retest: 0,
+      total: 0,
+      unit: 'Nos',
+      sampleId: '',
+      gracePeriod: '',
+      status: 'ACTIVE'
+    },
+    {
+      sno: 2,
+      timePoint: '1 Month',
+      plannedPull: 10,
+      testSample: 0,
+      reserve: 0,
+      retest: 0,
+      total: 0,
+      unit: 'Nos',
+      sampleId: '',
+      gracePeriod: '',
+      status: 'ACTIVE'
+    },
+    {
+      sno: 3,
+      timePoint: '3 Months',
+      plannedPull: 10,
+      testSample: 0,
+      reserve: 0,
+      retest: 0,
+      total: 0,
+      unit: 'Nos',
+      sampleId: '',
+      gracePeriod: '',
+      status: 'ACTIVE'
+    }
+  ];
 
   constructor(
     private toolbarService: ToolbarService,
@@ -111,7 +111,6 @@ export class StbpInitiatorComponent implements OnInit {
       pageType: 'create',
       isRasiInit: 'spm-Initiator',
     };
-    // this.onloadDropDownList();
 
     this.onLoadNextStageData();
   }
@@ -140,14 +139,14 @@ export class StbpInitiatorComponent implements OnInit {
     });
   }
 
-calculateTotal(row: any): void {
-  console.log(row);
-  row.total =
-    (Number(row.testSample) || 0) +
-    (Number(row.reserve) || 0) +
-    (Number(row.retest) || 0);
+  calculateTotal(row: any): void {
+    console.log(row);
+    row.total =
+      (Number(row.testSample) || 0) +
+      (Number(row.reserve) || 0) +
+      (Number(row.retest) || 0);
     console.log(row.total);
-}
+  }
 
   async onSaveConfirmation(btnStatus: any) {
     const component = await this.remoteLoader.loadComponentByKey(
@@ -188,13 +187,13 @@ calculateTotal(row: any): void {
     });
   }
   public Submit(btnStatus: any) {
-    if(btnStatus == 1){
-this.draftValue = false;
+    if (btnStatus == 1) {
+      this.draftValue = false;
     } else {
       this.draftValue = true;
     }
-const body = {
-  lcRequest: {
+    const body = {
+      lcRequest: {
         unitCode: this.headerData.unitcode,
         moduleCode: this.headerData.modulecode,
         departmentCode: this.headerData.departmentcode,
@@ -210,123 +209,123 @@ const body = {
         gmuserDTOList: [],
         draft: this.draftValue,
       },
-  "sprRecordList": [
-    {
-      "uc0001": "string",
-      "ff0001": "string",
-      "ff0002": "string",
-      "ff0003": "string",
-      "ff0004": "string",
-      "ff0005": "string",
-      "ff0006": 0,
-      "ff0007": "string",
-      "ff0008": "2026-09-17T07:37:19.445Z",
-      "ff0009": "string",
-      "ff0010": "string",
-      "ff0011": "string",
-      "ff0012": 0,
-      "ff0013": "string",
-      "ff0014": "2026-09-17T07:37:19.445Z",
-      "ff0015": "string",
-      "ff0016": 0,
-      "ff0017": 0,
-      "ff0018": "2026-09-17T07:37:19.445Z",
-      "createdby": "string",
-      "status": 0,
-      "comments": "string"
+      "sprRecordList": [
+        {
+          "uc0001": "string",
+          "ff0001": "string",
+          "ff0002": "string",
+          "ff0003": "string",
+          "ff0004": "string",
+          "ff0005": "string",
+          "ff0006": 0,
+          "ff0007": "string",
+          "ff0008": "2026-09-17T07:37:19.445Z",
+          "ff0009": "string",
+          "ff0010": "string",
+          "ff0011": "string",
+          "ff0012": 0,
+          "ff0013": "string",
+          "ff0014": "2026-09-17T07:37:19.445Z",
+          "ff0015": "string",
+          "ff0016": 0,
+          "ff0017": 0,
+          "ff0018": "2026-09-17T07:37:19.445Z",
+          "createdby": "string",
+          "status": 0,
+          "comments": "string"
+        }
+      ],
+      "spsrRecordList": [
+        {
+          "uc0001": "string",
+          "uc0002": 0,
+          "uc0003": "string",
+          "ff0001": "string",
+          "ff0002": "string",
+          "ff0003": "2026-09-17T07:37:19.445Z",
+          "ff0004": "2026-09-17T07:37:19.445Z",
+          "ff0005": "string",
+          "ff0006": 0,
+          "createdby": "string",
+          "status": 0,
+          "comments": "string"
+        }
+      ],
+      "spstrRecordList": [
+        {
+          "uc0001": "string",
+          "uc0002": 0,
+          "uc0003": "string",
+          "uc0004": "string",
+          "ff0001": "string",
+          "ff0002": "string",
+          "ff0003": "string",
+          "ff0004": "string",
+          "ff0005": "string",
+          "ff0006": "string",
+          "ff0007": "string",
+          "ff0008": "string",
+          "ff0009": "string",
+          "ff0010": "string",
+          "ff0011": "string",
+          "ff0012": "string",
+          "ff0013": "string",
+          "ff0014": "string",
+          "ff0015": "string",
+          "ff0016": "string",
+          "ff0017": "string",
+          "ff0018": "string",
+          "ff0019": "string",
+          "ff0020": "string",
+          "ff0021": "string",
+          "ff0022": "string",
+          "ff0023": "string",
+          "ff0024": "string",
+          "ff0025": "string",
+          "ff0026": "string",
+          "ff0027": "string",
+          "ff0028": "string",
+          "ff0029": "string",
+          "ff0030": "string",
+          "createdby": "string",
+          "status": 0,
+          "comments": "string"
+        }
+      ],
+      "srsmRecordList": [
+        {
+          "uc0001": "string",
+          "ff0001": "string",
+          "ff0002": "string",
+          "ff0003": "string",
+          "ff0004": "string",
+          "ff0005": "string",
+          "ff0006": "string",
+          "ff0007": "string",
+          "ff0008": "2026-09-17T07:37:19.446Z",
+          "ff0009": "string",
+          "ff0010": "string",
+          "ff0011": 0,
+          "ff0012": "string",
+          "ff0013": "string",
+          "ff0014": 0,
+          "ff0015": "2026-09-17T07:37:19.446Z",
+          "ff0016": 0,
+          "ff0017": "string",
+          "lc0001": "string",
+          "lc0002": "string",
+          "lc0003": "string",
+          "lc0004": "string",
+          "createdby": "string",
+          "status": 0,
+          "comments": "string"
+        }
+      ]
     }
-  ],
-  "spsrRecordList": [
-    {
-      "uc0001": "string",
-      "uc0002": 0,
-      "uc0003": "string",
-      "ff0001": "string",
-      "ff0002": "string",
-      "ff0003": "2026-09-17T07:37:19.445Z",
-      "ff0004": "2026-09-17T07:37:19.445Z",
-      "ff0005": "string",
-      "ff0006": 0,
-      "createdby": "string",
-      "status": 0,
-      "comments": "string"
-    }
-  ],
-  "spstrRecordList": [
-    {
-      "uc0001": "string",
-      "uc0002": 0,
-      "uc0003": "string",
-      "uc0004": "string",
-      "ff0001": "string",
-      "ff0002": "string",
-      "ff0003": "string",
-      "ff0004": "string",
-      "ff0005": "string",
-      "ff0006": "string",
-      "ff0007": "string",
-      "ff0008": "string",
-      "ff0009": "string",
-      "ff0010": "string",
-      "ff0011": "string",
-      "ff0012": "string",
-      "ff0013": "string",
-      "ff0014": "string",
-      "ff0015": "string",
-      "ff0016": "string",
-      "ff0017": "string",
-      "ff0018": "string",
-      "ff0019": "string",
-      "ff0020": "string",
-      "ff0021": "string",
-      "ff0022": "string",
-      "ff0023": "string",
-      "ff0024": "string",
-      "ff0025": "string",
-      "ff0026": "string",
-      "ff0027": "string",
-      "ff0028": "string",
-      "ff0029": "string",
-      "ff0030": "string",
-      "createdby": "string",
-      "status": 0,
-      "comments": "string"
-    }
-  ],
-  "srsmRecordList": [
-    {
-      "uc0001": "string",
-      "ff0001": "string",
-      "ff0002": "string",
-      "ff0003": "string",
-      "ff0004": "string",
-      "ff0005": "string",
-      "ff0006": "string",
-      "ff0007": "string",
-      "ff0008": "2026-09-17T07:37:19.446Z",
-      "ff0009": "string",
-      "ff0010": "string",
-      "ff0011": 0,
-      "ff0012": "string",
-      "ff0013": "string",
-      "ff0014": 0,
-      "ff0015": "2026-09-17T07:37:19.446Z",
-      "ff0016": 0,
-      "ff0017": "string",
-      "lc0001": "string",
-      "lc0002": "string",
-      "lc0003": "string",
-      "lc0004": "string",
-      "createdby": "string",
-      "status": 0,
-      "comments": "string"
-    }
-  ]
-}
-console.log(body);
-this.spmService.saveStabilityProtocol(body).subscribe((data:any) =>{
+    console.log(body);
+    this.spmService.saveStabilityProtocol(body).subscribe((data: any) => {
 
-});
+    });
   }
 
 
@@ -390,6 +389,17 @@ this.spmService.saveStabilityProtocol(body).subscribe((data:any) =>{
               });
             });
           });
+
+        this.spmService.batchList(this.selectedDialogData.productNO).subscribe(({ data }) => {
+          data.forEach((element) => {
+            this.STBPRequirementForm.patchValue({
+              batchNo: element.is_uc0001,
+              manufactureDate: element.is_ff0001,
+              expireDate: element.is_ff0002,
+            });
+          });
+
+        });
       }
     });
   }

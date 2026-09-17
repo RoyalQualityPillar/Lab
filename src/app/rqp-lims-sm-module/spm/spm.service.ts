@@ -27,6 +27,9 @@ public bmrInput(unitCode: string): Observable<any> {
    public productList(uc0001: string): Observable<any> {
     return this.http.get(this.API_URL + `dms/product-list?uc0001=${uc0001}`);
   }
+   public batchList(uc0001: string): Observable<any> {
+    return this.http.get(this.API_URL + `dms/batch-list?uc0001=${uc0001}`);
+  }
     onSPMSaveUpdate(
     spAttachments: any[],
     body: any
