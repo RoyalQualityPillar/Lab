@@ -11,6 +11,13 @@ import { StorageCategoryMasterHomePageComponent } from '../stm-masters/storage-c
 import { StorageCategoryMasterCreateUpdateComponent } from '../stm-masters/storage-category-master/storage-category-master-create-update/storage-category-master-create-update.component';
 import { ChambersMasterCreateUpdateComponent } from '../stm-masters/chambers-master/chambers-master-create-update/chambers-master-create-update.component';
 import { ChambersMasterHomePageComponent } from '../stm-masters/chambers-master/chambers-master-home-page/chambers-master-home-page.component';
+import { StbpInitiatorComponent } from '../stbp/stbp-initiator/stbp-initiator.component';
+import { StbpUpdateComponent } from '../stbp/stbp-update/stbp-update.component';
+import { StbpUpdateSaveComponent } from '../stbp/stbp-update-save/stbp-update-save.component';
+import { StbpReviewerComponent } from '../stbp/stbp-reviewer/stbp-reviewer.component';
+import { StbpReviewerSaveComponent } from '../stbp/stbp-reviewer-save/stbp-reviewer-save.component';
+import { StbpCompletedComponent } from '../stbp/stbp-completed/stbp-completed.component';
+import { StbpCompletedSaveComponent } from '../stbp/stbp-completed-save/stbp-completed-save.component';
 
 
 @NgModule({
@@ -20,7 +27,13 @@ import { ChambersMasterHomePageComponent } from '../stm-masters/chambers-master/
     StorageCategoryMasterCreateUpdateComponent,
     ChambersMasterHomePageComponent,
     ChambersMasterCreateUpdateComponent,
-    
+     StbpInitiatorComponent,
+    StbpUpdateComponent,
+    StbpUpdateSaveComponent,
+    StbpReviewerComponent,
+    StbpReviewerSaveComponent,
+    StbpCompletedComponent,
+    StbpCompletedSaveComponent,
 
 
 
