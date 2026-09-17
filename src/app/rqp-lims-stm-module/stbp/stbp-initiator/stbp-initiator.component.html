@@ -1,0 +1,240 @@
+<div class="adjust">
+    <div class="example-table-container">
+        <app-common-header [pageData]="this.pageData" (headerData)="getHeaderData($event)"></app-common-header>
+    </div>
+</div>
+<div class="table-box">
+    <div class="section_header_child_1">
+        <div class="float-start">Product Information</div>
+    </div>
+</div>
+<div class="row no-gutters ms-1 me-1 dense-4" [formGroup]="STBPRequirementForm">
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Product Number</mat-label>
+        <input matInput formControlName="productNo">
+        <img src="assets/searchfind.svg" class="lovSearchButton" (click)="openStatusLOV()">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Product Name</mat-label>
+        <input type="text" matInput formControlName="productName" placeholder="Product Name" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Market</mat-label>
+        <input type="text" matInput formControlName="market" placeholder="Market" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Product Code</mat-label>
+        <input type="text" matInput formControlName="productCode" placeholder="Product Code" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>UOM</mat-label>
+        <input type="text" matInput formControlName="uom" placeholder="UOM" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Shelf Life in Months</mat-label>
+        <input type="text" matInput formControlName="shelfLifeMonths" placeholder="Shelf Life in Months" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Product Type</mat-label>
+        <input type="text" matInput formControlName="productType" placeholder="Product Type" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Dosage Form</mat-label>
+        <input type="text" matInput formControlName="dosageForm" placeholder="Dosage Form" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Input Code</mat-label>
+        <input type="text" matInput formControlName="inputCode" placeholder="Input Code" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Product Tracking Code</mat-label>
+        <input type="text" matInput formControlName="productTrackingCode" placeholder="Product Tracking Code" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Batch No</mat-label>
+        <input type="text" matInput formControlName="batchNo" placeholder="Batch No" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Manufacture Date</mat-label>
+        <input type="text" matInput [matDatepicker]="picker" formControlName="manufactureDate"
+            placeholder="Manufacture Date" />
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Expire Date</mat-label>
+        <input type="text" matInput [matDatepicker]="picker1" formControlName="expireDate" placeholder="Expire Date" />
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-12 px-1">
+        <mat-label>Objective</mat-label>
+        <textarea type="text" matInput placeholder="Objective" formControlName="objective">
+        </textarea>
+    </mat-form-field>
+</div>
+
+<div class="table-box">
+    <div class="section_header_child_1">
+        <div class="float-start">Storage Conditions</div>
+    </div>
+</div>
+
+<div class="table-box">
+    <div class="section_header_child_1">
+        <div class="float-start">Sample Information</div>
+    </div>
+</div>
+<div class="row no-gutters ms-1 me-1 dense-4" [formGroup]="SampleInformationForm">
+    <mat-form-field appearance="outline" class="col-3 px-1">
+        <mat-label>Storage Condition</mat-label>
+        <input matInput formControlName="storageCondition">
+        <img src="assets/searchfind.svg" class="lovSearchButton" (click)="openStatusLOV()">
+    </mat-form-field>
+
+    <div>
+        <h5>Sample Requirement by Storage Condition & Time Point</h5>
+    </div>
+    <div class="col-12 px-1 table-responsive">
+        <table class="sampleTable">
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Time Point</th>
+                    <th>Planned Pull</th>
+                    <th>Test Sample</th>
+                    <th>Reserve</th>
+                    <th>Retest</th>
+                    <th>Total</th>
+                    <th>Unit</th>
+                    <th>Sample ID</th>
+                    <th>Grace Period</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of sampleRequirementList">
+                    <td>{{row.sno}}</td>
+                    <td>{{row.timePoint}}</td>
+                    <td>{{row.plannedPull}}</td>
+                    <td>
+                        <input 
+                        type="number"
+                        min="0"
+                        [(ngModel)]="row.testSample"
+                          [ngModelOptions]="{ standalone: true }"
+                        (ngModelChange)="calculateTotal(row)"
+                        />
+                    </td>
+                    <td>
+                         <input 
+                        type="number"
+                        min="0"
+                        [(ngModel)]="row.reserve"
+                          [ngModelOptions]="{ standalone: true }"
+                        (ngModelChange)="calculateTotal(row)"
+                        />
+                    </td>
+                    <td>
+                         <input 
+                        type="number"
+                        min="0"
+                        [(ngModel)]="row.retest"
+                          [ngModelOptions]="{ standalone: true }"
+                        (ngModelChange)="calculateTotal(row)"
+                        />
+                    </td>
+                    <td>{{row.total}}</td>
+                    <td>{{row.unit}}</td>
+                    <td>{{row.sampleId}}</td>
+                    <td>{{row.gracePeriod}}</td>
+                    <td>{{row.status}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="table-box">
+    <div class="section_header_child_1">
+        <div class="float-start">Time Point × Test Assignment Matrix</div>
+    </div>
+</div>
+<div class="col-12 px-1 table-responsive">
+        <table class="sampleTable">
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Time Point</th>
+                    <th>Planned Pull</th>
+                    <th>Test Sample</th>
+                    <th>Reserve</th>
+                    <th>Retest</th>
+                    <th>Total</th>
+                    <th>Unit</th>
+                    <th>Sample ID</th>
+                    <th>Grace Period</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of sampleRequirementList">
+                    <td>{{row.sno}}</td>
+                    <td>{{row.timePoint}}</td>
+                    <td>{{row.plannedPull}}</td>
+                    <td>
+                        <input 
+                        type="number"
+                        min="0"
+                        [(ngModel)]="row.testSample"
+                          [ngModelOptions]="{ standalone: true }"
+                        (ngModelChange)="calculateTotal(row)"
+                        />
+                    </td>
+                    <td>
+                         <input 
+                        type="number"
+                        min="0"
+                        [(ngModel)]="row.reserve"
+                          [ngModelOptions]="{ standalone: true }"
+                        (ngModelChange)="calculateTotal(row)"
+                        />
+                    </td>
+                    <td>
+                         <input 
+                        type="number"
+                        min="0"
+                        [(ngModel)]="row.retest"
+                          [ngModelOptions]="{ standalone: true }"
+                        (ngModelChange)="calculateTotal(row)"
+                        />
+                    </td>
+                    <td>{{row.total}}</td>
+                    <td>{{row.unit}}</td>
+                    <td>{{row.sampleId}}</td>
+                    <td>{{row.gracePeriod}}</td>
+                    <td>{{row.status}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+<app-common-comments [nextStageListData]="nextStageListData"
+    (commentsData)="handleCommentsForm($event)"></app-common-comments>
+<div class="containerBTN">
+    <div class="d-flex justify-content-center">
+        <button mat-raised-button class="submitButton" (click)="onSaveConfirmation('0')">
+            {{ buttonLabelService.getLabel("save") }}
+        </button>
+        <button mat-raised-button color="primary" class="submitButton" (click)="onSubmitConfirmation('1')">
+            {{ buttonLabelService.getLabel("submit") }}
+        </button>
+        <button mat-raised-button color="primary" class="submitButton">
+            {{ buttonLabelService.getLabel("clear") }}
+        </button>
+    </div>
+</div>
+<div class="margin_button"></div>

@@ -58,5 +58,29 @@ export class WslrService {
     const reviewURL = this.API_URL + 'gmapr/gmap-comment/get-all' + queryParams;
     return this.http.post(reviewURL, '');
   }
+  downloadWSLRReport(
+    lc0001: string,
+    lc0002: string,
+    moduleCode: string,
+    templateName: string,
+  ) {
+    return this.http.post(
+      this.API_URL +
+      `limsws/wslr-pdf-report?lc0001=${lc0001}&lc0002=${lc0002}&moduleCode=${moduleCode}&templateName=${templateName}`,
+      ''
+    );
+  }
+   downloadWSLRAttachedReport(
+    lcnum: string,
+    templateName: string,
+    moduleCode: string,
+    lcrnumber: string
+  ) {
+    return this.http.post(
+      this.API_URL +
+      `ccr/cc-all-attched-report/get-all?lcnum=${lcnum}&templateName=${templateName}&moduleCode=${moduleCode}&lcrnumber=${lcrnumber}`,
+      ''
+    );
+  }
 }
 
