@@ -15,33 +15,6 @@ export class StmModuleAdminComponent {
   onChambersMaster() {
     this.router.navigate(['./rqplabui/lims-stm/chambers-master-home-page'])
   }
-<<<<<<< HEAD
-  onStudyTypeMaster() {
-    this.router.navigate(['./rqplabui/lims-stm/study-type-master-home-page'])
-  }
-    onStorageConditionMaster() {
-    this.router.navigate(['./rqplabui/lims-stm/storage-conditio-master-home-page'])
-  }
-      onChambersTypeMaster() {
-    this.router.navigate(['./rqplabui/lims-stm/chambers-type-master-home-page'])
-  }
-  onChambersRacksMaster() {
-    this.router.navigate(['./rqplabui/lims-stm/chambers-racks-master-home-page'])
-  }
-  onChambersShellMaster() {
-    this.router.navigate(['./rqplabui/lims-stm/chambers-shell-master-home-page'])
-  }
-  onStabilityProtocolRecord() {
-    this.router.navigate(['./rqplabui/lims-stm/stability-prot-rec-home-page'])
-  }
-  onStabilityProtocolSchedule() {
-    this.router.navigate(['./rqplabui/lims-stm/stability-prot-sche-home-page'])
-  }
-  onStabilityProtocolScheduleRecord() {
-    this.router.navigate(['./rqplabui/lims-stm/stability-prot-sche-rec-home-page'])
-  }
-  
-=======
   onWsperamentersMasterMaster() {
     this.router.navigate(['./rqplabui/lims-stm/ws-peramenters-home-page'])
   }
@@ -56,6 +29,5 @@ export class StmModuleAdminComponent {
   }
 
 
->>>>>>> ba4e149242966e05cb8433efed5511b99a615203
 
 }

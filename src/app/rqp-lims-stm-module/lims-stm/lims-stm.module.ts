@@ -11,22 +11,6 @@ import { StorageCategoryMasterHomePageComponent } from '../stm-masters/storage-c
 import { StorageCategoryMasterCreateUpdateComponent } from '../stm-masters/storage-category-master/storage-category-master-create-update/storage-category-master-create-update.component';
 import { ChambersMasterCreateUpdateComponent } from '../stm-masters/chambers-master/chambers-master-create-update/chambers-master-create-update.component';
 import { ChambersMasterHomePageComponent } from '../stm-masters/chambers-master/chambers-master-home-page/chambers-master-home-page.component';
-<<<<<<< HEAD
-import { StorageConditioMasterCreateUpdateComponent } from '../stm-masters/storage-condition-master/storage-conditio-master-create-update/storage-conditio-master-create-update.component';
-import { StorageConditioMasterHomePageComponent } from '../stm-masters/storage-condition-master/storage-conditio-master-home-page/storage-conditio-master-home-page.component';
-import { ChambersTypeMasterCreateUpdateComponent } from '../stm-masters/chambers-type-master/chambers-type-master-create-update/chambers-type-master-create-update.component';
-import { ChambersTypeMasterHomePageComponent } from '../stm-masters/chambers-type-master/chambers-type-master-home-page/chambers-type-master-home-page.component';
-import { ChambersRacksMasterCreateUpdateComponent } from '../stm-masters/chambers-racks-master/chambers-racks-master-create-update/chambers-racks-master-create-update.component';
-import { ChambersRacksMasterHomePageComponent } from '../stm-masters/chambers-racks-master/chambers-racks-master-home-page/chambers-racks-master-home-page.component';
-import { ChambersShellMasterCreateUpdateComponent } from '../stm-masters/chambers-shell-master/chambers-shell-master-create-update/chambers-shell-master-create-update.component';
-import { ChambersShellMasterHomePageComponent } from '../stm-masters/chambers-shell-master/chambers-shell-master-home-page/chambers-shell-master-home-page.component';
-import { StabilityProtRecHomePageComponent } from '../stm-masters/stability-protocol-record/stability-prot-rec-home-page/stability-prot-rec-home-page.component';
-import { StabilityProtRecCreateUpdateComponent } from '../stm-masters/stability-protocol-record/stability-prot-rec-create-update/stability-prot-rec-create-update.component';
-import { StabilityProtScheCreateUpdateComponent } from '../stm-masters/stability-protocol-schedule/stability-prot-sche-create-update/stability-prot-sche-create-update.component';
-import { StabilityProtScheHomePageComponent } from '../stm-masters/stability-protocol-schedule/stability-prot-sche-home-page/stability-prot-sche-home-page.component';
-import { StabilityProtScheRecCreateUpdateComponent } from '../stm-masters/stability-protocol-schedule-record/stability-prot-sche-rec-create-update/stability-prot-sche-rec-create-update.component';
-import { StabilityProtScheRecHomePageComponent } from '../stm-masters/stability-protocol-schedule-record/stability-prot-sche-rec-home-page/stability-prot-sche-rec-home-page.component';
-=======
 import { WsPeramentersHomePageComponent } from '../stm-masters/ws-peramenters-master/ws-peramenters-home-page/ws-peramenters-home-page.component';
 import { WsPeramentersCreateUpdateComponent } from '../stm-masters/ws-peramenters-master/ws-peramenters-create-update/ws-peramenters-create-update.component';
 import { WsTemplateIndexCreateUpdateComponent } from '../stm-masters/ws-template-index/ws-template-index-create-update/ws-template-index-create-update.component';
@@ -35,7 +19,20 @@ import { WsPeraamentersRecordCreateUpdateComponent } from '../stm-masters/ws-per
 import { WsPeraamentersRecordHomePageComponent } from '../stm-masters/ws-peraamenters-record/ws-peraamenters-record-home-page/ws-peraamenters-record-home-page.component';
 import { WsStudyTypeCreateUpdateComponent } from '../stm-masters/study-type/ws-study-type-create-update/ws-study-type-create-update.component';
 import { WsStudyTypeHomePageComponent } from '../stm-masters/study-type/ws-study-type-home-page/ws-study-type-home-page.component';
->>>>>>> ba4e149242966e05cb8433efed5511b99a615203
+import { ChambersRacksMasterCreateUpdateComponent } from '../stm-masters/chambers-racks-master/chambers-racks-master-create-update/chambers-racks-master-create-update.component';
+import { ChambersRacksMasterHomePageComponent } from '../stm-masters/chambers-racks-master/chambers-racks-master-home-page/chambers-racks-master-home-page.component';
+import { ChambersShellMasterCreateUpdateComponent } from '../stm-masters/chambers-shell-master/chambers-shell-master-create-update/chambers-shell-master-create-update.component';
+import { ChambersShellMasterHomePageComponent } from '../stm-masters/chambers-shell-master/chambers-shell-master-home-page/chambers-shell-master-home-page.component';
+import { ChambersTypeMasterCreateUpdateComponent } from '../stm-masters/chambers-type-master/chambers-type-master-create-update/chambers-type-master-create-update.component';
+import { ChambersTypeMasterHomePageComponent } from '../stm-masters/chambers-type-master/chambers-type-master-home-page/chambers-type-master-home-page.component';
+import { StabilityProtRecCreateUpdateComponent } from '../stm-masters/stability-protocol-record/stability-prot-rec-create-update/stability-prot-rec-create-update.component';
+import { StabilityProtRecHomePageComponent } from '../stm-masters/stability-protocol-record/stability-prot-rec-home-page/stability-prot-rec-home-page.component';
+import { StabilityProtScheRecCreateUpdateComponent } from '../stm-masters/stability-protocol-schedule-record/stability-prot-sche-rec-create-update/stability-prot-sche-rec-create-update.component';
+import { StabilityProtScheRecHomePageComponent } from '../stm-masters/stability-protocol-schedule-record/stability-prot-sche-rec-home-page/stability-prot-sche-rec-home-page.component';
+import { StabilityProtScheCreateUpdateComponent } from '../stm-masters/stability-protocol-schedule/stability-prot-sche-create-update/stability-prot-sche-create-update.component';
+import { StabilityProtScheHomePageComponent } from '../stm-masters/stability-protocol-schedule/stability-prot-sche-home-page/stability-prot-sche-home-page.component';
+import { StorageConditioMasterCreateUpdateComponent } from '../stm-masters/storage-condition-master/storage-conditio-master-create-update/storage-conditio-master-create-update.component';
+import { StorageConditioMasterHomePageComponent } from '../stm-masters/storage-condition-master/storage-conditio-master-home-page/storage-conditio-master-home-page.component';
 
 
 @NgModule({
