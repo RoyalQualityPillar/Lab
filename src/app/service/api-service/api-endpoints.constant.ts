@@ -1716,7 +1716,57 @@ export enum apiEndPoints {
   ScmaLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
   ScmaAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
 
+  
+  /*******Stability Protocol Schedule Record *********/
+  allSpsrTabledata = 'limsws/ptm-master/get-all',
+  activeSpsrTabledata = 'limsws/ptm-master/get-max-all',
+  SpsrUserProfileFilterData = 'limsws/ptm-master/search',
+  SpsrCreateUpdate = 'limsws/ptm-master/save-update',
+  SpsrLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
+  SpsrAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+
+  /*******Stability Protocol Record *********/
+  allSprTabledata = 'limsws/ptm-master/get-all',
+  activeSprTabledata = 'limsws/ptm-master/get-max-all',
+  SprUserProfileFilterData = 'limsws/ptm-master/search',
+  SprCreateUpdate = 'limsws/ptm-master/save-update',
+  SprLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
+  SprAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+
  
+  /*******Stability Protocol Schedule *********/
+  allSpsTabledata = 'limsws/ptm-master/get-all',
+  activeSpsTabledata = 'limsws/ptm-master/get-max-all',
+  SpsUserProfileFilterData = 'limsws/ptm-master/search',
+  SpsCreateUpdate = 'limsws/ptm-master/save-update',
+  SpsLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
+  SpsAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+
+  
+  /*******Chambers Type Master *********/
+  allCtmTabledata = 'limsws/ptm-master/get-all',
+  activeCtmTabledata = 'limsws/ptm-master/get-max-all',
+  CtmUserProfileFilterData = 'limsws/ptm-master/search',
+  CtmCreateUpdate = 'limsws/ptm-master/save-update',
+  CtmLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
+  CtmAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+
+    /*******Chambers Shell Master *********/
+  allCsmTabledata = 'limsws/ptm-master/get-all',
+  activeCsmTabledata = 'limsws/ptm-master/get-max-all',
+  CsmUserProfileFilterData = 'limsws/ptm-master/search',
+  CsmCreateUpdate = 'limsws/ptm-master/save-update',
+  CsmLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
+  CsmAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+
+  
+    /*******Chambers Rackss Master *********/
+  allCrmTabledata = 'limsws/ptm-master/get-all',
+  activeCrmTabledata = 'limsws/ptm-master/get-max-all',
+  CrmUserProfileFilterData = 'limsws/ptm-master/search',
+  CrmCreateUpdate = 'limsws/ptm-master/save-update',
+  CrmLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
+  CrmAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
 
 
 

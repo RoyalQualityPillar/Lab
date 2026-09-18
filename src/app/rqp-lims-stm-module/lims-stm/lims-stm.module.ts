@@ -31,8 +31,8 @@ import { StabilityProtScheRecCreateUpdateComponent } from '../stm-masters/stabil
 import { StabilityProtScheRecHomePageComponent } from '../stm-masters/stability-protocol-schedule-record/stability-prot-sche-rec-home-page/stability-prot-sche-rec-home-page.component';
 import { StabilityProtScheCreateUpdateComponent } from '../stm-masters/stability-protocol-schedule/stability-prot-sche-create-update/stability-prot-sche-create-update.component';
 import { StabilityProtScheHomePageComponent } from '../stm-masters/stability-protocol-schedule/stability-prot-sche-home-page/stability-prot-sche-home-page.component';
-import { StorageConditioMasterCreateUpdateComponent } from '../stm-masters/storage-condition-master/storage-conditio-master-create-update/storage-conditio-master-create-update.component';
 import { StorageConditioMasterHomePageComponent } from '../stm-masters/storage-condition-master/storage-conditio-master-home-page/storage-conditio-master-home-page.component';
+import { StorageConditioMasterCreateUpdateComponent } from '../stm-masters/storage-condition-master/storage-conditio-master-create-update/storage-conditio-master-create-update.component';
 
 
 @NgModule({
@@ -50,6 +50,7 @@ import { StorageConditioMasterHomePageComponent } from '../stm-masters/storage-c
     WsPeraamentersRecordCreateUpdateComponent,
       WsStudyTypeHomePageComponent,
     WsStudyTypeCreateUpdateComponent,
+
    
    
     

@@ -38,8 +38,8 @@ export class StabilityProtScheHomePageComponent implements OnInit, AfterViewInit
   activeUserFilterValueError = false;
   tableData: MatTableDataSource<any>;
   isFilterExpanded = false;
-  allChambersTabledataUrl: any;
-  activeChambersTabledataUrl: any;
+  allSpsTabledataUrl: any;
+  activeSpsTabledataUrl: any;
   filterApiUrl: any;
   params: any;
   HttpMethod = 'POST';
@@ -58,14 +58,14 @@ export class StabilityProtScheHomePageComponent implements OnInit, AfterViewInit
   filterObject: any;
   activeUserFilterObject: any;
   ngOnInit(): void {
-    this.allChambersTabledataUrl = apiEndPoints.allChambersTabledata;
+    this.allSpsTabledataUrl = apiEndPoints.allSpsTabledata;
     this.pageIndex = 0;
     let size = GlobalConstants.size;
     let pageIndex = this.pageIndex;
     let unitCode = this.cookieService.get('buCode');
     this.params = { pageIndex, size, unitCode };
-    this.filterApiUrl = apiEndPoints.ChambersUserProfileFilterData;
-    this. activeChambersTabledataUrl = apiEndPoints.activeChambersTabledata;
+    this.filterApiUrl = apiEndPoints.SpsUserProfileFilterData;
+    this. activeSpsTabledataUrl = apiEndPoints.activeSpsTabledata;
     this.params = { pageIndex, size, unitCode };
     this.loadRoleMasterTableFilter();
     this.loadActiveRoleMasterTableFilter();
@@ -81,7 +81,7 @@ export class StabilityProtScheHomePageComponent implements OnInit, AfterViewInit
       // Set all required inputs
       compRef.setInput('columnConfig', this.columnConfig);
       compRef.setInput('filterOptions', this.filterOptions);
-      compRef.setInput('apiUrl', this.allChambersTabledataUrl);
+      compRef.setInput('apiUrl', this.allSpsTabledataUrl);
       compRef.setInput('tableTitle', 'All Stability Protocol Schedule');
       compRef.setInput('dynamicButtons', this.allButtonConfig);
       compRef.setInput('columnClass', 'rqp-life-cycle-table-columns');
@@ -109,7 +109,7 @@ export class StabilityProtScheHomePageComponent implements OnInit, AfterViewInit
 
       compRef.setInput('columnConfig', this.columnConfig);
       compRef.setInput('filterOptions', this.filterOptions);
-      compRef.setInput('apiUrl', this. activeChambersTabledataUrl);
+      compRef.setInput('apiUrl', this. activeSpsTabledataUrl);
       compRef.setInput('tableTitle', 'All Stability Protocol Schedule');
       compRef.setInput('dynamicButtons', this.activeButtonConfig);
       compRef.setInput('columnClass', 'rqp-life-cycle-table-columns');
@@ -216,7 +216,7 @@ export class StabilityProtScheHomePageComponent implements OnInit, AfterViewInit
 
       const dialogRef = this.dialog.open(component, {
         minWidth: '80%',
-        data: { tableData: tableData, pageTitle: 'Chambers Master' },
+        data: { tableData: tableData, pageTitle: '' },
       });
       dialogRef.afterClosed().subscribe((result) => { });
     }
@@ -270,7 +270,7 @@ export class StabilityProtScheHomePageComponent implements OnInit, AfterViewInit
     );
     const dialogRef = this.dialog.open(component, {
       minWidth: '80%',
-      data: { tableData: rows, pageTitle: 'Chambers Master' },
+      data: { tableData: rows, pageTitle: 'Stability Protocol Schedule' },
     });
     dialogRef.afterClosed().subscribe((result) => { });
   }
