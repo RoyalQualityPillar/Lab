@@ -97,8 +97,4 @@ public bmrInput(unitCode: string): Observable<any> {
       this.API_URL + 'gm/gmap-record/review-comments' + queryParams;
     return this.http.get(reviewURL);
   }
-  saveStabilityProtocol( response: any) {
-    const reviewURL = this.API_URL + '/limssm/stability-protocol-save-update';
-    return this.http.post(reviewURL, '');
-  }
 }

@@ -148,46 +148,15 @@
   </div>
 </form>
 
-<div class="table-box word-editor-container" [formGroup]="form">
-  <div class="section_header">
-    <p class="section_header_title">TinyMCE Editor</p>
-  </div>
-  <div class="editor-wrap" style="padding: 1rem;">
-    <app-common-editor #tinymceEditor
-      [height]="450"
-      [placeholder]="'Start writing your content here...'"
-      formControlName="html"
-      (editorDblclick)="onTinymceDblclick()"
-      (editorReady)="onTinymceReady($event)">
-    </app-common-editor>
-  </div>
-  <div class="word-editor-actions">
-    <button mat-raised-button class="submitButton" type="button" (click)="saveTinymceTemplate()">
-      Save Template
-    </button>
-    <button mat-stroked-button class="word-preview-button" type="button" (click)="previewTinymceTemplate()">
-      Preview Template
-    </button>
-  </div>
-</div>
-
-<div *ngIf="showTinymcePreview" class="table-box word-preview-container">
-  <div class="section_header">
-    <p class="section_header_title">TinyMCE Template Preview</p>
-  </div>
-  <div class="word-preview-form">
-    <div class="word-preview-content" [innerHTML]="tinymcePreviewHtml"></div>
-  </div>
-</div>
-  
 
 
-<!-- <div class="table-box word-editor-container">
+<div class="table-box word-editor-container">
   <div class="section_header">
     <p class="section_header_title">Word Editor</p>
     <button type="button" class="insert-textbox-btn" (click)="saveRange(); showTableDialog = true">&#9776; Insert Table</button>
   </div>
 
+  <!-- Table insert dialog -->
   <div *ngIf="showTableDialog" class="word-config-overlay">
     <div class="word-config-popup">
       <div class="word-config-header">
@@ -226,7 +195,7 @@
     </button>
   </div>
 
-</div> -->
+</div>
 
 <!-- Config Popup -->
 <div *ngIf="showWordConfigPopup"

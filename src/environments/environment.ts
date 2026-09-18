@@ -4,5 +4,4 @@ export const environment = {
   apiBaseURL: 'http://88.135.73.1:9000/',
   remoteEntryUrl: 'http://localhost:4210/remoteEntry.js',
   standalone: true,
-  publicHost:'http://localhost:4251'
 };

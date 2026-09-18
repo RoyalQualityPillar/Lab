@@ -37,6 +37,7 @@ import { WsrCompletedComponent } from '../wsr/wsr-completed/wsr-completed.compon
 import { WsrCompletedSaveComponent } from '../wsr/wsr-completed-save/wsr-completed-save.component';
 import { WsrModuleAdminComponent } from '../wsr/wsr-module-admin/wsr-module-admin.component';
 // import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
 @NgModule({
   declarations: [
     TestRegistrationHomePageComponent,
