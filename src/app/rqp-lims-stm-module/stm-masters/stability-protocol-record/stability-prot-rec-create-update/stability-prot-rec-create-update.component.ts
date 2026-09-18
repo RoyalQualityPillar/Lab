@@ -124,7 +124,7 @@ export class StabilityProtRecCreateUpdateComponent implements OnInit {
     const params = { UC0001 };
 
     this.apiService
-      .sendRequest(apiEndPoints.ChambersLoadUpdatePage, 'POST', params)
+      .sendRequest(apiEndPoints.SprLoadUpdatePage, 'POST', params)
       .subscribe((data: any) => {
         if (data.data == null) {
           this.isLoading = false;

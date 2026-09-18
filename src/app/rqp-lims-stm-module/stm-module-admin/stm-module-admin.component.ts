@@ -28,25 +28,25 @@ export class StmModuleAdminComponent {
     this.router.navigate(['./rqplabui/lims-stm/ws-study-type-home-page'])
   }
     onStorageConditionMaster() {
-    this.router.navigate(['./rqplabui/lims-stm/ws-study-type-home-page'])
+    this.router.navigate(['./rqplabui/lims-stm/storage-conditio-master-home-page'])
   }
     onChambersTypeMaster() {
-    this.router.navigate(['./rqplabui/lims-stm/ws-study-type-home-page'])
+    this.router.navigate(['./rqplabui/lims-stm/chambers-type-master-home-page'])
   }
     onChambersShellMaster() {
-    this.router.navigate(['./rqplabui/lims-stm/ws-study-type-home-page'])
+    this.router.navigate(['./rqplabui/lims-stm/chambers-shell-master-home-page'])
   }
     onStabilityProtocolRecord() {
-    this.router.navigate(['./rqplabui/lims-stm/ws-study-type-home-page'])
+    this.router.navigate(['./rqplabui/lims-stm/stability-prot-rec-home-page'])
   }
     onStabilityProtocolSchedule() {
-    this.router.navigate(['./rqplabui/lims-stm/ws-study-type-home-page'])
+    this.router.navigate(['./rqplabui/lims-stm/stability-prot-sche-home-page'])
   }
     onStabilityProtocolScheduleRecord() {
-    this.router.navigate(['./rqplabui/lims-stm/ws-study-type-home-page'])
+    this.router.navigate(['./rqplabui/lims-stm/stability-prot-sche-rec-home-page'])
   }
   onChambersRacksMaster() {
-    this.router.navigate(['./rqplabui/lims-stm/ws-study-type-home-page'])
+    this.router.navigate(['./rqplabui/lims-stm/chambers-racks-master-home-page'])
   }
 
   

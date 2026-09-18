@@ -39,8 +39,8 @@ implements OnInit, AfterViewInit {
   activeUserFilterValueError = false;
   tableData: MatTableDataSource<any>;
   isFilterExpanded = false;
-  allChambersTabledataUrl: any;
-  activeChambersTabledataUrl: any;
+  allSprTabledataUrl: any;
+  activeSprTabledataUrl: any;
   filterApiUrl: any;
   params: any;
   HttpMethod = 'POST';
@@ -59,14 +59,14 @@ implements OnInit, AfterViewInit {
   filterObject: any;
   activeUserFilterObject: any;
   ngOnInit(): void {
-    this.allChambersTabledataUrl = apiEndPoints.allChambersTabledata;
+    this.allSprTabledataUrl = apiEndPoints.allSprTabledata;
     this.pageIndex = 0;
     let size = GlobalConstants.size;
     let pageIndex = this.pageIndex;
     let unitCode = this.cookieService.get('buCode');
     this.params = { pageIndex, size, unitCode };
-    this.filterApiUrl = apiEndPoints.ChambersUserProfileFilterData;
-    this. activeChambersTabledataUrl = apiEndPoints.activeChambersTabledata;
+    this.filterApiUrl = apiEndPoints.SprUserProfileFilterData;
+    this. activeSprTabledataUrl = apiEndPoints.activeSprTabledata;
     this.params = { pageIndex, size, unitCode };
     this.loadRoleMasterTableFilter();
     this.loadActiveRoleMasterTableFilter();
@@ -82,7 +82,7 @@ implements OnInit, AfterViewInit {
       // Set all required inputs
       compRef.setInput('columnConfig', this.columnConfig);
       compRef.setInput('filterOptions', this.filterOptions);
-      compRef.setInput('apiUrl', this.allChambersTabledataUrl);
+      compRef.setInput('apiUrl', this.allSprTabledataUrl);
       compRef.setInput('tableTitle', 'All Stability Protocol Record ');
       compRef.setInput('dynamicButtons', this.allButtonConfig);
       compRef.setInput('columnClass', 'rqp-life-cycle-table-columns');
@@ -110,7 +110,7 @@ implements OnInit, AfterViewInit {
 
       compRef.setInput('columnConfig', this.columnConfig);
       compRef.setInput('filterOptions', this.filterOptions);
-      compRef.setInput('apiUrl', this. activeChambersTabledataUrl);
+      compRef.setInput('apiUrl', this. activeSprTabledataUrl);
       compRef.setInput('tableTitle', 'All  Stability Protocol Record');
       compRef.setInput('dynamicButtons', this.activeButtonConfig);
       compRef.setInput('columnClass', 'rqp-life-cycle-table-columns');
@@ -229,7 +229,7 @@ implements OnInit, AfterViewInit {
 
       const dialogRef = this.dialog.open(component, {
         minWidth: '80%',
-        data: { tableData: tableData, pageTitle: 'Chambers Master' },
+        data: { tableData: tableData, pageTitle: 'Stability Protocol Record' },
       });
       dialogRef.afterClosed().subscribe((result) => { });
     }
@@ -296,7 +296,7 @@ implements OnInit, AfterViewInit {
     );
     const dialogRef = this.dialog.open(component, {
       minWidth: '80%',
-      data: { tableData: rows, pageTitle: 'Chambers Master' },
+      data: { tableData: rows, pageTitle: 'Stability Protocol Record' },
     });
     dialogRef.afterClosed().subscribe((result) => { });
   }
