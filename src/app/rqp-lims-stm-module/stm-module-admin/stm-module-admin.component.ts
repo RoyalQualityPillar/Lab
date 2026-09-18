@@ -15,6 +15,7 @@ export class StmModuleAdminComponent {
   onChambersMaster() {
     this.router.navigate(['./rqplabui/lims-stm/chambers-master-home-page'])
   }
+<<<<<<< HEAD
   onStudyTypeMaster() {
     this.router.navigate(['./rqplabui/lims-stm/study-type-master-home-page'])
   }
@@ -40,5 +41,21 @@ export class StmModuleAdminComponent {
     this.router.navigate(['./rqplabui/lims-stm/stability-prot-sche-rec-home-page'])
   }
   
+=======
+  onWsperamentersMasterMaster() {
+    this.router.navigate(['./rqplabui/lims-stm/ws-peramenters-home-page'])
+  }
+    onWsTemplateindex() {
+    this.router.navigate(['./rqplabui/lims-stm/ws-template-index-home-page'])
+  }
+    onWsperamentersRecord() {
+    this.router.navigate(['./rqplabui/lims-stm/ws-peraamenters-record-home-page'])
+  }
+    onStudyType() {
+    this.router.navigate(['./rqplabui/lims-stm/ws-study-type-home-page'])
+  }
+
+
+>>>>>>> ba4e149242966e05cb8433efed5511b99a615203
 
 }

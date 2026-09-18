@@ -14,6 +14,7 @@ import { SharedModule } from './common/shared.module';
 import { NciReviewDetailComponent } from './rqp-qms-module/nci-review-detail/nci-review-detail.component';
 import { DropdownListComponent } from './rqp-dms-module/sop/dropdown-list/dropdown-list.component';
 import { ActionAttachmentsListComponent } from './rqp-lims-module/ism/action-attachments-list/action-attachments-list.component';
+<<<<<<< HEAD
 import { StudyTypeMasterCreateUpdateComponent } from './rqp-lims-stm-module/stm-masters/study-type-master/study-type-master-create-update/study-type-master-create-update.component';
 import { StudyTypeMasterHomePageComponent } from './rqp-lims-stm-module/stm-masters/study-type-master/study-type-master-home-page/study-type-master-home-page.component';
 import { StorageConditioMasterCreateUpdateComponent } from './rqp-lims-stm-module/stm-masters/storage-condition-master/storage-conditio-master-create-update/storage-conditio-master-create-update.component';
@@ -30,6 +31,16 @@ import { StabilityProtScheHomePageComponent } from './rqp-lims-stm-module/stm-ma
 import { StabilityProtScheCreateUpdateComponent } from './rqp-lims-stm-module/stm-masters/stability-protocol-schedule/stability-prot-sche-create-update/stability-prot-sche-create-update.component';
 import { StabilityProtScheRecHomePageComponent } from './rqp-lims-stm-module/stm-masters/stability-protocol-schedule-record/stability-prot-sche-rec-home-page/stability-prot-sche-rec-home-page.component';
 import { StabilityProtScheRecCreateUpdateComponent } from './rqp-lims-stm-module/stm-masters/stability-protocol-schedule-record/stability-prot-sche-rec-create-update/stability-prot-sche-rec-create-update.component';
+=======
+import { WsPeramentersHomePageComponent } from './rqp-lims-stm-module/stm-masters/ws-peramenters-master/ws-peramenters-home-page/ws-peramenters-home-page.component';
+import { WsPeramentersCreateUpdateComponent } from './rqp-lims-stm-module/stm-masters/ws-peramenters-master/ws-peramenters-create-update/ws-peramenters-create-update.component';
+import { WsTemplateIndexCreateUpdateComponent } from './rqp-lims-stm-module/stm-masters/ws-template-index/ws-template-index-create-update/ws-template-index-create-update.component';
+import { WsTemplateIndexHomePageComponent } from './rqp-lims-stm-module/stm-masters/ws-template-index/ws-template-index-home-page/ws-template-index-home-page.component';
+import { WsPeraamentersRecordHomePageComponent } from './rqp-lims-stm-module/stm-masters/ws-peraamenters-record/ws-peraamenters-record-home-page/ws-peraamenters-record-home-page.component';
+import { WsPeraamentersRecordCreateUpdateComponent } from './rqp-lims-stm-module/stm-masters/ws-peraamenters-record/ws-peraamenters-record-create-update/ws-peraamenters-record-create-update.component';
+import { WsStudyTypeHomePageComponent } from './rqp-lims-stm-module/stm-masters/study-type/ws-study-type-home-page/ws-study-type-home-page.component';
+import { WsStudyTypeCreateUpdateComponent } from './rqp-lims-stm-module/stm-masters/study-type/ws-study-type-create-update/ws-study-type-create-update.component';
+>>>>>>> ba4e149242966e05cb8433efed5511b99a615203
 
 // import { SharedModule } from './common/shared.module';
 
@@ -45,8 +56,14 @@ import { StabilityProtScheRecCreateUpdateComponent } from './rqp-lims-stm-module
     DropdownListComponent,
     ActionAttachmentsListComponent,
     MessageDialogComponent,
+<<<<<<< HEAD
     
     
+=======
+  
+ 
+   
+>>>>>>> ba4e149242966e05cb8433efed5511b99a615203
 
     
 
