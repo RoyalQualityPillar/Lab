@@ -27,6 +27,29 @@ export class StmModuleAdminComponent {
     onStudyType() {
     this.router.navigate(['./rqplabui/lims-stm/ws-study-type-home-page'])
   }
+    onStorageConditionMaster() {
+    this.router.navigate(['./rqplabui/lims-stm/ws-study-type-home-page'])
+  }
+    onChambersTypeMaster() {
+    this.router.navigate(['./rqplabui/lims-stm/ws-study-type-home-page'])
+  }
+    onChambersShellMaster() {
+    this.router.navigate(['./rqplabui/lims-stm/ws-study-type-home-page'])
+  }
+    onStabilityProtocolRecord() {
+    this.router.navigate(['./rqplabui/lims-stm/ws-study-type-home-page'])
+  }
+    onStabilityProtocolSchedule() {
+    this.router.navigate(['./rqplabui/lims-stm/ws-study-type-home-page'])
+  }
+    onStabilityProtocolScheduleRecord() {
+    this.router.navigate(['./rqplabui/lims-stm/ws-study-type-home-page'])
+  }
+  onChambersRacksMaster() {
+    this.router.navigate(['./rqplabui/lims-stm/ws-study-type-home-page'])
+  }
+
+  
 
 
 
