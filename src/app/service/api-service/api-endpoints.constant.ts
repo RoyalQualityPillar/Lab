@@ -1684,6 +1684,15 @@ export enum apiEndPoints {
 
 
 
+  /*******Storage Condition Master  *********/
+  allScmaTabledata = 'limsws/ptm-master/get-all',
+  activeScmaTabledata = 'limsws/ptm-master/get-max-all',
+  ScmaUserProfileFilterData = 'limsws/ptm-master/search',
+  ScmaCreateUpdate = 'limsws/ptm-master/save-update',
+  ScmaLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
+  ScmaAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+
+ 
 
 
 

@@ -16,6 +16,20 @@ import { DropdownListComponent } from './rqp-dms-module/sop/dropdown-list/dropdo
 import { ActionAttachmentsListComponent } from './rqp-lims-module/ism/action-attachments-list/action-attachments-list.component';
 import { StudyTypeMasterCreateUpdateComponent } from './rqp-lims-stm-module/stm-masters/study-type-master/study-type-master-create-update/study-type-master-create-update.component';
 import { StudyTypeMasterHomePageComponent } from './rqp-lims-stm-module/stm-masters/study-type-master/study-type-master-home-page/study-type-master-home-page.component';
+import { StorageConditioMasterCreateUpdateComponent } from './rqp-lims-stm-module/stm-masters/storage-condition-master/storage-conditio-master-create-update/storage-conditio-master-create-update.component';
+import { StorageConditioMasterHomePageComponent } from './rqp-lims-stm-module/stm-masters/storage-condition-master/storage-conditio-master-home-page/storage-conditio-master-home-page.component';
+import { ChambersTypeMasterCreateUpdateComponent } from './rqp-lims-stm-module/stm-masters/chambers-type-master/chambers-type-master-create-update/chambers-type-master-create-update.component';
+import { ChambersTypeMasterHomePageComponent } from './rqp-lims-stm-module/stm-masters/chambers-type-master/chambers-type-master-home-page/chambers-type-master-home-page.component';
+import { ChambersRacksMasterHomePageComponent } from './rqp-lims-stm-module/stm-masters/chambers-racks-master/chambers-racks-master-home-page/chambers-racks-master-home-page.component';
+import { ChambersRacksMasterCreateUpdateComponent } from './rqp-lims-stm-module/stm-masters/chambers-racks-master/chambers-racks-master-create-update/chambers-racks-master-create-update.component';
+import { ChambersShellMasterCreateUpdateComponent } from './rqp-lims-stm-module/stm-masters/chambers-shell-master/chambers-shell-master-create-update/chambers-shell-master-create-update.component';
+import { ChambersShellMasterHomePageComponent } from './rqp-lims-stm-module/stm-masters/chambers-shell-master/chambers-shell-master-home-page/chambers-shell-master-home-page.component';
+import { StabilityProtRecCreateUpdateComponent } from './rqp-lims-stm-module/stm-masters/stability-protocol-record/stability-prot-rec-create-update/stability-prot-rec-create-update.component';
+import { StabilityProtRecHomePageComponent } from './rqp-lims-stm-module/stm-masters/stability-protocol-record/stability-prot-rec-home-page/stability-prot-rec-home-page.component';
+import { StabilityProtScheHomePageComponent } from './rqp-lims-stm-module/stm-masters/stability-protocol-schedule/stability-prot-sche-home-page/stability-prot-sche-home-page.component';
+import { StabilityProtScheCreateUpdateComponent } from './rqp-lims-stm-module/stm-masters/stability-protocol-schedule/stability-prot-sche-create-update/stability-prot-sche-create-update.component';
+import { StabilityProtScheRecHomePageComponent } from './rqp-lims-stm-module/stm-masters/stability-protocol-schedule-record/stability-prot-sche-rec-home-page/stability-prot-sche-rec-home-page.component';
+import { StabilityProtScheRecCreateUpdateComponent } from './rqp-lims-stm-module/stm-masters/stability-protocol-schedule-record/stability-prot-sche-rec-create-update/stability-prot-sche-rec-create-update.component';
 
 // import { SharedModule } from './common/shared.module';
 
@@ -31,12 +45,13 @@ import { StudyTypeMasterHomePageComponent } from './rqp-lims-stm-module/stm-mast
     DropdownListComponent,
     ActionAttachmentsListComponent,
     MessageDialogComponent,
+    
+    
+
+    
+
+    
    
-
-
-
-
-
 
 
 

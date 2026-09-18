@@ -41,7 +41,6 @@ import { MaterialTypeHomePageComponent } from '../spm-masters/material-type/mate
 import { UtMasterCreateUpdateComponent } from '../spm-masters/ut-master/ut-master-create-update/ut-master-create-update.component';
 import { UtMasterHomePageComponent } from '../spm-masters/ut-master/ut-master-home-page/ut-master-home-page.component';
 // import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-
 @NgModule({
   declarations: [
     TestRegistrationHomePageComponent,
