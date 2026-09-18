@@ -1672,7 +1672,31 @@ export enum apiEndPoints {
   ChambersCreateUpdate = 'limsws/ptm-master/save-update',
   ChambersLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
   ChambersAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+ /*****Ws Peraamenters Master ******/
+  allWsPeramentersTabledata = 'limsws/ptm-master/get-all',
+  activeWsPeramentersTabledata = 'limsws/ptm-master/get-max-all',
+  WsPeramentersUserProfileFilterData = 'limsws/ptm-master/search',
+  WsPeramentersCreateUpdate = 'limsws/ptm-master/save-update',
+  WsPeramentersLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
+  WsPeramentersAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
 
+
+  /****Ws peraameters Record ****/
+  allWsPeraamertersrecordTabledata = 'limsws/ptm-master/get-all',
+  activeWsPeraamentersRecordTabledata = 'limsws/ptm-master/get-max-all',
+  WsPeraamentersRecordUserProfileFilterData = 'limsws/ptm-master/search',
+  WsPeraamentersRecordCreateUpdate = 'limsws/ptm-master/save-update',
+  WsPeraamentersrecordLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
+  WsPeraamentersrecordAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+
+
+  /******Ws template Index*****/
+    allWsTemplateIndexTabledata = 'limsws/ptm-master/get-all',
+  activeWsTemplateIndexTsTabledata = 'limsws/ptm-master/get-max-all',
+  WsTemplateIndexTUserProfileFilterData = 'limsws/ptm-master/search',
+  WsTemplateIndexTCreateUpdate = 'limsws/ptm-master/save-update',
+  WsTemplateIndexTLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
+ WsTemplateIndexTAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
 
   /******* Aq Nomination *********/
   allAqnominationTabledata = 'limsaq/aq_nomination/get-all',

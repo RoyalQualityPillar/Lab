@@ -14,6 +14,14 @@ import { SharedModule } from './common/shared.module';
 import { NciReviewDetailComponent } from './rqp-qms-module/nci-review-detail/nci-review-detail.component';
 import { DropdownListComponent } from './rqp-dms-module/sop/dropdown-list/dropdown-list.component';
 import { ActionAttachmentsListComponent } from './rqp-lims-module/ism/action-attachments-list/action-attachments-list.component';
+import { WsPeramentersHomePageComponent } from './rqp-lims-stm-module/stm-masters/ws-peramenters-master/ws-peramenters-home-page/ws-peramenters-home-page.component';
+import { WsPeramentersCreateUpdateComponent } from './rqp-lims-stm-module/stm-masters/ws-peramenters-master/ws-peramenters-create-update/ws-peramenters-create-update.component';
+import { WsTemplateIndexCreateUpdateComponent } from './rqp-lims-stm-module/stm-masters/ws-template-index/ws-template-index-create-update/ws-template-index-create-update.component';
+import { WsTemplateIndexHomePageComponent } from './rqp-lims-stm-module/stm-masters/ws-template-index/ws-template-index-home-page/ws-template-index-home-page.component';
+import { WsPeraamentersRecordHomePageComponent } from './rqp-lims-stm-module/stm-masters/ws-peraamenters-record/ws-peraamenters-record-home-page/ws-peraamenters-record-home-page.component';
+import { WsPeraamentersRecordCreateUpdateComponent } from './rqp-lims-stm-module/stm-masters/ws-peraamenters-record/ws-peraamenters-record-create-update/ws-peraamenters-record-create-update.component';
+import { WsStudyTypeHomePageComponent } from './rqp-lims-stm-module/stm-masters/study-type/ws-study-type-home-page/ws-study-type-home-page.component';
+import { WsStudyTypeCreateUpdateComponent } from './rqp-lims-stm-module/stm-masters/study-type/ws-study-type-create-update/ws-study-type-create-update.component';
 
 // import { SharedModule } from './common/shared.module';
 
@@ -29,6 +37,9 @@ import { ActionAttachmentsListComponent } from './rqp-lims-module/ism/action-att
     DropdownListComponent,
     ActionAttachmentsListComponent,
     MessageDialogComponent,
+  
+ 
+   
 
 
 

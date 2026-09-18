@@ -11,6 +11,14 @@ import { StorageCategoryMasterHomePageComponent } from '../stm-masters/storage-c
 import { StorageCategoryMasterCreateUpdateComponent } from '../stm-masters/storage-category-master/storage-category-master-create-update/storage-category-master-create-update.component';
 import { ChambersMasterCreateUpdateComponent } from '../stm-masters/chambers-master/chambers-master-create-update/chambers-master-create-update.component';
 import { ChambersMasterHomePageComponent } from '../stm-masters/chambers-master/chambers-master-home-page/chambers-master-home-page.component';
+import { WsPeramentersHomePageComponent } from '../stm-masters/ws-peramenters-master/ws-peramenters-home-page/ws-peramenters-home-page.component';
+import { WsPeramentersCreateUpdateComponent } from '../stm-masters/ws-peramenters-master/ws-peramenters-create-update/ws-peramenters-create-update.component';
+import { WsTemplateIndexCreateUpdateComponent } from '../stm-masters/ws-template-index/ws-template-index-create-update/ws-template-index-create-update.component';
+import { WsTemplateIndexHomePageComponent } from '../stm-masters/ws-template-index/ws-template-index-home-page/ws-template-index-home-page.component';
+import { WsPeraamentersRecordCreateUpdateComponent } from '../stm-masters/ws-peraamenters-record/ws-peraamenters-record-create-update/ws-peraamenters-record-create-update.component';
+import { WsPeraamentersRecordHomePageComponent } from '../stm-masters/ws-peraamenters-record/ws-peraamenters-record-home-page/ws-peraamenters-record-home-page.component';
+import { WsStudyTypeCreateUpdateComponent } from '../stm-masters/study-type/ws-study-type-create-update/ws-study-type-create-update.component';
+import { WsStudyTypeHomePageComponent } from '../stm-masters/study-type/ws-study-type-home-page/ws-study-type-home-page.component';
 
 
 @NgModule({
@@ -20,6 +28,16 @@ import { ChambersMasterHomePageComponent } from '../stm-masters/chambers-master/
     StorageCategoryMasterCreateUpdateComponent,
     ChambersMasterHomePageComponent,
     ChambersMasterCreateUpdateComponent,
+     WsPeramentersHomePageComponent,
+      WsPeramentersCreateUpdateComponent,
+     WsTemplateIndexCreateUpdateComponent,
+    WsTemplateIndexHomePageComponent,
+    WsPeraamentersRecordHomePageComponent,
+    WsPeraamentersRecordCreateUpdateComponent,
+      WsStudyTypeHomePageComponent,
+    WsStudyTypeCreateUpdateComponent,
+   
+   
     
 
 
