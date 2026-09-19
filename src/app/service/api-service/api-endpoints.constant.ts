@@ -1682,21 +1682,21 @@ export enum apiEndPoints {
 
 
   /****Ws peraameters Record ****/
-  allWsPeraamertersrecordTabledata = 'limsws/ptm-master/get-all',
-  activeWsPeraamentersRecordTabledata = 'limsws/ptm-master/get-max-all',
-  WsPeraamentersRecordUserProfileFilterData = 'limsws/ptm-master/search',
-  WsPeraamentersRecordCreateUpdate = 'limsws/ptm-master/save-update',
-  WsPeraamentersrecordLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
-  WsPeraamentersrecordAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+  allWsPeraamertersrecordTabledata = 'limssm/peramenters-record/get-all',
+  activeWsPeraamentersRecordTabledata = 'limssm/peramenters-record/get-max-all',
+  WsPeraamentersRecordUserProfileFilterData = 'limssm/peramenters-record/search',
+  WsPeraamentersRecordCreateUpdate = 'limssm/peramenters-record/save-update',
+  WsPeraamentersrecordLoadUpdatePage = 'limssm/peramenters-record/get-by-max-code',
+  WsPeraamentersrecordAllAuditTrail = 'limssm/peramenters-record/get-by-code-all',
 
 
   /******Ws template Index*****/
-    allWsTemplateIndexTabledata = 'limsws/ptm-master/get-all',
-  activeWsTemplateIndexTabledata = 'limsws/ptm-master/get-max-all',
-  WsTemplateIndexUserProfileFilterData = 'limsws/ptm-master/search',
-  WsTemplateIndexCreateUpdate = 'limsws/ptm-master/save-update',
-  WsTemplateIndexLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
- WsTemplateIndexAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+    allWsTemplateIndexTabledata = 'limssm/templete-index/get-all',
+  activeWsTemplateIndexTabledata = 'limssm/templete-index/get-max-all',
+  WsTemplateIndexUserProfileFilterData = 'limssm/templete-index/search',
+  WsTemplateIndexCreateUpdate = 'limssm/templete-index/save-update',
+  WsTemplateIndexLoadUpdatePage = 'limssm/templete-index/get-by-max-code',
+ WsTemplateIndexAllAuditTrail = 'limssm/templete-index/get-by-code-all',
  /***** Study Type Master******/
      allStudyTypeTabledata = 'limssm/stm-master/get-all',
   activeStudyTypeTabledata = 'limssm/stm-master/get-max-all',
@@ -1716,12 +1716,12 @@ export enum apiEndPoints {
 
 
   /*******Storage Condition Master  *********/
-  allScmaTabledata = 'limsws/ptm-master/get-all',
-  activeScmaTabledata = 'limsws/ptm-master/get-max-all',
-  ScmaUserProfileFilterData = 'limsws/ptm-master/search',
-  ScmaCreateUpdate = 'limsws/ptm-master/save-update',
-  ScmaLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
-  ScmaAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+  allScmaTabledata = 'limssm/scm-master/get-all',
+  activeScmaTabledata = 'limssm/scm-master/get-max-all',
+  ScmaUserProfileFilterData = 'limssm/scm-master/search',
+  ScmaCreateUpdate = 'limssm/scm-master/save-updatee',
+  ScmaLoadUpdatePage = 'limssm/scm-master/get-by-max-code',
+  ScmaAllAuditTrail = 'limssm/scm-master/get-by-code-all',
 
   
   /*******Stability Protocol Schedule Record *********/
@@ -1751,20 +1751,20 @@ export enum apiEndPoints {
 
   
   /*******Chambers Type Master *********/
-  allCtmTabledata = 'limsws/ptm-master/get-all',
-  activeCtmTabledata = 'limsws/ptm-master/get-max-all',
-  CtmUserProfileFilterData = 'limsws/ptm-master/search',
-  CtmCreateUpdate = 'limsws/ptm-master/save-update',
-  CtmLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
-  CtmAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+  allCtmTabledata = 'limssm/ctm-master/get-all',
+  activeCtmTabledata = 'limssm/ctm-master/get-max-all',
+  CtmUserProfileFilterData = 'limssm/ctm-master/search',
+  CtmCreateUpdate = 'limssm/ctm-master/save-update',
+  CtmLoadUpdatePage = 'limssm/ctm-master/get-by-max-code',
+  CtmAllAuditTrail = 'limssm/ctm-master/get-by-code-all',
 
     /*******Chambers Shell Master *********/
-  allCsmTabledata = 'limsws/ptm-master/get-all',
-  activeCsmTabledata = 'limsws/ptm-master/get-max-all',
-  CsmUserProfileFilterData = 'limsws/ptm-master/search',
-  CsmCreateUpdate = 'limsws/ptm-master/save-update',
-  CsmLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
-  CsmAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+  allCsmTabledata = 'limssm/csm-master/get-all',
+  activeCsmTabledata ='limssm/csm-master/get-max-all',
+  CsmUserProfileFilterData = 'limssm/csm-master/search',
+  CsmCreateUpdate = 'limssm/csm-master/save-update',
+  CsmLoadUpdatePage = 'limssm/csm-master/get-by-max-code',
+  CsmAllAuditTrail = 'limssm/csm-master/get-by-code-all',
 
   
     /*******Chambers Rackss Master *********/
