@@ -36,8 +36,11 @@ import { PmsListComponent } from '../spm-masters/pms-list/pms-list.component';
 import { WsrCompletedComponent } from '../wsr/wsr-completed/wsr-completed.component';
 import { WsrCompletedSaveComponent } from '../wsr/wsr-completed-save/wsr-completed-save.component';
 import { WsrModuleAdminComponent } from '../wsr/wsr-module-admin/wsr-module-admin.component';
+import { MaterialTypeCreateUpdateComponent } from '../spm-masters/material-type/material-type-create-update/material-type-create-update.component';
+import { MaterialTypeHomePageComponent } from '../spm-masters/material-type/material-type-home-page/material-type-home-page.component';
+import { UtMasterCreateUpdateComponent } from '../spm-masters/ut-master/ut-master-create-update/ut-master-create-update.component';
+import { UtMasterHomePageComponent } from '../spm-masters/ut-master/ut-master-home-page/ut-master-home-page.component';
 // import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-
 @NgModule({
   declarations: [
     TestRegistrationHomePageComponent,
@@ -69,6 +72,10 @@ import { WsrModuleAdminComponent } from '../wsr/wsr-module-admin/wsr-module-admi
     MaterialMasterHomePageComponent,
     AddNewRecordComponent,
     PmsListComponent,
+    MaterialTypeCreateUpdateComponent,
+    MaterialTypeHomePageComponent,
+    UtMasterCreateUpdateComponent,
+    UtMasterHomePageComponent,
 
   ],
   imports: [

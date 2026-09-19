@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-stm-module-admin',
   standalone: false,
-  templateUrl: './stm-module-admin.component.html',
+  templateUrl:'./stm-module-admin.component.html',
   styleUrl: './stm-module-admin.component.scss'
 })
 export class StmModuleAdminComponent {
@@ -27,6 +27,29 @@ export class StmModuleAdminComponent {
     onStudyType() {
     this.router.navigate(['./rqplabui/lims-stm/ws-study-type-home-page'])
   }
+    onStorageConditionMaster() {
+    this.router.navigate(['./rqplabui/lims-stm/storage-conditio-master-home-page'])
+  }
+    onChambersTypeMaster() {
+    this.router.navigate(['./rqplabui/lims-stm/chambers-type-master-home-page'])
+  }
+    onChambersShellMaster() {
+    this.router.navigate(['./rqplabui/lims-stm/chambers-shell-master-home-page'])
+  }
+    onStabilityProtocolRecord() {
+    this.router.navigate(['./rqplabui/lims-stm/stability-prot-rec-home-page'])
+  }
+    onStabilityProtocolSchedule() {
+    this.router.navigate(['./rqplabui/lims-stm/stability-prot-sche-home-page'])
+  }
+    onStabilityProtocolScheduleRecord() {
+    this.router.navigate(['./rqplabui/lims-stm/stability-prot-sche-rec-home-page'])
+  }
+  onChambersRacksMaster() {
+    this.router.navigate(['./rqplabui/lims-stm/chambers-racks-master-home-page'])
+  }
+
+  
 
 
 

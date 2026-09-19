@@ -18,4 +18,10 @@ constructor(private router: Router) { }
   onMaterialMaster() {
     this.router.navigate(['./rqplabui/lims-sm/material-master-home-page']);
   }
+    onMaterialType() {
+    this.router.navigate(['./rqplabui/lims-sm/material-type-home-page']);
+  }
+    onUtMaster() {
+    this.router.navigate(['./rqplabui/lims-sm/ut-master-home-page']);
+  }
 }
