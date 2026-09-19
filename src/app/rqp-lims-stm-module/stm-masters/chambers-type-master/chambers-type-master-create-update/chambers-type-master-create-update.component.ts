@@ -122,7 +122,7 @@ export class ChambersTypeMasterCreateUpdateComponent implements OnInit {
     const params = { UC0001 };
 
     this.apiService
-      .sendRequest(apiEndPoints.ChambersLoadUpdatePage, 'POST', params)
+      .sendRequest(apiEndPoints.CtmLoadUpdatePage, 'POST', params)
       .subscribe((data: any) => {
         if (data.data == null) {
           this.isLoading = false;

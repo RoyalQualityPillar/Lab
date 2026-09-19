@@ -38,8 +38,8 @@ export class ChambersShellMasterHomePageComponent implements OnInit, AfterViewIn
   activeUserFilterValueError = false;
   tableData: MatTableDataSource<any>;
   isFilterExpanded = false;
-  allChambersTabledataUrl: any;
-  activeChambersTabledataUrl: any;
+  allCsmTabledataUrl: any;
+  activeCsmTabledataUrl: any;
   filterApiUrl: any;
   params: any;
   HttpMethod = 'POST';
@@ -58,14 +58,14 @@ export class ChambersShellMasterHomePageComponent implements OnInit, AfterViewIn
   filterObject: any;
   activeUserFilterObject: any;
   ngOnInit(): void {
-    this.allChambersTabledataUrl = apiEndPoints.allChambersTabledata;
+    this.allCsmTabledataUrl = apiEndPoints.allCsmTabledata;
     this.pageIndex = 0;
     let size = GlobalConstants.size;
     let pageIndex = this.pageIndex;
     let unitCode = this.cookieService.get('buCode');
     this.params = { pageIndex, size, unitCode };
-    this.filterApiUrl = apiEndPoints.ChambersUserProfileFilterData;
-    this. activeChambersTabledataUrl = apiEndPoints.activeChambersTabledata;
+    this.filterApiUrl = apiEndPoints.CsmUserProfileFilterData;
+    this. activeCsmTabledataUrl = apiEndPoints.activeCsmTabledata;
     this.params = { pageIndex, size, unitCode };
     this.loadRoleMasterTableFilter();
     this.loadActiveRoleMasterTableFilter();
@@ -81,7 +81,7 @@ export class ChambersShellMasterHomePageComponent implements OnInit, AfterViewIn
       // Set all required inputs
       compRef.setInput('columnConfig', this.columnConfig);
       compRef.setInput('filterOptions', this.filterOptions);
-      compRef.setInput('apiUrl', this.allChambersTabledataUrl);
+      compRef.setInput('apiUrl', this.allCsmTabledataUrl);
       compRef.setInput('tableTitle', 'All Chambers Shell Master');
       compRef.setInput('dynamicButtons', this.allButtonConfig);
       compRef.setInput('columnClass', 'rqp-life-cycle-table-columns');
@@ -109,7 +109,7 @@ export class ChambersShellMasterHomePageComponent implements OnInit, AfterViewIn
 
       compRef.setInput('columnConfig', this.columnConfig);
       compRef.setInput('filterOptions', this.filterOptions);
-      compRef.setInput('apiUrl', this. activeChambersTabledataUrl);
+      compRef.setInput('apiUrl', this. activeCsmTabledataUrl);
       compRef.setInput('tableTitle', 'All Chambers Shell Master');
       compRef.setInput('dynamicButtons', this.activeButtonConfig);
       compRef.setInput('columnClass', 'rqp-life-cycle-table-columns');
@@ -214,7 +214,7 @@ export class ChambersShellMasterHomePageComponent implements OnInit, AfterViewIn
 
       const dialogRef = this.dialog.open(component, {
         minWidth: '80%',
-        data: { tableData: tableData, pageTitle: 'Chambers Master' },
+        data: { tableData: tableData, pageTitle: 'Chambers Shell Master' },
       });
       dialogRef.afterClosed().subscribe((result) => { });
     }
@@ -267,7 +267,7 @@ export class ChambersShellMasterHomePageComponent implements OnInit, AfterViewIn
     );
     const dialogRef = this.dialog.open(component, {
       minWidth: '80%',
-      data: { tableData: rows, pageTitle: 'Chambers Master' },
+      data: { tableData: rows, pageTitle: 'Chambers Shell Master' },
     });
     dialogRef.afterClosed().subscribe((result) => { });
   }

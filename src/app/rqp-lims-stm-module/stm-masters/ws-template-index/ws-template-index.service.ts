@@ -12,7 +12,7 @@ private API_URL = environment.apiBaseURL;
   
     onCreate(body: any) {
         let token = this.cookieService.get('token');
-        let createUserURL = this.API_URL + 'limsws/ptm-master/save-update';
+        let createUserURL = this.API_URL + 'limssm/templete-index/save-update';
         const httpOptions = {
           headers: new HttpHeaders({
             'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ private API_URL = environment.apiBaseURL;
       onAllRoleAuditTrail(uc0001: any) {
     let queryParams = `?UC0001=${uc0001}`;
     const ALLSALEPRODUCTURL =
-      this.API_URL + 'limsws/ptm-master/get-by-code-all' + queryParams;
+      this.API_URL + 'limssm/templete-index/get-by-code-all' + queryParams;
     return this.http.get(ALLSALEPRODUCTURL);
   }
 }

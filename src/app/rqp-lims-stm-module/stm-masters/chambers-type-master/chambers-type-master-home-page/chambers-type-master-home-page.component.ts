@@ -42,8 +42,8 @@ export class ChambersTypeMasterHomePageComponent implements OnInit, AfterViewIni
   activeUserFilterValueError = false;
   tableData: MatTableDataSource<any>;
   isFilterExpanded = false;
-  allChambersTabledataUrl: any;
-  activeChambersTabledataUrl: any;
+  allCtmTabledataUrl: any;
+  activeCtmTabledataUrl: any;
   filterApiUrl: any;
   params: any;
   HttpMethod = 'POST';
@@ -62,14 +62,14 @@ export class ChambersTypeMasterHomePageComponent implements OnInit, AfterViewIni
   filterObject: any;
   activeUserFilterObject: any;
   ngOnInit(): void {
-    this.allChambersTabledataUrl = apiEndPoints.allChambersTabledata;
+    this.allCtmTabledataUrl = apiEndPoints.allCtmTabledata;
     this.pageIndex = 0;
     let size = GlobalConstants.size;
     let pageIndex = this.pageIndex;
     let unitCode = this.cookieService.get('buCode');
     this.params = { pageIndex, size, unitCode };
-    this.filterApiUrl = apiEndPoints.ChambersUserProfileFilterData;
-    this. activeChambersTabledataUrl = apiEndPoints.activeChambersTabledata;
+    this.filterApiUrl = apiEndPoints.CtmUserProfileFilterData;
+    this. activeCtmTabledataUrl = apiEndPoints.activeCtmTabledata;
     this.params = { pageIndex, size, unitCode };
     this.loadRoleMasterTableFilter();
     this.loadActiveRoleMasterTableFilter();
@@ -85,7 +85,7 @@ export class ChambersTypeMasterHomePageComponent implements OnInit, AfterViewIni
       // Set all required inputs
       compRef.setInput('columnConfig', this.columnConfig);
       compRef.setInput('filterOptions', this.filterOptions);
-      compRef.setInput('apiUrl', this.allChambersTabledataUrl);
+      compRef.setInput('apiUrl', this.allCtmTabledataUrl);
       compRef.setInput('tableTitle', 'All Chambers Type Master');
       compRef.setInput('dynamicButtons', this.allButtonConfig);
       compRef.setInput('columnClass', 'rqp-life-cycle-table-columns');
@@ -113,7 +113,7 @@ export class ChambersTypeMasterHomePageComponent implements OnInit, AfterViewIni
 
       compRef.setInput('columnConfig', this.columnConfig);
       compRef.setInput('filterOptions', this.filterOptions);
-      compRef.setInput('apiUrl', this. activeChambersTabledataUrl);
+      compRef.setInput('apiUrl', this. activeCtmTabledataUrl);
       compRef.setInput('tableTitle', 'All Chambers Type Master');
       compRef.setInput('dynamicButtons', this.activeButtonConfig);
       compRef.setInput('columnClass', 'rqp-life-cycle-table-columns');
@@ -218,7 +218,7 @@ export class ChambersTypeMasterHomePageComponent implements OnInit, AfterViewIni
 
       const dialogRef = this.dialog.open(component, {
         minWidth: '80%',
-        data: { tableData: tableData, pageTitle: 'Chambers Master' },
+        data: { tableData: tableData, pageTitle: 'Chambers Type Master' },
       });
       dialogRef.afterClosed().subscribe((result) => { });
     }
@@ -271,7 +271,7 @@ export class ChambersTypeMasterHomePageComponent implements OnInit, AfterViewIni
     );
     const dialogRef = this.dialog.open(component, {
       minWidth: '80%',
-      data: { tableData: rows, pageTitle: 'Chambers Master' },
+      data: { tableData: rows, pageTitle: 'Chambers Type Master' },
     });
     dialogRef.afterClosed().subscribe((result) => { });
   }
@@ -299,7 +299,7 @@ export class ChambersTypeMasterHomePageComponent implements OnInit, AfterViewIni
   };
 
   filterOptions: string[] = Object.keys(this.columnConfig);
-  tableTitle: string = 'All Chambers Master';
+  tableTitle: string = 'All Chambers Type Master';
   allButtonConfig = [
     { label: ' Audit Trail', action: 'Audit_Trail', color: 'primary' },
     // { label: 'Save', action: 'save', color: 'accent' }
