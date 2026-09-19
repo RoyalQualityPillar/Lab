@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './wsr-completed.component.scss'
 })
 export class WsrCompletedComponent {
-
+public reviewerUrl: string = './rqplabui/lims-sm/wsr-completed-save';
+  public isCompleted: string = 'completed';
 }

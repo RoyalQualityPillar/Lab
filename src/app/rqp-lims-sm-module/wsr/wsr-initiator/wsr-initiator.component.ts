@@ -22,6 +22,7 @@ import { WsrService } from 'src/app/service/wsr.service';
 import { PmsListComponent } from 'src/app/rqp-lims-module/pms-list/pms-list.component';
 import { ApiService } from 'src/app/service/api.service';
 import { CommonEditorComponent } from 'src/app/common/common-editor/common-editor.component';
+import { NotificationService } from 'src/app/common/notification.service';
 // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 declare var $: any;
@@ -353,10 +354,10 @@ export class WsrInitiatorComponent implements OnInit, AfterViewInit {
     });
     this.previewHtml = this.sanitizer.bypassSecurityTrustHtml(html);
   }
-  public pageData: any; 
+  public pageData: any;
   nextStageListData: any;
   public content: any;
-  public headerData: any;   
+  public headerData: any;
   public dropdownList: DropdownList[];
   public selectedDialogData: any[] = [];
   public selectedDialogValue: any;
@@ -365,9 +366,10 @@ export class WsrInitiatorComponent implements OnInit, AfterViewInit {
   public storeHtml = [];
   public displayedColumns: any;
   public isSubjectCodeSuccess: boolean;
+  public comments: string;
   HeaderForm: FormGroup;
-  public commentForm:FormGroup;
-  public productInformation:FormGroup;
+  public commentForm: FormGroup;
+  public productInformation: FormGroup;
   public pmsList = new FormGroup({
     productNo: new FormControl(''),
   });
@@ -399,6 +401,7 @@ export class WsrInitiatorComponent implements OnInit, AfterViewInit {
     private wsrService: WsrService,
     private apiService: ApiService,
     private cookieService: CookieService,
+    private notificationService: NotificationService,
     private dmsService: DmsService,
     private fb: FormBuilder,
     public dialog: MatDialog,
@@ -408,7 +411,7 @@ export class WsrInitiatorComponent implements OnInit, AfterViewInit {
     private zone: NgZone
   ) {
     this.commentForm = this.wsrService.commentForm;
-  this.productInformation = this.wsrService.productInformation;
+    this.productInformation = this.wsrService.productInformation;
     this.HeaderForm = this.fb.group({
       productName: [''],
       market: [''],
@@ -637,6 +640,7 @@ export class WsrInitiatorComponent implements OnInit, AfterViewInit {
     console.log(event);
   }
   public onSubmit(draft: boolean) {
+    const htmlContent = this.tinymceInstance?.getContent();
     if (this.form.value.html) {
       const {
         productName,
@@ -652,42 +656,81 @@ export class WsrInitiatorComponent implements OnInit, AfterViewInit {
       } = this.HeaderForm.value;
       // Create a Blob directly from the HTML content
       const inputValues: any = this.wsrService.getInputFieldValues();
-      const blob = new Blob([this.buildRawPreviewHtml()], { type: 'text/html' });
+      const blob = new Blob([htmlContent], { type: 'text/html' });
       const formData = new FormData();
       formData.append('htmlAttachments', blob, 'preview.html');
 
-      // wsMasterDto = array of only double-click objects
-      const wsMasterDtoArray = Object.keys(this.newAttributesAdded).map(key => {
-        const attr = this.newAttributesAdded[key];
-        return {
-          uc0001: null,
-          ff0001: attr.unitCode,
-          ff0002: attr.min,
-          ff0003: attr.max,
-          ff0004: '',
-          ff0005: '',
-          ff0006: '',
-          ff0007: '',
-          ff0008: '',
-          ff0009: '',
-          ff0010: '',
-          ff0011: '',
-          ff0012: '',
-          lc0001: '',
-          lc0002: '',
-          lc0003: '',
-          lc0004: '',
-          lc0005: '',
-          lc0006: '',
-          createdby: this.headerData.createdby,
-          status: 0,
-          comments: this.commentForm.value.comments,
-          unitcode: '',
-        };
-      });
+      // wsTFieldsDTOFields = array of only double-click objects
+      // const wsTFieldsDTOFields = Object.keys(this.newAttributesAdded).map(key => {
+      //   const attr = this.newAttributesAdded[key];
+      //   return {
+      //     uc0001: null,
+      //     ff0001: attr.unitCode,
+      //     ff0002: attr.min,
+      //     ff0003: attr.max,
+      //     ff0004: '',
+      //     ff0005: '',
+      //     ff0006: '',
+      //     ff0007: '',
+      //     ff0008: '',
+      //     ff0009: '',
+      //     ff0010: '',
+      //     ff0011: '',
+      //     ff0012: '',
+      //     lc0001: '',
+      //     lc0002: '',
+      //     lc0003: '',
+      //     lc0004: '',
+      //     lc0005: '',
+      //     lc0006: '',
+      //     createdby: this.headerData.createdby,
+      //     status: 0,
+      //     comments: this.comments,
+      //     unitcode: this.cookieService.get('buCode'),
+      //   };
+      // });
 
-      // wsTFieldsDTO = product info fields + unitCodes from ff0010 onward
-      const wsTFieldsDTOFields: any = {
+ const wsTFieldsDTOFields: any = {
+    uc0001: null,
+    ff0001: '',
+    ff0002: '',
+    ff0003: '',
+    ff0004: '',
+    ff0005: '',
+    ff0006: '',
+    ff0007: '',
+    ff0008: '',
+    ff0009: '',
+    ff0010: '',  
+    lc0001: '',
+    lc0002: '',
+    lc0003: '',
+    lc0004: '',
+    lc0005: '',
+    lc0006: '',
+    createdby: this.headerData.createdby,
+    status: 0,
+    comments: this.comments,
+    unitcode: this.cookieService.get('buCode')
+  };
+
+  Object.keys(this.newAttributesAdded || {}).forEach((key, index) => {
+
+    const attribute = this.newAttributesAdded[key];
+
+    const startField = 1 + (index * 3);
+
+    const unitField = `ff${String(startField).padStart(4, '0')}`;
+    const minField = `ff${String(startField + 1).padStart(4, '0')}`;
+    const maxField = `ff${String(startField + 2).padStart(4, '0')}`;
+
+    wsTFieldsDTOFields[unitField] = attribute?.unitCode || '';
+    wsTFieldsDTOFields[minField] = attribute?.min || '';
+    wsTFieldsDTOFields[maxField] = attribute?.max || '';
+  });
+
+      // wsMasterDtoArray = product info fields + unitCodes from ff0010 onward
+      const wsMasterDtoArray : any[] = [{
         uc0001: null,
         ff0001: productName,
         ff0002: market,
@@ -698,10 +741,23 @@ export class WsrInitiatorComponent implements OnInit, AfterViewInit {
         ff0007: dosageForm,
         ff0008: inputCode,
         ff0009: productTrackingCode,
-      };
+        ff0010: this.pmsList.value.productNo,
+        ff0011: record,
+        ff0012: 'string',
+        lc0001: 'string',
+        lc0002: 'string',
+        lc0003: 'string',
+        lc0004: 'string',
+        lc0005: 'string',
+        lc0006: 'string',
+        createdby: this.headerData.createdby,
+        status: 0,
+        comments: this.comments,
+        unitcode: this.cookieService.get('buCode')
+      }];
       Object.keys(this.newAttributesAdded).forEach((key, index) => {
         const attr = this.newAttributesAdded[key];
-        wsTFieldsDTOFields[`ff${String(index + 10).padStart(4, '0')}`] = attr.unitCode;
+        wsMasterDtoArray[`ff${String(index + 11).padStart(4, '0')}`] = attr.unitCode;
       });
 
       const data = {
@@ -745,10 +801,8 @@ export class WsrInitiatorComponent implements OnInit, AfterViewInit {
             },
           });
         } else {
-          this.messageService.sendSnackbar(
-            'success',
-            '"WSR info Record inserted successfully'
-          );
+          this.notificationService.showSuccess(result.status, () => {
+        });
         }
       });
     } else {
@@ -758,10 +812,10 @@ export class WsrInitiatorComponent implements OnInit, AfterViewInit {
       );
     }
   }
-  public handleCommentsForm(event: Event) {
-    console.log(event);
+  public handleCommentsForm(event: any) {
+    this.comments = event.comments;
   }
-   isOrgFieldValueSuccess = false;
+  isOrgFieldValueSuccess = false;
   onChangeOrgCode() {
     if (this.HeaderForm.controls['record'].value == '') {
       this.HeaderForm.controls['record'].setValue('');
@@ -886,7 +940,7 @@ export class WsrInitiatorComponent implements OnInit, AfterViewInit {
     });
   }
   // onChangeOrgCode(): void {}
- 
+
   openDialog() {
     this.zone.run(() => {
       this.dialog.open(LovDialogComponent, {

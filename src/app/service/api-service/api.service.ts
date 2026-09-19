@@ -155,4 +155,19 @@ export class ApiService {
       this.API_URL + `limspc/fetchWsAttachement?uc0001=${uc0001}`
     );
   }
+   public productList(uc0001: string): Observable<any> {
+    return this.http.get(this.API_URL + `dms/product-list?uc0001=${uc0001}`);
+  }
+  public getWSModuleRequestNo(lc0002: string, lc0001: string): Observable<any> {
+    return this.http.get(
+      this.API_URL +
+        `limspc/ws-module-request-no?lc0002=${lc0002}&lc0001=${lc0001}`
+    );
+  }
+  public wsMasterList(lc0003: string): Observable<any> {
+    return this.http.get(this.API_URL + `limspc/wsMaster-list?lc0003=${lc0003}`);
+  }
+  public WsTFieldsList(lc0003: string): Observable<any> {
+    return this.http.get(this.API_URL + `limspc/WsTFields-list?lc0003=${lc0003}`);
+  }
 }

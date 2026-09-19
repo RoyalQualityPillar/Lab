@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormArray, FormGroup } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 // import { SummernoteOptions } from 'ngx-summernote/lib/summernote-options';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -30,7 +30,14 @@ export class WsrReviewerSaveComponent {
   public form: FormGroup;
   public commentForm: FormGroup;
   public headerData: any;
+  public lc0003:any;
+  public wsMasterListData:any;
+  public wsMasterListTableData:any;
   public productInformation: FormGroup;
+  HeaderForm: FormGroup;
+  public pmsList = new FormGroup({
+    productNo: new FormControl(''),
+  });
   public getHeaderData(event: any) {
     return (this.headerData = this.wsrService.getHeaderData(event));
   }
@@ -41,11 +48,24 @@ export class WsrReviewerSaveComponent {
     private activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
     private messageService: MessageService,
-    private sanitizer: DomSanitizer
-  ) { 
-     this.form= this.wsrService.form;
+    private sanitizer: DomSanitizer,
+    private fb: FormBuilder,
+  ) {
+    this.form = this.wsrService.form;
     this.commentForm = this.wsrService.commentForm;
     this.productInformation = this.wsrService.productInformation;
+    this.HeaderForm = this.fb.group({
+      productName: [''],
+      market: [''],
+      productCode: [''],
+      uom: [''],
+      shelfLifeMonths: [''],
+      productType: [''],
+      dosageForm: [''],
+      inputCode: [''],
+      productTrackingCode: [''],
+      record: [''],
+    });
   }
 
   ngOnInit() {
@@ -68,20 +88,59 @@ export class WsrReviewerSaveComponent {
           params.ff0010,
         comments: params.comments,
       };
-    this.attachmentPDF(params);
+      this.attachmentPDF(params);
 
       this.apiService
-        .getModuleRequestNo(params.uc0001, params.ff0001)
+        .getWSModuleRequestNo(params.uc0001, params.ff0001)
         .subscribe(({ data }) => {
+          console.log(data)
+this.lc0003 = data[0].lc0003;
           this.apiService.update(data[0].uc0001).subscribe((data) => {
             const binaryData = atob(data.data);
             this.form.get('html').patchValue(binaryData);
           });
+         if(this.lc0003){
+ this.onLoadWsMasterList();
+    this.onLoadWsTFieldsList();
+         }
         });
       // });
     }
+   
   }
-
+  public onLoadWsMasterList() {
+    this.apiService
+      .wsMasterList(this.lc0003)
+      .subscribe(({ data }) => {
+        console.log(data)
+        this.wsMasterListData = data;
+        console.log(this.wsMasterListData)
+         this.wsMasterListData.forEach((element) => {
+              this.HeaderForm.patchValue({
+                productName: element.ff0001,
+                market: element.ff0002,
+                productCode: element.ff0003,
+                uom: element.ff0004,
+                shelfLifeMonths: element.ff0005,
+                productType: element.ff0006,
+                dosageForm: element.ff0007,
+                inputCode: element.ff0008,
+                productTrackingCode: element.ff0009,
+                record: element.ff0011
+              });
+              this.pmsList.patchValue({
+                productNo:element.ff0010
+              });
+            });       
+            });
+  }
+   public onLoadWsTFieldsList() {
+    this.apiService
+      .WsTFieldsList(this.lc0003)
+      .subscribe(({ data }) => {
+        console.log(data)
+      });
+  }
   public getFormInputs(): FormArray {
     return this.form.get('inputs') as FormArray;
   }
@@ -265,14 +324,14 @@ export class WsrReviewerSaveComponent {
       );
     }
   }
-    public pdfSrc: string = '';
+  public pdfSrc: string = '';
   public showPdfPreview: boolean = false;
   public htmlPreviewContent: SafeHtml = '';
-  public attachmentPDF(value:any){
+  public attachmentPDF(value: any) {
     let lc0002 = value.uc0001;
-    let param = {lc0002}
-    this.apiService.sendRequest(apiEndPoints.attachmentHTML,'POST', param).subscribe((data:any) => {
-       if (data?.data) {
+    let param = { lc0002 }
+    this.apiService.sendRequest(apiEndPoints.attachmentHTML, 'POST', param).subscribe((data: any) => {
+      if (data?.data) {
         this.showPdfPreview = false;
         // Decode base64 HTML string
         try {
