@@ -67,8 +67,8 @@ export class WsTemplateIndexHomePageComponent  implements OnInit, AfterViewInit 
     let pageIndex = this.pageIndex;
     let unitCode = this.cookieService.get('buCode');
     this.params = { pageIndex, size, unitCode };
-    this.filterApiUrl = apiEndPoints.WsTemplateIndexTUserProfileFilterData;
-    this. activeWstemplateIndexTabledataUrl = apiEndPoints.activeWsTemplateIndexTsTabledata;
+    this.filterApiUrl = apiEndPoints.WsTemplateIndexUserProfileFilterData;
+    this. activeWstemplateIndexTabledataUrl = apiEndPoints.activeWsTemplateIndexTabledata;
     this.params = { pageIndex, size, unitCode };
     this.loadRoleMasterTableFilter();
     this.loadActiveRoleMasterTableFilter();

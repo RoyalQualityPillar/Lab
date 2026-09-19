@@ -126,7 +126,7 @@ export class WsTemplateIndexCreateUpdateComponent implements OnInit {
     const params = { UC0001 };
 
     this.apiService
-      .sendRequest(apiEndPoints.WsTemplateIndexTLoadUpdatePage, 'POST', params)
+      .sendRequest(apiEndPoints.WsTemplateIndexLoadUpdatePage, 'POST', params)
       .subscribe((data: any) => {
         if (data.data == null) {
           this.isLoading = false;

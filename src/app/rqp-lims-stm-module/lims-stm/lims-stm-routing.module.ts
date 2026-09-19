@@ -6,6 +6,7 @@ import { ChambersMasterHomePageComponent } from '../stm-masters/chambers-master/
 import { WsPeramentersHomePageComponent } from '../stm-masters/ws-peramenters-master/ws-peramenters-home-page/ws-peramenters-home-page.component';
 import { WsTemplateIndexHomePageComponent } from '../stm-masters/ws-template-index/ws-template-index-home-page/ws-template-index-home-page.component';
 import { WsPeraamentersRecordHomePageComponent } from '../stm-masters/ws-peraamenters-record/ws-peraamenters-record-home-page/ws-peraamenters-record-home-page.component';
+import { WsStudyTypeHomePageComponent } from '../stm-masters/study-type/ws-study-type-home-page/ws-study-type-home-page.component';
 
 const routes: Routes = [
   {path:'stm-module-admin', component:StmModuleAdminComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
 {path:'ws-peramenters-home-page', component: WsPeramentersHomePageComponent },
 {path:'ws-template-index-home-page', component: WsTemplateIndexHomePageComponent },
 {path:'ws-peraamenters-record-home-page', component: WsPeraamentersRecordHomePageComponent },
+{path:'ws-study-type-home-page', component: WsStudyTypeHomePageComponent },
 
 
 

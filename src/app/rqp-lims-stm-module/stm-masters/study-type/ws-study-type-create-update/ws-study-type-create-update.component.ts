@@ -15,6 +15,7 @@ import { RemoteComponentLoaderService } from 'src/app/service/remote-component-l
 import { StorageCategoryMasterCreateUpdateComponent } from '../../storage-category-master/storage-category-master-create-update/storage-category-master-create-update.component';
 import { StorageCategoryMasterService } from '../../storage-category-master/storage-category-master.service';
 import { ChambersMasterService } from '../../chambers-master/chambers-master.service';
+import { StudyTypeMasterService } from '../study-type-master.service';
 
 
 export interface userData {
@@ -57,7 +58,7 @@ export class WsStudyTypeCreateUpdateComponent implements OnInit {
     private notificationService: NotificationService,
     public buttonLabelService: ButtonLabelService,
     private cookieService: CookieService,
-    private chambersMasterService : ChambersMasterService,
+    private studyTypeMasterService : StudyTypeMasterService,
     private apiService: ApiService,
     public dialogRef: MatDialogRef<WsStudyTypeCreateUpdateComponent>,
     @Inject(MAT_DIALOG_DATA) public userData: userData,
@@ -67,8 +68,8 @@ export class WsStudyTypeCreateUpdateComponent implements OnInit {
       uc0001: [''],
       ff0001: ['', Validators.required],
        ff0002: ['', Validators.required],
-       ff0003: ['', Validators.required],
-       ff0004: ['', Validators.required],
+      //  ff0003: ['', Validators.required],
+      //  ff0004: ['', Validators.required],
       // ff0002: ['', Validators.required],
       // ff0003: ['', Validators.required],
       // ff0004: ['', Validators.required],
@@ -127,7 +128,7 @@ export class WsStudyTypeCreateUpdateComponent implements OnInit {
     const params = { UC0001 };
 
     this.apiService
-      .sendRequest(apiEndPoints.ChambersLoadUpdatePage, 'POST', params)
+      .sendRequest(apiEndPoints.StudyTypeLoadUpdatePage, 'POST', params)
       .subscribe((data: any) => {
         if (data.data == null) {
           this.isLoading = false;
@@ -148,8 +149,8 @@ export class WsStudyTypeCreateUpdateComponent implements OnInit {
     this.DepartmentMaster.controls['uc0001'].setValue(this.formData.uc0001);
     this.DepartmentMaster.controls['ff0001'].setValue(this.formData.ff0001);
       this.DepartmentMaster.controls['ff0002'].setValue(this.formData.ff0002);
-      this.DepartmentMaster.controls['ff0003'].setValue(this.formData.ff0003);
-      this.DepartmentMaster.controls['ff0004'].setValue(this.formData.ff0004);
+      // this.DepartmentMaster.controls['ff0003'].setValue(this.formData.ff0003);
+      // this.DepartmentMaster.controls['ff0004'].setValue(this.formData.ff0004);
     this.DepartmentMaster.controls['comments'].setValue(this.formData.comments);
     let statusByValue = changeStatusByCode(this.formData.status);
     this.DepartmentMaster.controls['status'].setValue(statusByValue);
@@ -160,7 +161,7 @@ export class WsStudyTypeCreateUpdateComponent implements OnInit {
       changeStatusByDescription(this.DepartmentMaster.controls['status'].value)
     );
 
-    this.chambersMasterService 
+    this.studyTypeMasterService 
 
     .onCreate(this.DepartmentMaster.value)
     .subscribe((data: any) => {
@@ -205,7 +206,7 @@ export class WsStudyTypeCreateUpdateComponent implements OnInit {
       this.cookieService.get('userId')
     );
 
-    this.chambersMasterService
+    this.studyTypeMasterService
     
     .onCreate(this.DepartmentMaster.value)
     .subscribe((data: any) => {

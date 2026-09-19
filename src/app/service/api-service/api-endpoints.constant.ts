@@ -1673,12 +1673,12 @@ export enum apiEndPoints {
   ChambersLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
   ChambersAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
  /*****Ws Peraamenters Master ******/
-  allWsPeramentersTabledata = 'limsws/ptm-master/get-all',
-  activeWsPeramentersTabledata = 'limsws/ptm-master/get-max-all',
-  WsPeramentersUserProfileFilterData = 'limsws/ptm-master/search',
-  WsPeramentersCreateUpdate = 'limsws/ptm-master/save-update',
-  WsPeramentersLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
-  WsPeramentersAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+  allWsPeramentersTabledata = 'limssm/peramenters-master/get-all',
+  activeWsPeramentersTabledata = 'limssm/peramenters-master/get-max-all',
+  WsPeramentersUserProfileFilterData = 'limssm/peramenters-master/search',
+  WsPeramentersCreateUpdate = 'limssm/peramenters-masterr/save-update',
+  WsPeramentersLoadUpdatePage = 'limssm/peramenters-master/get-by-max-code',
+  WsPeramentersAllAuditTrail = 'limssm/peramenters-master/get-by-code-all',
 
 
   /****Ws peraameters Record ****/
@@ -1692,11 +1692,18 @@ export enum apiEndPoints {
 
   /******Ws template Index*****/
     allWsTemplateIndexTabledata = 'limsws/ptm-master/get-all',
-  activeWsTemplateIndexTsTabledata = 'limsws/ptm-master/get-max-all',
-  WsTemplateIndexTUserProfileFilterData = 'limsws/ptm-master/search',
-  WsTemplateIndexTCreateUpdate = 'limsws/ptm-master/save-update',
-  WsTemplateIndexTLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
- WsTemplateIndexTAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+  activeWsTemplateIndexTabledata = 'limsws/ptm-master/get-max-all',
+  WsTemplateIndexUserProfileFilterData = 'limsws/ptm-master/search',
+  WsTemplateIndexCreateUpdate = 'limsws/ptm-master/save-update',
+  WsTemplateIndexLoadUpdatePage = 'limsws/ptm-master/get-by-max-code',
+ WsTemplateIndexAllAuditTrail = 'limsws/ptm-master/get-by-code-all',
+ /***** Study Type Master******/
+     allStudyTypeTabledata = 'limssm/stm-master/get-all',
+  activeStudyTypeTabledata = 'limssm/stm-master/get-max-all',
+  StudyTypeUserProfileFilterData = 'limssm/stm-master/search',
+  StudyTypeCreateUpdate = 'limssm/stm-master/save-update',
+  StudyTypeLoadUpdatePage = 'limssm/stm-master/get-by-max-code',
+ StudyTypeAllAuditTrail = 'limssm/stm-master/get-by-code-all',
 
   /******* Aq Nomination *********/
   allAqnominationTabledata = 'limsaq/aq_nomination/get-all',
