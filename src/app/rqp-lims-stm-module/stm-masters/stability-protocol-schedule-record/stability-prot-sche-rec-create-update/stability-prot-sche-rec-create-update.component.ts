@@ -54,7 +54,7 @@ export class StabilityProtScheRecCreateUpdateComponent implements OnInit {
     private cookieService: CookieService,
     private stabilityProtScheRecServiceService : StabilityProtScheRecServiceService,
     private apiService: ApiService,
-    public dialogRef: MatDialogRef<StabilityProtScheRecCreateUpdateComponent>,
+ public dialogRef: MatDialogRef<StabilityProtScheRecCreateUpdateComponent>,
     @Inject(MAT_DIALOG_DATA) public userData: userData,
     private remoteLoader: RemoteComponentLoaderService,
   ) {
@@ -67,11 +67,11 @@ export class StabilityProtScheRecCreateUpdateComponent implements OnInit {
       // ff0002: ['', Validators.required],
       // ff0003: ['', Validators.required],
       // ff0004: ['', Validators.required],
-       ff0005: ['', Validators.required],
-       ff0006: ['', Validators.required],
-       ff0007: [0, Validators.required],
-       ff0008: [0, Validators.required],
-       ff0009: ['', Validators.required],
+      // ff0005: ['', Validators.required],
+      // ff0006: ['', Validators.required],
+      // ff0007: [0, Validators.required],
+      // ff0008: [0, Validators.required],
+      // ff0009: ['', Validators.required],
       // ff0010: [0, Validators.required],
       // ff0011: ['', Validators.required],
       // ff0012: [0, Validators.required],
@@ -145,12 +145,6 @@ export class StabilityProtScheRecCreateUpdateComponent implements OnInit {
       this.DepartmentMaster.controls['ff0002'].setValue(this.formData.ff0002);
       this.DepartmentMaster.controls['ff0003'].setValue(this.formData.ff0003);
       this.DepartmentMaster.controls['ff0004'].setValue(this.formData.ff0004);
-      this.DepartmentMaster.controls['ff0005'].setValue(this.formData.ff0005);
-      this.DepartmentMaster.controls['ff0006'].setValue(this.formData.ff0006);
-      this.DepartmentMaster.controls['ff0007'].setValue(this.formData.ff0007);
-      this.DepartmentMaster.controls['ff0008'].setValue(this.formData.ff0008);
-      this.DepartmentMaster.controls['ff0009'].setValue(this.formData.ff0009);
-
     this.DepartmentMaster.controls['comments'].setValue(this.formData.comments);
     let statusByValue = changeStatusByCode(this.formData.status);
     this.DepartmentMaster.controls['status'].setValue(statusByValue);
@@ -161,7 +155,7 @@ export class StabilityProtScheRecCreateUpdateComponent implements OnInit {
       changeStatusByDescription(this.DepartmentMaster.controls['status'].value)
     );
 
-    this.stabilityProtScheRecServiceService 
+      this.stabilityProtScheRecServiceService  
 
     .onCreate(this.DepartmentMaster.value)
     .subscribe((data: any) => {
@@ -206,7 +200,7 @@ export class StabilityProtScheRecCreateUpdateComponent implements OnInit {
       this.cookieService.get('userId')
     );
 
-    this.stabilityProtScheRecServiceService
+      this.stabilityProtScheRecServiceService 
     
     .onCreate(this.DepartmentMaster.value)
     .subscribe((data: any) => {
@@ -323,5 +317,9 @@ export class StabilityProtScheRecCreateUpdateComponent implements OnInit {
   }
 }
 
+
+{
+
+}
 
 

@@ -38,7 +38,7 @@ export class StabilityProtScheRecHomePageComponent implements OnInit, AfterViewI
   activeUserFilterValueError = false;
   tableData: MatTableDataSource<any>;
   isFilterExpanded = false;
-  allSpsrTabledataUrl: any;
+ allSpsrTabledataUrl: any;
   activeSpsrTabledataUrl: any;
   filterApiUrl: any;
   params: any;
@@ -49,7 +49,7 @@ export class StabilityProtScheRecHomePageComponent implements OnInit, AfterViewI
 
   constructor(
     private router: Router,
-    private stabilityProtScheRecServiceService: StabilityProtScheRecServiceService,
+private stabilityProtScheRecServiceService : StabilityProtScheRecServiceService,
     public dialog: MatDialog,
     public cookieService: CookieService,
     private apiService: ApiService,
@@ -186,7 +186,7 @@ export class StabilityProtScheRecHomePageComponent implements OnInit, AfterViewI
   }
   async onActiveSelectAuditRow() {
     let tableData = [
-      { labelName: 'Version', value: this.selectedRow.version },
+       { labelName: 'Version', value: this.selectedRow.version },
       {
         labelName: 'Status',
         value: this.onChangeStatus(this.selectedRow.status),
@@ -220,7 +220,7 @@ export class StabilityProtScheRecHomePageComponent implements OnInit, AfterViewI
 
       const dialogRef = this.dialog.open(component, {
         minWidth: '80%',
-        data: { tableData: tableData, pageTitle: 'Stability  Protocol Schedule Record' },
+        data: { tableData: tableData, pageTitle: ' Stability  Protocol Schedule Record' },
       });
       dialogRef.afterClosed().subscribe((result) => { });
     }
@@ -239,7 +239,7 @@ export class StabilityProtScheRecHomePageComponent implements OnInit, AfterViewI
     } else {
       this.isLoading = true;
 
-      this.stabilityProtScheRecServiceService
+       this.stabilityProtScheRecServiceService 
         .onAllRoleAuditTrail(this.selectedRow.uc0001)
         .subscribe((data: any) => {
           let newFormatData = this.structureResponse(data.data);
@@ -252,7 +252,7 @@ export class StabilityProtScheRecHomePageComponent implements OnInit, AfterViewI
     const rows = apiResponse.map((item) => {
       return {
         fields: [
-          { labelName: 'Version', value: item.version },
+         { labelName: 'Version', value: item.version },
           {
             labelName: 'Status',
             value: this.onChangeStatus(item.status),
@@ -278,12 +278,13 @@ export class StabilityProtScheRecHomePageComponent implements OnInit, AfterViewI
     );
     const dialogRef = this.dialog.open(component, {
       minWidth: '80%',
-      data: { tableData: rows, pageTitle: 'Stability  Protocol Schedule Record' },
+      data: { tableData: rows, pageTitle: ' Stability  Protocol Schedule Record ' },
     });
     dialogRef.afterClosed().subscribe((result) => { });
   }
   columnConfig = {
-    action: 'Action',
+   	   
+		    action: 'Action',
     uc0001: 'Station No',
     ff0001: 'Station',
     ff0002: 'Schdule No',
@@ -294,6 +295,11 @@ export class StabilityProtScheRecHomePageComponent implements OnInit, AfterViewI
      ff0007: 'Withdrawal Tolerance Date ',
     ff0008: 'Genartion Type',
    ff0009: 'withdrawal Qty',
+    // ff0005: 'STP No',
+    // ff0006: 'Batch No./Sample Ref No',
+    // ff0007: 'Batch Size',
+    // ff0008: 'Batch size UOM',
+    // ff0009: 'Referance Standrad No',
     // ff0010: 'W.S Validity in day',
     // ff0011: 'Storage Condition',
     // ff0012: 'Quantity for testing',
@@ -306,7 +312,7 @@ export class StabilityProtScheRecHomePageComponent implements OnInit, AfterViewI
   };
 
   filterOptions: string[] = Object.keys(this.columnConfig);
-  tableTitle: string = 'All Stability  Protocol Schedule Record';
+  tableTitle: string = 'All  Stability  Protocol Schedule Record';
   allButtonConfig = [
     { label: ' Audit Trail', action: 'Audit_Trail', color: 'primary' },
     // { label: 'Save', action: 'save', color: 'accent' }
@@ -351,4 +357,7 @@ export class StabilityProtScheRecHomePageComponent implements OnInit, AfterViewI
 
 
 
+{
+
+}
 
